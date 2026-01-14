@@ -1,0 +1,35 @@
+pmg_domestic_network = {
+	
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
+	ai_selection = most_productive
+
+	production_methods = {
+		pm_hms_domestic_network_tier_1
+		pm_hms_domestic_network_tier_2
+	}
+
+}
+
+pmg_foreign_operations = {
+	
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_military.dds"
+	ai_selection = most_productive
+
+	production_methods = {
+		pm_hms_foreign_operations_tier_1
+		pm_hms_foreign_operations_tier_2
+	}
+
+}
+
+pmg_scientific_division = {
+	
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_automation.dds"
+	ai_selection = most_productive
+
+	production_methods = {
+		pm_hms_scientific_intelligence_tier_1
+		pm_hms_scientific_intelligence_tier_2
+	}
+
+}

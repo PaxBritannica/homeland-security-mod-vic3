@@ -1,0 +1,65 @@
+INJECT_OR_CREATE:building_intel_hq = {
+	building_group = bg_intel_buildings
+	city_type = city
+	ownership_type = self
+	icon = "gfx/interface/icons/building_icons/backgrounds/secret_service_headquarter.dds"
+	background = "gfx/interface/icons/building_icons/backgrounds/secret_service_headquarter.dds"
+
+	levels_per_mesh = 5
+	unlocking_technologies = { HMS_tech_secret_service }
+	required_construction = construction_cost_high
+
+	production_method_groups = {
+		pmg_domestic_network
+		pmg_foreign_operations
+		pmg_scientific_division
+	}
+
+	# Not possible if owner has No Home Affairs
+
+	possible = {
+		owner = {
+			NOT = {
+				OR = {
+					has_law = law_type:law_no_home_affairs
+				}
+			}
+		}
+	}
+	
+	# What the building provides to the country
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = 25
+		}
+		
+		level_scaled = {
+			country_prestige_add = 10
+			country_influence_add = 5
+		}
+	}
+
+	ai_value = {
+		value = 2
+
+		# Great powers prioritize it
+		if = {
+			limit = { is_great_power = yes }
+			multiply = 1.3
+		}
+		
+		# Higher priority if in rivalries
+		if = {
+			limit = {
+				any_scope_country = {
+					has_diplomatic_pact = {
+						who = ROOT
+						type = rivalry
+					}
+				}
+			}
+			multiply = 1.4
+		}
+	}
+	
+}

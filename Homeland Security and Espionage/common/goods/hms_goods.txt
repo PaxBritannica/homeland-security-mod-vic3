@@ -1,0 +1,12 @@
+#First of all is a prestige goods consumed by Elites so the prestige factor needs to be high
+
+INJECT_OR_CREATE:intel = {
+	texture = "gfx/interface/icons/goods_icons/intel.dds"
+	cost = 30
+	category = luxury
+	
+	prestige_factor = 5
+	# tradeable = no
+	# money = yes
+
+}

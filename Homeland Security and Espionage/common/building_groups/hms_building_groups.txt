@@ -1,0 +1,16 @@
+INJECT_OR_CREATE:bg_intel_buildings = {
+	
+	parent_group = bg_government
+	economy_of_scale = no
+	category = development
+	urbanization = 5
+	infrastructure_usage_per_level = 2
+	is_government_funded = no
+	construction_efficiency_modifier = yes
+	can_use_slaves = no
+
+	should_auto_expand = {
+		default_auto_expand_rule = no
+	}
+	
+}

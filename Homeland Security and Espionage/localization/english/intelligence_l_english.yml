@@ -1,0 +1,11 @@
+﻿l_english:
+ HMS_tech_homeland_security:0 "Homeland Security"
+ HMS_tech_homeland_security_desc:0 "The development of homeland security measures enhances a nation's ability to protect its citizens and infrastructure from internal and external threats."
+ HMS_tech_secret_service:0 "Secret Service"
+ HMS_tech_secret_service_desc:0 "The establishment of early intelligence services allows nations to gather crucial information about their rivals and protect their own interests."
+ building_intel_hq:0 "Secret Service Headquarter"
+ building_intel_hq:0 "A dedicated facility for training and deploying intelligence agents to conduct espionage and other covert operations."
+ intel:0 "Intel"
+ pmg_domestic_network:0 "Domestic Network"
+ pmg_foreign_operations:0 "Foreign Operations"
+ pmg_scientific_division:0 "Scientific Division"

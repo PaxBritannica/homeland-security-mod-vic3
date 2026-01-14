@@ -1,0 +1,28 @@
+namespace = intelligence_tech_events
+
+#Event for when the intelligence technology is researched
+intelligence_tech_events.1 = {
+	type = country_event
+
+	title = "Prova"
+	desc = "intelligence_tech_events.1.desc"
+	picture = "GFX_evt_intelligence_agency"
+	
+	duration = 3
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:actor.ruler
+
+	option = {
+		name = intelligence_tech_events.1.a
+		
+		# Small prestige boost
+		add_modifier = {
+			name = established_secret_service
+			months = 24
+		}
+		
+		ai_chance = {
+			base = 100
+		}
+	}
+}

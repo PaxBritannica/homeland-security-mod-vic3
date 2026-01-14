@@ -1,0 +1,75 @@
+# ERA 2 HOMELAND SECURITY TECH
+HMS_tech_homeland_security = {
+
+	#Unlocks the Headquarter Building
+	#Unlocks Intel as Resource
+
+	era = era_2
+	category = society
+	unlocking_technologies = { nationalism, central_archives }
+	texture = "gfx/interface/icons/invention_icons/homeland_security.dds"
+
+	# Bonuses provided mainly for flavor and to boost AI interest
+	modifier = {
+		country_prestige_add = 25
+		country_influence_add = 10
+	}
+
+	# triggers event
+	on_researched = {
+		trigger_event = {
+			id = intelligence_tech_events.1
+			days = 0
+		}
+	}
+
+	#ai research propensity
+	ai_weight = {
+		value = 2
+
+		if = {
+			limit = {
+				OR = {
+					has_law = law_type:law_autocracy
+					has_law = law_type:law_oligarchy
+				}
+			}
+			multiply = 1.5
+		}
+
+		# Great powers prioritize it
+        if = {
+            limit = { is_great_power = yes }
+            multiply = 1.3
+        }
+        
+        # Higher priority if in rivalries
+        if = {
+            limit = {
+                any_scope_country = {
+                    has_diplomatic_pact = {
+                        who = ROOT
+                        type = rivalry
+                    }
+                }
+            }
+            multiply = 1.4
+        }
+	}
+
+}
+
+HMS_tech_secret_service = {
+
+	era = era_3
+	category = society
+	unlocking_technologies = { HMS_tech_homeland_security }
+	texture = "gfx/interface/icons/invention_icons/secret_service_wbg.dds"
+
+	ai_weight = {
+		value = 1
+	}
+
+	
+
+}

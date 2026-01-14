@@ -1,0 +1,263 @@
+# 
+# DOMESTIC NETWORK (GROUP I)
+# 
+
+pm_hms_domestic_network_tier_1 = {
+	texture = ""
+
+	unlocking_technologies = {
+		HMS_tech_secret_service
+	}
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -15
+			country_authority_add = 19
+
+			country_weekly_innovation_add = 0.2
+			country_tech_spread_mult = 0.02
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			goods_input_paper_add = 5
+			# goods_input_bureaucracy_mult = -0.25 # NOT WORKING
+
+			# output goods
+			goods_output_intel_add = 10
+			# country_tech_spread_add = 0.25 # NOT WORKING
+		}
+		level_scaled = {
+			building_employment_clerks_add = 500
+			building_employment_laborers_add = 250
+			building_employment_engineers_add = 250
+			building_employment_academics_add = 50
+		}
+	}
+}
+
+pm_hms_domestic_network_tier_2 = {
+	texture = ""
+
+	unlocking_technologies = {
+		
+	}
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -15
+			country_authority_add = 19
+
+			country_weekly_innovation_add = 0.2
+			country_tech_spread_mult = 0.02
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			goods_input_paper_add = 5
+			# goods_input_bureaucracy_mult = -0.25 # NOT WORKING
+
+			# output goods
+			goods_output_intel_add = 10
+			# country_tech_spread_add = 0.25 # NOT WORKING
+		}
+		level_scaled = {
+			building_employment_clerks_add = 500
+			building_employment_laborers_add = 250
+			building_employment_engineers_add = 250
+			building_employment_academics_add = 50
+		}
+	}
+}
+
+# 
+# FOREIGN OFFICE (GROUP II)
+# 
+
+pm_hms_foreign_operations_tier_1 = {
+	texture = ""
+
+	# unlocking_technologies = {
+	# 	INSERT TECH HERE
+	# }
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -25
+			country_weekly_innovation_add = 1.25
+			country_authority_add = 25
+			country_tech_spread_mult = 0.2
+		}
+	}
+
+	disallowing_laws = {
+		law_no_home_affairs
+	}
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_radicals_from_political_movements_mult = -0.1
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			goods_input_paper_add = 12
+			goods_bureaucracy_add = -20
+
+			# output goods
+			goods_output_intel_add = 25
+			country_tech_spread_add = 0.75
+		}
+		level_scaled = {
+			building_employment_clerks_add = 750
+			building_employment_laborers_add = 350
+			building_employment_engineers_add = 300
+			building_employment_academics_add = 100
+		}
+	}
+}
+
+pm_hms_foreign_operations_tier_2 = {
+	texture = ""
+
+	# unlocking_technologies = {
+	# 	INSERT TECH HERE
+	# }
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -25
+			country_weekly_innovation_add = 1.25
+			country_authority_add = 25
+			country_tech_spread_mult = 0.2
+		}
+	}
+
+	disallowing_laws = {
+		law_no_home_affairs
+	}
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_radicals_from_political_movements_mult = -0.1
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			goods_input_paper_add = 12
+			goods_bureaucracy_add = -20
+
+			# output goods
+			goods_output_intel_add = 25
+			country_tech_spread_add = 0.75
+		}
+		level_scaled = {
+			building_employment_clerks_add = 750
+			building_employment_laborers_add = 350
+			building_employment_engineers_add = 300
+			building_employment_academics_add = 100
+		}
+	}
+}
+
+#
+# SCIENTIFIC DIVISION (GROUP III)
+#
+
+pm_hms_scientific_intelligence_tier_1 = {
+	texture = ""
+
+	# unlocking_technologies = {
+	# 	INSERT TECH HERE
+	# }
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -25
+			country_weekly_innovation_add = 1.25
+			country_authority_add = 25
+			country_tech_spread_mult = 0.2
+		}
+	}
+
+	disallowing_laws = {
+		law_no_home_affairs
+	}
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_radicals_from_political_movements_mult = -0.1
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			goods_input_paper_add = 12
+			goods_bureaucracy_add = -20
+
+			# output goods
+			goods_output_intel_add = 25
+			country_tech_spread_add = 0.75
+		}
+		level_scaled = {
+			building_employment_clerks_add = 750
+			building_employment_laborers_add = 350
+			building_employment_engineers_add = 300
+			building_employment_academics_add = 100
+		}
+	}
+}
+
+pm_hms_scientific_intelligence_tier_2 = {
+	texture = ""
+
+	# unlocking_technologies = {
+	# 	INSERT TECH HERE
+	# }
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -25
+			country_weekly_innovation_add = 1.25
+			country_authority_add = 25
+			country_tech_spread_mult = 0.2
+		}
+	}
+
+	disallowing_laws = {
+		law_no_home_affairs
+	}
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_radicals_from_political_movements_mult = -0.1
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			goods_input_paper_add = 12
+			goods_bureaucracy_add = -20
+
+			# output goods
+			goods_output_intel_add = 25
+			country_tech_spread_add = 0.75
+		}
+		level_scaled = {
+			building_employment_clerks_add = 750
+			building_employment_laborers_add = 350
+			building_employment_engineers_add = 300
+			building_employment_academics_add = 100
+		}
+	}
+}

@@ -1,0 +1,8 @@
+goods_output_intel_add = {
+	decimals=1
+	color=good
+	percent = no
+	game_data={
+		ai_value=0
+	}
+}
