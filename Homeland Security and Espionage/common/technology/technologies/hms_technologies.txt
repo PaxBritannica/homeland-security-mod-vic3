@@ -1,22 +1,31 @@
-# ERA 2 HOMELAND SECURITY TECH
-HMS_tech_homeland_security = {
+# ERA 2
+HMS_tech_secret_service = {
 
 	#Unlocks the Headquarter Building
-	#Unlocks Intel as Resource
 
 	era = era_2
 	category = society
+	texture = "gfx/interface/icons/invention_icons/secret_service_wbg.dds"
 	unlocking_technologies = { nationalism, central_archives }
-	texture = "gfx/interface/icons/invention_icons/homeland_security.dds"
+	
 
 	# Bonuses provided mainly for flavor and to boost AI interest
 	modifier = {
-		country_prestige_add = 25
-		country_influence_add = 10
+		country_prestige_add = 15
+		country_influence_mult = 0.07
+		country_authority_mult = 0.05
+		country_agitator_slots_add = 1
+
+		# For future we will have our own institution and so we will add institutional max level add
+		# eg as seen for workplace safety tech investment
+		# country_institution_workplace_safety_max_investment_add = 3
 	}
 
 	# triggers event
 	on_researched = {
+
+		set_global_variable = hms_tech_secret_service_researched
+
 		trigger_event = {
 			id = intelligence_tech_events.1
 			days = 0
@@ -59,17 +68,219 @@ HMS_tech_homeland_security = {
 
 }
 
-HMS_tech_secret_service = {
+# ERA 3
+HMS_tech_homeland_security = {
+
+	# Focuses on Internal Affairs and Security
+	# Produces Authority
 
 	era = era_3
 	category = society
-	unlocking_technologies = { HMS_tech_homeland_security }
-	texture = "gfx/interface/icons/invention_icons/secret_service_wbg.dds"
+	unlocking_technologies = { HMS_tech_secret_service }
+	texture = "gfx/interface/icons/invention_icons/homeland_security.dds"
 
+	# Its own global variable to trigger events or other techs
+	set_global_variable = hms_tech_homeland_security_researched
+
+	# Bonuses provided mainly for flavor and to boost AI interest
+	modifier = {
+
+		# bonus
+		state_tax_capacity_add = 30
+		state_incorporation_speed_mult = 0.1
+		state_loyalists_from_political_movements_mult = 0.1
+		country_prestige_add = 25
+		country_authority_mult = 0.05
+		country_support_separatism_resistance_mult = -0.15  # Counter-intelligence doctrine
+		# country_institution_home_affairs_max_investment_add = 1 # will make our institution soon
+		country_agitator_slots_add = 1
+		# country_support_separatism_strength_mult = 0.25
+
+		#country malus
+		state_migration_pull_mult = -0.09
+		country_society_tech_spread_mult = -0.05
+
+	}
+	
+	#ai research propensity
 	ai_weight = {
-		value = 1
+		value = 2
+
+		if = {
+			limit = {
+				OR = {
+					has_law = law_type:law_autocracy
+					has_law = law_type:law_oligarchy
+				}
+			}
+			multiply = 1.5
+		}
+
+		# Great powers prioritize it
+        if = {
+            limit = { is_great_power = yes }
+            multiply = 1.3
+        }
+        
+        # Higher priority if in rivalries
+        if = {
+            limit = {
+                any_scope_country = {
+                    has_diplomatic_pact = {
+                        who = ROOT
+                        type = rivalry
+                    }
+                }
+            }
+            multiply = 1.4
+        }
+
+		# Limit the AI interest if pursuing egalitarian agenda
+		if = {
+			limit = {
+				has_strategy = ai_strategy_egalitarian_agenda
+			}
+			add = -1.5
+		}
+	}
+}
+
+HMS_tech_foreign_operations = {
+
+	# Focuses on External Affairs and Intelligence
+	# produces influence
+
+	era = era_3
+	category = society
+	unlocking_technologies = { HMS_tech_secret_service }
+	texture = "gfx/interface/icons/invention_icons/foreign_influence.dds"
+
+	# Bonuses provided mainly for flavor and to boost AI interest
+	modifier = {
+
+		country_prestige_add = 25
+		country_influence_mult = 0.15
+
+		country_max_declared_interests_add = 1
+		country_diplomatic_reputation_add = 10       # Institutional credibility
+
+		unit_navy_offense_add = 10
+		unit_navy_defense_add = 10
+		
+	}
+	
+	#ai research propensity
+	ai_weight = {
+		value = 2
+
+		if = {
+			limit = {
+				OR = {
+					has_law = law_type:law_autocracy
+					has_law = law_type:law_oligarchy
+				}
+			}
+			multiply = 1.5
+		}
+
+		# Great powers prioritize it
+        if = {
+            limit = { is_great_power = yes }
+            multiply = 1.3
+        }
+        
+        # Higher priority if in rivalries
+        if = {
+            limit = {
+                any_scope_country = {
+                    has_diplomatic_pact = {
+                        who = ROOT
+                        type = rivalry
+                    }
+                }
+            }
+            multiply = 1.4
+        }
+
+		# Control the population agenda
+		if = {
+			limit = {
+				has_strategy = ai_strategy_conservative_agenda
+				has_strategy = ai_strategy_placate_population
+			}
+			multiply = 1.2
+		}
 	}
 
 	
 
+}
+
+HMS_tech_scientific_division = {
+
+	era = era_3
+	category = society
+	unlocking_technologies = { HMS_tech_secret_service }
+	texture = "gfx/interface/icons/invention_icons/scientific_division.dds"
+
+	# Bonuses provided mainly for flavor and to boost AI interest
+	modifier = {
+
+		country_prestige_mult = 0.1 # verify
+		country_influence_add = 125
+
+		country_society_tech_spread_mult = 0.2
+		country_society_tech_research_speed_mult = 0.10  # verify
+	}
+	
+	#ai research propensity
+	ai_weight = {
+		value = 2
+
+		if = {
+			limit = {
+				OR = {
+					has_law = law_type:law_autocracy
+					has_law = law_type:law_oligarchy
+				}
+			}
+			multiply = 1.5
+		}
+
+		# Great powers prioritize it
+        if = {
+            limit = { is_great_power = yes }
+            multiply = 1.3
+        }
+        
+        # Higher priority if in rivalries
+        if = {
+            limit = {
+                any_scope_country = {
+                    has_diplomatic_pact = {
+                        who = ROOT
+                        type = rivalry
+                    }
+
+                }
+            }
+            multiply = 1.3
+        }
+
+		if = {
+			limit = {
+				ruler = {
+					has_ideology = ideology_traditionalist
+				}
+			}
+			value = 0.8
+		}
+
+		if = {
+			limit = {
+				has_strategy = ai_strategy_progressive_agenda
+			}
+			multiply = 1.1
+		}
+	}
 }

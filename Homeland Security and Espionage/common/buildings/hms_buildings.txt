@@ -3,11 +3,13 @@ INJECT_OR_CREATE:building_intel_hq = {
 	city_type = city
 	ownership_type = self
 	icon = "gfx/interface/icons/building_icons/backgrounds/secret_service_headquarter.dds"
-	background = "gfx/interface/icons/building_icons/backgrounds/secret_service_headquarter.dds"
 
-	levels_per_mesh = 5
+	# has_max_level = yes needs variable to be implemented with relative modifier
+	levels_per_mesh = 50
+	
 	unlocking_technologies = { HMS_tech_secret_service }
 	required_construction = construction_cost_high
+	
 
 	production_method_groups = {
 		pmg_domestic_network
