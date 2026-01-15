@@ -1,3 +1,4 @@
+# INTEL OUTPUT
 goods_output_intel_add = {
 	decimals=1
 	color=good
@@ -6,3 +7,99 @@ goods_output_intel_add = {
 		ai_value=0
 	}
 }
+
+goods_output_intel_mult = {
+	decimals=1
+	color=good
+	percent = yes
+	game_data={
+		ai_value=0
+	}
+}
+
+# INTEL INPUT
+goods_input_intel_add = {
+	decimals=1
+	color=bad
+	percent = no
+	game_data={
+		ai_value=0
+	}
+}
+
+goods_input_intel_mult = {
+	decimals=1
+	color=bad
+	percent = yes
+	game_data={
+		ai_value=0
+	}
+}
+
+
+# custom modifier for coffee input
+goods_input_coffee_add = {
+	decimals=1
+	color=bad
+	percent = no
+	game_data={
+		ai_value=0
+	}
+}
+
+goods_input_coffee_mult = {
+	decimals=1
+	color=bad
+	percent = yes
+	game_data={
+		ai_value=0
+	}
+}
+
+# custom modifier for furniture input
+goods_input_furniture_add = {
+	decimals=1
+	color=bad
+	percent = no
+	game_data={
+		ai_value=0
+	}
+}
+
+goods_input_furniture_mult = {
+	decimals=1
+	color=bad
+	percent = yes
+	game_data={
+		ai_value=0
+	}
+}
+
+# custom modifier for luxury clothes input
+goods_input_luxury_clothes_add = {
+	decimals=1
+	color=bad
+	percent = no
+	game_data={
+		ai_value=0
+	}
+}
+
+goods_input_luxury_clothes_mult = {
+	decimals=1
+	color=bad
+	percent = yes
+	game_data={
+		ai_value=0
+	}
+}
+
+# to destroy state infrastructure TODO
+# state_infrastructure_mult={
+# 	decimals=1
+# 	color=good
+# 	percent=yes
+# 	game_data={
+# 		ai_value=0
+# 	}
+# }

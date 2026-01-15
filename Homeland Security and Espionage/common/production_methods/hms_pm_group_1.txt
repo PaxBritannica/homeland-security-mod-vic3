@@ -1,0 +1,98 @@
+# 
+# (GROUP I)
+# 
+
+pm_hms_group_1_tier_0 = {
+
+	texture = "gfx/interface/icons/pms_icons/local_informants.dds"
+
+	unlocking_technologies = {
+		# HMS_tech_secret_service its base method so does not need to unlock itself
+	}
+
+	# Eats Bureaucracy to boost Authority
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -5
+			country_authority_add = 15
+
+			# country_weekly_innovation_add = 0.2
+			# country_tech_spread_mult = 0.02
+		}
+	}
+
+	#Every worker you employ here makes it less likely that radicals will rise up in your states
+	#They also provide local propaganda to boost loyalist movements
+	state_modifiers = {
+		workforce_scaled = {
+			state_loyalists_from_political_movements_mult = 0.02
+			state_radicals_from_political_movements_mult = -0.02
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			goods_input_paper_add = 10
+			goods_output_intel_add = 7.5
+		}
+
+		level_scaled = {
+			building_employment_clerks_add = 500
+			building_employment_laborers_add = 200
+		}
+	}
+}
+
+pm_hms_group_1_tier_1 = {
+
+	# They help identify and root out subversive elements within the country, 
+	# strengthening national security, enforcing tax control.
+	texture = "gfx/interface/icons/pms_icons/professional_agents.dds"
+
+	# No Home Affairs law will block this building
+	disallowing_laws = {
+		law_no_home_affairs
+	}
+
+	unlocking_technologies = {
+		HMS_tech_era_3_extended_networks
+	}
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -7.5
+			country_authority_add = 21
+			country_suppression_cost_mult = -0.2 #verify
+		}
+	}
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_loyalists_from_political_movements_mult = 0.04
+			state_radicals_from_political_movements_mult = -0.04
+			state_migration_pull_mult = -0.02
+			state_tax_capacity_add = 5
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			goods_input_paper_add = 30
+			goods_input_furniture_add = 2.5
+			goods_input_coffee_add = 1.5
+			goods_input_luxury_clothes_add = 1
+
+			goods_output_intel_add = 20
+			goods_output_services_add = 10
+		}
+		level_scaled = {
+			building_employment_clerks_add = 250
+			building_employment_laborers_add = 200
+			building_employment_engineers_add = 250
+			building_employment_academics_add = 50
+		}
+	}
+}
+
+#TIER 2 TBD
+#TIER 2 WILL PROBABLY NEED ERA 4 TECH

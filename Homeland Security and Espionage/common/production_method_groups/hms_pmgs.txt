@@ -1,35 +1,38 @@
-pmg_domestic_network = {
+pmg_group_1 = {
 	
 	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
 	ai_selection = most_productive
 
 	production_methods = {
-		pm_hms_domestic_network_tier_1
-		pm_hms_domestic_network_tier_2
+		pm_hms_group_1_tier_0
+		pm_hms_group_1_tier_1
 	}
 
 }
 
-pmg_foreign_operations = {
+pmg_group_2 = {
 	
 	texture = "gfx/interface/icons/generic_icons/mixed_icon_military.dds"
 	ai_selection = most_productive
 
 	production_methods = {
-		pm_hms_foreign_operations_tier_1
-		pm_hms_foreign_operations_tier_2
+		pm_hms_group_2_tier_0
+		pm_hms_group_2_tier_1
+		pm_hms_group_2_tier_2
+		pm_hms_group_2_tier_3
 	}
 
 }
 
-pmg_scientific_division = {
+pmg_group_3 = {
 	
 	texture = "gfx/interface/icons/generic_icons/mixed_icon_automation.dds"
 	ai_selection = most_productive
 
 	production_methods = {
-		pm_hms_scientific_intelligence_tier_1
-		pm_hms_scientific_intelligence_tier_2
+		pm_hms_group_3_tier_0
+		pm_hms_group_3_tier_1
+		pm_hms_group_3_tier_2
 	}
 
 }

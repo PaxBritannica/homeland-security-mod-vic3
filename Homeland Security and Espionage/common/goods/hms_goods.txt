@@ -2,7 +2,7 @@
 
 INJECT_OR_CREATE:intel = {
 	texture = "gfx/interface/icons/goods_icons/intel.dds"
-	cost = 30
+	cost = 50
 	category = luxury
 	
 	prestige_factor = 5

@@ -1,21 +1,43 @@
 ﻿l_english:
- HMS_tech_homeland_security:0 "Homeland Security"
- HMS_tech_homeland_security_desc:0 "The development of homeland security measures enhances a nation's ability to protect its citizens and infrastructure from internal and external threats."
- HMS_tech_secret_service:0 "Secret Service"
- HMS_tech_foreign_operations:0 "Foreign Operations"
- HMS_tech_foreign_operations_desc:0 "Expanding foreign operations capabilities allows a nation to project its influence abroad and gather leverage on international developments."
- HMS_tech_secret_service_desc:0 "The establishment of early intelligence services allows nations to gather crucial information about their rivals and protect their own interests."
- HMS_tech_scientific_division:0 "Scientific Division"
- HMS_tech_scientific_division_desc:0 "The creation of a scientific division within our intelligence agency will enable us to spread technologies and steal valuable rival informations."
+
+ #techs
+ HMS_tech_era_4_homeland_security:0 "Homeland Security"
+ HMS_tech_era_4_homeland_security_desc:0 "The development of homeland security measures enhances a nation's ability to protect its citizens and infrastructure from internal and external threats."
+ HMS_tech_era_2_secret_service:0 "Secret Service"
+ HMS_tech_era_3_extended_networks:0 "Extended Networks"
+ HMS_tech_era_3_extended_networks_desc:0 "By expanding our intelligence networks, we can gather more comprehensive information on global events and rival nations, improving our strategic decision-making."
+ HMS_tech_era_2_secret_service_desc:0 "The establishment of early intelligence services allows nations to gather crucial information about their rivals and protect their own interests."
+
+ #mobilizations
+ mobilization_option_field_observers:0 "Field Observers"
+ mobilization_option_field_observers_desc:0 "Deploy trained field observers to gather intelligence on enemy movements and activities, gain the upperhand on your enemy knowing his moves in advance and secure the land you have taken."
+ mobilization_option_homeletters:0 "Homeletters"
+ mobilization_option_homeletters_desc:0 "Soldiers family members are encouraged to write letters to their loved ones at the front, boosting morale and providing emotional support during difficult times."
+ 
+ #buildings
  building_intel_hq:0 "Secret Service Headquarter"
  building_intel_hq:0 "A dedicated facility for training and deploying intelligence agents to conduct espionage and other covert operations."
+
+ #goods
  intel:0 "Intel"
- pmg_domestic_network:0 "Domestic Network"
- pmg_foreign_operations:0 "Foreign Operations"
- pmg_scientific_division:0 "Scientific Division"
- pm_hms_domestic_network_tier_1:0 "Local Informants"
- pm_hms_domestic_network_tier_2:0 "Covert Agents"
- pm_hms_foreign_operations_tier_1:0 "No Foreign Presence"
- pm_hms_foreign_operations_tier_2:0 "Embassy Attachés"
- pm_hms_scientific_intelligence_tier_1:0 "Manual Decryption"
- pm_has_scientific_intelligence_tier_2:0 "Code Breakers"
+ goods_input_intel_add:0 "Intel input"
+
+ #production methods groups and tiers
+ pmg_group_1:0 "State Network"
+ pmg_group_2:0 "Reserved Offices"
+ pmg_group_3:0 "Encryption"
+
+ pm_hms_group_1_tier_0:0 "Local Informants"
+ pm_hms_group_1_tier_1:0 "Professional Agents"
+ pm_hms_group_1_tier_2:0 "Government Cells"
+ pm_hms_group_2_tier_0:0 "No Reserved Offices"
+ pm_hms_group_2_tier_1:0 "Army Intelligence Office"
+ pm_hms_group_2_tier_2:0 "Navy Intelligence Office"
+ pm_hms_group_2_tier_3:0 "Bureau of Foreign Affairs"
+ pm_hms_group_3_tier_0:0 "No Encryption"
+ pm_hms_group_3_tier_1:0 "Manual Encryption"
+ pm_hms_group_3_tier_2:0 "Code Breakers"
+
+ #vanilla replacements
+ military_statistics:0 "Military Intelligence"
+ 

@@ -1,0 +1,18 @@
+REPLACE_OR_CREATE:military_statistics = {
+	era = era_3
+	texture = "gfx/interface/icons/invention_icons/military_statistics.dds"
+	category = military
+
+	modifier = {
+		military_formation_organization_gain_mult = 0.2
+	}
+
+	unlocking_technologies = {
+		electric_telegraph
+		general_staff
+	}
+
+	ai_weight = {
+		value = 1
+	}
+}

@@ -1,0 +1,274 @@
+mobilization_option_homeletters = {
+	texture = "gfx/interface/icons/pms_icons/homeletters.dds"
+
+	unlocking_technologies = {
+		military_statistics
+	}
+
+	possible = {
+		market ?= {
+			mg:intel ?= {
+				has_potential_supply = yes
+			}
+			mg:paper ?= {
+				has_potential_supply = yes
+			}
+		}
+	}
+
+    on_deactivate_while_mobilized = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_morale_when_you_remove_supplies_while_in_combat_tt
+			every_combat_unit = {
+				add_morale = {
+					value = morale
+					multiply = -0.3
+				}
+			}
+		}
+	}
+
+	upkeep_modifier = {
+		goods_input_intel_add = 1.5
+		goods_input_paper_add = 1
+	}
+
+	unit_modifier = {
+		unit_morale_loss_mult = -0.05
+        unit_morale_recovery_mult = 0.1
+	}
+
+	ai_weight = {
+		value = 1
+	}
+
+	group = supplies
+}
+
+mobilization_option_field_observers = {
+	texture = "gfx/interface/icons/pms_icons/field_observers.dds"
+
+    unlocking_technologies = {
+		military_statistics
+	}
+
+	possible = {
+		market ?= {
+			mg:intel ?= {
+				has_potential_supply = yes
+			}
+			
+		}
+	}
+
+	on_activate_while_mobilized = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_organization_when_you_adjust_equipment_tt
+			add_organization = {
+				value = organization
+				multiply = -0.5
+			}
+		}
+	}
+
+	on_deactivate = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_organization_when_you_adjust_equipment_tt
+			add_organization = {
+				value = organization
+				multiply = -0.5
+			}
+		}
+	}
+
+	upkeep_modifier = {
+		goods_input_intel_add = 1.5
+		goods_input_tools_add = 1
+	}
+
+	unit_modifier = {
+		unit_occupation_mult = 0.4
+        unit_army_offense_mult = 0.1
+	}
+
+	ai_weight = {
+		value = 1
+	}
+
+    group = reconnaissance
+}
+
+#REPLACE VANILLA RECOINESSANCE OPTION WITH THESE ONES THAT ACCEPTS INTEL SUPPLY INPUT
+REPLACE_OR_CREATE:mobilization_option_motorized_recon = {
+	texture = "gfx/interface/icons/mobilization_options/motorized_reconaissance.dds"
+
+	possible = {
+		market ?= {
+			mg:automobiles ?= {
+				has_potential_supply = yes
+			}
+			mg:oil ?= {
+				has_potential_supply = yes
+			}
+			mg:intel ?= {
+				has_potential_supply = yes
+			}
+		}
+	}
+
+	on_activate_while_mobilized = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_organization_when_you_adjust_equipment_tt
+			add_organization = {
+				value = organization
+				multiply = -0.5
+			}
+		}
+	}
+
+	on_deactivate = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_organization_when_you_adjust_equipment_tt
+			add_organization = {
+				value = organization
+				multiply = -0.5
+			}
+		}
+	}
+
+	unlocking_technologies = {
+		combustion_engine
+	}
+
+	upkeep_modifier = {
+		goods_input_automobiles_add = 1
+		goods_input_oil_add = 0.5
+		goods_input_intel_add = 2
+	}
+	unit_modifier = {
+		unit_occupation_mult = 0.5
+		military_formation_movement_speed_mult = 0.3
+		character_battle_condition_surprise_maneuver_mult = 0.5
+	}
+	ai_weight = {
+		value = 1
+	}
+
+    group = reconnaissance
+}
+
+REPLACE_OR_CREATE:mobilization_option_balloon_recon = {
+	texture = "gfx/interface/icons/mobilization_options/balloon_recon.dds"
+
+	unlocking_principles = {
+		principle_military_industry_3
+	}
+
+	possible = {
+		market ?= {
+			mg:fabric ?= {
+				has_potential_supply = yes
+			}
+			mg:oil ?= {
+				has_potential_supply = yes
+			}
+			mg:intel ?= {
+				has_potential_supply = yes
+			}
+		}
+	}
+
+	on_activate_while_mobilized = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_organization_when_you_adjust_equipment_tt
+			add_organization = {
+				value = organization
+				multiply = -0.5
+			}
+		}
+	}
+
+	on_deactivate = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_organization_when_you_adjust_equipment_tt
+			add_organization = {
+				value = organization
+				multiply = -0.25
+			}
+		}
+	}
+
+	upkeep_modifier = {
+		goods_input_fabric_add = 2
+		goods_input_oil_add = 0.5
+		goods_input_intel_add = 2
+	}
+	unit_modifier = {
+		unit_occupation_mult = 0.8
+		military_formation_attrition_risk_mult = -0.2
+		character_battle_condition_charted_terrain_mult = 0.5
+	}
+	ai_weight = {
+		value = 1
+	}
+
+	group = reconnaissance
+}
+
+REPLACE_OR_CREATE:mobilization_option_aerial_recon = {
+	texture = "gfx/interface/icons/mobilization_options/aerial_reconaissance.dds"
+
+	possible = {
+		market ?= {
+			mg:aeroplanes ?= {
+				has_potential_supply = yes
+			}
+			mg:oil ?= {
+				has_potential_supply = yes
+			}
+			mg:intel ?= {
+				has_potential_supply = yes
+			}
+		}
+	}
+
+	on_activate_while_mobilized = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_organization_when_you_adjust_equipment_tt
+			add_organization = {
+				value = organization
+				multiply = -0.5
+			}
+		}
+	}
+
+	on_deactivate = {
+		custom_tooltip = {
+			text = mobilization_option_it_hurts_organization_when_you_adjust_equipment_tt
+			add_organization = {
+				value = organization
+				multiply = -0.5
+			}
+		}
+	}
+
+	unlocking_technologies = {
+		military_aviation
+	}
+
+	upkeep_modifier = {
+		goods_input_aeroplanes_add = 1
+		goods_input_oil_add = 0.5
+		goods_input_intel_add = 2
+	}
+	unit_modifier = {
+		unit_occupation_mult = 1
+		character_battle_condition_rapid_advance_mult = 1
+		character_battle_condition_lost_mult = -0.5
+	}
+	ai_weight = {
+		value = 1
+	}
+
+	group = reconnaissance
+}
