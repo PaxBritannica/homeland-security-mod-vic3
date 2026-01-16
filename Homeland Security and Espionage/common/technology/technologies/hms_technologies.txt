@@ -29,7 +29,7 @@ HMS_tech_era_2_secret_service = {
 		set_global_variable = hms_tech_secret_service_researched
 
 		trigger_event = {
-			id = intelligence_tech_events.1
+			id = hms_secret_service_events.1
 			days = 0
 		}
 	}

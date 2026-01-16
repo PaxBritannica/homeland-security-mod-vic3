@@ -1,0 +1,114 @@
+# NEW DECREE INFILTRATE SECESSIONIST MOVEMENT
+decree_infiltrate_rebel_networks = {
+	texture = "gfx/interface/icons/decrees_icons/infiltration.dds"
+
+	unlocking_technologies = {
+		HMS_tech_secret_service
+	}
+
+	country_trigger = {
+		NOT = { 
+            has_law_or_variant = law_type:law_guaranteed_liberties
+        }
+	}
+
+	state_trigger = {
+		turmoil >= 0.3
+	}
+
+	modifier = {
+		state_turmoil_effects_mult = -0.4
+		state_mortality_turmoil_mult = 0.01
+	}
+
+	cost = 100
+
+	ai_weight = {
+		value = 100
+
+		if = {
+			limit = {
+				turmoil >= 0.5
+
+			}
+			add = 100
+		}
+
+		if = {
+			limit = {
+				turmoil >= 0.75
+
+			}
+			add = 100
+		}
+
+		if = {
+			limit = {
+				scope:country = {
+					OR = {
+						has_strategy = ai_strategy_egalitarian_agenda
+						has_strategy = ai_strategy_progressive_agenda
+					}
+				}
+			}
+			multiply = 0.5
+		}
+	}
+}
+
+# REPLACES VIOLENT SUPPRESSION WITH A BUFFED VERSION CALLED ORGANIZED SUPPRESSION, THE GOAL IS TO PROVIDE ROOM FOR THE NEW DECREE INFILTRATE SECESSIONIST NETWORKS TO SHINE WITHOUT MAKING IT REDUNDANT
+REPLACE_OR_CREATE:decree_violent_suppression = {
+	texture = "gfx/interface/icons/decree/decree_violent_suppression.dds"
+
+	unlocking_technologies = {
+		standing_army
+	}
+
+	country_trigger = {
+		NOT = { has_law_or_variant = law_type:law_guaranteed_liberties }
+	}
+
+	state_trigger = {
+		turmoil >= 0.5
+	}
+
+	modifier = {
+		state_turmoil_effects_mult = -0.6
+		state_mortality_turmoil_mult = 0.03
+	}
+
+	cost = 150
+
+	ai_weight = {
+		value = 100
+
+		if = {
+			limit = {
+				turmoil >= 0.5
+
+			}
+			add = 100
+		}
+
+		if = {
+			limit = {
+				turmoil >= 0.75
+
+			}
+			add = 100
+		}
+
+		if = {
+			limit = {
+				scope:country = {
+					OR = {
+						has_strategy = ai_strategy_egalitarian_agenda
+						has_strategy = ai_strategy_progressive_agenda
+					}
+				}
+			}
+			multiply = 0.5
+		}
+
+	}
+}

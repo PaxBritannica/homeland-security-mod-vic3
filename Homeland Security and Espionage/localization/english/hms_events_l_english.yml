@@ -1,0 +1,14 @@
+﻿l_english:
+
+ #event modifiers
+ founded_secret_service_domestic_focus:0 "Secret Service domestic focus"
+ founded_secret_service_foreign_focus:0 "Secret Service foreign focus"
+ founded_secret_service_government_focus:0 "Support the government"
+
+ #event_first_researched_secret_service
+ hms_secret_service_events.1.t:0 "Establishment of the Secret Service"
+ hms_secret_service_events.1.d:0 "Recognizing the growing importance of intelligence in warfare as well as in national security, our government has decided to establish a dedicated Secret Service. This new agency will be responsible for gathering intelligence on both domestic and foreign threats, as well as protecting key government officials and infrastructure."
+ hms_secret_service_events.1.f:0 "As the first ever Secret Service reunion start. The selected officials in the room gather around listening to your words carefully, you read their faces they cannot help but wonder. You clear your throat and start speaking. 'Ladies and Gentlemen, today we embark on a new chapter in our nation's history. The establishment of the Secret Service marks a significant step forward in our commitment to safeguarding our nation and its people. Our primary focus will be to...'"
+ hms_secret_service_events.1.a:0 "Boost our authority and control over the population."
+ hms_secret_service_events.1.b:0 "Expand our foreign influence and interests."
+ hms_secret_service_events.1.c:0 "Protect the interest of this very government."

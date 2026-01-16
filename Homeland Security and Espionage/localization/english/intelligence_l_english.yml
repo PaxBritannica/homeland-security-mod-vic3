@@ -40,4 +40,11 @@
 
  #vanilla replacements
  military_statistics:0 "Military Intelligence"
+
+ #decrees
+ decree_violent_suppression:0 "Organized Suppression"
+ decree_violent_suppression_desc:0 "An army detachment is assigned to suppress dissent and maintain order within the nation, ensuring stability during times of unrest."
+ decree_infiltrate_rebel_networks:0 "Infiltrate Secessionist Movement"
+ decree_infiltrate_rebel_networks_desc:0 "Intelligence agents are deployed to infiltrate and gather information on secessionist movements, allowing for preemptive actions to counter their efforts."
+ 
  
