@@ -12,3 +12,18 @@
  hms_secret_service_events.1.a:0 "Boost our authority and control over the population."
  hms_secret_service_events.1.b:0 "Expand our foreign influence and interests."
  hms_secret_service_events.1.c:0 "Protect the interest of this very government."
+
+ #bribe out of office popup event
+ hms_resignation_events.1.t:0 "Pay the man and let's move on..."
+ hms_resignation_events.1.d:0 "[SCOPE.sCharacter('resigning_politician').GetFullName] has proven to be a liability to the state and its people. [SCOPE.sCharacter('resigning_politician').GetHerHis] personality and ideologies do not belong here. To ensure a smooth transition and avoid public scrutiny, we have decided to offer [SCOPE.sCharacter('resigning_politician').GetHerHim] a substantial bribe to resign from office quietly."
+ hms_resignation_events.1.f:0 "Every man has his price, we just need to keep adding zeros until we find it."
+ hms_resignation_events.1.a:0 "A small price to pay for stability."
+ hms_resignation_events.1.b:0 "On a second thought this might be too much..."
+ 
+ # A favor for a friend... (random event that fires after establishing secret service)
+ # This need to reference a specific character
+ hms_resignation_events.2.t:0 "A Favor for a Friend..."
+ hms_resignation_events.2.d:0 "In the shadows of our political landscape, a former official has approached us with a delicate request. This individual, once a prominent figure in our government, is now seeking our assistance to secure [SCOPE.sCharacter('resigning_politician').GetFullName]'s early retirement. They have offered a substantial bribe in exchange for our help in facilitating [SCOPE.sCharacter('resigning_politician').GetHerHis] departure without scandal or controversy. After careful consideration, we have decided to accept this offer. By aiding this former official, we not only gain valuable resources but also strengthen our network of influence within the political sphere."
+ hms_resignation_events.2.f:0 "As we sit in a dimly lit room, the former official leans in, [SCOPE.sCharacter('resigning_politician').GetHerHis] voice barely above a whisper. [SCOPE.sCharacter('resigning_politician').GetHerHis|U] cigar is the only source of light, casting flickering shadows on the walls. 'You understand,' [SCOPE.sCharacter('resigning_politician').GetSheHe] says, 'that [SCOPE.sCharacter('resigning_politician').GetHerHis] early retirement must be handled discreetly. I trust that you will handle this with utmost care and confidentiality.'"
+ hms_resignation_events.2.a:0 "Good friends always tend to each others' needs."
+ hms_resignation_events.2.b:0 "We only respond to the voice of the people."

@@ -17,6 +17,7 @@ decree_infiltrate_rebel_networks = {
 	}
 
 	modifier = {
+		building_intel_hq_throughput_mult = -0.07 # balanced ?
 		state_turmoil_effects_mult = -0.4
 		state_mortality_turmoil_mult = 0.01
 	}

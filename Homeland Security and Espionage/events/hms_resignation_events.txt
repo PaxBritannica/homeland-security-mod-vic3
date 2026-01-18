@@ -1,0 +1,220 @@
+namespace = hms_resignation_events
+
+# THIS IS FOR RULER FORCED RESIGNATION ( BRIBE OUT OF OFFICE )
+hms_resignation_events.1 = {
+	type = country_event
+	placement = ROOT
+
+	title = hms_resignation_events.1.t
+	desc = hms_resignation_events.1.d
+	flavor = hms_resignation_events.1.f
+
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:resigning_politician
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	option = { # Pay the man and go on
+		name = hms_resignation_events.1.a
+		default_option = yes
+
+		#character will decide to accept or not based on his own likeability/political image in the future!!
+
+		add_modifier = {
+			name = modifier_bribed_resignation
+			days = 365
+		}
+
+		custom_tooltip = {
+			text = leader_resigns_from_office_tt
+			scope:resigning_politician = {
+				kill_character = {
+					hidden = yes
+				}
+			}
+		}
+
+	}
+
+
+	option = { # Nah sorry cant chicken out now
+		name = hms_resignation_events.1.b
+
+		random_list = {
+			# Success - politician quietly resigns
+			70 = {
+				#Nothing happens
+			}
+			
+			# Lost legitimacy 
+			20 = {
+				add_modifier = {
+					name = modifier_attempted_bribe_scandal_legitimacy
+					days = 730
+				}
+				# add_modifier = {
+				# 	name = modifier_bribed_resignation
+				# 	days = 365
+				# }
+				# owner ?= {
+				# 	add_radicals = {
+				# 		value = medium_radicals
+				# 		interest_group = scope:relevant_ig
+				# 	}
+				# }
+
+				# Technically player has chosen not to make him resign so we comment this
+				# custom_tooltip = {
+				# 	text = leader_resigns_from_office_tt
+				# 	scope:resigning_politician = {
+				# 		kill_character = {
+				# 			hidden = yes
+				# 		}
+				# 	}
+				# }
+
+				post_notification = notify_unsuccessful_bribe_attempt_quit
+			}
+
+			# only lose radical support
+			10 = {
+				# owner ?= {
+				# 	add_radicals = {
+				# 		value = very_large_radicals
+				# 		interest_group = scope:relevant_ig
+				# 	}
+				# }
+				add_modifier = {
+					name = modifier_attempted_bribe_scandal_radicals
+					days = 365
+				}
+				post_notification = notify_unsuccessful_bribe_attempt_quit
+			}
+		}
+
+	}
+
+	# option = { # Disastrous regime
+	# 	name = resignation.1.b
+	# 	default_option = yes
+	# 	trigger = {
+	# 		OR = {
+	# 			scope:resignation_ig = {
+	# 				OR = {
+	# 					ig_approval <= angry
+	# 					ig_counts_as_marginal = yes
+	# 				}
+	# 			}
+	# 			scope:resigning_politician = {
+	# 				popularity <= -50
+	# 			}
+	# 		}
+	# 	}
+	# 	add_modifier = {
+	# 		name = modifier_disastrous_administration
+	# 		days = normal_modifier_time
+	# 	}
+	# 	add_loyalists = {
+	# 		value = small_radicals
+	# 	}
+	# 	custom_tooltip = {
+	# 		text = leader_resigns_from_office_tt
+	# 		scope:resigning_politician = {
+	# 			kill_character = {
+	# 				hidden = yes
+	# 			}
+	# 		}
+	# 	}
+	# }
+
+	# option = { # Immediate snap election
+	# 	name = resignation.1.c
+	# 	trigger = {
+	# 		has_law_or_variant = law_type:law_parliamentary_republic
+	# 	}
+	# 	custom_tooltip = {
+	# 		text = leader_resigns_from_office_tt
+	# 		scope:resigning_politician = {
+	# 			kill_character = {
+	# 				hidden = yes
+	# 			}
+	# 		}
+	# 	}
+	# 	call_election = {
+	# 		months = 3
+	# 	}
+	# }
+}
+
+# A Favor for a friend...
+hms_resignation_events.2 = {
+    type = country_event
+    placement = root
+    
+    title = hms_resignation_events.2.t
+    desc = hms_resignation_events.2.d
+    flavor = hms_resignation_events.2.f
+
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:resigning_politician
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+    
+    trigger = {
+         # Must have Secret Police law active
+		 has_law = law_type:law_secret_police
+		 
+		 # Must have at least one viable interest group with a leader
+		 any_interest_group = {
+			 is_marginal = no
+			 leader = {
+				 is_busy = no
+				#  NOT = { is_ruler = yes } # Optional: avoid targeting the ruler
+			 }
+		 }
+    }
+
+	cooldown = { days = never_fire_again_modifier_time }
+    
+    immediate = {
+        # Save the randomly selected leader to a scope
+        random_interest_group = {
+            limit = {
+                is_marginal = no
+                leader = {
+                    is_busy = no
+                }
+            }
+            save_scope_as = resignation_ig
+            
+            leader = {
+                save_scope_as = resigning_politician
+            }
+        }
+    }
+    
+    option = {
+		name = hms_resignation_events.2.a
+		default_option = yes
+	
+		add_modifier = {
+			name = modifier_accepted_secret_service_bribe
+			days = 365
+		}
+
+	}
+
+	option = {
+		name = hms_resignation_events.2.b
+		default_option = yes
+	
+		add_modifier = {
+			name = modifier_unefficient_secret_service
+			days = 365
+		}
+
+	}
+
+}

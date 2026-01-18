@@ -2,15 +2,26 @@
 
 INJECT_OR_CREATE:intel = {
 	texture = "gfx/interface/icons/goods_icons/intel.dds"
-	cost = 45
+	cost = 90
 	category = luxury
 	
-	prestige_factor = 20
-	# tradeable = no
+	prestige_factor = 15
+	tradeable = yes
 	# money = yes
 
 	consumption_tax_cost = 200
 	convoy_cost_multiplier = 2 # Very expensive to trade
 	traded_quantity = 30 #300
 
+}
+
+INJECT_OR_CREATE:military_intel = {
+	texture = "gfx/interface/icons/goods_icons/military_intel.dds"
+	cost = 120
+	category = military
+	
+	prestige_factor = 25
+	tradeable = no
+
+	# consumption_tax_cost = 300
 }

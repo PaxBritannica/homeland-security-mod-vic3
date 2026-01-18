@@ -18,6 +18,17 @@
  building_intel_hq:0 "Secret Service Headquarter"
  building_intel_hq:0 "A dedicated facility for training and deploying intelligence agents to conduct espionage and other covert operations."
 
+ #modifiers
+ building_intel_hq_throughput_mult:0 "Secret Service Headquarter Throughput"
+ modifier_bribed_resignation:0 "Bribed Resignation Expanse"
+ modifier_accepted_secret_service_bribe:0 "Accepted Secret Service Bribe"
+ modifier_attempted_bribe_scandal_radicalism:0 "Attempted Bribe Scandal"
+ modifier_attempted_bribe_scandal_legitimacy:0 "Attempted Bribe Scandal"
+ modifier_attempted_bribe_scandal_authority:0 "Attempted Bribe Scandal"
+ modifier_unefficient_secret_service:0 "Unefficient Secret Service"
+ 
+  
+
  #goods
  intel:0 "Intel"
  goods_input_intel_add:0 "Intel input"
