@@ -90,3 +90,22 @@ REPLACE_OR_CREATE:building_intel_hq_throughput_mult = {
         ai_value=0
     }
 }
+
+#new modifier for political movement radicalism
+political_movement_radicalism_mult = {
+    decimals=1
+    color=bad
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+country_institution_foreign_affairs_max_investment_add = {
+    decimals=1
+    color=good
+    percent = no
+    game_data={
+        ai_value=5
+    }
+}

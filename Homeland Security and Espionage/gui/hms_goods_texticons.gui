@@ -7,3 +7,13 @@ texticon = {
 		fontsize = 18
 	}
 }
+
+texticon = {
+	icon = military_intel
+	iconsize = {
+		texture = "gfx/interface/icons/goods_icons/military_intel.dds"
+		size = { 25 25 }
+		offset = { 0 7 }
+		fontsize = 18
+	}
+}

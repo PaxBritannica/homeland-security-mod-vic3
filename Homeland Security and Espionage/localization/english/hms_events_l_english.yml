@@ -5,6 +5,12 @@
  founded_secret_service_foreign_focus:0 "Secret Service foreign focus"
  founded_secret_service_government_focus:0 "Support the government"
 
+ #tooltips
+ initiator_will_stop_and_arrested_more_influence_tt:0 "[SCOPE.sCountry('operation_initiator').GetName] will stop the operation, our relations towards them will worsen and we will gain more influence."
+ operation_uncovered_both_notified_tt:0 "Both nations will be notified about the uncovered operation, our relations will worsen."
+ we_will_stop_operation_tt:0 "We will stop the operation, our relations towards [SCOPE.sCountry('operation_target').GetName] will worsen."
+
+
  #event_first_researched_secret_service
  hms_secret_service_events.1.t:0 "Establishment of the Secret Service"
  hms_secret_service_events.1.d:0 "Recognizing the growing importance of intelligence in warfare as well as in national security, our government has decided to establish a dedicated Secret Service. This new agency will be responsible for gathering intelligence on both domestic and foreign threats, as well as protecting key government officials and infrastructure."
@@ -12,6 +18,18 @@
  hms_secret_service_events.1.a:0 "Boost our authority and control over the population."
  hms_secret_service_events.1.b:0 "Expand our foreign influence and interests."
  hms_secret_service_events.1.c:0 "Protect the interest of this very government."
+
+ #intelligence operation uncovered by enemy
+ hms_operation_uncovered.1.t:0 "Our Intelligence Operation has been uncovered"
+ hms_operation_uncovered.1.d:0 "Our intelligence operatives have reported that one of our covert operations has been uncovered by [SCOPE.sCountry('operation_target').GetName]. This revelation poses a significant threat to our national security and diplomatic relations. Foreign newspapers report that our agents will be jailed and brought to justice. We are withdrawing all assets from this operation."
+ hms_operation_uncovered.1.f:0 "As we gather around the aged wooden table, one of our operatives slides a letter across it. His face pale as a ghost. Blood stains visible on the paper. It is already cut open, a brief blurred passage of ink reads... 'They know everything' ".
+ hms_operation_uncovered.1.a:0 "We must accept the consequences of our actions."
+
+ hms_operation_uncovered.2.t:0 "Intelligence Operation against us has been uncovered"
+ hms_operation_uncovered.2.d:0 "Our intelligence services have reported that [SCOPE.sCountry('operation_initiator').GetName] has been conducting active hostile operations against our interests. The Operation has been stopped and the spies are now in jail."
+ hms_operation_uncovered.2.f:0 "Shadowy figures gather beneath the lamppost, voices low, eyes watchful. The police have been following them for weeks. But there's a secret they still do not know; this is no simple police buisness but an intricate webs of local interests, money and international power play."
+ hms_operation_uncovered.2.a:0 "Such despicable tactics will not go unpunished."
+
 
  #bribe out of office popup event
  hms_resignation_events.1.t:0 "Pay the man and let's move on..."
@@ -27,3 +45,5 @@
  hms_resignation_events.2.f:0 "As we sit in a dimly lit room, the former official leans in, [SCOPE.sCharacter('resigning_politician').GetHerHis] voice barely above a whisper. [SCOPE.sCharacter('resigning_politician').GetHerHis|U] cigar is the only source of light, casting flickering shadows on the walls. 'You understand,' [SCOPE.sCharacter('resigning_politician').GetSheHe] says, 'that [SCOPE.sCharacter('resigning_politician').GetHerHis] early retirement must be handled discreetly. I trust that you will handle this with utmost care and confidentiality.'"
  hms_resignation_events.2.a:0 "Good friends always tend to each others' needs."
  hms_resignation_events.2.b:0 "We only respond to the voice of the people."
+
+ #

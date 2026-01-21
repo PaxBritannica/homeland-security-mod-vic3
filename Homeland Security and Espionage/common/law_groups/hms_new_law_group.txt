@@ -1,0 +1,7 @@
+﻿lawgroup_foreign_affairs= {
+	law_group_category = power_structure
+	affected_by_regime_change = no
+	
+	progressive_movement_chance = 1
+	regressive_movement_chance = 1
+}

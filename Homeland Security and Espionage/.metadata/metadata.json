@@ -1,11 +1,20 @@
 {
-  "name" : "Homeland mod",
+  "name" : "[1.12] Homeland Security & Intelligence Mod",
 	"id" : "",
-  "version" : "",
-  "supported_game_version" : "",
-  "picture": "thumbnail.png",
-  "short_description" : "",
-  "tags" : [],
+  "version" : "1.0b",
+  "supported_game_version" : "1.12.*",
+  "picture": "prova_thumbnail.png",
+  "short_description" : "Homeland Security & Intelligence Mod is a comprehensive overhaul mod for Victoria 3 that enhances the gameplay experience by introducing new mechanics, technologies, and features focused on national security and intelligence operations.",
+  "tags" : [
+    "Economy And Buildings",
+    "Expansion",
+    "Pops",
+    "Technologies",
+    "Gameplay",
+    "Historical",
+    "Warfare",
+    "1.12"
+],
   "relationships" : [],
   "game_custom_data" : {
     "multiplayer_synchronized" : true

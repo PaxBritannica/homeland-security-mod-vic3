@@ -1,0 +1,110 @@
+﻿siphon_funds = {
+
+    texture = "gfx/interface/icons/lens_toolbar_icons/siphon_funds.dds"
+
+    requires_approval = no
+    show_effect_in_tooltip = yes
+    can_use_obligations = no
+    should_notify_third_parties = no
+    show_confirmation_box = yes
+    is_hostile = yes
+
+    groups = { general }
+
+    selectable = {
+        NOT = { is_country_type = decentralized }
+        is_revolutionary = no
+    }
+
+    trigger = {
+        #gets triggered by monthly on actions
+    }
+
+    possible = {
+
+        ROOT = {
+                    has_law_or_variant = law_type:law_office_of_foreign_affairs
+        }
+
+        scope:target_country = {
+            # custom_tooltip = {
+            #     text = siphon_funds_already_started
+            #     NOT = {
+            #         has_diplomatic_pact = {
+            #             who = root
+            #             type = siphon_funds
+            #         }
+            #     }
+            # }
+            NOT = {
+                has_war_with = root
+            }
+            
+            
+            
+        }
+    }
+
+    pact = {
+        cost = 150
+        is_two_sided_pact = no
+        show_in_outliner = yes
+        
+        is_hostile = yes
+
+        first_modifier = {
+            building_intel_hq_throughput_mult = -0.15
+            country_tax_income_add = 3500
+            country_bureaucracy_add = -100
+        }
+
+        second_modifier = {
+            country_expenses_add = 5000
+        }
+        
+        requirement_to_maintain = {
+            trigger = {
+                custom_tooltip = {
+                    text = "DIPLOMATIC_PACT_REQUIREMENT_AT_PEACE"
+                    NOT = { has_war_with = scope:target_country }
+                }
+            }
+        }
+    }
+
+    ai = {
+        propose_score = {
+            value = 10
+        }
+    
+        will_propose = { 
+            scaled_debt <= 0
+            is_at_war = no
+            scope:target_country = {
+                has_diplomatic_pact = {
+                    who = root
+                    type = rivalry
+                }
+                relations:root <= relations_threshold:cold
+            }
+        }
+        
+        will_break = { 
+            OR = {		
+                scaled_debt > 0.25
+                AND = {
+                    scaled_debt > 0
+                    is_at_war = yes
+                }
+                NOT = {
+                    scope:target_country = {
+                        has_diplomatic_pact = {
+                            who = root
+                            type = rivalry
+                        }										
+                    }
+                }						
+            }					
+        }			
+    }
+}
