@@ -17,6 +17,7 @@ hms_operation_uncovered.1 = {
     icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
     duration = 2
+    
 
     immediate = {
 		if = {
@@ -58,12 +59,12 @@ hms_operation_uncovered.1 = {
 		root = {
 			save_scope_as = operation_initiator
 		}
+
 	}
 
     option = {
         name = hms_operation_uncovered.1.a
         default_option = yes
-
 
         custom_tooltip = {
             text = we_will_stop_operation_tt
@@ -84,12 +85,16 @@ hms_operation_uncovered.1 = {
             type = siphon_funds
         }
 
-        scope:operation_target = {
-            trigger_event = {
-                id = hms_operation_uncovered.2
-                popup = yes
-            }
-        }
+        # scope:operation_target = {
+        #     trigger_event = {
+        #         id = hms_operation_uncovered.2
+        #         popup = no
+        #     }
+        # }
+
+        post_notification = failed_intelligence_operation
+        post_notification = failed_intelligence_operation
+        post_notification = failed_intelligence_operation_due
     
     }
 }

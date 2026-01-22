@@ -54,7 +54,7 @@ mobilization_option_field_observers = {
 
 	possible = {
 		market ?= {
-			mg:military_intel ?= {
+			mg:army_intel ?= {
 				has_potential_supply = yes
 			}
 			
@@ -82,7 +82,7 @@ mobilization_option_field_observers = {
 	}
 
 	upkeep_modifier = {
-		goods_input_military_intel_add = 1.5
+		goods_input_army_intel_add = 1.5
 		goods_input_tools_add = 1
 	}
 
@@ -98,7 +98,7 @@ mobilization_option_field_observers = {
     group = reconnaissance
 }
 
-#REPLACE VANILLA RECOINESSANCE OPTION WITH THESE ONES THAT ACCEPTS military_intel SUPPLY INPUT
+#REPLACE VANILLA RECOINESSANCE OPTION WITH THESE ONES THAT ACCEPTS army_intel SUPPLY INPUT
 REPLACE_OR_CREATE:mobilization_option_motorized_recon = {
 	texture = "gfx/interface/icons/mobilization_options/motorized_reconaissance.dds"
 
@@ -110,7 +110,7 @@ REPLACE_OR_CREATE:mobilization_option_motorized_recon = {
 			mg:oil ?= {
 				has_potential_supply = yes
 			}
-			mg:military_intel ?= {
+			mg:army_intel ?= {
 				has_potential_supply = yes
 			}
 		}
@@ -143,7 +143,7 @@ REPLACE_OR_CREATE:mobilization_option_motorized_recon = {
 	upkeep_modifier = {
 		goods_input_automobiles_add = 1
 		goods_input_oil_add = 0.5
-		goods_input_military_intel_add = 2
+		goods_input_army_intel_add = 2
 	}
 	unit_modifier = {
 		unit_occupation_mult = 0.5
@@ -172,7 +172,7 @@ REPLACE_OR_CREATE:mobilization_option_balloon_recon = {
 			mg:oil ?= {
 				has_potential_supply = yes
 			}
-			mg:military_intel ?= {
+			mg:army_intel ?= {
 				has_potential_supply = yes
 			}
 		}
@@ -201,7 +201,7 @@ REPLACE_OR_CREATE:mobilization_option_balloon_recon = {
 	upkeep_modifier = {
 		goods_input_fabric_add = 2
 		goods_input_oil_add = 0.5
-		goods_input_military_intel_add = 2
+		goods_input_army_intel_add = 2
 	}
 	unit_modifier = {
 		unit_occupation_mult = 0.8
@@ -226,7 +226,7 @@ REPLACE_OR_CREATE:mobilization_option_aerial_recon = {
 			mg:oil ?= {
 				has_potential_supply = yes
 			}
-			mg:military_intel ?= {
+			mg:army_intel ?= {
 				has_potential_supply = yes
 			}
 		}
@@ -259,7 +259,7 @@ REPLACE_OR_CREATE:mobilization_option_aerial_recon = {
 	upkeep_modifier = {
 		goods_input_aeroplanes_add = 1
 		goods_input_oil_add = 0.5
-		goods_input_military_intel_add = 2
+		goods_input_army_intel_add = 2
 	}
 	unit_modifier = {
 		unit_occupation_mult = 1

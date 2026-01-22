@@ -63,3 +63,16 @@ modifier_uncovered_intelligence_operation_as_target = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
     country_influence_mult = 0.1
 }
+
+#NETWORKS AND DIPLO ACTION MODIFIERS
+target_armed_radicals_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	state_radicals_and_loyalists_from_sol_change_mult = 0.1
+	political_movement_radicalism_add = 0.1
+}
+
+intelligence_network_cost_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1
+    # add small arms ?
+}

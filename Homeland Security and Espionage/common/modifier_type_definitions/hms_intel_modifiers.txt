@@ -37,7 +37,7 @@ goods_input_intel_mult = {
 }
 
 #MILITARY INTEL INPUT
-goods_input_military_intel_add = {
+goods_input_army_intel_add = {
     decimals=1
     color=bad
     percent = no
@@ -45,7 +45,42 @@ goods_input_military_intel_add = {
         ai_value=0
     }
 }
-goods_input_military_intel_mult = {
+goods_input_army_intel_mult = {
+    decimals=1
+    color=bad
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+goods_output_army_intel_add = {
+    decimals=1
+    color=good
+    percent = no
+    game_data={
+        ai_value=0
+    }
+}
+goods_output_army_intel_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+#NAVAL INTEL INPUT
+goods_input_naval_intel_add = {
+    decimals=1
+    color=bad
+    percent = no
+    game_data={
+        ai_value=0
+    }
+}
+goods_input_naval_intel_mult = {
     decimals=1
     color=bad
     percent = yes
@@ -55,7 +90,7 @@ goods_input_military_intel_mult = {
 }
 
 #MILITARY INTEL OUTPUT
-goods_output_military_intel_add = {
+goods_output_naval_intel_add = {
     decimals=1
     color=good
     percent = no
@@ -63,7 +98,7 @@ goods_output_military_intel_add = {
         ai_value=0
     }
 }
-goods_output_military_intel_mult = {
+goods_output_naval_intel_mult = {
     decimals=1
     color=good
     percent = yes
@@ -83,6 +118,15 @@ REPLACE_OR_CREATE:building_intel_hq_throughput_add = {
 }
 
 REPLACE_OR_CREATE:building_intel_hq_throughput_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+REPLACE_OR_CREATE:building_arms_industries_throughput_mult = {
     decimals=1
     color=good
     percent = yes

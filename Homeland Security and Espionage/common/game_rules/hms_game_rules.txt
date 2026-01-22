@@ -1,0 +1,14 @@
+intelligence_op_cost = {
+    
+    default = medium_intelligence_op_cost
+
+    low_intelligence_op_cost {
+	}
+
+	medium_intelligence_op_cost {
+	}
+
+	high_intelligence_op_cost {
+	}
+
+}

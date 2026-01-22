@@ -1,14 +1,48 @@
 on_monthly_pulse_country = {
     on_actions = {
-        operation_monthly_events
+        # operation_monthly_events
     }
 }
 
-operation_monthly_events = {
+# This gave me too many headaches so its postponed
+# operation_monthly_events = {
+#     effect = {
+#         random_list = {
+#             10 = {} # nothing happens
 
-    #conditions set in event triggers
-	random_events = {
-		chance_to_happen = 20
-		20 = hms_operation_uncovered.1
-	}
-}
+#             90 = {
+#                 # ROOT must be the INITIATOR of a siphon
+#                 if = {
+#                     limit = {
+#                         any_country = {
+#                             ROOT = {
+#                                 has_diplomatic_pact = {
+#                                     who = PREV
+#                                     type = siphon_funds
+#                                 }
+#                             }
+#                         }
+#                     }
+
+#                     # pick one target
+#                     random_country = {
+#                         limit = {
+#                             ROOT = {
+#                                 has_diplomatic_pact = {
+#                                     who = PREV
+#                                     type = siphon_funds
+#                                 }
+#                             }
+#                         }
+#                         save_scope_as = operation_target
+#                     }
+
+#                     # popup ONLY for initiator
+#                     trigger_event = {
+#                         id = hms_operation_uncovered.1
+#                     }
+#                 }
+#             }
+#         }
+#     }
+# }

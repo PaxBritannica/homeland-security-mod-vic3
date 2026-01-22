@@ -1,0 +1,71 @@
+﻿intelligence_op_multiplier_medium = {
+
+	value = scope:arm_radicals_operation_target.gdp
+	divide = 100000
+	multiply = 0.25
+	round = yes
+	multiply = 100
+
+	if = {
+		limit = {
+			has_game_rule = low_espionage_event_costs
+		}
+		multiply = low_espionage_event_costs_value
+	}
+
+	else_if = {
+		limit = {
+			has_game_rule = medium_espionage_event_costs
+		}
+		multiply = medium_espionage_event_costs_value
+	}
+
+	else_if = {
+		limit = {
+			has_game_rule = high_espionage_event_costs
+		}
+		multiply = high_espionage_event_costs_value
+	}
+
+}
+
+low_intelligence_op_cost_value = {
+	value = 0.5
+}
+
+medium_intelligence_op_cost_value = {
+	value = 1
+}
+
+high_intelligence_op_cost_value = {
+	value = 2
+}
+
+suppress_dissent_multiplier_medium = {
+    value = scope:arm_radicals_operation_target.gdp
+	divide = 100000
+	multiply = 0.25
+	round = yes
+	multiply = 100
+
+	if = {
+		limit = {
+			has_game_rule = low_espionage_event_costs
+		}
+		multiply = low_espionage_event_costs_value
+	}
+
+	else_if = {
+		limit = {
+			has_game_rule = medium_espionage_event_costs
+		}
+		multiply = medium_espionage_event_costs_value
+	}
+
+	else_if = {
+		limit = {
+			has_game_rule = high_espionage_event_costs
+		}
+		multiply = high_espionage_event_costs_value
+	}
+}

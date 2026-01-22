@@ -2,7 +2,7 @@ INJECT_OR_CREATE:building_intel_hq = {
 	building_group = bg_intel_buildings
 	city_type = city
 	ownership_type = self
-	icon = "gfx/interface/icons/building_icons/backgrounds/secret_service_headquarter.dds"
+	icon = "gfx/interface/icons/building_icons/secret_service_hq.dds"
 	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
 
 	# has_max_level = yes needs variable to be implemented with relative modifier
@@ -14,7 +14,6 @@ INJECT_OR_CREATE:building_intel_hq = {
 
 	production_method_groups = {
 		pmg_group_1
-		pmg_group_2
 		pmg_group_3
 	}
 
@@ -31,16 +30,16 @@ INJECT_OR_CREATE:building_intel_hq = {
 	}
 	
 	# What the building provides to the country
-	country_modifiers = {
-		workforce_scaled = {
-			country_bureaucracy_add = 25
-		}
+	# country_modifiers = {
+	# 	workforce_scaled = {
+	# 		country_bureaucracy_add = 25
+	# 	}
 		
-		level_scaled = {
-			country_prestige_add = 10
-			country_influence_add = 5
-		}
-	}
+	# 	level_scaled = {
+	# 		country_prestige_add = 10
+	# 		country_influence_add = 5
+	# 	}
+	# }
 
 	ai_value = {
 		value = 2
@@ -65,4 +64,58 @@ INJECT_OR_CREATE:building_intel_hq = {
 		}
 	}
 	
+}
+
+INJECT_OR_CREATE:building_military_intel_hq = {
+	building_group = bg_intel_buildings
+	city_type = city
+	ownership_type = self
+
+	icon = "gfx/interface/icons/building_icons/military_intel_hq.dds"
+	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
+
+	# has_max_level = yes needs variable to be implemented with relative modifier
+	# levels_per_mesh = 50
+	
+	unlocking_technologies = { military_statistics }
+	required_construction = construction_cost_high
+	
+
+	production_method_groups = {
+		pmg_group_2
+	}
+
+	# country_modifiers = {
+	# 	workforce_scaled = {
+	# 		country_bureaucracy_add = 25
+	# 	}
+		
+	# 	level_scaled = {
+	# 		country_prestige_add = 10
+	# 		country_influence_add = 5
+	# 	}
+	# }
+
+	ai_value = {
+		value = 2
+
+		# Great powers prioritize it
+		if = {
+			limit = { is_great_power = yes }
+			multiply = 1.3
+		}
+		
+		# Higher priority if in rivalries
+		if = {
+			limit = {
+				any_scope_country = {
+					has_diplomatic_pact = {
+						who = ROOT
+						type = rivalry
+					}
+				}
+			}
+			multiply = 1.4
+		}
+	}
 }

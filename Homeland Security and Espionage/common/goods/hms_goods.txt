@@ -14,13 +14,22 @@ intel = {
 
 }
 
-military_intel = {
+army_intel = {
 	texture = "gfx/interface/icons/goods_icons/military_intel.dds"
+	cost = 120
+	category = military
+	
+	prestige_factor = 20
+	tradeable = no
+
+	# consumption_tax_cost = 300
+}
+
+naval_intel = {
+	texture = "gfx/interface/icons/goods_icons/naval_intel.dds"
 	cost = 120
 	category = military
 	
 	prestige_factor = 25
 	tradeable = no
-
-	# consumption_tax_cost = 300
 }

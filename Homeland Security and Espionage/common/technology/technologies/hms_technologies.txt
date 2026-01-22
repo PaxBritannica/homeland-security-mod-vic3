@@ -153,11 +153,13 @@ HMS_tech_era_3_extended_networks = {
 	# Bonuses provided mainly for flavor and to boost AI interest
 	modifier = {
 
-		country_prestige_mult = 0.1
+		country_prestige_mult = 0.05
 		country_influence_mult = 0.1
 
 		country_society_tech_spread_mult = 0.1
 		country_society_tech_research_speed_mult = 0.05
+
+		country_institution_foreign_affairs_max_investment_add = 2
 	}
 	
 	#ai research propensity
@@ -245,8 +247,8 @@ HMS_tech_era_4_homeland_security = {
 		#country malus
 		state_migration_pull_mult = -0.15
 		country_society_tech_spread_mult = -0.15
-		
 
+		country_institution_foreign_affairs_max_investment_add = 1
 	}
 	
 	#ai research propensity

@@ -42,6 +42,13 @@ send_scientific_advisors = {
 		# 	text = send_scientific_advisors_increase_tech_exchange_effect
 		# }
 
+		root = {
+			set_variable = {
+				name = sender_scientific_advisors
+				value = root
+			}
+		}
+
 		scope:target_country = {
 			set_variable = {
 				name = target_country_for_scientific_advisors
@@ -133,17 +140,144 @@ send_scientific_advisors = {
 
 	ai = {
 		max_influence_spending_fraction = 0.20
-
+	
 		evaluation_chance = {
 			value = 10
-
+	
 			add = {
 				value = country_rank
 				multiply = 0.05
 			}
-			
 		}
-
+	
+		#Controls AI acceptance
+		accept_score = {
+			value = 15
+			
+			# Base acceptance for friendly relations
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = genial
+					}
+				}
+				add = 100
+			}
+			
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = amicable
+					}
+				}
+				add = 50
+			}
+			
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = cordial
+					}
+				}
+				add = 15
+			}
+			
+			# Better relations = more likely to accept
+			if = {
+				limit = {
+					relations:scope:actor >= relations_threshold:friendly
+				}
+				add = 50
+			}
+			
+			if = {
+				limit = {
+					relations:scope:actor >= relations_threshold:amicable
+				}
+				add = 25
+			}
+			
+			# If they're technologically behind, they want this more
+			if = {
+				limit = {
+					scope:actor = {
+						country_rank < root.country_rank
+					}
+				}
+				add = 30
+			}
+			
+			# Similar strategic interests
+			if = {
+				limit = {
+					has_strategic_adjacency = scope:actor
+				}
+				add = 20
+			}
+			
+			# Same power bloc
+			if = {
+				limit = {
+					AND = {
+						has_power_bloc = yes
+						scope:actor = {
+							has_power_bloc = yes
+						}
+						power_bloc = scope:actor.power_bloc
+					}
+				}
+				add = 50
+			}
+			
+			# They owe us an obligation
+			if = {
+				limit = {
+					owes_obligation_to = scope:actor
+				}
+				add = 100
+			}
+			
+			# Subject relationship
+			if = {
+				limit = {
+					is_subject_of = scope:actor
+				}
+				add = 200
+			}
+			
+			# Negative modifiers
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = antagonistic
+					}
+				}
+				add = -100
+			}
+			
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = domineering
+					}
+				}
+				add = -50
+			}
+			
+			# They're at war - less interested in science
+			if = {
+				limit = {
+					is_at_war = yes
+				}
+				add = -30
+			}
+		}
+	
 		will_propose = {
 			scaled_debt <= 0
 			is_at_war = no
@@ -152,19 +286,16 @@ send_scientific_advisors = {
 				who = scope:target_country
 				attitude = protective
 			}
-			OR = {
-				num_income_transfer_pacts < 1
-				AND = {
-					num_income_transfer_pacts < 2
-					income >= 200000
-				}
-				AND = {
-					num_income_transfer_pacts < 3
-					income >= 400000
+		}
+	
+		will_break = {
+			NOT = {
+				has_attitude = {
+					who = scope:target_country
+					attitude = protective
 				}
 			}
-
-			OR = {
+			NOR = {
 				root = {
 					owes_obligation_to = scope:target_country
 				}
@@ -176,146 +307,6 @@ send_scientific_advisors = {
 				AND = {
 					is_at_war = no
 					scope:target_country = { is_at_war = yes }
-				}
-			}
-			# We want to have at least five times their income, and at least 50k income in general
-			OR = {
-				AND = {
-					income >= 50000
-					net_fixed_income >= 4000
-					scope:target_country.fixed_income <= 10000
-				}
-				AND = {
-					income >= 75000
-					net_fixed_income >= 6000
-					scope:target_country.fixed_income <= 15000
-				}
-				AND = {
-					income >= 100000
-					net_fixed_income >= 8000
-					scope:target_country.fixed_income <= 20000
-				}
-				AND = {
-					income >= 125000
-					net_fixed_income >= 10000
-					scope:target_country.fixed_income <= 25000
-				}
-				AND = {
-					income >= 150000
-					net_fixed_income >= 12000
-					scope:target_country.fixed_income <= 30000
-				}
-				AND = {
-					income >= 175000
-					net_fixed_income >= 14000
-					scope:target_country.fixed_income <= 35000
-				}
-				AND = {
-					income >= 200000
-					net_fixed_income >= 16000
-					scope:target_country.fixed_income <= 40000
-				}
-				AND = {
-					income >= 225000
-					net_fixed_income >= 18000
-					scope:target_country.fixed_income <= 45000
-				}
-				AND = {
-					income >= 250000
-					net_fixed_income >= 20000
-					scope:target_country.fixed_income <= 50000
-				}
-			}
-		}
-
-		will_break = {
-			OR = {
-				scaled_debt > 0.25
-				AND = {
-					scaled_debt > 0
-					OR = {
-						net_fixed_income < 0
-						is_at_war = yes
-					}
-				}
-				NOT = {
-					has_attitude = {
-						who = scope:target_country
-						attitude = protective
-					}
-				}
-				num_income_transfer_pacts > 3
-				AND = {
-					num_income_transfer_pacts > 1
-					OR = {
-						net_fixed_income < -10000
-						income < 300000
-					}
-				}
-				AND = {
-					num_income_transfer_pacts > 2
-					OR = {
-						net_fixed_income < -5000
-						income < 500000
-					}
-				}
-				NOR = {
-					root = {
-						owes_obligation_to = scope:target_country
-					}
-					NOT = {
-						scope:target_country = {
-							owes_obligation_to = root
-						}
-					}
-					AND = {
-						is_at_war = no
-						scope:target_country = { is_at_war = yes }
-					}
-				}
-				# Threshold for breaking off a bankroll is higher than for starting it
-				# We also don't look at net_fixed_income here since starting a bankroll changes it
-				NOR = {
-					AND = {
-						income >= 40000
-						scope:target_country.fixed_income <= 12500
-					}
-					AND = {
-						income >= 50000
-						scope:target_country.fixed_income <= 15000
-					}
-					AND = {
-						income >= 75000
-						scope:target_country.fixed_income <= 20000
-					}
-					AND = {
-						income >= 100000
-						scope:target_country.fixed_income <= 25000
-					}
-					AND = {
-						income >= 125000
-						scope:target_country.fixed_income <= 30000
-					}
-					AND = {
-						income >= 150000
-						scope:target_country.fixed_income <= 35000
-					}
-					AND = {
-						income >= 175000
-						scope:target_country.fixed_income <= 40000
-					}
-					AND = {
-						income >= 200000
-						scope:target_country.fixed_income <= 45000
-					}
-					AND = {
-						income >= 225000
-						scope:target_country.fixed_income <= 50000
-					}
-					AND = {
-						income >= 250000
-						scope:target_country.fixed_income <= 55000
-					}
 				}
 			}
 		}

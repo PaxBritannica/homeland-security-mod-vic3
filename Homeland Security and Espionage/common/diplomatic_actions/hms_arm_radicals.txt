@@ -1,0 +1,136 @@
+﻿arm_radicals = {
+	texture = "gfx/interface/icons/lens_toolbar_icons/arm_radicals.dds"
+
+	groups = {
+		general
+	}
+
+	requires_approval = no
+	should_notify_third_parties = no
+	
+	potential = {
+
+		# REARM
+		# NOT = { is_country_type = decentralized }
+
+		# scope:target_country = {
+		# 	NOT = { is_country_type = decentralized }
+		# }
+
+		# institution_investment_level = {
+		# 	institution = institution_foreign_affairs
+		# 	value >= 3
+		# }
+
+	}
+	
+	possible = {
+		is_revolutionary = no
+		in_default = no
+	}
+	
+	pact = {	
+		cost = 200
+	
+		is_two_sided_pact = no
+		show_in_outliner = yes
+
+		income_transfer = 0.15
+		max_paying_country_income_to_transfer = 1
+		second_country_gets_income_transfer = yes
+		income_transfer_based_on_second_country = yes
+
+		income_transfer_to_pops = {
+			allow_non_fully_accepted = no
+			upper_strata_pops = {
+				value = 0.8
+				max = 1
+				min = 0
+			}
+			middle_strata_pops = {
+				value = 0.2
+				max = 1
+				min = 0				
+			}
+			lower_strata_pops = {
+				value = 0
+				max = 1
+				min = 0				
+			}
+		}
+
+		first_modifier = {
+
+			#consumes intel
+			building_intel_hq_throughput_mult = -0.1
+			#consumes small arms
+			building_arms_industries_throughput_mult = -0.05
+		}
+		
+		monthly_effect = {
+			custom_tooltip = {
+				text = intelligence_op_arm_radicalism_tt
+				random_list = { 
+					32 = {}
+					1 = { 
+						root = {
+							trigger_event = {
+					            id = adv_dip_event.11
+					        }
+					    }
+					}
+				}								
+			}
+		} 	
+	
+		should_invalidate = {
+			OR = {		
+				is_country_type = decentralized
+				scope:target_country = { is_country_type = decentralized }
+				in_default = yes
+			}
+			NOT = {
+                has_war_with = root
+            }
+            
+		}
+	}
+	
+	ai = {
+
+		propose_score = {
+			value = 10
+		}
+	
+		will_propose = { 
+			scaled_debt <= 0
+			is_at_war = no
+			scope:target_country = {
+				has_diplomatic_pact = {
+					who = root
+					type = rivalry
+				}
+				relations:root <= relations_threshold:cold									
+			}
+		}
+		
+		will_break = { 
+			OR = {		
+				scaled_debt > 0.25
+				AND = {
+					scaled_debt > 0
+					is_at_war = yes
+				}
+				NOT = {
+					scope:target_country = {
+						has_diplomatic_pact = {
+							who = root
+							type = rivalry
+						}										
+					}
+				}						
+			}					
+		}			
+	}
+}
+

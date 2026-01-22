@@ -1,49 +1,78 @@
 ﻿l_english:
 
  #event modifiers
- founded_secret_service_domestic_focus:0 "Secret Service domestic focus"
- founded_secret_service_foreign_focus:0 "Secret Service foreign focus"
- founded_secret_service_government_focus:0 "Support the government"
+ founded_secret_service_domestic_focus: "Secret Service domestic focus"
+ founded_secret_service_foreign_focus: "Secret Service foreign focus"
+ founded_secret_service_government_focus: "Support the government"
 
  #tooltips
- initiator_will_stop_and_arrested_more_influence_tt:0 "[SCOPE.sCountry('operation_initiator').GetName] will stop the operation, our relations towards them will worsen and we will gain more influence."
- operation_uncovered_both_notified_tt:0 "Both nations will be notified about the uncovered operation, our relations will worsen."
- we_will_stop_operation_tt:0 "We will stop the operation, our relations towards [SCOPE.sCountry('operation_target').GetName] will worsen."
+ intelligence_op_arm_radicals_tt: "Corrupt the higher strata and smuggle weapons across the target's border to arm radical factions, increasing political unrest and weakening the target government's stability"
+ support_slaves_movement_tt: "Maintain contact with abolitionists movements to cement unrest in the target country's society."
+
+ #messages
+
+
+
+ #
+
+ # ARM THE RADICALS
+ hostile_diplo_events.1.t: "Arsenal of Revolution"
+ hostile_diplo_events.1.d: "The [ROOT.GetCountry.GetName] Secret Service has successfully established smuggling routes into [SCOPE.sCountry('spy_target_country').GetName]. The rebels are requesting more support to be put in the operation, they believe that with our help they could achieve their objective faster."
+ hostile_diplo_events.1.f: "The Director laid out a map of [SCOPE.sCountry('spy_target_country').GetName], marked with dozens of red crosses. \n\nEach mark represents a contact—radical groups, disaffected militias, revolutionary cells. They have the will to act, but lack the means. He gestured to a manifest of crated rifles, ammunition and money. \n\nOur smuggling network is operational. Border guards have been... accommodated. We can deliver substantial armaments to these groups within the month. Once armed, they'll be emboldened to challenge the government directly. \n\nAnd when the streets run red? \n\nAll hell will break loose. Either outcome serves our purposes. \n\nThe authorization form awaited a signature. One stroke to arm a revolution."
+ hostile_diplo_events.1.a: "Accomodate their needs."
+ hostile_diplo_events.1.b: "This is getting out of hand."
+ #   |
+ #  \ /
+ #   V
+ hostile_diplo_events.2.t: "Gathering Unrest"
+ hostile_diplo_events.2.d: "Recently, citizens have been raising their voices in dissatisfaction with [ROOT.GetCountry.GetName]. During a recent arrest, authorities discovered a pristine crate of foreign smuggled weapons, suggesting outside interference."
+ hostile_diplo_events.2.f: "The Minister examined the confiscated crate with growing unease. \n\n'Arrested last week during a workers' rally,' the police chief explained. 'The crate was hidden in a warehouse basement—still factory-sealed, markings filed off, but clearly military issue.' \n\nHe pried open the lid, revealing rows of oiled rifles nestled in straw packing. 'These aren't black market castoffs, sir. This is a professional smuggling operation.' \n\n'And the protests?' \n\n'Intensifying, by the day.' \n\nThe Minister's jaw tightened. Domestic discontent was manageable. But discontent armed and funded by foreign powers? That was something else entirely."
+ hostile_diplo_events.2.a: "This is deeply concerning."
+ hostile_diplo_events.2.b: "Invest in suppressing the unrest."
+
+ # SUPPORT SLAVE ABOLITIONIST MOVEMENTS
+ hostile_diplo_events.3.t: "Supporting the Cause of Freedom"
+ hostile_diplo_events.3.d: "Our government has been covertly channeling resources to abolitionist movements in [SCOPE.sCountry('spy_target_country').GetName]. These funds have enabled the printing of anti-slavery pamphlets, the establishment of safe houses, and the coordination of escape routes. The movement grows stronger, though our involvement must remain carefully concealed."
+ hostile_diplo_events.3.f: "In a discreet meeting room far from prying eyes, an envelope changed hands. Inside: enough gold to fund months of operations.\n\n'This will help us reach plantation workers in the southern provinces,' the abolitionist leader explained, spreading a map across the table. 'Literacy circles disguised as prayer meetings. Safe houses along the river routes. Sympathetic lawyers for those brave enough to challenge their bondage in court.'\n\nThe [ROOT.GetCountry.GetAdjective] agent nodded. 'Our treasury can sustain this effort, but discretion is paramount. If [SCOPE.sCountry('spy_target_country').GetName] discovers our hand in this...'\n\n'They won't,' came the firm reply. 'The cause of liberty has many friends. We're just one more voice in the chorus.'\n\nAs the conspirators departed separately into the night, new plans were already taking shape, each small act of defiance another crack in the foundation of bondage."
+ hostile_diplo_events.3.a: "Liberty is worth the risk."
+
+
+ 
 
 
  #event_first_researched_secret_service
- hms_secret_service_events.1.t:0 "Establishment of the Secret Service"
- hms_secret_service_events.1.d:0 "Recognizing the growing importance of intelligence in warfare as well as in national security, our government has decided to establish a dedicated Secret Service. This new agency will be responsible for gathering intelligence on both domestic and foreign threats, as well as protecting key government officials and infrastructure."
- hms_secret_service_events.1.f:0 "As the first ever Secret Service reunion start. The selected officials in the room gather around listening to your words carefully, you read their faces they cannot help but wonder. You clear your throat and start speaking. 'Ladies and Gentlemen, today we embark on a new chapter in our nation's history. The establishment of the Secret Service marks a significant step forward in our commitment to safeguarding our nation and its people. Our primary focus will be to...'"
- hms_secret_service_events.1.a:0 "Boost our authority and control over the population."
- hms_secret_service_events.1.b:0 "Expand our foreign influence and interests."
- hms_secret_service_events.1.c:0 "Protect the interest of this very government."
+ hms_secret_service_events.1.t: "Establishment of the Secret Service"
+ hms_secret_service_events.1.d: "Recognizing the growing importance of intelligence in warfare as well as in national security, our government has decided to establish a dedicated Secret Service. This new agency will be responsible for gathering intelligence on both domestic and foreign threats, as well as protecting key government officials and infrastructure."
+ hms_secret_service_events.1.f: "As the first ever Secret Service reunion start. The selected officials in the room gather around listening to your words carefully, you read their faces they cannot help but wonder. You clear your throat and start speaking. 'Ladies and Gentlemen, today we embark on a new chapter in our nation's history. The establishment of the Secret Service marks a significant step forward in our commitment to safeguarding our nation and its people. Our primary focus will be to...'"
+ hms_secret_service_events.1.a: "Boost our authority and control over the population."
+ hms_secret_service_events.1.b: "Expand our foreign influence and interests."
+ hms_secret_service_events.1.c: "Protect the interest of this very government."
 
  #intelligence operation uncovered by enemy
- hms_operation_uncovered.1.t:0 "Our Intelligence Operation has been uncovered"
- hms_operation_uncovered.1.d:0 "Our intelligence operatives have reported that one of our covert operations has been uncovered by [SCOPE.sCountry('operation_target').GetName]. This revelation poses a significant threat to our national security and diplomatic relations. Foreign newspapers report that our agents will be jailed and brought to justice. We are withdrawing all assets from this operation."
- hms_operation_uncovered.1.f:0 "As we gather around the aged wooden table, one of our operatives slides a letter across it. His face pale as a ghost. Blood stains visible on the paper. It is already cut open, a brief blurred passage of ink reads... 'They know everything' ".
- hms_operation_uncovered.1.a:0 "We must accept the consequences of our actions."
+ hms_operation_uncovered.1.t: "Our Intelligence Operation has been uncovered"
+ hms_operation_uncovered.1.d: "Our intelligence operatives have reported that one of our covert operations has been uncovered by [SCOPE.sCountry('operation_target').GetName]. This revelation poses a significant threat to our national security and diplomatic relations. Foreign newspapers report that our agents will be jailed and brought to justice. We are withdrawing all assets from this operation."
+ hms_operation_uncovered.1.f: "As we gather around the aged wooden table, one of our operatives slides a letter across it. His face pale as a ghost. Blood stains visible on the paper. It is already cut open, a brief blurred passage of ink reads... 'They know everything' ".
+ hms_operation_uncovered.1.a: "We must accept the consequences of our actions."
 
- hms_operation_uncovered.2.t:0 "Intelligence Operation against us has been uncovered"
- hms_operation_uncovered.2.d:0 "Our intelligence services have reported that [SCOPE.sCountry('operation_initiator').GetName] has been conducting active hostile operations against our interests. The Operation has been stopped and the spies are now in jail."
- hms_operation_uncovered.2.f:0 "Shadowy figures gather beneath the lamppost, voices low, eyes watchful. The police have been following them for weeks. But there's a secret they still do not know; this is no simple police buisness but an intricate webs of local interests, money and international power play."
- hms_operation_uncovered.2.a:0 "Such despicable tactics will not go unpunished."
+ hms_operation_uncovered.2.t: "Intelligence Operation against us has been uncovered"
+ hms_operation_uncovered.2.d: "Our intelligence services have reported that [SCOPE.sCountry('operation_initiator').GetName] has been conducting active hostile operations against our interests. The Operation has been stopped and the spies are now in jail."
+ hms_operation_uncovered.2.f: "Shadowy figures gather beneath the lamppost, voices low, eyes watchful. The police have been following them for weeks. But there's a secret they still do not know; this is no simple police buisness but an intricate webs of local interests, money and international power play."
+ hms_operation_uncovered.2.a: "Such despicable tactics will not go unpunished."
 
 
  #bribe out of office popup event
- hms_resignation_events.1.t:0 "Pay the man and let's move on..."
- hms_resignation_events.1.d:0 "[SCOPE.sCharacter('resigning_politician').GetFullName] has proven to be a liability to the state and its people. [SCOPE.sCharacter('resigning_politician').GetHerHis] personality and ideologies do not belong here. To ensure a smooth transition and avoid public scrutiny, we have decided to offer [SCOPE.sCharacter('resigning_politician').GetHerHim] a substantial bribe to resign from office quietly."
- hms_resignation_events.1.f:0 "Every man has his price, we just need to keep adding zeros until we find it."
- hms_resignation_events.1.a:0 "A small price to pay for stability."
- hms_resignation_events.1.b:0 "On a second thought this might be too much..."
+ hms_resignation_events.1.t: "Pay the man and let's move on..."
+ hms_resignation_events.1.d: "[SCOPE.sCharacter('resigning_politician').GetFullName] has proven to be a liability to the state and its people. [SCOPE.sCharacter('resigning_politician').GetHerHis] personality and ideologies do not belong here. To ensure a smooth transition and avoid public scrutiny, we have decided to offer [SCOPE.sCharacter('resigning_politician').GetHerHim] a substantial bribe to resign from office quietly."
+ hms_resignation_events.1.f: "Every man has his price, we just need to keep adding zeros until we find it."
+ hms_resignation_events.1.a: "A small price to pay for stability."
+ hms_resignation_events.1.b: "On a second thought this might be too much..."
  
  # A favor for a friend... (random event that fires after establishing secret service)
  # This need to reference a specific character
- hms_resignation_events.2.t:0 "A Favor for a Friend..."
- hms_resignation_events.2.d:0 "In the shadows of our political landscape, a former official has approached us with a delicate request. This individual, once a prominent figure in our government, is now seeking our assistance to secure [SCOPE.sCharacter('resigning_politician').GetFullName]'s early retirement. They have offered a substantial bribe in exchange for our help in facilitating [SCOPE.sCharacter('resigning_politician').GetHerHis] departure without scandal or controversy. After careful consideration, we have decided to accept this offer. By aiding this former official, we not only gain valuable resources but also strengthen our network of influence within the political sphere."
- hms_resignation_events.2.f:0 "As we sit in a dimly lit room, the former official leans in, [SCOPE.sCharacter('resigning_politician').GetHerHis] voice barely above a whisper. [SCOPE.sCharacter('resigning_politician').GetHerHis|U] cigar is the only source of light, casting flickering shadows on the walls. 'You understand,' [SCOPE.sCharacter('resigning_politician').GetSheHe] says, 'that [SCOPE.sCharacter('resigning_politician').GetHerHis] early retirement must be handled discreetly. I trust that you will handle this with utmost care and confidentiality.'"
- hms_resignation_events.2.a:0 "Good friends always tend to each others' needs."
- hms_resignation_events.2.b:0 "We only respond to the voice of the people."
+ hms_resignation_events.2.t: "A Favor for a Friend..."
+ hms_resignation_events.2.d: "In the shadows of our political landscape, a former official has approached us with a delicate request. This individual, once a prominent figure in our government, is now seeking our assistance to secure [SCOPE.sCharacter('resigning_politician').GetFullName]'s early retirement. They have offered a substantial bribe in exchange for our help in facilitating [SCOPE.sCharacter('resigning_politician').GetHerHis] departure without scandal or controversy. After careful consideration, we have decided to accept this offer. By aiding this former official, we not only gain valuable resources but also strengthen our network of influence within the political sphere."
+ hms_resignation_events.2.f: "As we sit in a dimly lit room, the former official leans in, [SCOPE.sCharacter('resigning_politician').GetHerHis] voice barely above a whisper. [SCOPE.sCharacter('resigning_politician').GetHerHis|U] cigar is the only source of light, casting flickering shadows on the walls. 'You understand,' [SCOPE.sCharacter('resigning_politician').GetSheHe] says, 'that [SCOPE.sCharacter('resigning_politician').GetHerHis] early retirement must be handled discreetly. I trust that you will handle this with utmost care and confidentiality.'"
+ hms_resignation_events.2.a: "Good friends always tend to each others' needs."
+ hms_resignation_events.2.b: "We only respond to the voice of the people."
 
  #

@@ -1,0 +1,175 @@
+﻿support_slave_abolitionist_movement = {
+	texture = "gfx/interface/icons/lens_toolbar_icons/support_slave_abolitionist_movement.dds"
+
+	groups = {
+		general
+	}
+
+	requires_approval = no
+	should_notify_third_parties = no
+
+	unlocking_technologies = {
+		egalitarianism
+	}
+	
+	potential = {
+		# NOT = { is_country_type = decentralized }
+		# country_rank >= rank_value:great_power
+
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+			NOT = { has_law = law_type:law_slavery_banned }
+		}
+
+		# institution_investment_level = {
+		# 	institution = institution_espionage
+		# 	value >= 3
+		# }
+	}
+	
+	possible = {
+		is_revolutionary = no
+		in_default = no
+
+		NOT = { has_war_with = scope:target_country }
+
+		scope:target_country = {
+			country_rank < rank_value:great_power
+		}
+
+		has_diplomatic_relevance = scope:target_country
+	}
+	
+	pact = {
+		cost = 150
+	
+		is_two_sided_pact = no
+		show_in_outliner = yes
+		can_be_used_in_sway_offers = no
+		sway_maneuvers_cost = 10
+		
+		income_transfer = 0.05
+		max_paying_country_income_to_transfer = 1
+		second_country_gets_income_transfer = yes
+		income_transfer_based_on_second_country = yes
+
+		income_transfer_to_pops = {
+			allow_non_fully_accepted = yes
+			upper_strata_pops = {
+				value = 0
+				max = 1
+				min = 0
+			}
+			middle_strata_pops = {
+				value = 0
+				max = 1
+				min = 0				
+			}
+			lower_strata_pops = {
+				value = 1
+				max = 1
+				min = 0				
+			}
+		}
+
+		first_modifier = {
+
+			#consumes intel
+			building_intel_hq_throughput_mult = -0.1
+		}
+
+		second_modifier = {
+
+			#disrupt slave migration
+			state_slaves_mass_migration_disallowed_bool = no
+			state_slaves_internal_migration_disallowed_bool = no
+
+			#Render slave commerce inefficient and empower local slaves
+			state_slave_import_mult = -0.5
+			country_slaves_pol_str_mult = 0.5
+			
+		}
+
+		monthly_effect = {
+			custom_tooltip = {
+				text = support_slaves_movement_tt
+				random_list = { 
+					35 = {}
+					1 = { 
+						root = {
+							trigger_event = {
+					            id = hostile_diplo_events.3
+					        }
+					    }
+					}
+				}								
+			}
+		} 	
+	
+		is_about_to_auto_break = {
+            scope:target_country.relations:root <= -17 # this: poor + 3
+        }
+
+		should_auto_break = {
+			custom_tooltip = {
+				text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS
+
+                # make sure to update is_about_to_auto_break when changing this:
+				scope:target_country.relations:root <= relations_threshold:poor
+			}
+		}
+	
+		should_invalidate = {
+			OR = {
+				has_war_with = scope:target_country				
+				is_country_type = decentralized
+				scope:target_country = { is_country_type = decentralized }
+				scope:target_country = { has_law = law_type:law_slavery_banned } #Invalidate once slaves free
+				in_default = yes
+			}
+		}
+	}
+	
+	ai = {
+
+		propose_score = {
+			value = 10
+		}
+	
+		will_propose = { 
+			scaled_debt <= 0
+			is_at_war = no
+			scope:target_country = {
+				has_diplomatic_pact = {
+					who = root
+					type = rivalry
+				}
+				relations:root <= relations_threshold:cold									
+			}
+		}
+		
+		will_break = { 
+			OR = {		
+				scaled_debt > 0.25
+				AND = {
+					scaled_debt > 0
+					is_at_war = yes
+				}
+				scope:target_country = {
+					has_diplomatic_pact = {
+						has_law = law_type:law_slavery_banned
+					}										
+				}
+				NOT = {
+					scope:target_country = {
+						has_diplomatic_pact = {
+							who = root
+							type = rivalry
+						}										
+					}
+				}						
+			}					
+		}			
+	}
+}
+

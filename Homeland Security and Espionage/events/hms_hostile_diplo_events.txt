@@ -1,0 +1,249 @@
+namespace = hostile_diplo_events
+
+hostile_diplo_events.1 = {
+	type = country_event
+	placement = root
+
+	title = hostile_diplo_events.1.t
+	desc = hostile_diplo_events.1.d
+	flavor = hostile_diplo_events.1.f
+
+	event_image = {
+		video = "europenorthamerica_capitalists_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = arm_radicals
+						}
+					}
+					NOT = {
+						has_modifier = target_armed_radicals_modifier
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = arm_radicals
+						}
+					}
+					NOT = {
+						has_modifier = target_armed_radicals_modifier
+					}
+				}
+				save_scope_as = arm_radicals_operation_target
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = arm_radicals
+						}
+					}
+				}
+				save_scope_as = arm_radicals_operation_target
+			}
+		}
+	}
+
+	option = {
+		name = hostile_diplo_events.1.a
+		add_modifier = {
+			name = intelligence_network_cost_modifier
+			months = 12
+			multiplier = intelligence_op_multiplier_medium
+		}
+		scope:arm_radicals_operation_target = {
+			trigger_event = {
+	            id = hostile_diplo_event.2 
+	        }
+	        change_relations = {
+				country = root
+				value = -10
+			}
+		}
+	}
+
+	option = {
+		name = hostile_diplo_events.1.b
+	}
+}
+
+hostile_diplo_events.2 = {
+    type = country_event
+	placement = root
+
+	title = hostile_diplo_event.2.t
+	desc = hostile_diplo_event.2.d
+	flavor = hostile_diplo_event.2.f
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = hostile_diplo_event.2.a
+		add_modifier = {
+			name = target_armed_radicals_modifier
+			months = 25
+			multiplier = 2
+		}
+		add_radicals = {
+			value = 0.05
+		}
+	}
+	option = {
+		name = hostile_diplo_event.2.b
+		add_modifier = {
+			name = target_armed_radicals_modifier
+			months = 25
+		}
+		add_modifier = {
+			name = intelligence_network_cost_modifier
+			multiplier = money_amount_multiplier_medium
+			months = 25
+		}
+	}
+}
+
+# Slavery abolitionists event
+hostile_diplo_events.3 = {
+    type = country_event
+	placement = root
+
+	title = hostile_diplo_event.3.t
+	desc = hostile_diplo_event.3.d
+	flavor = hostile_diplo_event.3.f
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_slaves_night.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+		#autotriggers in pact 
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = support_slave_abolitionist_movement 
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = support_slave_abolitionist_movement 
+						}
+					}
+				}
+				save_scope_as = support_slave_target_country
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = support_slave_abolitionist_movement 
+						}
+					}
+				}
+				save_scope_as = support_slave_target_country
+			}
+		}
+		scope:root_country = {
+			every_state = {
+				limit = {
+					state_has_building_type_levels = {
+						target = bt:building_port
+						value > 0
+					}
+				}
+				save_scope_as = root_states_for_slaves
+			}
+		}
+		scope:root_states_for_slaves = {
+			random_scope_state = {
+				save_scope_as = root_target_state_for_slaves_1
+			}
+			random_scope_state = {
+				save_scope_as = root_target_state_for_slaves_2
+			}
+			random_scope_state = {
+				save_scope_as = root_target_state_for_slaves_3
+			}
+		}
+	}
+
+	option = {
+		name = hostile_diplo_events.3.a
+		default_option = yes
+
+		scope:support_slave_target_country = {
+			random_scope_state = {
+				every_scope_pop = {
+					limit = {
+						is_pop_type = slaves
+					}
+					move_partial_pop = {state = scope:root_target_state_for_slaves_1 population_ratio = 0.02}
+					move_partial_pop = {state = scope:root_target_state_for_slaves_2 population_ratio = 0.02}
+					move_partial_pop = {state = scope:root_target_state_for_slaves_3 population_ratio = 0.02}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 10
+		}
+	}
+}
