@@ -8,8 +8,11 @@
  #tooltips
  intelligence_op_arm_radicals_tt: "Corrupt the higher strata and smuggle weapons across the target's border to arm radical factions, increasing political unrest and weakening the target government's stability"
  support_slaves_movement_tt: "Maintain contact with abolitionists movements to cement unrest in the target country's society."
+ pirates_escaped_tooltip: "The search will be unsuccessful, the pirates will remain a threat."
 
  #messages
+ notification_piracy_initiator_name_message_name: "We uncovered who funded the piracy operations against us."
+ notification_piracy_initiator_name_message_desc: "It was [SCOPE.sCountry('piracy_initiator').GetName] all along."
 
 
 
@@ -17,28 +20,60 @@
 
  # ARM THE RADICALS
  hostile_diplo_events.1.t: "Arsenal of Revolution"
- hostile_diplo_events.1.d: "The [ROOT.GetCountry.GetName] Secret Service has successfully established smuggling routes into [SCOPE.sCountry('spy_target_country').GetName]. The rebels are requesting more support to be put in the operation, they believe that with our help they could achieve their objective faster."
- hostile_diplo_events.1.f: "The Director laid out a map of [SCOPE.sCountry('spy_target_country').GetName], marked with dozens of red crosses. \n\nEach mark represents a contact—radical groups, disaffected militias, revolutionary cells. They have the will to act, but lack the means. He gestured to a manifest of crated rifles, ammunition and money. \n\nOur smuggling network is operational. Border guards have been... accommodated. We can deliver substantial armaments to these groups within the month. Once armed, they'll be emboldened to challenge the government directly. \n\nAnd when the streets run red? \n\nAll hell will break loose. Either outcome serves our purposes. \n\nThe authorization form awaited a signature. One stroke to arm a revolution."
+ hostile_diplo_events.1.d: "The [ROOT.GetCountry.GetName] Secret Service has successfully established smuggling routes into [SCOPE.sCountry('arm_radicals_operation_target').GetName]. The rebels are requesting more support to be put in the operation, they believe that with our help they could achieve their objective faster."
+ hostile_diplo_events.1.f: "The Director laid out a map of [SCOPE.sCountry('arm_radicals_operation_target').GetName], marked with dozens of red crosses. \n\nEach mark represents a contact, radical groups, disaffected militias, revolutionary cells. They have the will to act, but lack the means. He gestured to a manifest of crated rifles, ammunition and money. \n\nOur smuggling network is operational. Border guards have been... accommodated. We can deliver substantial armaments to these groups within the month. Once armed, they'll be emboldened to challenge the government directly. \n\nAnd when the streets run red? \n\nAll hell will break loose. Either outcome serves our purposes. \n\nThe authorization form awaited a signature. One stroke to arm a revolution."
  hostile_diplo_events.1.a: "Accomodate their needs."
  hostile_diplo_events.1.b: "This is getting out of hand."
  #   |
- #  \ /
+ #   | event for target
  #   V
  hostile_diplo_events.2.t: "Gathering Unrest"
- hostile_diplo_events.2.d: "Recently, citizens have been raising their voices in dissatisfaction with [ROOT.GetCountry.GetName]. During a recent arrest, authorities discovered a pristine crate of foreign smuggled weapons, suggesting outside interference."
+ hostile_diplo_events.2.d: "Recently, citizens have been raising their voices in dissatisfaction with [ROOT.GetCountry.GetName]'s government. During a recent arrest, authorities discovered a pristine crate of foreign smuggled weapons, suggesting outside interference."
  hostile_diplo_events.2.f: "The Minister examined the confiscated crate with growing unease. \n\n'Arrested last week during a workers' rally,' the police chief explained. 'The crate was hidden in a warehouse basement—still factory-sealed, markings filed off, but clearly military issue.' \n\nHe pried open the lid, revealing rows of oiled rifles nestled in straw packing. 'These aren't black market castoffs, sir. This is a professional smuggling operation.' \n\n'And the protests?' \n\n'Intensifying, by the day.' \n\nThe Minister's jaw tightened. Domestic discontent was manageable. But discontent armed and funded by foreign powers? That was something else entirely."
  hostile_diplo_events.2.a: "This is deeply concerning."
  hostile_diplo_events.2.b: "Invest in suppressing the unrest."
 
  # SUPPORT SLAVE ABOLITIONIST MOVEMENTS
  hostile_diplo_events.3.t: "Supporting the Cause of Freedom"
- hostile_diplo_events.3.d: "Our government has been covertly channeling resources to abolitionist movements in [SCOPE.sCountry('spy_target_country').GetName]. These funds have enabled the printing of anti-slavery pamphlets, the establishment of safe houses, and the coordination of escape routes. The movement grows stronger, though our involvement must remain carefully concealed."
- hostile_diplo_events.3.f: "In a discreet meeting room far from prying eyes, an envelope changed hands. Inside: enough gold to fund months of operations.\n\n'This will help us reach plantation workers in the southern provinces,' the abolitionist leader explained, spreading a map across the table. 'Literacy circles disguised as prayer meetings. Safe houses along the river routes. Sympathetic lawyers for those brave enough to challenge their bondage in court.'\n\nThe [ROOT.GetCountry.GetAdjective] agent nodded. 'Our treasury can sustain this effort, but discretion is paramount. If [SCOPE.sCountry('spy_target_country').GetName] discovers our hand in this...'\n\n'They won't,' came the firm reply. 'The cause of liberty has many friends. We're just one more voice in the chorus.'\n\nAs the conspirators departed separately into the night, new plans were already taking shape, each small act of defiance another crack in the foundation of bondage."
+ hostile_diplo_events.3.d: "Our government has been covertly channeling resources to abolitionist movements in [SCOPE.sCountry('support_slave_target_country').GetName]. These funds have enabled the printing of anti-slavery pamphlets, the establishment of safe houses, and the coordination of escape routes. The movement grows stronger, though our involvement must remain carefully concealed."
+ hostile_diplo_events.3.f: "In a discreet meeting room far from prying eyes, an envelope changed hands. Inside: enough gold to fund months of operations.\n\n'This will help us reach plantation workers in the southern provinces,' the abolitionist leader explained, spreading a map across the table. 'Literacy circles disguised as prayer meetings. Safe houses along the river routes. Sympathetic lawyers for those brave enough to challenge their bondage in court.'\n\nThe [ROOT.GetCountry.GetAdjective] agent nodded. 'Our treasury can sustain this effort, but discretion is paramount. If [SCOPE.sCountry('support_slave_target_country').GetName] discovers our hand in this...'\n\n'They won't,' came the firm reply. 'The cause of liberty has many friends. We're just one more voice in the chorus.'\n\nAs the conspirators departed separately into the night, new plans were already taking shape, each small act of defiance another crack in the foundation of bondage."
  hostile_diplo_events.3.a: "Liberty is worth the risk."
 
-
- 
-
+ ### Pirates!!!
+ hostile_diplo_events.4.t: "Aaarrgh!"
+ hostile_diplo_events.4.d: "The high seas have proven most profitable! Our hired corsairs have plundered [SCOPE.sCountry('piracy_target').GetName]'s @convoys! [concept_convoys] with ruthless efficiency. Now they arrive at our ports, holds brimming with stolen goods: and they're prepared to share their ill-gotten gains for a generous cut."
+ hostile_diplo_events.4.f: "The docks bustle with activity as weathered sailormen unload crate after crate of plundered cargo. The stench of saltwater mingles with exotic spices as your cut of the spoils is laid bare before you."
+ hostile_diplo_events.4.a: "Honor among thieves, take our share." #1/3 dividends
+ hostile_diplo_events.4.b: "Seize all the booty and arrest the pirates!" # 3/3 dividends
+                            # 50% you get triple the income 50% you get the income but get a cut on merchant marine and trades throughput!
+ #   |
+ #   | event for target
+ #   V
+ hostile_diplo_events.5.t: "Shipping Routes Disrupted"
+ hostile_diplo_events.5.d: "Pirates have been wreaking havoc on our merchant shipping!"
+ hostile_diplo_events.5.f: "The latest reports from our port authorities paint a grim picture. Pirates have been systematically targeting our merchant vessels, causing severe disruptions to our maritime trade. The attacks seem too coordinated to be mere chance - someone must be supporting these raiders.\n\nOur @convoys! captains demand action, but catching the true culprits may prove challenging."
+ hostile_diplo_events.5.a: "We will give them what they deserve."
+ #   |
+ #   | Piracy Journal Events for target
+ #   V
+ hostile_diplo_events.6.t: "Navy mobilized"
+ hostile_diplo_events.6.d: "We are sending our best men to take care of the pirate filth"
+ hostile_diplo_events.6.f: "The Admiralty has ordered the mobilization of our naval forces to hunt down and eliminate the pirate threat. Our ships are being dispatched to patrol the affected sea lanes, with orders to engage any pirate vessels on sight. The crews are eager for action, determined to restore safety to our waters and protect our maritime commerce."
+ hostile_diplo_events.6.a: "Godspeed."
+ #   |
+ #   | The pirate captain is in custody
+ #   V
+ hostile_diplo_events.7.t: "We have captured the pirate leader"
+ hostile_diplo_events.7.d: "We have successfully defeated the pirate threat and manage to capture some of them alive, including their leader who have confessed of being paid by [SCOPE.sCountry('piracy_initiator').GetName] to disrupt our maritime activities."
+ hostile_diplo_events.7.f: "The last of the pirate ships have been sunk or captured. Our naval forces have restored order to the seas, and our merchant vessels can now sail without fear. The captured pirates are being interrogated to uncover any information about their backers and future plans.\n\nThe experience gained from this operation has strengthened our naval capabilities, and we are better prepared to deal with any future threats to our maritime trade."
+ hostile_diplo_events.7.a: "We will retaliate."
+ #   |
+ #   | Pirates are disbanded and experience is gained.
+ #   V
+ hostile_diplo_events.8.t: "The tide has changed"
+ hostile_diplo_events.8.d: "After weeks of bitter fighting, we managed to repel the pirates. Altough we were unsuccessful in capturing their leaders and gain information about the country behidn them."
+ hostile_diplo_events.8.f: "The seas are ours again. After months of chaos, our @convoys! convoys are sailing without fear, and the docks bustle with life once more. The merchants are already counting their coin, though it will be some time before we recover what was lost.\n\nThere are whispers, of course. Some say these 'pirates' flew no flags by accident, that foreign hands guided their blades. But whispers prove nothing, and for now, our traders care only that the routes are open and the horizon is clear."
+ hostile_diplo_events.8.a: "We will remain vigilant."
 
  #event_first_researched_secret_service
  hms_secret_service_events.1.t: "Establishment of the Secret Service"
@@ -75,4 +110,14 @@
  hms_resignation_events.2.a: "Good friends always tend to each others' needs."
  hms_resignation_events.2.b: "We only respond to the voice of the people."
 
- #
+ #Journal Entries
+ je_group_intelligence: "Intelligence"
+ hms_je_piracy: "Deal with the pirates"
+ hms_je_piracy_reason: "Recent piracy activities have been targeting our shipments and [concept_convoys], if we do not put an end to this now we will face #r serious economic consequences#!!"
+ je_intelligence_privacy_completed_tt: "The pirates have stopped plundering our sea lanes."
+ hms_je_piracy_bribed: "Bribe the pirates."
+ hms_je_piracy_fought: "Send the navy."
+ hms_je_piracy_bribed_desc: "If we pay the pirates enough, they might leave us alone, at least for a while."
+ hms_je_piracy_fought_desc: "Our navy is strong enough to deal with the pirate threat head on."
+ je_intelligence_privacy_on_complete_tt: "The piracy activities financed by the unknown country will cease."
+ 

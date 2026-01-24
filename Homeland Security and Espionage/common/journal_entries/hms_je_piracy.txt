@@ -1,0 +1,100 @@
+﻿hms_je_piracy = {
+	
+	group = je_group_intelligence
+
+	weight = 200
+	transferable = no
+	should_be_pinned_by_default = yes
+
+	scripted_button = hms_je_piracy_bribed
+	scripted_button = hms_je_piracy_fought
+	
+	immediate = {
+
+		if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+                save_scope_as = piracy_initiator
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+                save_scope_as = piracy_initiator
+            }
+        }
+
+        root = {
+            save_scope_as = piracy_target
+        }
+
+	}
+	
+	complete = {
+		custom_tooltip = {
+			text = je_intelligence_privacy_completed_tt
+			OR = {
+				NOT = {
+					scope:piracy_initiator = {
+						has_diplomatic_pact = {
+							who = root
+							type = encourage_piracy
+						}
+					}
+				}
+				has_variable = won_against_pirates
+				has_variable = recently_bribed_pirates
+			}
+		}
+	}
+	
+	
+	on_complete = {
+		#This contains the condition for the pact to END and hides the NAME of the perpetrator country
+		custom_tooltip = {
+			text = je_intelligence_privacy_on_complete_tt
+
+			if = {
+				limit = {
+					scope:piracy_initiator = {
+						has_diplomatic_pact = {
+							who = scope:piracy_target
+							type = encourage_piracy
+						}
+					}
+				}
+				scope:piracy_initiator = {
+					remove_diplomatic_pact = {
+						country = scope:piracy_target
+						type = encourage_piracy
+					}
+				}
+			}
+		}
+	}
+	
+}

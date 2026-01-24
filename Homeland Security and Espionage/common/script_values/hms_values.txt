@@ -8,23 +8,23 @@
 
 	if = {
 		limit = {
-			has_game_rule = low_espionage_event_costs
+			has_game_rule = low_intelligence_op_event_costs
 		}
-		multiply = low_espionage_event_costs_value
+		multiply = low_intelligence_op_event_costs_value
 	}
 
 	else_if = {
 		limit = {
-			has_game_rule = medium_espionage_event_costs
+			has_game_rule = medium_intelligence_op_event_costs
 		}
-		multiply = medium_espionage_event_costs_value
+		multiply = medium_intelligence_op_event_costs_value
 	}
 
 	else_if = {
 		limit = {
-			has_game_rule = high_espionage_event_costs
+			has_game_rule = high_intelligence_op_event_costs
 		}
-		multiply = high_espionage_event_costs_value
+		multiply = high_intelligence_op_event_costs_value
 	}
 
 }
@@ -43,6 +43,7 @@ high_intelligence_op_cost_value = {
 
 suppress_dissent_multiplier_medium = {
     value = scope:arm_radicals_operation_target.gdp
+
 	divide = 100000
 	multiply = 0.25
 	round = yes
@@ -50,22 +51,177 @@ suppress_dissent_multiplier_medium = {
 
 	if = {
 		limit = {
-			has_game_rule = low_espionage_event_costs
+			has_game_rule = low_intelligence_op_event_costs
 		}
-		multiply = low_espionage_event_costs_value
+		multiply = low_intelligence_op_event_costs_value
 	}
 
 	else_if = {
 		limit = {
-			has_game_rule = medium_espionage_event_costs
+			has_game_rule = medium_intelligence_op_costs
 		}
-		multiply = medium_espionage_event_costs_value
+		multiply = medium_intelligence_op_costs_value
 	}
 
 	else_if = {
 		limit = {
-			has_game_rule = high_espionage_event_costs
+			has_game_rule = high_intelligence_op_costs
 		}
-		multiply = high_espionage_event_costs_value
+		multiply = high_intelligence_op_costs_value
 	}
 }
+
+piracy_cost_multiplier = {
+    value = scope:piracy_target.gdp
+
+    divide = 100000
+    multiply = 0.25
+    multiply = 100
+
+    if = {
+        limit = {
+            has_game_rule = low_intelligence_op_event_costs
+        }
+        multiply = low_intelligence_op_event_costs_value
+    }
+
+    else_if = {
+        limit = {
+            has_game_rule = medium_intelligence_op_event_costs
+        }
+        multiply = medium_intelligence_op_event_costs_value
+    }
+
+    else_if = {
+        limit = {
+            has_game_rule = high_intelligence_op_event_costs
+        }
+        multiply = high_intelligence_op_event_costs_value
+    }
+
+    multiply = piracy_naval_modifier
+}
+
+piracy_loot_value = {
+
+    value = scope:piracy_target.gdp
+    divide = 100000
+    multiply = 0.6
+    multiply = 100
+
+    if = {
+        limit = {
+            has_game_rule = low_intelligence_op_event_costs
+        }
+        multiply = low_intelligence_op_event_costs_value
+    }
+
+    else_if = {
+        limit = {
+            has_game_rule = medium_intelligence_op_event_costs
+        }
+        multiply = medium_intelligence_op_event_costs_value
+    }
+
+    else_if = {
+        limit = {
+            has_game_rule = high_intelligence_op_event_costs
+        }
+        multiply = high_intelligence_op_event_costs_value
+    }
+
+    multiply = piracy_naval_modifier
+
+}
+
+piracy_loot_value_greedy = {
+
+    value = scope:piracy_target.gdp
+    divide = 100000
+    multiply = 0.85
+    multiply = 100
+
+    if = {
+        limit = {
+            has_game_rule = low_intelligence_op_event_costs
+        }
+        multiply = low_intelligence_op_event_costs_value
+    }
+
+    else_if = {
+        limit = {
+            has_game_rule = medium_intelligence_op_event_costs
+        }
+        multiply = medium_intelligence_op_event_costs_value
+    }
+
+    else_if = {
+        limit = {
+            has_game_rule = high_intelligence_op_event_costs
+        }
+        multiply = high_intelligence_op_event_costs_value
+    }
+
+    multiply = piracy_naval_modifier
+
+}
+
+piracy_naval_modifier = {
+    value = 1
+    
+    # If initiator has more navy (ratio > 1), add up to +50%
+    if = {
+        limit = {
+            piracy_naval_difference > 1
+        }
+        # Add bonus, but cap at +0.5 (so max total is 1.5)
+        if = {
+            limit = {
+                piracy_naval_difference > 1.5
+            }
+            add = 0.5
+        }
+        else = {
+            add = piracy_naval_difference
+            subtract = 1
+        }
+    }
+    
+    # If target has more navy (ratio < 1), reduce down to 0.5x minimum
+    else_if = {
+        limit = {
+            piracy_naval_difference < 1
+        }
+        multiply = piracy_naval_difference
+        # Cap at 0.5x minimum
+        if = {
+            limit = {
+                piracy_naval_difference < 0.5
+            }
+            divide = piracy_naval_difference
+            multiply = 0.5
+        }
+    }
+}
+
+piracy_initiator = {
+    value = scope:piracy_initiator.naval_power_projection
+    add = 1
+}
+
+piracy_target = {
+    value = scope:piracy_target.naval_power_projection
+    add = 1
+}
+
+piracy_naval_difference = {
+    value = piracy_initiator
+    divide = piracy_target
+}
+
+piracy_gdp_cut_15 = {
+    value = gdp
+    multiply = 0.15
+    divide = 1000
+}
+

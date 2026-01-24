@@ -11,14 +11,16 @@ pm_hms_group_3_tier_0 = {
 }
 
 pm_hms_group_3_tier_1 = {
-	# Manual Decryption Unit
+	# Nanual Cryptoanalysis
 
 	texture = "gfx/interface/icons/pms_icons/manual_encryption.dds"
 
+	unlocking_technologies = {
+		HMS_tech_era_2_secret_service
+	}
+
 	country_modifiers = {
 		workforce_scaled = {
-			country_bureaucracy_add = -3
-			building_university_throughput_add = 0.02
 			country_tech_spread_mult = 0.02
 		}
 	}
@@ -35,24 +37,29 @@ pm_hms_group_3_tier_1 = {
 
 	building_modifiers = {
 		workforce_scaled = {
-			goods_input_paper_add = 8.5
-			goods_input_furniture_add = 2.5
+			goods_input_paper_add = 7.5
 			goods_input_coffee_add = 1.5
 
-			goods_output_intel_add = 15
+			goods_output_intel_add = 7.5
 			goods_output_services_add = 10
+			goods_output_army_intel_add = 5
+			goods_output_naval_intel_add = 5
+
+			building_university_throughput_add = 0.02
+			
 		}
 		level_scaled = {
-			building_employment_clerks_add = 300
 			building_employment_engineers_add = 200
-            building_employment_academics_add = 150
+            building_employment_academics_add = 350
 		}
 	}
+
+	# Produces all intels but at slower pace 
 }
 
 
 pm_hms_group_3_tier_2 = {
-	# Code Breakers 
+	# Mechanical Cryptoanalysis
 
 	texture = "gfx/interface/icons/pms_icons/code_breakers.dds"
 
@@ -62,14 +69,11 @@ pm_hms_group_3_tier_2 = {
 
 	country_modifiers = {
 		workforce_scaled = {
-			country_bureaucracy_add = -9
-            # country_influence_mult = 0.02 # Reserving this to foreign affairs
-			building_university_throughput_add = 0.03 # Verify
-
+            
+			# building_university_throughput_mult = 0.03 # Verify
 			country_tech_spread_mult = 0.03
-			# country_military_tech_research_speed_mult = 0.2
-			country_society_tech_research_speed_mult = 0.2
-			# country_resources_tech_research_speed_mult = 0.2
+			country_military_tech_research_speed_mult = 0.2
+			
 		}
 	}
 
@@ -85,17 +89,18 @@ pm_hms_group_3_tier_2 = {
 
 	building_modifiers = {
 		workforce_scaled = {
-			goods_input_paper_add = 5.5
+			
+			goods_input_paper_add = 4.5
 			goods_input_furniture_add = 2.5
 			goods_input_coffee_add = 2.5
-			goods_input_radios_add = 1.5
+			goods_input_telephone_add = 2.5
 
 			goods_output_intel_add = 35
 		}
 		level_scaled = {
 			building_employment_clerks_add = 100
-			building_employment_engineers_add = 300
-            building_employment_academics_add = 350
+			building_employment_engineers_add = 350
+            building_employment_academics_add = 550
 		}
 	}
 }

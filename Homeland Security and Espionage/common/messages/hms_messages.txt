@@ -1,0 +1,11 @@
+﻿stopped_attack_message = {
+	type = country
+	texture = "gfx/interface/icons/notification_icons/influence_bad.dds"
+	notification_type = popup
+}
+
+piracy_initiator_name_message = {
+	type = country
+	texture = "gfx/interface/icons/notification_icons/influence_bad.dds"
+	notification_type = toast
+}

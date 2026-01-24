@@ -76,3 +76,33 @@ intelligence_network_cost_modifier = {
 	country_expenses_add = 1
     # add small arms ?
 }
+
+# balance these 2s
+piracy_loot_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_tax_income_add = 1
+}
+
+targeted_by_pirates_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+
+    # balance ?
+	country_port_connection_cost_mult = 0.1
+    country_convoys_capacity_mult = -0.1
+    country_convoy_damage_taken_mult = 0.1
+}
+
+piracy_bribed_modifier = {
+    country_expenses_add = 1 # balance ?
+}
+
+piracy_cost_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1
+}
+
+decisive_anti_piracy_victory_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    country_prestige_from_army_power_projection_mult = 0.05
+    country_unit_navy_experience_gain_mult = 0.05
+}

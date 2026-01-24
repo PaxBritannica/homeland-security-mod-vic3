@@ -54,6 +54,7 @@ send_scientific_advisors = {
 				name = target_country_for_scientific_advisors
 				value = scope:target_country
 			}
+			save_scope_as = target_country_for_scientific_advisors
 		}
 	}
 

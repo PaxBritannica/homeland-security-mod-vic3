@@ -75,7 +75,7 @@
 					1 = { 
 						root = {
 							trigger_event = {
-					            id = adv_dip_event.11
+					            id = hostile_diplo_events.1
 					        }
 					    }
 					}

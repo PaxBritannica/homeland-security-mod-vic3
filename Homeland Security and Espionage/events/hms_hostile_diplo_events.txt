@@ -1,249 +1,663 @@
-namespace = hostile_diplo_events
+﻿namespace = hostile_diplo_events
 
 hostile_diplo_events.1 = {
-	type = country_event
-	placement = root
+    type = country_event
+    placement = root
 
-	title = hostile_diplo_events.1.t
-	desc = hostile_diplo_events.1.d
-	flavor = hostile_diplo_events.1.f
+    title = hostile_diplo_events.1.t
+    desc = hostile_diplo_events.1.d
+    flavor = hostile_diplo_events.1.f
 
-	event_image = {
-		video = "europenorthamerica_capitalists_meeting"
-	}
+    event_image = {
+        video = "europenorthamerica_capitalists_meeting"
+    }
 
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
 
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
-	duration = 1
+    duration = 1
 
-	trigger = {
-	}
+    trigger = {
+    }
 
-	immediate = {
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = arm_radicals
-						}
-					}
-					NOT = {
-						has_modifier = target_armed_radicals_modifier
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = arm_radicals
-						}
-					}
-					NOT = {
-						has_modifier = target_armed_radicals_modifier
-					}
-				}
-				save_scope_as = arm_radicals_operation_target
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = arm_radicals
-						}
-					}
-				}
-				save_scope_as = arm_radicals_operation_target
-			}
-		}
-	}
+    immediate = {
+        if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = arm_radicals
+                        }
+                    }
+                    NOT = {
+                        has_modifier = target_armed_radicals_modifier
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = arm_radicals
+                        }
+                    }
+                    NOT = {
+                        has_modifier = target_armed_radicals_modifier
+                    }
+                }
+                save_scope_as = arm_radicals_operation_target
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = arm_radicals
+                        }
+                    }
+                }
+                save_scope_as = arm_radicals_operation_target
+            }
+        }
+    }
 
-	option = {
-		name = hostile_diplo_events.1.a
-		add_modifier = {
-			name = intelligence_network_cost_modifier
-			months = 12
-			multiplier = intelligence_op_multiplier_medium
-		}
-		scope:arm_radicals_operation_target = {
-			trigger_event = {
-	            id = hostile_diplo_event.2 
-	        }
-	        change_relations = {
-				country = root
-				value = -10
-			}
-		}
-	}
+    option = {
+        name = hostile_diplo_events.1.a
+        add_modifier = {
+            name = intelligence_network_cost_modifier
+            months = 12
+            multiplier = intelligence_op_multiplier_medium
+        }
+        scope:arm_radicals_operation_target = {
+            trigger_event = {
+                id = hostile_diplo_event.2
+            }
+            change_relations = {
+                country = root
+                value = -10
+            }
+        }
+    }
 
-	option = {
-		name = hostile_diplo_events.1.b
-	}
+    option = {
+        name = hostile_diplo_events.1.b
+    }
 }
 
 hostile_diplo_events.2 = {
     type = country_event
-	placement = root
+    placement = root
 
-	title = hostile_diplo_event.2.t
-	desc = hostile_diplo_event.2.d
-	flavor = hostile_diplo_event.2.f
+    title = hostile_diplo_event.2.t
+    desc = hostile_diplo_event.2.d
+    flavor = hostile_diplo_event.2.f
 
-	event_image = {
-		video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
-	}
+    event_image = {
+        video = "gfx/event_pictures/unspecific_vandalized_storefront.bk2"
+    }
 
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
 
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
-	duration = 1
+    duration = 1
 
-	trigger = {
-	}
+    trigger = {
+    }
 
-	immediate = {
-	}
+    immediate = {
+    }
 
-	option = {
-		name = hostile_diplo_event.2.a
-		add_modifier = {
-			name = target_armed_radicals_modifier
-			months = 25
-			multiplier = 2
-		}
-		add_radicals = {
-			value = 0.05
-		}
-	}
-	option = {
-		name = hostile_diplo_event.2.b
-		add_modifier = {
-			name = target_armed_radicals_modifier
-			months = 25
-		}
-		add_modifier = {
-			name = intelligence_network_cost_modifier
-			multiplier = money_amount_multiplier_medium
-			months = 25
-		}
-	}
+    option = {
+        name = hostile_diplo_event.2.a
+        add_modifier = {
+            name = target_armed_radicals_modifier
+            months = 25
+            multiplier = 2
+        }
+        add_radicals = {
+            value = 0.05
+        }
+    }
+
+    option = {
+        name = hostile_diplo_event.2.b
+        add_modifier = {
+            name = target_armed_radicals_modifier
+            months = 25
+        }
+        add_modifier = {
+            name = intelligence_network_cost_modifier
+            multiplier = money_amount_multiplier_medium
+            months = 25
+        }
+    }
+
 }
 
 # Slavery abolitionists event
 hostile_diplo_events.3 = {
     type = country_event
-	placement = root
+    placement = root
 
-	title = hostile_diplo_event.3.t
-	desc = hostile_diplo_event.3.d
-	flavor = hostile_diplo_event.3.f
+    title = hostile_diplo_event.3.t
+    desc = hostile_diplo_event.3.d
+    flavor = hostile_diplo_event.3.f
 
-	event_image = {
-		video = "gfx/event_pictures/southamerica_slaves_night.bk2"
-	}
+    event_image = {
+        video = "gfx/event_pictures/southamerica_slaves_night.bk2"
+    }
 
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
 
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
-	duration = 1
+    duration = 1
+
+    trigger = {
+        #autotriggers in pact
+    }
+
+    immediate = {
+        if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = support_slave_abolitionist_movement
+                        }
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = support_slave_abolitionist_movement
+                        }
+                    }
+                }
+                save_scope_as = support_slave_target_country
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = support_slave_abolitionist_movement
+                        }
+                    }
+                }
+                save_scope_as = support_slave_target_country
+            }
+        }
+        scope:root_country = {
+            every_state = {
+                limit = {
+                    state_has_building_type_levels = {
+                        target = bt:building_port
+                        value > 0
+                    }
+                }
+                save_scope_as = root_states_for_slaves
+            }
+        }
+        scope:root_states_for_slaves = {
+            random_scope_state = {
+                save_scope_as = root_target_state_for_slaves_1
+            }
+            random_scope_state = {
+                save_scope_as = root_target_state_for_slaves_2
+            }
+            random_scope_state = {
+                save_scope_as = root_target_state_for_slaves_3
+            }
+        }
+    }
+
+    option = {
+        name = hostile_diplo_events.3.a
+        default_option = yes
+
+        scope:support_slave_target_country = {
+            random_scope_state = {
+                every_scope_pop = {
+                    limit = {
+                        is_pop_type = slaves
+                    }
+                    move_partial_pop = {state = scope:root_target_state_for_slaves_1 population_ratio = 0.02}
+                    move_partial_pop = {state = scope:root_target_state_for_slaves_2 population_ratio = 0.02}
+                    move_partial_pop = {state = scope:root_target_state_for_slaves_3 population_ratio = 0.02}
+                }
+            }
+        }
+
+        ai_chance = {
+            base = 10
+        }
+    }
+}
+
+
+### Encourage Piracy against specific country
+
+hostile_diplo_events.4 = {
+
+    type = country_event
+    placement = root
+
+    title = hostile_diplo_events.4.t
+    desc = hostile_diplo_events.4.d
+    flavor = hostile_diplo_events.4.f
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_naval_battle.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+    duration = 1
+
+    trigger = {
+        #event triggered by pact
+    }
+
+    immediate = {
+
+        if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+                save_scope_as = piracy_target
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+                save_scope_as = piracy_target
+            }
+        }
+
+        root = {
+            save_scope_as = piracy_initiator
+        }
+
+    }
+
+    option = {
+
+        name = hostile_diplo_events.4.a
+        default_option = yes
+
+        scope:piracy_target = {
+            trigger_event = hostile_diplo_events.5
+        }
+
+        root = {
+            add_modifier = {
+                name = piracy_loot_modifier
+                months = 9
+                multiplier = piracy_loot_value
+            }
+        }
+
+        ai_chance = {
+            base = 10
+        }
+
+    }
+
+    option = {
+
+        name = hostile_diplo_events.4.b
+
+        scope:piracy_target = {
+            trigger_event = hostile_diplo_events.5
+            
+                add_journal_entry = {
+                    type = hms_je_piracy
+                }
+    
+        }
+
+        random_list = {
+            75 = {
+                root = {
+                    add_modifier = {
+                        name = piracy_loot_modifier
+                        months = 9
+                        multiplier = piracy_loot_value_greedy
+                    }
+                }
+
+            }
+            25 = {
+                root = {
+                    add_modifier = {
+                        name = piracy_loot_modifier
+                        months = 9
+                        multiplier = piracy_loot_value
+                    }
+                    add_modifier = {
+                        name = targeted_by_pirates_modifier
+                        months = 12
+                    }
+                }
+            }
+        }
+
+        ai_chance = {
+            base = 0
+        }
+
+    }
+
+}
+
+hostile_diplo_events.5 = {
+
+    #Give 3 months of respite for the targets # balance ?
+    cooldown = {
+        months = 3
+    }
+
+    type = country_event
+    placement = root
+
+    title = hostile_diplo_events.5.t
+    desc = hostile_diplo_events.5.d
+    flavor = hostile_diplo_events.5.f
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_naval_battle.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+    duration = 1
+
+    trigger = {
+    }
+
+    immediate = {
+        
+    }
+
+    option = {
+        name = hostile_diplo_events.5.a
+        default_option = yes
+
+        add_modifier = {
+            name = targeted_by_pirates_modifier
+            months = 12
+        }
+
+        add_modifier = {
+            name = piracy_cost_modifier
+            months = 12
+            multiplier = piracy_cost_multiplier
+        }
+
+        root = {
+            add_journal_entry = {
+                type = hms_je_piracy
+            }
+        }
+
+        ai_chance = {
+            base = 10
+        }
+    }
+}
+
+### Target of pirates decides to Engage the pirates!
+hostile_diplo_events.6 = {
+    type = country_event
+    placement = root
+
+    title = hostile_diplo_events.6.t
+    desc = hostile_diplo_events.6.d
+    flavor = hostile_diplo_events.6.f
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_naval_battle.bk2"
+    }
+
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+    duration = 1
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+    option = {
+        name = hostile_diplo_events.6.a
+        default_option = yes
+
+        random_list = {
+            15 = {
+
+                custom_tooltip = {
+                    text = pirates_escaped_tooltip
+                }
+
+            }
+
+            70 = {
+                
+				trigger_event = { 
+					id = hostile_diplo_events.8 
+					days = 30
+				}
+
+            }
+
+            15 = {
+                
+				trigger_event = { 
+					id = hostile_diplo_events.7 
+					days = 30
+				}
+
+            }
+        }
+
+        ai_chance = {
+            base = 10
+        }
+    }
+}
+
+### Victory over the pirates! UNCOVER THE PIRATE BACKERS
+hostile_diplo_events.7 = {
+
+    type = country_event
+    placement = root
+
+    title = hostile_diplo_events.7.t
+    desc = hostile_diplo_events.7.d
+    flavor = hostile_diplo_events.7.f
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_naval_battle.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+    duration = 1
 
 	trigger = {
-		#autotriggers in pact 
+		
 	}
 
-	immediate = {
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_slave_abolitionist_movement 
-						}
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_slave_abolitionist_movement 
-						}
-					}
-				}
-				save_scope_as = support_slave_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_slave_abolitionist_movement 
-						}
-					}
-				}
-				save_scope_as = support_slave_target_country
-			}
-		}
-		scope:root_country = {
-			every_state = {
-				limit = {
-					state_has_building_type_levels = {
-						target = bt:building_port
-						value > 0
-					}
-				}
-				save_scope_as = root_states_for_slaves
-			}
-		}
-		scope:root_states_for_slaves = {
-			random_scope_state = {
-				save_scope_as = root_target_state_for_slaves_1
-			}
-			random_scope_state = {
-				save_scope_as = root_target_state_for_slaves_2
-			}
-			random_scope_state = {
-				save_scope_as = root_target_state_for_slaves_3
-			}
-		}
+    immediate = {
+
+        if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+                save_scope_as = piracy_initiator
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+                save_scope_as = piracy_initiator
+            }
+        }
+
+        root = {
+            save_scope_as = piracy_target
+        }
+
+    }
+
+    option = {
+        name = hostile_diplo_events.7.a
+        default_option = yes
+
+        scope:country = {
+            set_relations = {
+                country = scope:piracy_initiator
+                value = -25
+            }
+        }
+
+        root = {
+            add_modifier = {
+                name = decisive_anti_piracy_victory_modifier
+                months = 12
+            }  
+    
+            set_variable =  {
+                name = won_against_pirates
+                months = 12
+            }
+
+            post_notification = piracy_initiator_name_message # <-- Show the name of the pirate backer country
+        }
+
+        ai_chance = {
+            base = 10
+        }
+    }
+}
+
+### Disaband the pirates without knowing who backed them
+hostile_diplo_events.8 = {
+
+    type = country_event
+    placement = root
+
+    title = hostile_diplo_events.8.t
+    desc = hostile_diplo_events.8.d
+    flavor = hostile_diplo_events.8.f
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_naval_battle.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+    duration = 1
+
+	trigger = {
+		
 	}
 
-	option = {
-		name = hostile_diplo_events.3.a
-		default_option = yes
+    immediate = {
 
-		scope:support_slave_target_country = {
-			random_scope_state = {
-				every_scope_pop = {
-					limit = {
-						is_pop_type = slaves
-					}
-					move_partial_pop = {state = scope:root_target_state_for_slaves_1 population_ratio = 0.02}
-					move_partial_pop = {state = scope:root_target_state_for_slaves_2 population_ratio = 0.02}
-					move_partial_pop = {state = scope:root_target_state_for_slaves_3 population_ratio = 0.02}
-				}
-			}
-		}
+    }
 
-		ai_chance = {
-			base = 10
-		}
-	}
+    option = {
+        name = hostile_diplo_events.8.a
+        default_option = yes
+
+        root = {
+            add_modifier = {
+                name = decisive_anti_piracy_victory_modifier
+                months = 12
+            }  
+    
+            set_variable =  {
+                name = won_against_pirates
+                months = 12
+            }
+
+        }
+
+        ai_chance = {
+            base = 10
+        }
+    }
 }

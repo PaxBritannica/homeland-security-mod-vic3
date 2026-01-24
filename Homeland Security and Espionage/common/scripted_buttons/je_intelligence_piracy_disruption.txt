@@ -1,0 +1,105 @@
+﻿# BRIBE pirates
+hms_je_piracy_bribed = {
+	name = hms_je_piracy_bribed
+	desc = hms_je_piracy_bribed_desc
+
+	visible = { always = yes }
+	
+	ai_chance = {
+		base = 5
+	}
+
+	possible = {
+	}
+
+	effect = {
+
+		scope:piracy_target = {
+			add_modifier = {
+				name = piracy_bribed_modifier
+				months = 7
+				multiplier = piracy_gdp_cut_15
+			}
+
+			set_variable = {
+				name = recently_bribed_pirates
+				months = 3
+			}
+		}
+
+		# Tooltip here to hide what country is paying the pirates
+		custom_tooltip = {
+			text = je_intelligence_piracy_bribe_effect_tt
+
+			scope:piracy_initiator = {
+				remove_diplomatic_pact = {
+					country = scope:piracy_target
+					type = encourage_piracy
+				}
+				
+				post_notification = stopped_attack_message
+			}
+
+		}
+
+
+        # scope:piracy_target = {
+		# 	add_modifier = {
+		# 		name = piracy_bribed_modifier
+		# 		months = 7
+		# 		multiplier = piracy_gdp_cut_15
+		# 	}
+
+		# 	set_variable = {
+		# 		name = recently_bribed_pirates
+		# 		months = 3
+		# 	}
+		# }
+
+		# scope:piracy_initiator = {
+		# 	remove_diplomatic_pact = {
+		# 		country = scope:piracy_target
+		# 		type = encourage_piracy
+		# 	}
+			
+		# 	post_notification = stopped_attack_message
+		# }
+
+	}
+}
+
+
+#Fight them with navy
+hms_je_piracy_fought = {
+	name = hms_je_piracy_fought
+	desc = hms_je_piracy_fought_desc
+
+	visible = { always = yes }
+	
+	ai_chance = {
+		base = 5
+	}
+
+	possible = {
+		AND = {
+			navy_size >= 20
+			not = {
+				has_variable = recently_fought_pirates
+			}
+		}
+	}
+
+	effect = {
+		trigger_event = {id = hostile_diplo_events.6} # Engage the pirates
+
+		root = {
+			set_variable = {
+				name = recently_fought_pirates
+				months = 3
+			}
+			
+			post_notification = stopped_attack_message
+		}
+		
+	}
+}

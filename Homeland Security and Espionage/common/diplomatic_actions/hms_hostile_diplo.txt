@@ -5,7 +5,7 @@
     requires_approval = no
     show_effect_in_tooltip = yes
     can_use_obligations = no
-    should_notify_third_parties = no
+    should_notify_third_parties = yes
     show_confirmation_box = yes
     is_hostile = yes
 
@@ -16,32 +16,35 @@
         is_revolutionary = no
     }
 
-    trigger = {
-        #gets triggered by monthly on actions
-    }
-
     possible = {
 
-        ROOT = {
-                    has_law_or_variant = law_type:law_office_of_foreign_affairs
-        }
+        # ROOT = {
+        #             has_law_or_variant = law_type:law_office_of_foreign_affairs
+        # }
 
-        scope:target_country = {
-            # custom_tooltip = {
-            #     text = siphon_funds_already_started
-            #     NOT = {
-            #         has_diplomatic_pact = {
-            #             who = root
-            #             type = siphon_funds
-            #         }
-            #     }
-            # }
-            NOT = {
-                has_war_with = root
-            }
+        # scope:target_country = {
+        #     # custom_tooltip = {
+        #     #     text = siphon_funds_already_started
+        #     #     NOT = {
+        #     #         has_diplomatic_pact = {
+        #     #             who = root
+        #     #             type = siphon_funds
+        #     #         }
+        #     #     }
+        #     # }
+        #     NOT = {
+        #         has_war_with = root
+        #     }
             
             
             
+        # }
+    }
+
+    accept_effect = {
+        add_modifier = {
+            name = debug_siphon_funds
+            days = 300
         }
     }
 
