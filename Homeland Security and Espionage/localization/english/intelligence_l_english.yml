@@ -26,7 +26,7 @@
  combat_unit_type_armored_train_desc: "We are being reinforced with an armored train."
 
  #techs
- HMS_tech_era_4_homeland_security: "Homeland Security"
+ HMS_tech_era_4_homeland_security: "Counterintelligence"
  HMS_tech_era_4_homeland_security_desc: "The development of homeland security measures enhances a nation's ability to protect its citizens and infrastructure from internal and external threats."
  HMS_tech_era_2_secret_service: "Secret Service"
  HMS_tech_era_3_extended_networks: "Extended Networks"
@@ -61,10 +61,13 @@
  piracy_cost_modifier: "Plundered Goods and Insurance Costs"
  targeted_by_pirates_modifier: "Targeted by Pirates"
  intelligence_network_cost_modifier: "Intelligence Network Costs"
+ decisive_anti_piracy_victory_modifier: "Disbanded a Pirate Fleet"
+ unit_naval_awareness_add: "Naval Awareness"
   
  #diplo actions
  send_scientific_advisors: "Scientific Advisory"
  send_scientific_advisors_desc: "Dispatch a team of scientific advisors to assist in advancing a Country's technological capabilities, fostering goodwill and strengthening diplomatic ties for a small research expanse."
+ send_scientific_advisors_pact_desc: "[SCOPE.GetRootScope.GetFirstCountry.GetName] has sent a scientific delegation to assist [SCOPE.GetRootScope.GetSecondCountry.GetName] in advancing their technological capabilities."
  send_scientific_advisors_action_propose_name: "Send Scientific Advisors Mission"
  send_scientific_advisors_action_break_name: "Stop Scientific Advisors Mission"
  send_scientific_advisors_proposal_declined_desc: "Our offer to send scientific advisors has been declined by [target_country_for_scientific_advisors.GetName], missing an opportunity to foster goodwill and strengthen diplomatic ties."
@@ -74,7 +77,7 @@
  arm_radicals: "Arm Radicals Mission"
  arm_radicals_action_propose_name: "Start Arm Radicals Mission"
  arm_radicals_action_break_name: "Stop Arm Radicals Mission"
- arm_radicals_desc: "Corrupt the higher strata and arm the lower class pops in order to spark the seed of revolution."
+ arm_radicals_pact_desc: "Corrupt the higher strata and arm the lower class pops in order to spark the seed of revolution."
 
  support_slave_abolitionist_movement: "Support Free Slaves"
  support_slave_abolitionist_movement_action_propose_name: "Start Support Abolitionist Movements"
@@ -92,6 +95,12 @@
  siphon_funds_pact_desc: "A secret operation to siphon funds from a target nation's treasury."
  siphon_funds_desc: "Covertly siphon funds from a target nation's treasury to bolster your own financial resources, weakening their economy while strengthening yours for a small monthly expanse and risk of catastrofical diplomatic incident."
  siphon_funds_action_break_name: "Stop Siphon Funds Mission"
+
+ #pops
+ government_agents_no_icon: "Agents"
+ government_agents_desc: "Trained government agents working within our intelligence networks. They belong to ideologies close to Intelligentsia and Petite Bourgeoisie."
+ government_agents: "@government_agents! $government_agents_no_icon$"
+ government_agents_only_icon: "@government_agents!"
 
  #goods
  intel: "Intel"
@@ -130,4 +139,21 @@
 
  #interactions
  bribe_out_of_office: "Bribe Out of Office"
+
+ #concepts
+ army_awareness: "Army Awareness"
+ naval_awareness: "Naval Awareness"
+
+ concept_naval_awareness_desc: "Increases the effectiveness of our naval forces by improving their ability to detect and respond to enemy movements at sea. Having better @naval_awareness! [concept_naval_awareness] than the enemy provides a chance for them to get the [GetBattleCondition('battle_condition_fog_of_war').GetName] battle condition (debuff) at the start of naval battles."
+
+ #battle conds
+ battle_condition_fog_of_war: "Fog of War"
+ battle_condition_fog_of_war_desc: "Our naval forces are caught off guard due to inferior [concept_naval_awareness], reducing their combat effectiveness."
+ 
+
+ #GUI
+ NAVAL_AWARENESS_TOOLTIP: "#header [concept_naval_awareness]#!\n@naval_awareness! [MilitaryFormation.MakeScope.ScriptValue('formation_naval_awareness')|1] [concept_naval_awareness] on average."
+ NAVAL_AWARENESS_ICON: "@naval_awareness!"
+
+ 
  

@@ -17,10 +17,11 @@ REPLACE_OR_CREATE:combat_unit_type_dispatch = {
         unit_blockade_add = 5
         unit_morale_loss_add = 10
         unit_convoy_defense_mult = 0.10
+        unit_naval_awareness_add = 3.5
     }
 
     formation_modifier = {
-        military_formation_movement_speed_mult = 0.2
+        military_formation_organization_gain_mult = 0.1
     }
 
     unlocking_technologies = { ironclad_tech }
@@ -49,6 +50,7 @@ REPLACE_OR_CREATE:combat_unit_type_submarine = {
         unit_blockade_add = 10
         unit_morale_loss_add = 8
         unit_convoy_raiding_mult = 1.0
+        unit_naval_awareness_add = 5
     }
 
     formation_modifier = {
@@ -81,10 +83,12 @@ REPLACE_OR_CREATE:combat_unit_type_carrier = {
         unit_blockade_add = 500
         unit_morale_loss_add = 6
 		unit_convoy_defense_mult = 0.25
+        unit_naval_awareness_add = 10
     }
 
     formation_modifier = {
         military_formation_movement_speed_mult = -0.2
+        military_formation_organization_gain_mult = 0.2
     }
 
 	unlocking_technologies = { carrier_tech }
@@ -96,7 +100,7 @@ REPLACE_OR_CREATE:combat_unit_type_carrier = {
 
 ### ARMY
 ### I Mean ... Why not???
-INJECT_OR_CREATE:combat_unit_type_armored_train = {
+REPLACE_OR_CREATE:combat_unit_type_armored_train = {
     group = combat_unit_group_cavalry
 	max_manpower = 1000
 

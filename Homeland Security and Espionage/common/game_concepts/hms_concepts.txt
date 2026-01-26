@@ -1,0 +1,7 @@
+﻿# COMING SOON army_awareness = {
+#     texture = ""
+# }
+
+naval_awareness = {
+    texture = "gfx/interface/icons/concept_icons/naval_awareness_small.dds"
+}

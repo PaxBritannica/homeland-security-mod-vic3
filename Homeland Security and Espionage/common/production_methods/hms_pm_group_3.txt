@@ -98,7 +98,7 @@ pm_hms_group_3_tier_2 = {
 			goods_output_intel_add = 35
 		}
 		level_scaled = {
-			building_employment_clerks_add = 100
+			building_employment_clerks_add = 150
 			building_employment_engineers_add = 350
             building_employment_academics_add = 550
 		}

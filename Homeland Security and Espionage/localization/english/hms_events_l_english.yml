@@ -9,6 +9,7 @@
  intelligence_op_arm_radicals_tt: "Corrupt the higher strata and smuggle weapons across the target's border to arm radical factions, increasing political unrest and weakening the target government's stability"
  support_slaves_movement_tt: "Maintain contact with abolitionists movements to cement unrest in the target country's society."
  pirates_escaped_tooltip: "The search will be unsuccessful, the pirates will remain a threat."
+ 
 
  #messages
  notification_piracy_initiator_name_message_name: "We uncovered who funded the piracy operations against us."

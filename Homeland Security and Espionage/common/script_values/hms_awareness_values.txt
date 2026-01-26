@@ -1,0 +1,134 @@
+﻿# Naval awareness contribution value per ship type
+flotilla_naval_awareness_value = {
+    value = 0
+
+	#Whatever ship has naval_awareness take it and add it
+
+    if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_frigate
+		}
+		add = frigate_naval_awareness_value
+    }
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_monitor
+		}
+		add = monitor_naval_awareness_value
+	}
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_destroyer
+		}
+		add = destroyer_naval_awareness_value
+	}
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_torpedo_boat
+		}
+		add = torpedo_boat_naval_awareness_value
+	}
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_scout_cruiser
+		}
+		add = scout_cruiser_naval_awareness_value
+	}
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_man_o_war
+		}
+		add = man_o_war_naval_awareness_value
+	}
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_ironclad
+		}
+		add = ironclad_naval_awareness_value
+	}
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_dreadnought
+		}
+		add = dreadnought_naval_awareness_value
+	}
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_battleship
+		}
+		add = battleship_naval_awareness_value
+	}
+	if = {
+		limit = {
+			has_unit_type = unit_type:combat_unit_type_submarine
+		}
+		add = submarine_naval_awareness_value
+	}
+    if = {
+        limit = {
+            has_unit_type = unit_type:combat_unit_type_dispatch
+        }
+        add = dispatch_naval_awareness_value
+    }
+    if = {
+        limit = {
+            has_unit_type = unit_type:combat_unit_type_carrier
+        }
+        add = carrier_naval_awareness_value
+    }
+
+	
+}
+
+
+###
+### Naval awareness values for each ship type
+### 
+
+frigate_naval_awareness_value = {
+	value = 2
+}
+
+monitor_naval_awareness_value = {
+	value = 3
+}
+
+destroyer_naval_awareness_value = {
+	value = 5
+}
+
+torpedo_boat_naval_awareness_value = {
+	value = 4
+}
+
+scout_cruiser_naval_awareness_value = {
+	value = 7
+}
+
+man_o_war_naval_awareness_value = {
+	value = 4
+}
+
+ironclad_naval_awareness_value = {
+	value = 7
+}
+
+dreadnought_naval_awareness_value = {
+	value = 9
+}
+
+battleship_naval_awareness_value = {
+	value = 12
+}
+
+submarine_naval_awareness_value = {
+	value = 9
+}
+
+dispatch_naval_awareness_value = {
+	value = 7
+}
+
+carrier_naval_awareness_value = {
+	value = 15
+}

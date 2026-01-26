@@ -37,7 +37,7 @@ pm_hms_group_1_tier_0 = {
 		}
 
 		level_scaled = {
-			building_employment_clerks_add = 600
+			building_employment_clerks_add = 400
 			building_employment_bureaucrats_add = 100
 		}
 	}
@@ -62,7 +62,7 @@ pm_hms_group_1_tier_1 = {
 		workforce_scaled = {
 			country_bureaucracy_add = -7.5
 			country_authority_add = 21
-			country_suppression_cost_mult = -0.2 #verify
+			country_suppression_cost_mult = -0.1 #verify
 		}
 	}
 
@@ -71,7 +71,6 @@ pm_hms_group_1_tier_1 = {
 			state_loyalists_from_political_movements_mult = 0.04
 			state_radicals_from_political_movements_mult = -0.04
 			state_migration_pull_mult = -0.02
-			state_tax_capacity_add = 5
 		}
 	}
 
@@ -86,11 +85,63 @@ pm_hms_group_1_tier_1 = {
 			goods_output_services_add = 10
 		}
 		level_scaled = {
-			building_employment_clerks_add = 1000
-			building_employment_bureaucrats_add = 300
+			building_employment_clerks_add = 200
+			building_employment_government_agents_add = 200
+			building_employment_bureaucrats_add = 200
 		}
 	}
 }
 
 #TIER 2 TBD
 #TIER 2 WILL PROBABLY NEED ERA 4 TECH
+
+pm_hms_group_1_tier_2 = {
+	#Government Agents
+
+	# They help identify and root out subversive elements within the country, 
+	# strengthening national security, enforcing tax control.
+	texture = "gfx/interface/icons/pms_icons/government_agent_due.dds"
+
+	# No Home Affairs law will block this building
+	disallowing_laws = {
+		law_no_home_affairs
+	}
+
+	unlocking_technologies = {
+		HMS_tech_era_4_homeland_security
+	}
+
+	country_modifiers = {
+		workforce_scaled = {
+			country_bureaucracy_add = -5
+			country_authority_add = 30
+			country_suppression_cost_mult = -0.2 #verify
+		}
+	}
+
+	state_modifiers = {
+		workforce_scaled = {
+			state_loyalists_from_political_movements_mult = 0.06
+			state_radicals_from_political_movements_mult = -0.06
+			state_migration_pull_mult = -0.03
+			state_tax_capacity_add = 5
+		}
+	}
+
+	building_modifiers = {
+		workforce_scaled = {
+			goods_input_paper_add = 30
+			goods_input_furniture_add = 3.5
+			goods_input_coffee_add = 3.5
+			goods_input_luxury_clothes_add = 3
+
+			goods_output_intel_add = 35
+			goods_output_services_add = 20
+		}
+		level_scaled = {
+			building_employment_clerks_add = 200
+			building_employment_government_agents_add = 350
+			building_employment_bureaucrats_add = 300
+		}
+	}
+}

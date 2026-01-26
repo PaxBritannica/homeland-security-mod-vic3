@@ -1,0 +1,21 @@
+﻿battle_condition_fog_of_war = {
+	icon = "gfx/interface/icons/battle_conditions/battle_condition_cant_penetrate.dds"
+
+	possible = {
+		scope:character ?= {
+			has_role = admiral
+		}
+		our_side_naval_awareness < enemy_side_naval_awareness
+	}
+
+	modifier = {
+		unit_navy_offense_mult = -0.2
+		unit_navy_defense_mult = -0.2
+		unit_kill_rate_add = -0.3
+		unit_morale_loss_mult = 0.3
+	}
+
+	weight = {
+		value = 4
+	}
+}

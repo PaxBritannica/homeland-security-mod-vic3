@@ -1,0 +1,56 @@
+texticon = {
+	icon = intel
+	iconsize = {
+		texture = "gfx/interface/icons/goods_icons/intel.dds"
+		size = { 25 25 }
+		offset = { 0 7 }
+		fontsize = 18
+	}
+}
+
+texticon = {
+	icon = army_intel
+	iconsize = {
+		texture = "gfx/interface/icons/goods_icons/military_intel.dds"
+		size = { 25 25 }
+		offset = { 0 7 }
+		fontsize = 18
+	}
+}
+
+texticon = {
+	icon = naval_intel
+	iconsize = {
+		texture = "gfx/interface/icons/goods_icons/naval_intel.dds"
+		size = { 25 25 }
+		offset = { 0 7 }
+		fontsize = 18
+	}
+}
+
+texticon = {
+	icon = naval_awareness
+	iconsize = {
+	  offset = { 0 20 }
+	  texture = "gfx/interface/icons/concept_icons/naval_awareness_small.dds"
+	  fontsize = 60
+	}
+}
+
+texticon = {
+    icon = government_agents
+    iconsize = {
+        offset = { 0 50 }
+        texture = "gfx/interface/icons/pops_icons/government_agents.dds"
+        fontsize = 250
+    }
+}
+
+texticon = {
+    icon = government_agents
+    iconsize = {
+        offset = { 0 5 }
+        texture = "gfx/interface/icons/pops_icons/government_agents_15.dds"
+        fontsize = 30
+    }
+}

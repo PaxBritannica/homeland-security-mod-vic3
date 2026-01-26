@@ -153,3 +153,33 @@ country_institution_foreign_affairs_max_investment_add = {
         ai_value=5
     }
 }
+
+# new pops modifier for employment
+building_employment_government_agents_add = {
+    decimals=0
+    color=good
+    percent = no
+    game_data={
+        ai_value=0
+    }
+}
+
+#Situational awareness modifier
+unit_naval_awareness_add = {
+    decimals=1
+    color=good
+    percent = no
+    script_only = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+# unit_army_awareness_add = {
+#     decimals=1
+#     color=good
+#     percent = no
+#     game_data={
+#         ai_value=0
+#     }
+# }

@@ -1,0 +1,699 @@
+﻿# COPY-PASTED FOR NOW
+
+@panel_width_minus_10 = 530			# used to be 450
+@panel_width = 540  				# used to be 460
+
+@military_formation_grid_spacing = 15
+
+types military_formation_panel_types
+{	
+	
+	type military_formation_top_illu_info = flowcontainer {
+		parentanchor = hcenter
+
+		container = {
+			parentanchor = vcenter
+
+			button = {
+				visible = "[MilitaryFormation.GetCountry.IsPlayer]"
+				onclick = "[PopupManager.ShowMilitaryFormationChangeName(MilitaryFormation.Self)]"
+				size = { 80 80 }
+			
+				icon = {
+					size = { 80 80 }
+					texture = "[MilitaryFormation.GetFlag]"
+					color = "[MilitaryFormation.GetFlagColor]"
+				}
+			}
+
+			icon = {
+				visible = "[Not(MilitaryFormation.GetCountry.IsPlayer)]"
+				size = { 80 80 }
+				texture = "[MilitaryFormation.GetFlag]"
+				color = "[MilitaryFormation.GetFlagColor]"
+			}
+
+
+			### EXILED STATUS
+			widget = {
+				visible = "[MilitaryFormation.IsExiled]"
+				size = { 30 30 }
+			
+				# Background 
+				icon = {
+					size = { 100% 100% }
+					texture = "gfx/interface/backgrounds/round_button_bg.dds"
+				}
+
+				# Rank
+				icon = {
+					size = { 100% 100% }
+					parentanchor = center
+					texture = "gfx/interface/icons/military_icons/exiled_state_no_bg.dds"
+					tooltip = "MILITARY_FORMATION_EXILED_ARMY_EFFECT_TOOLTIP"
+				}
+			}
+
+			### DELETE FORMATION
+			button_icon_round_action = {
+				blockoverride "icon_size" { size = { 65% 65% } }
+				size = { 30 30 }
+				parentanchor = bottom|left
+				tooltip = "MILITARY_FORMATION_DISBAND_TOOLTIP"
+				using = tooltip_above
+				enabled = "[IsValid( MilitaryFormation.Disband )]"
+				onclick = "[PopupManager.AskConfirmation( MilitaryFormation.Disband )]"
+
+				blockoverride "icon" {
+					texture = "gfx/interface/icons/military_icons/disband_formation.dds"
+				}
+			}
+		}
+
+		widget = { size = { 8 8 }}
+
+		flowcontainer = { 
+			direction = vertical
+			margin_top = 5
+			parentanchor = vcenter
+			spacing = 7
+
+			### FIRST ROW
+			flowcontainer = {
+				parentanchor = hcenter
+				spacing = @military_formation_grid_spacing
+
+				### NUMBER OF UNITS
+				header_grid_item = {
+					tooltip = "MILITARY_FORMATION_TOTAL_NUMBER_OF_UNITS_TOOLTIP"
+
+					blockoverride "text" {
+						text = "MILITARY_FORMATION_TOTAL_NUMBER_OF_UNITS"
+					}
+
+					blockoverride "icon" {
+						text = "[MilitaryFormation.GetCombatUnitsTypeIcon]"
+					}
+				}
+
+
+
+				### MANPOWER
+				header_grid_item = {
+					tooltip = "MILITARY_FORMATION_MANPOWER_TOOLTIP"
+
+					blockoverride "text" {
+						raw_text = "[MilitaryFormation.GetCurrentManpower|Kv]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@manpower!"
+					}
+
+					blockoverride "progressbar" {
+						manpower_bar = {
+							using = formation_item_progressbar_size
+							parentanchor = vcenter
+						}
+					}
+				}
+
+				### MORALE
+				header_grid_item = {
+					tooltip = "MILITARY_FORMATION_MORALE_TOOLTIP"
+
+					blockoverride "text" {
+						raw_text = "MILITARY_FORMATION_MORALE_NO_ICON"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@morale!"
+					}
+
+					blockoverride "progressbar" {
+						morale_bar = {
+							using = formation_item_progressbar_size
+							parentanchor = vcenter
+							
+							blockoverride "morale_value" {
+								value = "[FixedPointToFloat( MilitaryFormation.GetMorale )]"
+							}
+							blockoverride "morale_color" {
+								color = "[GetMoraleColorVec( MilitaryFormation.GetMorale )]"
+							}
+						}
+					}
+				}
+
+				### UPKEEP - for navies
+				header_grid_item = {
+					visible = "[MilitaryFormation.IsFleet]"
+					tooltip = "MILITARY_FORMATION_EXPENSE_TOOLTIP_TAG"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.GetGoodsConsumptionCostRaw|0-K]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@money!"
+					}
+				}
+			}
+
+			### SECOND ROW
+			flowcontainer = {
+				spacing = @military_formation_grid_spacing
+				parentanchor = hcenter
+
+				### OFFENSE
+				header_grid_item = {
+					tooltip = "MILITARY_FORMATION_OFFENSE_TOOLTIP"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.GetAverageOffenseExcludeUnavailableManpower|1v]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@unit_offense!"
+					}
+				}
+
+				### DEFENSE
+				header_grid_item = {
+					tooltip = "MILITARY_FORMATION_DEFENSE_TOOLTIP"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.GetAverageDefenseExcludeUnavailableManpower|1v]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@unit_defense!"
+					}
+				}
+
+				### ATTRITION
+				header_grid_item = {
+					tooltip = "[MilitaryFormation.GetAttritionRiskDesc]"
+					visible = "[MilitaryFormation.IsArmy]"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.GetAverageAttritionPerWeek|%1^-]"
+					}
+
+					blockoverride "icon" {
+						text = "MILITARY_FORMATION_ATTRITION_RISK_ICON"
+					}
+					alpha = "[TransparentIfZero(MilitaryFormation.GetAttritionRaw)]"
+				}
+				
+				### BLOCKADE STRENGTH
+				header_grid_item = {
+					tooltip = "MILITARY_FORMATION_BLOCKADE_TOOLTIP"
+					visible = "[MilitaryFormation.IsFleet]"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.GetMaxBlockadeStrength|vK]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@blockade_strength!"
+					}
+					alpha = "[TransparentIfZero(MilitaryFormation.GetMaxBlockadeStrength)]"
+					
+					blockoverride "progressbar" {
+						white_progressbar_vertical = {
+							size = { 6 24 }
+							
+							blockoverride "values" {
+								min = 0
+								value = "[FixedPointToFloat(MilitaryFormation.GetCurrentBlockadeStrength)]"
+								max = "[FixedPointToFloat(MilitaryFormation.GetMaxBlockadeStrength)]"
+							}	
+						}
+					}
+				}	
+				
+				### ORGANIZATION - for navies
+				header_grid_item = {
+					visible = "[MilitaryFormation.IsFleet]"
+					tooltip = "MILITARY_FORMATION_ORGANIZATION_TOOLTIP"
+
+					blockoverride "text" {
+						raw_text = "[MilitaryFormation.GetOrganizationPercentage|%v0]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@organization!"
+					}
+
+					blockoverride "progressbar" {
+						organization_bar = {
+							using = formation_item_progressbar_size
+							parentanchor = vcenter
+							
+							blockoverride "organization_value" {
+								value = "[FixedPointToFloat( MilitaryFormation.GetOrganizationPercentage )]"
+							}
+							blockoverride "organization_color" {
+								color = "[GetOrganizationColorVec( MilitaryFormation.GetOrganizationPercentage )]"
+							}
+						}
+					}
+				}
+			}
+
+			### THIRD ROW - ARMIES
+			flowcontainer = {
+				spacing = @military_formation_grid_spacing
+				parentanchor = hcenter
+				visible = "[MilitaryFormation.IsArmy]"
+
+				### UPKEEP
+				header_grid_item = {
+					tooltip = "MILITARY_FORMATION_EXPENSE_TOOLTIP_TAG"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.GetGoodsConsumptionCostRaw|0-K]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@money!"
+					}
+				}
+
+				### ORGANIZATION
+				header_grid_item = {
+					tooltip = "MILITARY_FORMATION_ORGANIZATION_TOOLTIP"
+
+					blockoverride "text" {
+						raw_text = "[MilitaryFormation.GetOrganizationPercentage|%v0]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@organization!"
+					}
+
+					blockoverride "progressbar" {
+						organization_bar = {
+							using = formation_item_progressbar_size
+							parentanchor = vcenter
+							
+							blockoverride "organization_value" {
+								value = "[FixedPointToFloat( MilitaryFormation.GetOrganizationPercentage )]"
+							}
+							blockoverride "organization_color" {
+								color = "[GetOrganizationColorVec( MilitaryFormation.GetOrganizationPercentage )]"
+							}
+						}
+					}
+				}
+
+
+				### SUPPLY
+				header_grid_item = {
+					datacontext = "[MilitaryFormation.GetShippingLane]"
+					alwaystransparent = no
+					onmousehierarchyenter = "[AccessHighlightManager.HighlightShippingLane(ShippingLane.Self)]"
+					onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+					tooltip = "[MilitaryFormation.GetSupplyTooltip]"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.GetSupplyRaw|0v%]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@supply!"
+					}
+
+					blockoverride "progressbar" {
+						organization_bar = {
+							using = formation_item_progressbar_size
+							parentanchor = vcenter
+							
+							blockoverride "organization_value" {
+								value = "[MilitaryFormation.GetSupplyRaw]"
+							}
+						}
+					}
+				}
+			}
+
+			### THIRD ROW - NAVIES
+			flowcontainer = {
+				visible = "[MilitaryFormation.IsFleet]"
+				spacing = @military_formation_grid_spacing
+				parentanchor = hcenter
+
+				### AWARENESS ( NAVAL )
+				header_grid_item = {
+					tooltip = "NAVAL_AWARENESS_TOOLTIP"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.MakeScope.ScriptValue('formation_naval_awareness')|1]"
+					}
+
+					blockoverride "icon" {
+						text = "NAVAL_AWARENESS_ICON"
+					}
+					alpha = "[TransparentIfZero(MilitaryFormation.MakeScope.ScriptValue('formation_naval_awareness'))]"
+				}
+				
+				### SUPPLY
+				header_grid_item = {
+					datacontext = "[MilitaryFormation.GetShippingLane]"
+					alwaystransparent = no
+					onmousehierarchyenter = "[AccessHighlightManager.HighlightShippingLane(ShippingLane.Self)]"
+					onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+					tooltip = "[MilitaryFormation.GetSupplyTooltip]"
+
+					blockoverride "text" {
+						text = "[MilitaryFormation.GetSupplyRaw|0v%]"
+					}
+
+					blockoverride "icon" {
+						raw_text = "@supply!"
+					}
+
+					blockoverride "progressbar" {
+						organization_bar = {
+							using = formation_item_progressbar_size
+							parentanchor = vcenter
+							
+							blockoverride "organization_value" {
+								value = "[MilitaryFormation.GetSupplyRaw]"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	type military_formation_panel_overview_content = flowcontainer {
+		direction = vertical
+		using = default_list_position
+		spacing = 10
+
+		### COMMANDERS
+		default_header = {
+			using = default_fade_in_out
+
+			blockoverride "text" {
+				text = "MILITARY_FORMATION_COMMANDERS"
+			}
+		}
+
+		### If not Player and no commanders - Show empty state
+		empty_state = {
+			blockoverride "visible" {
+				visible = "[And(IsDataModelEmpty(MilitaryFormation.GetCommanders), Not(MilitaryFormation.GetCountry.IsPlayer))]"
+			}
+			blockoverride "text" {
+				text = "NO_COMMANDERS_IN_MILITARY_FORMATION"
+			}
+		}
+
+		### If not Player - Only show commanders
+		dynamicgridbox = {
+			visible = "[And( Not(MilitaryFormation.GetCountry.IsPlayer), Not(IsDataModelEmpty(MilitaryFormation.GetCommanders)))]"
+			datamodel = "[MilitaryFormation.GetCommanders]"
+			parentanchor = hcenter
+			datamodel_wrap = "[GetDefine('NMilitary','MAX_NUM_COMMANDERS_PER_FORMATION')]"
+			flipdirection = yes
+
+			item = {
+				widget = {
+					size = { 120 110 }
+
+					### COMMANDER
+					military_formation_commander = {
+						visible = "[Character.IsValid]"
+					}
+
+					highlight_tutorial = {
+						visible = "[Character.IsBeingTutorialHighlighted]"
+					}
+				}
+			}
+		}
+
+		### If Player - Show commanders + extra slot
+		dynamicgridbox = {
+			visible = "[MilitaryFormation.GetCountry.IsPlayer]"
+			datamodel = "[MilitaryFormation.GetCommandersWithRecruitableSlot]"
+			parentanchor = hcenter
+			datamodel_wrap = "[GetDefine('NMilitary','MAX_NUM_COMMANDERS_PER_FORMATION')]"
+			flipdirection = yes
+
+			item = {
+				widget = {
+					size = { 120 110 }
+
+					### COMMANDER
+					military_formation_commander = {
+						visible = "[Character.IsValid]"
+					}
+
+					### RECRUIT GENERAL
+					add_character_button = {
+						name = "tutorial_highlight_recruit_general"
+						visible = "[And(And(Not(Character.IsValid), MilitaryFormation.IsArmy), MilitaryFormation.GetCountry.IsPlayer)]"
+						size = { 110 110 }
+						parentanchor = center
+						
+						blockoverride "tooltip" {
+							tooltip = "RECRUIT_CHARACTER_GENERAL"
+						}
+
+						blockoverride "onclick" {
+							onclick = "[PopupManager.ToggleRecruitFormationGeneral( MilitaryFormation.Self )]"
+						}
+					}
+
+					### RECRUIT ADMIRAL
+					add_character_button = {
+						name = "tutorial_highlight_recruit_admiral"
+						visible = "[And(And(Not(Character.IsValid), MilitaryFormation.IsFleet), MilitaryFormation.GetCountry.IsPlayer)]"
+						size = { 110 110 }
+						parentanchor = center
+
+						blockoverride "tooltip" {
+							tooltip = "RECRUIT_CHARACTER_ADMIRAL"
+						}
+
+						blockoverride "onclick" {
+							onclick = "[PopupManager.ToggleRecruitFormationAdmiral( MilitaryFormation.Self )]"
+						}
+					}
+
+				}
+			}
+		}
+
+		flowcontainer = {
+			datamodel = "[MilitaryFormation.GetActiveBattles]"
+			visible = "[Not(IsDataModelEmpty( MilitaryFormation.GetActiveBattles ))]"
+			spacing = 10
+			parentanchor = hcenter
+			direction = vertical
+
+			item = {
+				battle_item = {
+					blockoverride "highlight_visibility" {
+						visible = no
+					}
+				}
+			}
+		}
+
+		flowcontainer = {
+			visible = "[IsDataModelEmpty(MilitaryFormation.GetCommandersWithRecruitableSlot)]"
+			parentanchor = hcenter
+			direction = vertical
+			spacing = 5
+
+			textbox = {
+				visible = "[MilitaryFormation.IsArmy]"
+				parentanchor = hcenter
+				align = hcenter|nobaseline
+				autoresize = yes
+				using = fontsize_large
+				using = look_at_me_text_animation
+				text = "MILITARY_FORMATION_RECRUIT_GENERAL"
+			}
+
+			textbox = {
+				visible = "[MilitaryFormation.IsFleet]"
+				parentanchor = hcenter
+				align = hcenter|nobaseline
+				autoresize = yes
+				using = fontsize_large
+				using = look_at_me_text_animation
+				text = "MILITARY_FORMATION_RECRUIT_ADMIRAL"
+			}
+
+			### RECRUIT GENERAL
+			add_character_button = {
+				visible = "[MilitaryFormation.IsArmy]"
+				size = { 110 110 }
+				parentanchor = hcenter
+
+				blockoverride "tooltip" {
+					tooltip = "RECRUIT_CHARACTER_GENERAL"
+				}
+
+				blockoverride "onclick" {
+					onclick = "[PopupManager.ToggleRecruitFormationGeneral( MilitaryFormation.Self )]"
+				}
+			}
+
+			### RECRUIT ADMIRAL
+			add_character_button = {
+				visible = "[MilitaryFormation.IsFleet]"
+				size = { 110 110 }
+				parentanchor = hcenter
+
+				blockoverride "tooltip" {
+					tooltip = "RECRUIT_CHARACTER_ADMIRAL"
+				}
+
+				blockoverride "onclick" {
+					onclick = "[PopupManager.ToggleRecruitFormationAdmiral( MilitaryFormation.Self )]"
+				}
+			}
+		}
+
+		### UNIT RECRUITMENT
+		#######################################
+		#
+		# THIS IS WHAT TTS CHANGES
+		#
+		#########################################
+		default_header = {
+			using = default_fade_in_out
+			visible = "[MilitaryFormation.GetCountry.IsPlayer]"
+	
+			blockoverride "text" {
+				text = "MILITARY_FORMATION_UNITS_RECRUITMENT"
+			}
+		}
+
+		dynamicgridbox = {
+			visible = "[MilitaryFormation.GetCountry.IsPlayer]"
+			parentanchor = hcenter
+			flipdirection = yes
+			datamodel = "[MilitaryFormation.GetEligibleGroups]"
+			datamodel_wrap = 3
+
+			item = {
+				flowcontainer = {
+					direction = vertical
+					minimumsize = { 182 280 }
+					datacontext = "[MilitaryFormation.GetSelectedUnitTypeForGroup(CombatUnitGroup.Self)]"
+
+					military_formation_unit_type_default = {
+						visible = "[CombatUnitType.IsValid]"
+					}
+
+					military_formation_unit_type_default_not_valid = {
+						visible = "[Not(CombatUnitType.IsValid)]"
+					}
+				}
+			}
+		}
+	
+	
+		### UNIT DETAILS
+	
+		default_header = {
+			using = default_fade_in_out
+	
+			blockoverride "text" {
+				text = "MILITARY_FORMATION_UNITS"
+			}
+		}
+	
+		dynamicgridbox = {
+			parentanchor = hcenter
+	
+			datamodel = "[MilitaryFormation.GetEligibleGroups]"
+	
+			item = {
+				flowcontainer = {
+					margin = { 0 5 }
+	
+					military_formation_unit_type_group = {}
+				}
+			}
+		}
+
+		### DEBUG INFO
+		textbox = {
+			parentanchor = hcenter
+			text = "FORMATION_PANEL_DEBUG_INFO"
+			maximumsize = { @panel_width -1 }
+			max_width = @panel_width_minus_10
+			autoresize = yes
+			multiline = yes
+			align = left|nobaseline
+			visible = "[InDebugMode]"
+		}
+	}
+}
+
+types formation_header {
+	type header_grid_item = widget {
+		size = { 100 30 } 
+
+		textbox = {
+			block "text_maximumsize" {
+				maximumsize = { 65 -1 }
+			}
+			align = hcenter|nobaseline
+			default_format = "#v"
+			using = elide_fontsize_min
+			autoresize = yes
+
+			block "text_parentanchor" {
+				parentanchor = center
+			}
+
+			block "text" {
+				raw_text = "99999999"
+			}
+		}
+
+		block "whole_icon" {
+			textbox = {
+				block "icon" {
+					raw_text = "ikon"
+				}
+				block "icon_size" {
+					using = fontsize_xl
+				}
+				parentanchor = vcenter
+				align = hcenter|nobaseline
+				block "icon_position" {
+					position = { 6 0 }
+				}
+			}
+		}
+
+		background = {
+			using = entry_bg_simple
+
+			block "background_alpha" {
+				alpha = 0.5
+			}
+		}
+
+		container = {
+			parentanchor = right|vcenter
+			position = { -7 0 }
+
+			block "progressbar" {
+
+			}
+		}
+	}
+}

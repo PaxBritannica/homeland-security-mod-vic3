@@ -70,79 +70,6 @@ HMS_tech_era_2_secret_service = {
 
 }
 
-
-
-# HMS_tech_foreign_operations = {
-
-# 	# Focuses on External Affairs and Intelligence
-# 	# produces influence
-
-# 	era = era_3
-# 	category = society
-# 	unlocking_technologies = { HMS_tech_secret_service }
-# 	texture = "gfx/interface/icons/invention_icons/foreign_influence.dds"
-
-# 	# Bonuses provided mainly for flavor and to boost AI interest
-# 	modifier = {
-
-# 		country_prestige_add = 25
-# 		country_influence_mult = 0.15
-
-# 		country_max_declared_interests_add = 1
-# 		country_diplomatic_reputation_add = 10       # Institutional credibility
-
-# 		unit_navy_offense_add = 10
-# 		unit_navy_defense_add = 10
-		
-# 	}
-	
-# 	#ai research propensity
-# 	ai_weight = {
-# 		value = 2
-
-# 		if = {
-# 			limit = {
-# 				OR = {
-# 					has_law = law_type:law_autocracy
-# 					has_law = law_type:law_oligarchy
-# 				}
-# 			}
-# 			multiply = 1.5
-# 		}
-
-# 		# Great powers prioritize it
-#         if = {
-#             limit = { is_great_power = yes }
-#             multiply = 1.3
-#         }
-        
-#         # Higher priority if in rivalries
-#         if = {
-#             limit = {
-#                 any_scope_country = {
-#                     has_diplomatic_pact = {
-#                         who = ROOT
-#                         type = rivalry
-#                     }
-#                 }
-#             }
-#             multiply = 1.4
-#         }
-
-# 		# Control the population agenda
-# 		if = {
-# 			limit = {
-# 				has_strategy = ai_strategy_conservative_agenda
-# 				has_strategy = ai_strategy_placate_population
-# 			}
-# 			multiply = 1.2
-# 		}
-# 	}
-
-	
-
-# }
-
 HMS_tech_era_3_extended_networks = {
 
 	era = era_3
@@ -155,9 +82,6 @@ HMS_tech_era_3_extended_networks = {
 
 		country_prestige_mult = 0.05
 		country_influence_mult = 0.1
-
-		country_society_tech_spread_mult = 0.1
-		country_society_tech_research_speed_mult = 0.05
 
 		country_institution_foreign_affairs_max_investment_add = 2
 	}
@@ -217,9 +141,6 @@ HMS_tech_era_3_extended_networks = {
 # ERA 4
 HMS_tech_era_4_homeland_security = {
 
-	# Focuses on Internal Affairs and Security
-	# Produces Authority
-
 	era = era_4
 	category = society
 	unlocking_technologies = { HMS_tech_era_3_extended_networks }
@@ -232,21 +153,16 @@ HMS_tech_era_4_homeland_security = {
 	modifier = {
 
 		# bonus
-		state_tax_capacity_mult = 0.2
+		state_tax_capacity_mult = 0.1
 		state_incorporation_speed_mult = 0.1
 		state_loyalists_from_political_movements_mult = 0.2
-		# country_prestige_add = 25
-		country_authority_mult = 0.3
-		# country_support_separatism_resistance_mult = -0.2  # Counter-intelligence doctrine
-		# country_institution_home_affairs_max_investment_add = 1 # will make our institution soon
-		# country_agitator_slots_add = 1
-		# country_support_separatism_strength_mult = 0.25
+		country_authority_mult = 0.2
 		state_bureaucracy_population_base_cost_factor_mult = -0.05
 		state_radicals_from_political_movements_mult = -0.2
 
 		#country malus
-		state_migration_pull_mult = -0.15
-		country_society_tech_spread_mult = -0.15
+		state_migration_pull_mult = -0.10
+		country_society_tech_spread_mult = -0.10
 
 		country_institution_foreign_affairs_max_investment_add = 1
 	}

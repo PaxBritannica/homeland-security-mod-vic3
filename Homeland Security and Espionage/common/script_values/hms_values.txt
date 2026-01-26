@@ -225,3 +225,87 @@ piracy_gdp_cut_15 = {
     divide = 1000
 }
 
+
+###                  ####    ##    ##    ##  ###   ##   #####   #####  ###   ## ####      #####  #####
+# Intelligence At Sea ###  #####    ##  ##  ##    ####  ## #    ####   ## #  ## ###     ####   ####
+###                  #### ##   ##    ##   ##    ##   ## ##  ##  #####  ##  #### ####  #####  #####
+
+formation_naval_awareness = {
+
+	every_combat_unit = {
+		add = {
+			add = flotilla_naval_awareness_value
+			multiply = this.manpower
+		}
+	}
+
+	if = {
+		limit = {
+			any_combat_unit = {
+				count >= 1
+				this.manpower >= 1
+			}
+		}
+		divide = {
+			every_combat_unit = {
+				add = this.manpower
+			}
+		}
+	}
+
+	else = {
+		value = 0
+	}
+}
+
+friendly_side_naval_awareness = {
+	battle = {
+		every_combat_unit = {
+			limit = {
+				owner = scope:character.owner
+			}
+			add = {
+				value = flotilla_awareness_value
+				multiply = this.manpower
+			}
+	
+		}
+	}
+	divide = {
+		battle = {
+			every_combat_unit = {
+				limit = {
+					owner = scope:character.owner
+				}
+				add = this.manpower
+			}
+		}
+		min = 1
+	}
+}
+
+enemy_side_naval_awareness = {
+	battle = {
+		every_combat_unit = {
+			limit = {
+				owner = scope:character.opposing_commander.owner
+			}
+			add = {
+				value = flotilla_naval_awareness_value
+				multiply = this.manpower
+			}
+	
+		}
+	}
+	divide = {
+		battle = {
+			every_combat_unit = {
+				limit = {
+					owner = scope:character.opposing_commander.owner
+				}
+				add = this.manpower
+			}
+		}
+		min = 1
+	}
+}

@@ -6,6 +6,7 @@ hms_pmg_group_1 = {
 	production_methods = {
 		pm_hms_group_1_tier_0
 		pm_hms_group_1_tier_1
+		pm_hms_group_1_tier_2
 	}
 
 }
