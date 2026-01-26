@@ -1,5 +1,5 @@
 ﻿battle_condition_fog_of_war = {
-	icon = "gfx/interface/icons/battle_conditions/battle_condition_cant_penetrate.dds"
+	icon = "gfx/interface/icons/battle_conditions/fog_of_war.dds"
 
 	possible = {
 		scope:character ?= {
@@ -13,6 +13,30 @@
 		unit_navy_defense_mult = -0.2
 		unit_kill_rate_add = -0.3
 		unit_morale_loss_mult = 0.3
+	}
+
+	weight = {
+		value = 3
+	}
+}
+
+battle_condition_aerial_superiority = {
+	icon = "gfx/interface/icons/battle_conditions/air_superiority.dds"
+
+	possible = {
+		scope:character ?= {
+			has_role = admiral
+		}
+		AND = {
+			our_side_is_using_carriers = yes
+			enemy_side_is_using_carriers = no
+		}
+	}
+
+	modifier = {
+		unit_navy_offense_mult = 0.2
+		unit_morale_loss_mult = -0.50
+		unit_naval_awareness_mult = 0.5
 	}
 
 	weight = {

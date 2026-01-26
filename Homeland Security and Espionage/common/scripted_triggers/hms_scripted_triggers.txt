@@ -1,1 +1,30 @@
-﻿
+﻿enemy_side_is_using_carriers = {
+	battle = {
+		any_combat_unit = {
+			filter = {
+				owner = scope:character.opposing_commander.owner
+			}
+			OR = {
+				has_unit_type = unit_type:combat_unit_type_carrier
+				has_unit_type = unit_type:combat_unit_type_carrier
+			}
+			percent >= 0.1
+		}
+	}
+}
+
+our_side_is_using_carriers = {
+    battle = {
+        any_combat_unit = {
+            filter = {
+                owner = scope:character.owner
+            }
+            OR = {
+                has_unit_type = unit_type:combat_unit_type_carrier
+                has_unit_type = unit_type:combat_unit_type_carrier
+            }
+            percent >= 0.1
+        }
+    }
+}
+

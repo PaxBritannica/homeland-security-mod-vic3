@@ -175,6 +175,16 @@ unit_naval_awareness_add = {
     }
 }
 
+unit_naval_awareness_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    script_only = yes
+    game_data={
+        ai_value=0
+    }
+}
+
 # unit_army_awareness_add = {
 #     decimals=1
 #     color=good

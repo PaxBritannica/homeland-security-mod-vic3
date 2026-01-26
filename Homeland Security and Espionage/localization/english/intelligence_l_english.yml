@@ -63,7 +63,8 @@
  intelligence_network_cost_modifier: "Intelligence Network Costs"
  decisive_anti_piracy_victory_modifier: "Disbanded a Pirate Fleet"
  unit_naval_awareness_add: "Naval Awareness"
-  
+ unit_naval_awareness_mult: "Naval Awareness"
+
  #diplo actions
  send_scientific_advisors: "Scientific Advisory"
  send_scientific_advisors_desc: "Dispatch a team of scientific advisors to assist in advancing a Country's technological capabilities, fostering goodwill and strengthening diplomatic ties for a small research expanse."
@@ -149,6 +150,8 @@
  #battle conds
  battle_condition_fog_of_war: "Fog of War"
  battle_condition_fog_of_war_desc: "Our naval forces are caught off guard due to inferior [concept_naval_awareness], reducing their combat effectiveness."
+ battle_condition_aerial_superiority: "Aerial Superiority"
+ battle_condition_aerial_superiority_desc: "Higher combat effectiveness due to having deployed more Aircraft Carriers than the enemy."
  
 
  #GUI
