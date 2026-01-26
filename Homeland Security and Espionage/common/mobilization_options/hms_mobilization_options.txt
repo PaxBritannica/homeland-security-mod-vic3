@@ -2,7 +2,7 @@
 	texture = "gfx/interface/icons/pms_icons/homeletters.dds"
 
 	unlocking_technologies = {
-		military_statistics
+		logistics
 	}
 
 	possible = {
