@@ -1,0 +1,394 @@
+mutual_non_interference = {
+    kind = mutual
+    cost = 100
+
+    relations_progress_per_day = 1
+    relations_improvement_max = 30
+
+    icon = "gfx/interface/icons/treaty_articles/non_interference_pact.dds"
+
+    flags = {
+        can_be_renegotiated
+        friendly
+    }
+
+    can_be_enforced = yes
+    usage_limit = once_per_treaty
+
+    mutual_exclusions = {
+        defensive_pact
+    }
+
+    unlocked_by_technologies = {
+        HMS_tech_era_3_extended_networks
+    }
+
+    mutual_modifier = {
+        country_treaty_leverage_generation_add = 150
+    }
+
+    visible = {
+    }
+
+    # Needs to have Office of Foreign Affairs to propose and maintain this pact
+    possible = {
+        AND = {
+            has_law = law_type:law_office_of_foreign_affairs
+            scope:other_country = {
+                has_law = law_type:law_office_of_foreign_affairs
+            }
+        }
+    }
+
+    requirement_to_maintain = {
+        trigger = {
+            custom_tooltip = {
+                text = "DIPLOMATIC_PACT_REQUIREMENT_DIPLOMATIC_AUTONOMY"
+                scope:first_country = { aggressive_diplomatic_plays_permitted = yes }
+                scope:second_country = { aggressive_diplomatic_plays_permitted = yes }
+            }
+            scope:first_country = {
+                NOT = { has_subject_relation_with = scope:second_country }
+            }
+            scope:first_country = {
+                NOT = { has_war_with = scope:second_country }
+            }
+            scope:first_country = {
+                has_law = law_type:law_office_of_foreign_affairs
+            }
+        }
+    }
+
+    can_ratify = {
+        scope:first_country = {
+            NOR = {
+                # Block if Alliance exists
+                custom_description = {
+                    text = has_treaty_alliance_with_trigger
+                    subject = this
+                    object = scope:second_country
+
+                    any_scope_treaty = {
+                        binds = scope:second_country
+                        hidden_trigger = {
+                            OR = {
+                                scope:treaty = { is_renegotiation = no }
+                                scope:treaty.amended_treaty != this
+                            }
+                        }
+                        any_scope_article = {
+                            has_type = alliance
+                        }
+                    }
+                }
+
+                # Block if Defensive Pact exists
+                custom_description = {
+                    text = has_treaty_defensive_pact_with_trigger
+                    subject = this
+                    object = scope:second_country
+
+                    any_scope_treaty = {
+                        binds = scope:second_country
+                        hidden_trigger = {
+                            OR = {
+                                scope:treaty = { is_renegotiation = no }
+                                scope:treaty.amended_treaty != this
+                            }
+                        }
+                        any_scope_article = {
+                            has_type = defensive_pact
+                        }
+                    }
+                }
+
+                # NEW: Block if Mutual Non-Interference Pact exists
+                custom_description = {
+                    text = has_treaty_mutual_non_interference_with_trigger
+                    subject = this
+                    object = scope:second_country
+
+                    any_scope_treaty = {
+                        binds = scope:second_country
+                        hidden_trigger = {
+                            OR = {
+                                scope:treaty = { is_renegotiation = no }
+                                scope:treaty.amended_treaty != this
+                            }
+                        }
+                        any_scope_article = {
+                            has_type = mutual_non_interference_pact
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    on_entry_into_force = {
+        custom_tooltip = {
+            text = mutual_non_interference_effect
+        }
+
+        # No appeasement changes for now - could be added later on # balance ?
+
+        # scope:article_options.first_country = {
+        #     add_lobby_appeasement_from_diplomacy_bidirectional = {
+        #         FIRST = scope:article_options.first_country
+        #         SECOND = scope:article_options.second_country
+        #         PRO_AMOUNT = 2
+        #         ANTI_AMOUNT = -2
+        #         FACTOR = appeasement_defensive_pact_formed
+        #     }
+        # }
+    }
+
+    on_withdrawal = {
+        scope:withdrawing_country = {
+            create_bidirectional_truce = { country = scope:non_withdrawing_country months = 6 }
+        }
+    }
+
+    on_break = {
+        scope:withdrawing_country = {
+            change_relations = {
+                country = scope:non_withdrawing_country
+                value = {
+                    add = -5
+                    multiply = {
+                        value = scope:treaty_options.remaining_binding_period
+                        min = 365
+                        divide = 365
+                    }
+                    max = -10
+                    min = -35
+                }
+            }
+
+            change_infamy = {
+                value = {
+                    add = 2
+                    multiply = {
+                        value = scope:treaty_options.remaining_binding_period
+                        min = 365
+                        divide = 365
+                    }
+                    max = 25
+                    min = 10
+                }
+            }
+        }
+    }
+
+    
+    ai = {
+        treaty_categories = {
+            other
+        }
+    
+        evaluation_chance = {
+            value = 0.2
+    
+            # Lower-rank countries prefer restraint
+            add = {
+                value = country_rank
+                multiply = -0.03
+            }
+    
+            if = {
+                limit = {
+                    num_alliances_and_defensive_pacts < 1
+                }
+                multiply = 2
+            }
+    
+            if = {
+                limit = {
+                    num_alliances_and_defensive_pacts >= 3
+                }
+                multiply = 3
+            }
+        }
+    
+        proposal_weight = {
+            value = 1
+    
+            if = {
+                limit = {
+                    num_alliances_and_defensive_pacts >= 2
+                }
+                add = 3
+            }
+    
+            if = {
+                limit = {
+                    has_strategy = ai_strategy_armed_isolationism
+                }
+                add = 3
+            }
+        }
+    
+        article_ai_usage = {
+            offer
+            request
+        }
+    
+        inherent_accept_score = {
+            value = 10
+    
+            save_temporary_scope_as = target
+            scope:other_country = {
+                save_temporary_scope_as = actor
+            }
+    
+            add = {
+                desc = "DIPLOMATIC_ACCEPTANCE_BASE_ADDITIONAL"
+                value = 5
+            }
+    
+            # Neighbors prefer de-escalation
+            if = {
+                limit = {
+                    has_strategic_adjacency = scope:other_country
+                }
+                add = {
+                    desc = "DIPLOMATIC_ACCEPTANCE_NEIGHBORS"
+                    value = 15
+                }
+            }
+    
+            # Unrecognized powers welcome restraint
+            if = {
+                limit = {
+                    OR = {
+                        is_country_type = unrecognized
+                        is_country_type = colonial
+                    }
+                }
+                add = {
+                    desc = "concept_unrecognized_power_short"
+                    value = 20
+                }
+            }
+    
+            # Isolationists strongly favor it
+            if = {
+                limit = {
+                    has_strategy = ai_strategy_armed_isolationism
+                }
+                add = {
+                    desc = "DIPLOMATIC_ACCEPTANCE_ISOLATIONIST"
+                    value = 40
+                }
+            }
+    
+            # Belligerent states hate it
+            if = {
+                limit = {
+                    has_attitude = {
+                        who = scope:other_country
+                        attitude = belligerent
+                    }
+                }
+                add = {
+                    desc = "DIPLOMATIC_ACCEPTANCE_BELLIGERENT"
+                    value = -75
+                }
+            }
+    
+            # Stronger opponent → prefer restraint
+            add = {
+                desc = "DIPLOMATIC_ACCEPTANCE_ARMY_STRENGTH"
+                value = "scope:other_country.ai_army_comparison(root)"
+                multiply = -15
+                min = -50
+                max = 50
+            }
+    
+            # Avoid overlapping military commitments
+            if = {
+                limit = {
+                    any_scope_treaty = {
+                        binds = scope:other_country
+                        any_scope_article = {
+                            OR = {
+                                has_type = alliance
+                                has_type = defensive_pact
+                            }
+                        }
+                    }
+                }
+                add = {
+                    desc = "DIPLOMATIC_ACCEPTANCE_EXISTING_MILITARY_TREATY"
+                    value = -200
+                }
+            }
+    
+            # Prefer if both fear the same rivals
+            if = {
+                limit = {
+                    "num_shared_rivals(scope:other_country)" > 0
+                }
+                add = {
+                    desc = "DIPLOMATIC_ACCEPTANCE_SHARED_RIVALS"
+                    value = "num_shared_rivals(scope:other_country)"
+                    multiply = 15
+                    max = 45
+                }
+            }
+    
+            # Power bloc logic – restraint works better inside blocs
+            if = {
+                limit = {
+                    exists = power_bloc
+                    exists = scope:other_country.power_bloc
+                }
+                if = {
+                    limit = {
+                        power_bloc = scope:other_country.power_bloc
+                    }
+                    add = {
+                        desc = "DIPLOMATIC_ACCEPTANCE_SAME_POWER_BLOC"
+                        value = 10
+                    }
+                }
+                else = {
+                    add = {
+                        desc = "DIPLOMATIC_ACCEPTANCE_DIFFERENT_POWER_BLOC"
+                        value = -10
+                    }
+                }
+            }
+        }
+    
+        contextual_accept_score = {
+            # no lobby involvement for now # balance ?
+
+            # if = {
+            #     limit = {
+            #         scope:other_country = {
+            #             has_variable = pro_lobby_proposal_mutual_non_interference
+            #             var:pro_lobby_opportunity_target ?= root
+            #         }
+            #     }
+            #     add = {
+            #         desc = "LOBBY_OPPORTUNITY_BONUS"
+            #         value = 30
+            #     }
+            # }
+    
+            # if = {
+            #     limit = {
+            #         scope:other_country = {
+            #             has_variable = anti_lobby_proposal_mutual_non_interference
+            #             var:anti_lobby_opportunity_target ?= root
+            #         }
+            #     }
+            #     add = {
+            #         desc = "LOBBY_OPPORTUNITY_PENALTY"
+            #         value = -20
+            #     }
+            # }
+        }
+    }
+}

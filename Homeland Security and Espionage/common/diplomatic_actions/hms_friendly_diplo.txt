@@ -60,7 +60,7 @@
 
 	pact = {
         cost = 150
-		is_two_sided_pact = no
+		is_two_sided_pact = yes
 		show_in_outliner = yes
 
 		relations_progress_per_day = 1.5

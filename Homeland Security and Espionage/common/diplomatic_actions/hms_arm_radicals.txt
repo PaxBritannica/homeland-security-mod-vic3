@@ -27,7 +27,24 @@
 	possible = {
 		is_revolutionary = no
 		in_default = no
+	
+		NOT = {
+			OR = {
+				any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = mutual_non_interference
+					}
+				}
+	
+				has_war_with = scope:target_country
+			}
+		}
+	
+		has_diplomatic_relevance = scope:target_country
 	}
+	
 	
 	pact = {	
 		cost = 200

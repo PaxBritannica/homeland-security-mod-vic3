@@ -152,6 +152,12 @@
  battle_condition_fog_of_war_desc: "Our naval forces are caught off guard due to inferior [concept_naval_awareness], reducing their combat effectiveness."
  battle_condition_aerial_superiority: "Aerial Superiority"
  battle_condition_aerial_superiority_desc: "Higher combat effectiveness due to having deployed more Aircraft Carriers than the enemy."
+
+ #Treaty pact
+ mutual_non_interference: "Mutual Non-Interference Pact"
+ mutual_non_interference_desc: "Both nations agree to refrain from initiating hostile interferences and operating in each other's internal affairs, promoting mutual respect and peaceful coexistence."
+ mutual_non_interference_effect: "Both nations commit to respect each other's sovereignty and avoid any actions that could be perceived as hostile interferences in internal matters."
+ mutual_non_interference_article_short_desc: "Both nations commit to avoid any actions that could be perceived as hostile interferences in internal matters."
  
 
  #GUI
