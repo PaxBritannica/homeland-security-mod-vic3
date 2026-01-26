@@ -1,4 +1,4 @@
-# Office of the foreign affairs
+﻿# Office of the foreign affairs
 
 law_no_foreign_affairs = {
 	group = lawgroup_foreign_affairs

@@ -1,4 +1,4 @@
-hms_pmg_group_1 = {
+﻿hms_pmg_group_1 = {
 	
 	texture = "gfx/interface/icons/generic_icons/mixed_icon_base.dds"
 	ai_selection = most_productive

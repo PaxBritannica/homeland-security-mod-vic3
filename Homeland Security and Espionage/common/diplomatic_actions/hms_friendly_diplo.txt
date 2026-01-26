@@ -1,4 +1,4 @@
-send_scientific_advisors = {
+﻿send_scientific_advisors = {
     texture = "gfx/interface/icons/lens_toolbar_icons/send_scientific_advisors.dds"
 
 	groups= {

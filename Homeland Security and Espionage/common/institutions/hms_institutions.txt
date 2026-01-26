@@ -1,4 +1,4 @@
-institution_foreign_affairs = {
+﻿institution_foreign_affairs = {
 
 	icon = "gfx/interface/icons/lens_toolbar_icons/foreign_affairs.dds"
 	background_texture = "gfx/interface/illustrations/foreign_office_institution.dds"

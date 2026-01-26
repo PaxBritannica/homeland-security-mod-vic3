@@ -1,4 +1,4 @@
-#Make Intel Appealing to the Upper Strata
+﻿#Make Intel Appealing to the Upper Strata
 
 REPLACE_OR_CREATE:popneed_luxury_items = {
 	default = luxury_clothes

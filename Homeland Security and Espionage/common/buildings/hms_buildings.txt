@@ -1,4 +1,4 @@
-INJECT_OR_CREATE:building_intel_hq = {
+﻿INJECT_OR_CREATE:building_intel_hq = {
 	building_group = bg_intel_buildings
 	city_type = city
 	ownership_type = self

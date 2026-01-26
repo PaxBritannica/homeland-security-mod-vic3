@@ -1,4 +1,4 @@
-# NEW DECREE INFILTRATE SECESSIONIST MOVEMENT
+﻿# NEW DECREE INFILTRATE SECESSIONIST MOVEMENT
 decree_infiltrate_rebel_networks = {
 	texture = "gfx/interface/icons/lens_toolbar_icons/hand_puppeteer.dds"
 

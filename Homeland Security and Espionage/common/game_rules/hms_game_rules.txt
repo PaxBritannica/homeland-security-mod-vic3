@@ -1,4 +1,4 @@
-intelligence_op_cost = {
+﻿intelligence_op_cost = {
     
     default = medium_intelligence_op_cost
 

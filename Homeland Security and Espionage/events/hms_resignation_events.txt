@@ -1,4 +1,4 @@
-namespace = hms_resignation_events
+﻿namespace = hms_resignation_events
 
 # THIS IS FOR RULER FORCED RESIGNATION ( BRIBE OUT OF OFFICE )
 hms_resignation_events.1 = {

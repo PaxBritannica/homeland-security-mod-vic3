@@ -1,4 +1,4 @@
-bribe_out_of_office = {
+﻿bribe_out_of_office = {
     # Actors who are not either Monarchs or Theocratic rulers can be bribed out of office.
 
     clicksound = "event:/SFX/UI/Military/command_grant"

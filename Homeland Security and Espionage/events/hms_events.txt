@@ -1,4 +1,4 @@
-namespace = hms_secret_service_events
+﻿namespace = hms_secret_service_events
 
 #Event for when the intelligence technology is researched
 hms_secret_service_events.1 = { 

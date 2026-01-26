@@ -1,4 +1,4 @@
-INJECT_OR_CREATE:bg_intel_buildings = {
+﻿INJECT_OR_CREATE:bg_intel_buildings = {
 	
 	parent_group = bg_government
 	economy_of_scale = no

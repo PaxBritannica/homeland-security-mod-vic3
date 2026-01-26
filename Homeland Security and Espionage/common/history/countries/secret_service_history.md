@@ -1,4 +1,4 @@
-# Historical Starting Technologies
+﻿# Historical Starting Technologies
 
 Several countries begin the game with intelligence technologies already researched for historical authenticity.
 

@@ -1,4 +1,4 @@
-# custom modifier for coffee input
+﻿# custom modifier for coffee input
 goods_input_coffee_add = {
 	decimals=1
 	color=bad

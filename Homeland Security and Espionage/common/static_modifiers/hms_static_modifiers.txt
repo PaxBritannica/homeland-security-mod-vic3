@@ -1,4 +1,4 @@
-founded_secret_service_domestic_focus = {
+﻿founded_secret_service_domestic_focus = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
     country_authority_mult = 0.1
 }

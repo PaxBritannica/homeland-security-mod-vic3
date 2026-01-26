@@ -1,4 +1,4 @@
-# INTEL OUTPUT
+﻿# INTEL OUTPUT
 goods_output_intel_add = {
 	decimals=1
 	color=good

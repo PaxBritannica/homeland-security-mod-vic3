@@ -1,4 +1,4 @@
-### Support Ship group
+﻿### Support Ship group
 # NEW SHIP DISPATCH BOAT
 REPLACE_OR_CREATE:combat_unit_type_dispatch = {
     group = combat_unit_group_support_ship

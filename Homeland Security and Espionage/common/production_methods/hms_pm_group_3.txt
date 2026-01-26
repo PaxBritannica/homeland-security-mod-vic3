@@ -1,4 +1,4 @@
-
+﻿
 #
 # (GROUP III)
 #
@@ -21,40 +21,26 @@ pm_hms_group_3_tier_1 = {
 
 	country_modifiers = {
 		workforce_scaled = {
-			country_tech_spread_mult = 0.02
-		}
-	}
-
-	disallowing_laws = {
-		# Something that restrains scientific research
-	}
-
-	state_modifiers = {
-		workforce_scaled = {
-			# state_radicals_from_political_movements_mult = -0.1
+			country_tech_spread_mult = 0.01
 		}
 	}
 
 	building_modifiers = {
 		workforce_scaled = {
 			goods_input_paper_add = 7.5
-			goods_input_coffee_add = 1.5
+			goods_input_coffee_add = 2
 
-			goods_output_intel_add = 7.5
-			goods_output_services_add = 10
-			goods_output_army_intel_add = 5
-			goods_output_naval_intel_add = 5
+			goods_output_intel_add = 5.5
+			goods_output_services_add = 7
+			goods_output_army_intel_add = 3.5
+			goods_output_naval_intel_add = 3.5
 
-			building_university_throughput_add = 0.02
-			
 		}
 		level_scaled = {
 			building_employment_engineers_add = 200
             building_employment_academics_add = 350
 		}
 	}
-
-	# Produces all intels but at slower pace 
 }
 
 
