@@ -1,0 +1,755 @@
+﻿###
+### Sabotage events can be random as well they should work on a yearly pulse. 
+### Assisting Nations are not necessarily working as saboteurs all the time.
+###
+### NEXT UPDATE SEND UPDATES TO ALL GREAT POWERS
+### MAYBE MAKE THIS ROGUE FACTION A COMMON ENEMY
+### 
+### 
+
+namespace = sabotage_event
+
+#REMEMBER TO SETUP THE YEARLY PULSE 
+
+#
+sabotage_event.1 = {
+
+    type = country_event
+    placement = root
+
+    title = sabotage_event.1.t
+    desc = sabotage_event.1.d
+    flavor = sabotage_event.1.f
+
+    event_image = { # Something cataclysmic
+		video = "unspecific_devastation"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 1
+
+	trigger = {
+        
+        NOT = {
+            has_variable = explosion_event_happened
+        }
+        
+	}
+
+    immediate = {
+        root = {
+            set_variable = {
+                name = explosion_event_happened
+                years = 15
+            }
+        }
+    }
+
+    option = { # Deal with the catastrophe
+        name = sabotage_event.1.a
+
+        add_journal_entry = {
+            type = hms_je_sabotage
+        }
+
+        root = { # USE THIS TO BLOCK FURTHER SABOTAGE EVENTS => YEARLY LIMITER
+            set_variable = {
+                name = has_been_hit_by_terror_attack
+                years = 15
+            }
+        }
+        
+    }
+
+}
+
+sabotage_event.2 = { # Journal Speculates on the nature of the attack suggesting this is a government plot
+                        #orchestrated by the state to seize more power
+
+    type = country_event
+    placement = root
+
+    title = sabotage_event.2.t
+    desc = sabotage_event.2.d
+    flavor = sabotage_event.2.f
+
+    event_image = {
+		video = "asia_union_leader"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	duration = 1
+
+	trigger = { has_journal_entry = hms_je_sabotage }
+
+    cooldown = { days = never_fire_again_modifier_time }
+
+    option = { # Maybe they are right investigate further
+        name = sabotage_event.2.a
+
+        root = {
+
+            add_modifier = {
+                name = intelligence_low_effort_modifier
+                days = 365
+            }
+
+            add_radicals = {
+                value = 0.03
+                strata = lower
+            }
+
+            random_list = {
+                50 = {
+                    custom_tooltip = {
+                        text = police_sabotage_progress_tt
+                        je:hms_je_sabotage ?= {
+                            add_progress = { value = 2 name = sabotage_police_progress_bar }
+                        }
+                    }
+                }
+                50 = {
+                    custom_tooltip = {
+                        text = radicals_sabotage_progress_tt
+                        je:hms_je_sabotage ?= {
+                            add_progress = { value = 2 name = sabotage_radicals_progress_bar }
+                        }
+                    }
+                }
+            }
+
+        }
+        
+    }
+
+    option = { # Pff this is nonsense
+        name = sabotage_event.2.b
+
+        root = {
+
+            add_modifier = {
+                name = opposed_criticism_modifier
+            }
+
+            add_radicals = {
+                value = 0.07
+                strata = lower
+            }
+
+            add_radicals = {
+                value = 0.04
+                strata = middle
+            }
+
+        }
+
+    }
+
+
+}
+
+sabotage_event.3 = { # Secret service tells this is a good opportunity to expand control and seize more power
+
+    type = country_event
+    placement = root
+
+    title = sabotage_event.3.t
+    desc = sabotage_event.3.d
+    flavor = sabotage_event.3.f
+
+    cooldown = { days = never_fire_again_modifier_time }
+
+    event_image = {
+		video = "europenorthamerica_capitalists_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+    option = { # Keep the deep state at bay "There is only one power here and its us"
+        name = sabotage_event.2.a
+
+        root = {
+            add_modifier = {
+                name = state_apparatus_not_happy
+                years = 15
+            }
+
+            add_radicals = {
+                value = 0.02
+                strata = upper
+            }
+
+        }
+        
+    }
+
+    option = { # "Do what you must" Secret service gets more output you gain authority but also more turmoil all of a sudden
+        name = sabotage_event.2.b
+
+        root = {
+            add_modifier = {
+                name = state_apparatus_happy
+                years = 15
+            }
+
+            add_radicals = {
+                value = 0.07
+                strata = lower
+            }
+    
+            add_radicals = {
+                value = 0.04
+                strata = middle
+            }
+
+        }
+    }
+}
+
+sabotage_event.4 = { # One of our commanders
+                      # has been shot dead in public 
+
+    type = country_event
+    placement = root
+
+    title = sabotage_event.4.t
+    desc = sabotage_event.4.d
+    flavor = sabotage_event.4.f
+
+    cooldown = { days = never_fire_again_modifier_time }
+
+    event_image = {
+        video = "southamerica_public_figure_assassination"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        AND = {
+            any_scope_character = {
+                has_role = general
+                is_busy = no
+                is_ruler = no
+                is_immortal = no
+            }
+            has_journal_entry = hms_je_sabotage
+        }
+    }
+
+    immediate = {
+        random_scope_character = {
+			limit = {
+				has_role = general
+				is_busy = no
+				is_ruler = no
+				is_immortal = no
+			}
+			save_scope_as = killed_commander
+		}
+        
+        
+    }
+
+    option = {
+        name = sabotage_event.4.a # This chaos must be stopped
+        default_option = yes
+
+        
+        scope:killed_commander = {
+            interest_group = {
+                add_modifier = {
+                    name = retired_commander_interest_group_impact
+                    days = stupidly_long_modifier_time
+                }
+            }
+        }
+
+        scope:killed_commander = {
+            kill_character = yes
+        }
+           
+    }
+
+    option = {
+        name = sabotage_event.4.b # fabricate some evidence against him to frame him and calm the public
+
+        scope:killed_commander = {
+            interest_group = {
+                add_modifier = {
+                   name = retired_commander_interest_group_impact
+                   days = stupidly_long_modifier_time
+                }
+            }
+        }
+
+        scope:killed_commander = {
+            kill_character = yes
+        }
+
+        root = {
+            add_radicals = {
+                value = 0.03
+                pop_type = officers
+            }
+    
+            add_radicals = {
+                value = -0.02
+                strata = lower
+            }
+    
+            add_radicals = {
+                value = -0.01
+                strata = middle
+            }
+        }
+    }
+}
+
+
+# Journal trying to frame our commander
+sabotage_event.66 = {
+
+    type = country_event
+    placement = root
+
+    title = sabotage_event.66.t
+    desc = sabotage_event.66.d
+    flavor = sabotage_event.66.f
+
+    cooldown = { days = never_fire_again_modifier_time }
+
+    event_image = {
+        video = "southamerica_election"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 1
+
+    trigger = {
+        AND = {
+            any_scope_character = {
+                has_role = general
+                is_busy = no
+                is_ruler = no
+                is_immortal = no
+            }
+            has_journal_entry = hms_je_sabotage
+        }
+    }
+
+    immediate = {
+        
+    }
+
+    option = {
+        name = sabotage_event.66.a # This is pure sensationalism
+
+        every_scope_general = {
+            limit = {
+                is_busy = no
+                is_ruler = no
+                is_immortal = no
+            }
+            add_modifier = {
+                name = framed_for_sabotage_modifier
+                days = stupidly_long_modifier_time
+            }
+        }
+
+        add_radicals = {
+            value = 0.03
+            strata = lower
+        }
+
+        add_radicals = {
+            value = 0.02
+            strata = middle
+        }
+        
+        custom_tooltip = {
+            text = commander_in_danger_tt_low_chance
+            random_list = {
+                65 = {}
+                35 = {
+                    root = {
+                        trigger_event = { id = sabotage_event.4 popup = yes days = 7}
+                    }
+                }
+            }
+        }
+
+    }
+
+    option = {
+        name = sabotage_event.66.b # What if the journals are right ??
+
+        every_scope_general = {
+            limit = {
+                is_busy = no
+                is_ruler = no
+                is_immortal = no
+            }
+            add_modifier = {
+                name = framed_for_sabotage_modifier
+                days = stupidly_long_modifier_time
+            }
+        }
+
+        custom_tooltip = {
+            text = commander_in_danger_tt_high_chance
+            random_list = {
+                20 = {}
+                80 = {
+                    root = {
+                        trigger_event = { id = sabotage_event.4 popup = yes days = 7}
+                    }
+                }
+            }
+        }
+
+        root = {
+            add_radicals = {
+                value = 0.03
+                pop_type = officers
+            }
+    
+            add_radicals = {
+                value = -0.03
+                strata = lower
+            }
+    
+            add_radicals = {
+                value = -0.01
+                strata = middle
+            }
+        }
+
+        custom_tooltip = {
+            text = half_chance_sabotage_progress_tt
+            random_list = {
+                50 = {
+                    je:hms_je_sabotage ?= {
+                        add_progress = { value = 3 name = sabotage_radicals_progress_bar }
+                    }
+                }
+                50 = {
+                    je:hms_je_sabotage ?= {
+                        add_progress = { value = 3 name = sabotage_police_progress_bar }
+                    }
+                }
+            }
+        }
+    }
+  
+}
+
+sabotage_event.5 = {
+    type = country_event
+    title = sabotage_event.5.t
+    desc = sabotage_event.5.d
+    flavor = sabotage_event.5.f
+
+    cooldown = { days = never_fire_again_modifier_time }
+
+    event_image = {
+		video = "europenorthamerica_capitalists_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 1
+
+	trigger = {
+        has_journal_entry = hms_je_sabotage
+	}
+
+    immediate = {
+        # Pick first friendly helper
+        random_country = {
+			limit = {
+
+                NOT = { THIS = ROOT }
+                NOT = { is_country_type = decentralized }
+                has_strategic_adjacency = root
+                relations:root >= relations_threshold:cold
+			}
+			save_scope_as = helper_country_1
+		}
+
+        # Pick second friendly helper, excluding the first
+        random_country = {
+			limit = {
+                
+                NOT = { THIS = ROOT }
+                NOT = { is_country_type = decentralized }
+                NOT = { THIS = scope:helper_country_1}
+                has_strategic_adjacency = root
+                relations:root >= relations_threshold:cold
+			}
+			save_scope_as = helper_country_2
+		}
+    }
+
+   
+
+    option = { # Accept help from first country
+        name = sabotage_event.5.a
+
+        trigger = {
+            exists = scope:helper_country_1
+        }
+
+        root = {
+            change_relations = {
+                country = scope:helper_country_1
+                value = 25
+            }
+
+            set_variable = {
+                name = accepted_foreign_assistance
+                months = 12
+            }
+        }
+
+        if = {
+            limit = {
+                has_journal_entry = hms_je_sabotage
+            }
+            je:hms_je_sabotage ?= {
+                add_progress = { value = 2 name = sabotage_police_progress_bar }
+            }
+        }
+
+        
+    }
+
+    option = { # Accept help from second country
+        name = sabotage_event.5.b
+
+        trigger = {
+            exists = scope:helper_country_2
+        }
+
+        root = {
+            change_relations = {
+                country = scope:helper_country_2
+                value = 25
+            }
+
+            set_variable = {
+                name = accepted_foreign_assistance
+                months = 12
+            }
+        }
+
+        if = {
+            limit = {
+                has_journal_entry = hms_je_sabotage
+            }
+            je:hms_je_sabotage ?= {
+                add_progress = { value = 2 name = sabotage_police_progress_bar }
+            }
+        }
+
+        
+    }
+
+    option = { # Decline all assistance
+        name = sabotage_event.5.c
+
+        root = {
+            add_modifier = {
+                name = sabotage_declined_foreign_assistance
+                days = 365
+            }
+
+            set_variable = {
+                name = refused_foreign_assistance
+                months = 12
+            }
+        }
+
+        if = {
+            limit = {
+                has_journal_entry = hms_je_sabotage
+            }
+            je:hms_je_sabotage ?= {
+                add_progress = { value = 2 name = sabotage_radicals_progress_bar }
+            }
+        }
+
+        
+    }
+}
+
+sabotage_event.98 = { # Found one of the perpetrators 
+
+    type = country_event
+    placement = root
+
+    title = sabotage_event.98.t
+    desc = sabotage_event.98.d
+    flavor = sabotage_event.98.f
+
+    cooldown = { days = never_fire_again_modifier_time }
+
+    event_image = {
+		video = "unspecific_factory_closed"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_raiding.dds"
+
+	duration = 1
+
+	trigger = {
+
+    }
+
+    immediate = {
+
+        random_interest_group = {
+			limit = {
+    			is_in_government = no
+	            leader = {
+					OR = {
+						has_trait = reckless
+						has_trait = ambitious
+			       }
+	            }
+            	OR = {
+                    is_insurrectionary = yes
+                    ig_approval <= angry
+                }
+			}
+			leader = {
+				save_scope_as = reckless_mf_leader
+			}
+			save_scope_as = reckless_mf_ig
+		}
+
+    }
+
+    option = {
+        name = sabotage_event.98.a
+
+        scope:reckless_mf_leader = {
+            kill_character = yes
+        }
+
+        scope:reckless_mf_ig = {
+            add_radicals = {
+                value = 0.03
+            }
+        }
+
+        add_modifier = {
+            name = perpetrators_caught_modifier
+            years = 10
+        }
+    }
+
+    option = {
+        name = sabotage_event.98.b
+
+        add_modifier = {
+            name = perpetrators_caught_modifier
+            years = 10
+        }
+    }
+
+}
+
+
+sabotage_event.99 = { # Terrorist group escapes the national boundaries
+
+    type = country_event
+    placement = root
+
+    title = sabotage_event.99.t
+    desc = sabotage_event.99.d
+    flavor = sabotage_event.99.f
+
+    event_image = {
+        video = "asia_union_leader"
+    }
+
+    immediate = {
+        random_country = {
+			limit = {
+				OR = {
+                    has_diplomatic_pact = {
+                        who = ROOT
+                        type = rivalry
+                    }
+                    relations:root >= relations_threshold:cold
+                }
+                NOT = { THIS = ROOT }
+                NOT = { is_country_type = decentralized }
+			}
+			save_scope_as = rival_country_1
+		}
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = { 
+        has_journal_entry = hms_je_sabotage 
+        exists = scope:rival_country_1
+    }
+
+    option = {
+        name = sabotage_event.99.a # Publicly demand their extradition
+
+        root = {
+            change_relations = {
+                country = scope:rival_country_1
+                value = -25
+            }
+
+            add_modifier = {
+                name = perpetrators_escaped_justice_modifier
+                years = 10
+            }
+        }
+
+        # TODO IN THE FUTURE
+        # This gives war goal to our country against the rival country
+        # set_variable =  { 
+        #     name = flagged_country_as_home_of_terrorists
+        #     value = scope:rival_country_1
+        # }
+
+    }
+
+    option = {
+        name = sabotage_event.99.b # Basically let go
+    }
+}

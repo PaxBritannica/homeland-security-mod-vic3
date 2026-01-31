@@ -9,3 +9,9 @@ piracy_initiator_name_message = {
 	texture = "gfx/interface/icons/notification_icons/influence_bad.dds"
 	notification_type = toast
 }
+
+steal_tech_message_for_initiator = {
+	type = country
+	texture = "gfx/interface/icons/notification_icons/influence_bad.dds"
+	notification_type = toast
+}

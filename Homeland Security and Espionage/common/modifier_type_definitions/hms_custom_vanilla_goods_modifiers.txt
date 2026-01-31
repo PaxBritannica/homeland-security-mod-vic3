@@ -36,6 +36,16 @@ goods_input_furniture_mult = {
 	}
 }
 
+#new services inputs
+goods_input_services_add = {
+	decimals = 1
+	color = bad
+	percent = yes
+	game_data = {
+		ai_value = 0
+	}
+}
+
 # custom modifier for luxury clothes input
 goods_input_luxury_clothes_add = {
 	decimals=1
@@ -64,3 +74,12 @@ goods_input_luxury_clothes_mult = {
 # 		ai_value=0
 # 	}
 # }
+
+country_government_agents_pol_str_mult = {
+	decimals=2
+	color=good
+	percent=yes
+	game_data={
+		ai_value=0
+	}
+}

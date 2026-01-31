@@ -17,8 +17,6 @@
 		# pmg_group_3 moved to university
 	}
 
-	# Not possible if owner has No Home Affairs
-
 	possible = {
 		owner = {
 			NOT = {
@@ -28,18 +26,6 @@
 			}
 		}
 	}
-	
-	# What the building provides to the country
-	# country_modifiers = {
-	# 	workforce_scaled = {
-	# 		country_bureaucracy_add = 25
-	# 	}
-		
-	# 	level_scaled = {
-	# 		country_prestige_add = 10
-	# 		country_influence_add = 5
-	# 	}
-	# }
 
 	ai_value = {
 		value = 2

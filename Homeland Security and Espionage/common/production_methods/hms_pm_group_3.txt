@@ -27,14 +27,11 @@ pm_hms_group_3_tier_1 = {
 
 	building_modifiers = {
 		workforce_scaled = {
-			goods_input_paper_add = 7.5
+			goods_input_paper_add = 2
+			goods_input_services_add = 2
 			goods_input_coffee_add = 2
 
-			goods_output_intel_add = 5.5
-			goods_output_services_add = 7
-			goods_output_army_intel_add = 3.5
-			goods_output_naval_intel_add = 3.5
-
+			goods_output_intel_add = 4
 		}
 		level_scaled = {
 			building_employment_engineers_add = 200
@@ -76,12 +73,12 @@ pm_hms_group_3_tier_2 = {
 	building_modifiers = {
 		workforce_scaled = {
 			
-			goods_input_paper_add = 4.5
-			goods_input_furniture_add = 2.5
-			goods_input_coffee_add = 2.5
-			goods_input_telephone_add = 2.5
+			goods_input_paper_add = 1
+			goods_input_services_add = 6
+			goods_input_coffee_add = 3.5
+			goods_input_telephone_add = 5
 
-			goods_output_intel_add = 35
+			goods_output_intel_add = 15
 		}
 		level_scaled = {
 			building_employment_clerks_add = 150

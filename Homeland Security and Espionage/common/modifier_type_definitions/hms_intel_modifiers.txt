@@ -117,6 +117,16 @@ REPLACE_OR_CREATE:building_intel_hq_throughput_add = {
     }
 }
 
+# Custom government building mult modifier 
+building_government_administration_throughput_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
 REPLACE_OR_CREATE:building_intel_hq_throughput_mult = {
     decimals=1
     color=good
