@@ -1,0 +1,100 @@
+﻿# ENFORCE MARTIAL LAW
+je_sabotage_enforce_martial_law = {
+	name = hms_enforce_martial_law
+	desc = hms_enforce_martial_law_desc
+
+	visible = { always = yes }
+	
+	ai_chance = {
+		base = 5
+	}
+
+	possible = {
+		authority >= 200
+		# NOT = { is_at_war = yes } Technically Martial Law can still be enacted during wartime
+		army_size >= 20
+
+		NOT = {
+			root = { has_law_or_variant = law_type:law_militarized_police }
+		}
+	}
+
+	effect = {
+		root = {
+			activate_law = law_type:law_militarized_police
+			country_authority_add = -200
+		}
+
+		# add_progress = {
+		# 	name = sabotage_police_progress_bar
+		# 	value = 10
+		# }
+
+		set_variable = {
+			name = enacted_martial_law
+			months = 12
+		}
+	}
+}
+
+je_sabotage_compensate_families = {
+
+	name = je_sabotage_compensate_families
+	desc = je_sabotage_compensate_families_desc
+
+	visible = { always = yes }
+
+	ai_chance = {
+		base = 10
+	}
+
+	possible = {
+		NOT = { has_variable = compensated_family_victims }
+	}
+
+	effect = {
+		root = {
+			add_modifier = {
+				name = compensation_for_the_families
+				days = 365
+			}
+
+			set_variable = {
+				name = compensated_family_victims
+				months = 12
+			}
+		}
+	}
+}
+
+je_sabotage_joint_secret_service_effort = {
+	
+	name = je_sabotage_joint_secret_service_effort
+	desc = je_sabotage_joint_secret_service_effort_desc
+
+	visible = { always = yes }
+
+	possible = {
+		has_technology_researched = HMS_tech_era_2_secret_service
+
+		NOT = { has_variable = joint_secret_service_effort }
+
+	}
+
+	effect = {
+		add_modifier = {
+			name = intelligence_medium_effort_modifier
+			days = 365
+		}
+
+		set_variable = {
+			name = joint_secret_service_effort
+			months = 12
+		}
+	}
+}
+
+### MORE EVENTS IN THE FUTURE
+### SS UNCOVERS MORE DETAILS
+### POSSIBLE FOREIGN RIVAL NATION BEHIND THE SABOTAGE
+### MORE DIPLOMATIC INVOLVEMENT

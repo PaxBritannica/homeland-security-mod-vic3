@@ -1,0 +1,168 @@
+﻿sabotage_police_progress_bar = {
+	name = "sabotage_police_progress_bar"
+	desc = "sabotage_police_progress_bar_desc"
+
+	default = yes
+
+	weekly_progress = {
+		if = {
+			limit = {
+				institution_investment_level = {
+					institution = institution_police
+					value >= 2
+				}
+			}
+            add = {
+                desc = "qualified_police_investigation"
+                value = 2
+            }
+		} 
+		if = {
+			limit = {
+				OR = {
+					has_law_or_variant = law_type:law_local_police   
+					
+				}
+			}
+			add = {
+				desc = "radicals_facing_local_police"
+				value = 0.5
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_law_or_variant = law_type:law_secret_police    
+					
+				}
+			}
+			add = {
+				desc = "radicals_facing_secret_police"
+				value = 1.5
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_law_or_variant = law_type:law_dedicated_police   
+					
+				}
+			}
+			add = {
+				desc = "radicals_facing_dedicated_police"
+				value = 1
+			}
+		}
+        if = {
+			limit = {
+				root = {has_law_or_variant = law_type:law_militarized_police}
+			}
+            add = {
+                desc = "army_patrolling_streets"
+                value = 1
+            }
+		}
+        if = {
+            limit = {
+                has_variable = joint_secret_service_effort
+            }
+            add = {
+                desc = "joint_secret_service_investigation"
+                value = 1
+            }
+        }
+		if = {
+			limit = {
+				has_variable = accepted_foreign_assistance
+			}
+            add = {
+                desc = "accepted_foreign_assistance"
+                value = 1
+            }
+		}
+	}
+
+	start_value = 0
+	min_value = 0
+	max_value = 50
+}
+
+sabotage_radicals_progress_bar = {
+	name = "sabotage_radicals_progress_bar"
+	desc = "sabotage_radicals_progress_bar_desc"
+
+	default_bad = yes
+
+	weekly_progress = {
+		if = {
+			limit = {
+				institution_investment_level = {
+					institution = institution_police
+					value >= 2
+				}
+			}
+			add = {
+				desc = "radicals_evading_investigation"
+				value = 1.5
+			}
+		}
+		if = {
+			limit = {
+				has_law_or_variant = law_type:law_militarized_police
+			}
+			add = {
+				desc = "radicals_under_martial_law"
+				value = -1
+			}
+		}
+		if = {
+			limit = {
+				has_law_or_variant = law_type:law_no_police
+			}
+			add = {
+				desc = "radicals_exploiting_police_inefficiency"
+				value = 1
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_technology_researched = identification_documents }
+					NOT = { has_technology_researched = mass_surveillance }
+				}
+			}
+			add = {
+				desc = "radicals_evading_surveillance"
+				value = 1
+			}
+		}
+		# if = {
+		# 	limit = {
+		# 		has_variable = compensated_family_victims
+		# 	}
+        #     add = {
+        #         desc = "family_compensation"
+        #         value = -0.5
+        #     }
+		# }
+		if = {
+			limit = {
+				has_variable = refused_foreign_assistance
+			}
+            add = {
+                desc = "refused_foreign_assistance"
+                value = 1
+            }
+		}
+		else = {
+			add = {
+				desc = "radicals_plotting_freely"
+				value = 3
+			}
+		}
+	}
+	start_value = 0
+	min_value = 0
+	max_value = 50
+}
+

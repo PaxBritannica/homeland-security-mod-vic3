@@ -1,0 +1,120 @@
+﻿hms_je_sabotage = {
+
+    icon = "gfx/interface/icons/event_icons/event_raiding.dds"
+	
+	group = je_group_intelligence
+
+	weight = 350
+	transferable = no
+	should_be_pinned_by_default = yes
+
+	scripted_button = je_sabotage_enforce_martial_law
+	scripted_button = je_sabotage_compensate_families
+    scripted_button = je_sabotage_joint_secret_service_effort
+    
+    scripted_progress_bar = sabotage_police_progress_bar
+    scripted_progress_bar = sabotage_radicals_progress_bar
+
+
+	# immediate = {
+
+    #     # START 2 VARIABLES
+        
+    #     # ONE IS RADICALS PROGRESS TO ESCAPE THE INVESTIGATION
+    #     set_variable = {
+	# 		name = je_radicals_progress
+	# 		value = 0
+	# 	}
+		
+    #     # ONE IS POLICE PROGRESS TO CATCH THE RADICALS
+	# 	set_variable = {
+	# 		name = je_police_progress
+	# 		value = 0
+	# 	}
+
+	# }
+
+    modifiers_while_active = {
+       political_unrest_modifier
+    }
+
+    on_weekly_pulse = {
+        random_events = {
+            20 = 0
+            1 = sabotage_event.2
+            1 = sabotage_event.3
+            1 = sabotage_event.66 # => triggers event.4 (commander shot) 
+            1 = sabotage_event.5
+        }
+    }
+
+    complete = {
+        custom_tooltip = {
+			text = je_investigation_success
+			scope:journal_entry = {
+				"scripted_bar_progress(sabotage_police_progress_bar)" >= 50
+			}
+		}
+    }
+
+    on_complete = {
+        root = {
+            trigger_event = {
+                id = sabotage_event.98
+                popup = yes
+            }
+        }
+    }
+
+    fail = {
+        custom_tooltip = {
+			text = je_investigation_failure
+			scope:journal_entry = {
+				"scripted_bar_progress(sabotage_radicals_progress_bar)" >= 50
+			}
+		}
+    }
+
+    on_fail = {
+        root = {
+            trigger_event = {
+                id = sabotage_event.99
+                popup = yes
+            }
+        }
+    }
+
+    invalid = {}
+
+    on_invalid = {}
+
+    status_desc = {
+        first_valid = {
+            triggered_desc = {
+				desc = triggered_desc_sabotage_martial_law_tt
+				trigger = {
+					has_law = law_type:law_militarized_police
+				}
+			}
+            triggered_desc = {
+				desc = triggered_desc_qualified_police_patrolling_law_tt
+				trigger = {
+					institution_investment_level = {
+                        institution = institution_police
+                        value >= 2
+                    }
+				}
+			}
+            triggered_desc = {
+				desc = triggered_desc_unqualified_police_patrolling_law_tt
+				trigger = {
+					institution_investment_level = {
+                        institution = institution_police
+                        value <2
+                    }
+				}
+			}
+        }
+    }
+	
+}
