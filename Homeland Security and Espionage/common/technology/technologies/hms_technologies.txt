@@ -12,7 +12,6 @@ HMS_tech_era_2_secret_service = {
 	# Bonuses provided mainly for flavor and to boost AI interest
 	modifier = {
 		country_prestige_mult_ = 0.05
-		country_influence_mult = 0.1
 		country_authority_mult = 0.1
 		country_agitator_slots_add = 1
 
