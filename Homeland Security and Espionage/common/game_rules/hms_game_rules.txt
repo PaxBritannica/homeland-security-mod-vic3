@@ -12,3 +12,14 @@
 	}
 
 }
+
+intelligence_allow_tech_stealing = {
+
+	default = allow_tech_stealing
+
+	disallow_tech_stealing {
+	}
+
+	allow_tech_stealing {
+	}
+}

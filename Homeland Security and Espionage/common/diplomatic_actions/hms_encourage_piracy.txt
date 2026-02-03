@@ -13,50 +13,83 @@
         admiralty
     }
 
-    potential = {
-        NOT = { is_country_type = decentralized }
+	potential = {
+		NOT = { is_country_type = decentralized }
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
 		}
-
-		country_rank >= rank_value:minor_power
-
-		# balance ? rearm
-		# institution_investment_level = {
-		# 	institution = institution_foreign_affairs
-		# 	value >= 4
-		# }
-    }
-
-    possible = {
-        is_revolutionary = no
-        in_default = no
-
+	}
+	
+	possible = {
+		is_revolutionary = no
+		in_default = no
+	
 		NOT = {
 			OR = {
-				scope:target_country = {
-					has_diplomatic_pact = {
-						who = root
-						type = humiliation
+
+				# NO ALLIANCE, DEFENSIVE PACT OR MUTUAL NON INTERFERENCE TREATY ALLOWED FOR THIS ACTION
+				# WE ARE MEN WITH VALUES, NOT DOUBLE-DEALING DIPLOMATS
+				
+				any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = mutual_non_interference
 					}
 				}
 
-				scope:target_country = {
-					has_variable = recently_fought_pirates
-					
+				any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = defensive_pact
+					}
 				}
-				scope:target_country = {
-					has_variable = recently_bribed_pirates 
-					
+
+				any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = alliance
+					}
 				}
-				
-				scope:target_country = {
-					has_truce_with = root
-				}
+	
+				has_war_with = scope:target_country
 			}
+		}
+
+        # INVESTMENT LEVEL NEEDED IN FOREIGN AFFAIRS
+        ROOT = {
+            # country_rank >= rank_value:minor_power Every nation can yarrr
+            has_law_or_variant = law_type:law_office_of_foreign_affairs
+            institution_investment_level = {
+                institution = institution_foreign_affairs
+                value >= 3
+            }
         }
 
-        has_diplomatic_relevance = scope:target_country
+		custom_tooltip = {
+			text = has_neither_bribed_or_fought_pirates_tt
+
+			
+			NOR = {
+					scope:target_country = {
+						has_variable = recently_fought_pirates
+						
+					}
+			
+					scope:target_country = {
+						has_variable = recently_bribed_pirates 
+						
+					}
+					
+					scope:target_country = {
+						has_truce_with = root
+					}
+			}
+		}
+	
+		has_diplomatic_relevance = scope:target_country
 
         can_reach_target_country = yes #needs to have port or sea route
 

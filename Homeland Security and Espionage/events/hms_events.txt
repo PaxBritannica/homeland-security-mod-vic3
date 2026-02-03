@@ -9,7 +9,7 @@ hms_secret_service_events.1 = {
 	flavor = hms_secret_service_events.1.f
 
 	event_image = {
-		video = "europenorthamerica_capitalists_meeting"
+		video = "ep1_clandestine_meeting"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -17,9 +17,6 @@ hms_secret_service_events.1 = {
 	icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
 	duration = 2
-
-	# just once
-	# cooldown = { days = stupidly_long_modifier_time }
 
 	option = { #state control through authority
 		name = hms_secret_service_events.1.a
@@ -45,25 +42,4 @@ hms_secret_service_events.1 = {
 			days = 730
 		}
 	}
-
-	# option = { #noice but noicer
-	# 	name = hms_secret_service_events.1.c
-	# 	trigger = {
-	# 		OR = {
-	# 			has_law_or_variant = law_type:law_censorship
-	# 			has_law_or_variant = law_type:law_outlawed_dissent
-	# 		}
-	# 	}
-	# 	random_list = {
-	# 		50 = {
-	# 			add_modifier = {
-	# 				name = founded_fear #authority
-	# 				days = normal_modifier_time
-	# 				multiplier = 2
-	# 			}
-	# 		}
-	# 		50 = {
-	# 		}
-	# 	}
-	# }
 }

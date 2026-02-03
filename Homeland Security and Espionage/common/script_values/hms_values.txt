@@ -1,31 +1,9 @@
 ﻿intelligence_op_multiplier_medium = {
 
 	value = scope:arm_radicals_operation_target.gdp
-	divide = 100000
-	multiply = 0.25
+	divide = 1000000        # GDP → millions
+	multiply = 1000             # base scaling
 	round = yes
-	multiply = 100
-
-	if = {
-		limit = {
-			has_game_rule = low_intelligence_op_event_costs
-		}
-		multiply = low_intelligence_op_event_costs_value
-	}
-
-	else_if = {
-		limit = {
-			has_game_rule = medium_intelligence_op_event_costs
-		}
-		multiply = medium_intelligence_op_event_costs_value
-	}
-
-	else_if = {
-		limit = {
-			has_game_rule = high_intelligence_op_event_costs
-		}
-		multiply = high_intelligence_op_event_costs_value
-	}
 
 }
 
@@ -42,62 +20,21 @@ high_intelligence_op_cost_value = {
 }
 
 suppress_dissent_multiplier_medium = {
-    value = scope:arm_radicals_operation_target.gdp
+    value = scope:country.gdp
 
-	divide = 100000
-	multiply = 0.25
+	divide = 1000000        # GDP → millions
+	multiply = 1000             # base scaling
 	round = yes
-	multiply = 100
 
-	if = {
-		limit = {
-			has_game_rule = low_intelligence_op_event_costs
-		}
-		multiply = low_intelligence_op_event_costs_value
-	}
-
-	else_if = {
-		limit = {
-			has_game_rule = medium_intelligence_op_costs
-		}
-		multiply = medium_intelligence_op_costs_value
-	}
-
-	else_if = {
-		limit = {
-			has_game_rule = high_intelligence_op_costs
-		}
-		multiply = high_intelligence_op_costs_value
-	}
 }
 
+
 piracy_cost_multiplier = {
-    value = scope:piracy_target.gdp
-
-    divide = 100000
-    multiply = 0.25
-    multiply = 100
-
-    if = {
-        limit = {
-            has_game_rule = low_intelligence_op_event_costs
-        }
-        multiply = low_intelligence_op_event_costs_value
-    }
-
-    else_if = {
-        limit = {
-            has_game_rule = medium_intelligence_op_event_costs
-        }
-        multiply = medium_intelligence_op_event_costs_value
-    }
-
-    else_if = {
-        limit = {
-            has_game_rule = high_intelligence_op_event_costs
-        }
-        multiply = high_intelligence_op_event_costs_value
-    }
+    
+    value = scope:country.gdp
+	divide = 1000000        # GDP → millions
+	multiply = 1000             # base scaling
+	round = yes
 
     multiply = piracy_naval_modifier
 }

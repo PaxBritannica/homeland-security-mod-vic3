@@ -1,4 +1,6 @@
-﻿# BRIBE pirates
+﻿#Can bribe or fight if you decide to fight them they will stay away for more
+
+# BRIBE pirates
 hms_je_piracy_bribed = {
 	name = hms_je_piracy_bribed
 	desc = hms_je_piracy_bribed_desc
@@ -17,13 +19,13 @@ hms_je_piracy_bribed = {
 		scope:piracy_target = {
 			add_modifier = {
 				name = piracy_bribed_modifier
-				months = 7
+				months = 13
 				multiplier = piracy_gdp_cut_15
 			}
 
 			set_variable = {
 				name = recently_bribed_pirates
-				months = 3
+				months = 13
 			}
 		}
 
@@ -41,30 +43,6 @@ hms_je_piracy_bribed = {
 			}
 
 		}
-
-
-        # scope:piracy_target = {
-		# 	add_modifier = {
-		# 		name = piracy_bribed_modifier
-		# 		months = 7
-		# 		multiplier = piracy_gdp_cut_15
-		# 	}
-
-		# 	set_variable = {
-		# 		name = recently_bribed_pirates
-		# 		months = 3
-		# 	}
-		# }
-
-		# scope:piracy_initiator = {
-		# 	remove_diplomatic_pact = {
-		# 		country = scope:piracy_target
-		# 		type = encourage_piracy
-		# 	}
-			
-		# 	post_notification = stopped_attack_message
-		# }
-
 	}
 }
 
@@ -95,7 +73,7 @@ hms_je_piracy_fought = {
 		root = {
 			set_variable = {
 				name = recently_fought_pirates
-				months = 3
+				months = 24
 			}
 			
 			post_notification = stopped_attack_message

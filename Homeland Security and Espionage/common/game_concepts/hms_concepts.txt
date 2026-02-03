@@ -5,3 +5,8 @@
 naval_awareness = {
     texture = "gfx/interface/icons/concept_icons/naval_awareness_small.dds"
 }
+
+concept_secret_service = {
+    texture = "gfx/interface/icons/invention_icons/secret_service_wbg.dds"
+    is_loading_tip = yes
+}

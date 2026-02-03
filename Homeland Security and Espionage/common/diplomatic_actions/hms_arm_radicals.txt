@@ -9,19 +9,10 @@
 	should_notify_third_parties = no
 	
 	potential = {
-
-		# REARM
-		# NOT = { is_country_type = decentralized }
-
-		# scope:target_country = {
-		# 	NOT = { is_country_type = decentralized }
-		# }
-
-		# institution_investment_level = {
-		# 	institution = institution_foreign_affairs
-		# 	value >= 3
-		# }
-
+		NOT = { is_country_type = decentralized }
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+		}
 	}
 	
 	possible = {
@@ -30,6 +21,10 @@
 	
 		NOT = {
 			OR = {
+
+				# NO ALLIANCE, DEFENSIVE PACT OR MUTUAL NON INTERFERENCE TREATY ALLOWED FOR THIS ACTION
+				# WE ARE MEN WITH VALUES, NOT DOUBLE-DEALING DIPLOMATS
+				
 				any_scope_treaty = {
 					binds = root
 					binds = scope:target_country
@@ -37,14 +32,39 @@
 						has_type = mutual_non_interference
 					}
 				}
+
+				any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = defensive_pact
+					}
+				}
+
+				any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = alliance
+					}
+				}
 	
 				has_war_with = scope:target_country
 			}
 		}
+
+        # INVESTMENT LEVEL NEEDED IN FOREIGN AFFAIRS
+        ROOT = {
+            country_rank >= rank_value:minor_power
+            has_law_or_variant = law_type:law_office_of_foreign_affairs
+            institution_investment_level = {
+                institution = institution_foreign_affairs
+                value >= 3
+            }
+        }
 	
 		has_diplomatic_relevance = scope:target_country
 	}
-	
 	
 	pact = {	
 		cost = 200
@@ -57,15 +77,16 @@
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes
 
+		# Pretty rough for the lower strata
 		income_transfer_to_pops = {
 			allow_non_fully_accepted = no
 			upper_strata_pops = {
-				value = 0.8
+				value = 0.9
 				max = 1
 				min = 0
 			}
 			middle_strata_pops = {
-				value = 0.2
+				value = 0.1
 				max = 1
 				min = 0				
 			}
@@ -85,10 +106,11 @@
 		}
 		
 		monthly_effect = {
+
 			custom_tooltip = {
 				text = intelligence_op_arm_radicalism_tt
 				random_list = { 
-					32 = {}
+					20 = {}
 					1 = { 
 						root = {
 							trigger_event = {
@@ -96,14 +118,53 @@
 					        }
 					    }
 					}
-				}								
+				}
 			}
-		} 	
+
+			# scope:target_country = {
+
+			# 	set_variable = {
+			# 		name = armed_radical_pressure
+			# 		value = 0
+			# 	}
+		
+			# 	change_variable = {
+			# 		name = armed_radical_pressure
+			# 		add = 1
+			# 	}
+		
+			# 	if = {
+			# 		limit = {
+			# 			var:armed_radical_pressure >= 3 # Fire it every 3 months
+			# 		}
+			# 		add_modifier = {
+			# 			name = political_tension_country_modifier 
+			# 			years = 2
+			# 		}
+			# 	}
+			# }
+
+			#Alternative method add radicals to strata manually add_radicals = {value, pop}
+
+		}
+			
 	
 		should_invalidate = {
 			OR = {		
 				is_country_type = decentralized
 				scope:target_country = { is_country_type = decentralized }
+
+				#INVALIDATE IF TREATY OF MUTUAL NON INTERFERENCE EXISTS
+				scope:target_country = {
+					any_scope_treaty = {
+						binds = root
+						binds = scope:target_country
+						any_scope_article = {
+							has_type = mutual_non_interference
+						}
+					}
+				}
+
 				in_default = yes
 			}
 			NOT = {

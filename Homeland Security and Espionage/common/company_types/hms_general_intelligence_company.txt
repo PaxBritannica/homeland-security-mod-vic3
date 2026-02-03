@@ -1,0 +1,49 @@
+﻿company_intelligence_bureau = {
+	icon = "gfx/interface/icons/company_icons/central_bureau.dds"
+	background = "gfx/interface/illustrations/central_bureau_background.dds"
+
+	flavored_company = no
+	uses_dynamic_naming = no
+
+	dynamic_company_type_names = {
+		"dynamic_company_type_central_agency"
+	}
+
+	building_types = {
+		building_intel_hq
+        
+	}
+
+	extension_building_types = {
+        building_military_intel_hq
+    }
+
+    possible_prestige_goods = {}
+
+
+
+	possible = {
+		any_scope_state = {
+			any_scope_building = {
+				is_building_type = building_intel_hq
+				level >= 5
+			}
+		}
+	}
+
+	prosperity_modifier = {
+		state_migration_pull_mult = -0.1
+        country_authority_mult = 0.1
+        country_influence_mult = 0.1
+        building_intel_hq_throughput_mult = 0.1
+	}
+
+	ai_will_do = {
+		any_scope_state = {
+			any_scope_building = {
+				is_building_type = building_intel_hq
+				level >= 5
+			}
+		}
+	}
+}

@@ -4,16 +4,31 @@
  founded_secret_service_domestic_focus: "Secret Service domestic focus"
  founded_secret_service_foreign_focus: "Secret Service foreign focus"
  founded_secret_service_government_focus: "Support the government"
+ state_apparatus_not_happy: "Unsatisfied State Apparatus"
+ state_apparatus_happy: "Satisfied State Apparatus"
+ framed_for_sabotage_modifier: "Framed for Sabotage"
+ commander_in_danger_tt_low_chance: "There is a low chance of something happening to one of our commanders."
+ commander_in_danger_tt_high_chance: "There is a high chance that something could happen to one of our commanders."
+ target_armed_radicals_modifier: "Targeted the armed Radicals"
 
  #tooltips
  intelligence_op_arm_radicals_tt: "Corrupt the higher strata and smuggle weapons across the target's border to arm radical factions, increasing political unrest and weakening the target government's stability"
  support_slaves_movement_tt: "Maintain contact with abolitionists movements to cement unrest in the target country's society."
  pirates_escaped_tooltip: "The search will be unsuccessful, the pirates will remain a threat."
+ half_chance_sabotage_progress_tt: "Split chance of police or perpetrators making progress."
+ secret_service_handles_tt: "Our [concept_secret service] will handle this quietly."
+ 
+ 
+ 
+ 
  
 
  #messages
  notification_piracy_initiator_name_message_name: "We uncovered who funded the piracy operations against us."
  notification_piracy_initiator_name_message_desc: "It was [SCOPE.sCountry('piracy_initiator').GetName] all along."
+ steal_tech_message_for_initiator_name: "Tech Steal operation discovered by [SCOPE.sCountry('steal_tech_target').GetName]"
+ steal_tech_message_for_initiator_desc: "Our agents have been caught siphoning technology from [SCOPE.sCountry('steal_tech_target').GetName]. Our operation has been compromised and our mutual relations have been damaged."
+
 
 
 
@@ -21,24 +36,25 @@
 
  # ARM THE RADICALS
  hostile_diplo_events.1.t: "Arsenal of Revolution"
- hostile_diplo_events.1.d: "The [ROOT.GetCountry.GetName] Secret Service has successfully established smuggling routes into [SCOPE.sCountry('arm_radicals_operation_target').GetName]. The rebels are requesting more support to be put in the operation, they believe that with our help they could achieve their objective faster."
- hostile_diplo_events.1.f: "The Director laid out a map of [SCOPE.sCountry('arm_radicals_operation_target').GetName], marked with dozens of red crosses. \n\nEach mark represents a contact, radical groups, disaffected militias, revolutionary cells. They have the will to act, but lack the means. He gestured to a manifest of crated rifles, ammunition and money. \n\nOur smuggling network is operational. Border guards have been... accommodated. We can deliver substantial armaments to these groups within the month. Once armed, they'll be emboldened to challenge the government directly. \n\nAnd when the streets run red? \n\nAll hell will break loose. Either outcome serves our purposes. \n\nThe authorization form awaited a signature. One stroke to arm a revolution."
- hostile_diplo_events.1.a: "Accomodate their needs."
- hostile_diplo_events.1.b: "This is getting out of hand."
+ hostile_diplo_events.1.d: "Our Secret Service has established smuggling routes into [SCOPE.sCountry('arm_radicals_operation_target').GetName]. Local radicals are prepared to act, but request additional arms and funding. With our support, they believe the regime could be challenged far sooner."
+ hostile_diplo_events.1.f: "Maps dotted with contacts. Crates of rifles ready to move. Border guards already paid.\n\nOnce armed, the rebels will not hesitate. Whether the government survives or collapses, chaos will follow—and chaos serves our interests."
+ hostile_diplo_events.1.a: "We must give them everything they need."
+ hostile_diplo_events.1.b: "They will have to wait."
  #   |
  #   | event for target
  #   V
  hostile_diplo_events.2.t: "Gathering Unrest"
- hostile_diplo_events.2.d: "Recently, citizens have been raising their voices in dissatisfaction with [ROOT.GetCountry.GetName]'s government. During a recent arrest, authorities discovered a pristine crate of foreign smuggled weapons, suggesting outside interference."
- hostile_diplo_events.2.f: "The Minister examined the confiscated crate with growing unease. \n\n'Arrested last week during a workers' rally,' the police chief explained. 'The crate was hidden in a warehouse basement—still factory-sealed, markings filed off, but clearly military issue.' \n\nHe pried open the lid, revealing rows of oiled rifles nestled in straw packing. 'These aren't black market castoffs, sir. This is a professional smuggling operation.' \n\n'And the protests?' \n\n'Intensifying, by the day.' \n\nThe Minister's jaw tightened. Domestic discontent was manageable. But discontent armed and funded by foreign powers? That was something else entirely."
+ hostile_diplo_events.2.d: "Public unrest is growing across [ROOT.GetCountry.GetName]. A recent arrest uncovered a sealed crate of #r foreign military weapons#!, indicating that outside powers may be fueling the disorder."
+ hostile_diplo_events.2.f: "The confiscated crate told a clear story factory-sealed rifles, markings removed, professionally smuggled.\n\nProtests are spreading, and this time they are not merely spontaneous. Discontent is one thing. Discontent armed from abroad is another."
  hostile_diplo_events.2.a: "This is deeply concerning."
  hostile_diplo_events.2.b: "Invest in suppressing the unrest."
 
  # SUPPORT SLAVE ABOLITIONIST MOVEMENTS
- hostile_diplo_events.3.t: "Supporting the Cause of Freedom"
- hostile_diplo_events.3.d: "Our government has been covertly channeling resources to abolitionist movements in [SCOPE.sCountry('support_slave_target_country').GetName]. These funds have enabled the printing of anti-slavery pamphlets, the establishment of safe houses, and the coordination of escape routes. The movement grows stronger, though our involvement must remain carefully concealed."
- hostile_diplo_events.3.f: "In a discreet meeting room far from prying eyes, an envelope changed hands. Inside: enough gold to fund months of operations.\n\n'This will help us reach plantation workers in the southern provinces,' the abolitionist leader explained, spreading a map across the table. 'Literacy circles disguised as prayer meetings. Safe houses along the river routes. Sympathetic lawyers for those brave enough to challenge their bondage in court.'\n\nThe [ROOT.GetCountry.GetAdjective] agent nodded. 'Our treasury can sustain this effort, but discretion is paramount. If [SCOPE.sCountry('support_slave_target_country').GetName] discovers our hand in this...'\n\n'They won't,' came the firm reply. 'The cause of liberty has many friends. We're just one more voice in the chorus.'\n\nAs the conspirators departed separately into the night, new plans were already taking shape, each small act of defiance another crack in the foundation of bondage."
- hostile_diplo_events.3.a: "Liberty is worth the risk."
+ hostile_diplo_events.3.t: "Seeking Freedom"
+ hostile_diplo_events.3.d: "Our covert support for abolitionist networks in [SCOPE.sCountry('support_slave_target_country').GetName] is accelerating the collapse of plantation control. Escapes are increasing, but liberation raises new challenges; thousands now seek shelter, work, and stability in a society unprepared to receive them. They don't have much time before the #r repression#! starts."
+ hostile_diplo_events.3.f: "Our safe houses are overflowing with fugitives, families carrying forged papers, whispered directions, and little else. Word of escape spreads faster than abolitionists can guide it.\n\n Routes are strained, authorities are growing suspicious, and the newly freed move in growing numbers. Freedom has been ignited, but where it will lead remains uncertain."
+ hostile_diplo_events.3.a: "They must find their place beyond the #y old order#!."
+ hostile_diplo_events.3.b: "We will offer them a place #g among us#!."
 
  ### Pirates!!!
  hostile_diplo_events.4.t: "Aaarrgh!"
@@ -52,13 +68,13 @@
  #   V
  hostile_diplo_events.5.t: "Shipping Routes Disrupted"
  hostile_diplo_events.5.d: "Pirates have been wreaking havoc on our merchant shipping!"
- hostile_diplo_events.5.f: "The latest reports from our port authorities paint a grim picture. Pirates have been systematically targeting our merchant vessels, causing severe disruptions to our maritime trade. The attacks seem too coordinated to be mere chance - someone must be supporting these raiders.\n\nOur @convoys! captains demand action, but catching the true culprits may prove challenging."
+ hostile_diplo_events.5.f: "The latest reports from our port authorities paint a #r grim picture#!. Pirates have been systematically targeting our merchant vessels, causing severe disruptions to our maritime trade. The attacks seem too coordinated to be mere chance - someone must be supporting these raiders.\n\nOur @convoys! [concept_convoys] captains demand action, but catching the true culprits may prove challenging."
  hostile_diplo_events.5.a: "We will give them what they deserve."
  #   |
  #   | Piracy Journal Events for target
  #   V
  hostile_diplo_events.6.t: "Navy mobilized"
- hostile_diplo_events.6.d: "We are sending our best men to take care of the pirate filth"
+ hostile_diplo_events.6.d: "We are sending our best men to take care of the #r pirate filth#!"
  hostile_diplo_events.6.f: "The Admiralty has ordered the mobilization of our naval forces to hunt down and eliminate the pirate threat. Our ships are being dispatched to patrol the affected sea lanes, with orders to engage any pirate vessels on sight. The crews are eager for action, determined to restore safety to our waters and protect our maritime commerce."
  hostile_diplo_events.6.a: "Godspeed."
  #   |
@@ -72,17 +88,36 @@
  #   | Pirates are disbanded and experience is gained.
  #   V
  hostile_diplo_events.8.t: "The tide has changed"
- hostile_diplo_events.8.d: "After weeks of bitter fighting, we managed to repel the pirates. Altough we were unsuccessful in capturing their leaders and gain information about the country behidn them."
- hostile_diplo_events.8.f: "The seas are ours again. After months of chaos, our @convoys! convoys are sailing without fear, and the docks bustle with life once more. The merchants are already counting their coin, though it will be some time before we recover what was lost.\n\nThere are whispers, of course. Some say these 'pirates' flew no flags by accident, that foreign hands guided their blades. But whispers prove nothing, and for now, our traders care only that the routes are open and the horizon is clear."
- hostile_diplo_events.8.a: "We will remain vigilant."
+ hostile_diplo_events.8.d: "After weeks of #r bitter fighting#!, we managed to repel the pirates. Altough we were unsuccessful in capturing their leaders and gain information about the country behind them."
+ hostile_diplo_events.8.f: "#g The seas are safe again#!. After months of chaos, our @convoys! [concept_convoys] convoys are sailing without fear, and the docks bustle with life once more. The merchants are already counting their coins, though it will be some time before we recover what was lost.\n\nThere are whispers, of course. Some say these 'pirates' flew no flags by accident, that foreign hands guided their blades. But whispers prove nothing, and for now, our traders care only that the routes are open and the horizon is clear."
+ hostile_diplo_events.8.a: "We must remain vigilant."
+
+ hostile_diplo_events.9.t: "Siphoning Technology breakthrough"
+ hostile_diplo_events.9.d: "Our Secret Service has successfully infiltrated the researchers' ring in [SCOPE.sCountry('steal_tech_target').GetName]. With a solid foothold on their scientific community, we can now siphon their technological advancements to bolster our own nation's progress in one of the main fields."
+ hostile_diplo_events.9.f: "I despised the suffocating atmosphere of those fabricated social gatherings. Months of cultivating trust through endless nights of false camaraderie finally bore fruit. \n\n Yesterday, I managed to engage one of their lead scientists in conversation about his latest project. He introduced me to his beloved wife, and we spent hours discussing their research. A few drinks were all it took to loosen his tongue and reveal more than he intended. \n\n His devotion to his wife, it seems, is matched only by his infatuation with her younger sister. Turns out the laboratory wasn't just a place of scientific discovery...\n\n Gathering evidence of his indiscretions proved surprisingly easy. Perhaps me and him could find some mutually beneficial arrangement... I'm certain his wife would find my discoveries... illuminating."
+ hostile_diplo_events.9.a: "Our #y Production#! methods could use an edge."
+ hostile_diplo_events.9.b: "Our #y Military#! technology could use a boost."
+ hostile_diplo_events.9.c: "Our #y Society#! could benefit from new ideas."
+ hostile_diplo_events.9.e: "We cannot risk exposure now."
+ #   |
+ #   | TECH STEAL DISCOVERED
+ #   V
+ hostile_diplo_events.10.t: "Arrested infiltrator"
+ hostile_diplo_events.10.d: "Our intelligence services have uncovered a spy ring operating within our borders, siphoning off technological advancements to [SCOPE.sCountry('steal_tech_initiator').GetName]. The infiltrators have been arrested and are currently being interrogated."
+ hostile_diplo_events.10.f: "The Ministry has announced the arrest of several individuals suspected of espionage. These infiltrators were caught red-handed attempting to smuggle sensitive technological documents out of the country. \n\n During interrogation, they revealed their connections to [SCOPE.sCountry('steal_tech_initiator').GetName] and their methods of operation. The government is taking swift action to root out any remaining spies and safeguard our technological advancements."
+ hostile_diplo_events.10.a: "They will rot in jail. Surely they don't represent [SCOPE.sCountry('steal_tech_initiator').GetName] as a whole."
+ hostile_diplo_events.10.c: "We must increase our counter-espionage efforts."
+ hostile_diplo_events.10.b: "Denounce [SCOPE.sCountry('steal_tech_initiator').GetName] for their underhanded tactics."
+
+
 
  #event_first_researched_secret_service
  hms_secret_service_events.1.t: "Establishment of the Secret Service"
- hms_secret_service_events.1.d: "Recognizing the growing importance of intelligence in warfare as well as in national security, our government has decided to establish a dedicated Secret Service. This new agency will be responsible for gathering intelligence on both domestic and foreign threats, as well as protecting key government officials and infrastructure."
- hms_secret_service_events.1.f: "As the first ever Secret Service reunion start. The selected officials in the room gather around listening to your words carefully, you read their faces they cannot help but wonder. You clear your throat and start speaking. 'Ladies and Gentlemen, today we embark on a new chapter in our nation's history. The establishment of the Secret Service marks a significant step forward in our commitment to safeguarding our nation and its people. Our primary focus will be to...'"
- hms_secret_service_events.1.a: "Boost our authority and control over the population."
- hms_secret_service_events.1.b: "Expand our foreign influence and interests."
- hms_secret_service_events.1.c: "Protect the interest of this very government."
+ hms_secret_service_events.1.d: "Recognizing the growing importance of intelligence in warfare as well as in national security, our government has decided to establish a dedicated [concept_secret_service]. This new agency will be responsible for gathering intelligence on both domestic and foreign threats, as well as protecting key government officials and infrastructure."
+ hms_secret_service_events.1.f: "As the first ever Secret Service reunion start. The selected officials in the room gather around listening to your words carefully, you read their faces they cannot help but wonder. You clear your throat and start speaking. 'Gentlemen, today we embark on a new chapter in our nation's history. The establishment of the Secret Service marks a significant step forward in our commitment to safeguarding our nation and its people. Our primary focus will be to...'"
+ hms_secret_service_events.1.a: "Boost our #y authority and control#! over the population."
+ hms_secret_service_events.1.b: "Expand our #y foreign influence#! and interests."
+ hms_secret_service_events.1.c: "Protect the #y interest#! of this very government."
 
  #intelligence operation uncovered by enemy
  hms_operation_uncovered.1.t: "Our Intelligence Operation has been uncovered"
@@ -121,4 +156,68 @@
  hms_je_piracy_bribed_desc: "If we pay the pirates enough, they might leave us alone, at least for a while."
  hms_je_piracy_fought_desc: "Our navy is strong enough to deal with the pirate threat head on."
  je_intelligence_privacy_on_complete_tt: "The piracy activities financed by the unknown country will cease."
+
+ ### SABOTAGE EVENT ### BIG EXPLOSION HITS THE CITY CENTER
+
+ sabotage_event.1.t: "Catastrophic Explosion"
+ sabotage_event.1.d: "#r A devastating explosion#! has struck the capital center, claiming at least #r 10 lives and leaving dozens wounded#!. Preliminary investigations indicate this was a deliberate act of #y sabotage#! designed to cripple our nation's critical infrastructure. While the perpetrators remain unknown, authorities are investigating whether this attack stems from growing domestic extremism or represents the work of foreign operatives."
+ sabotage_event.1.f: "The ground trembled as the massive detonation tore through the city's heart. Towering flames consumed nearby structures while thick columns of smoke billowed skyward, casting an ominous shadow over the capital. Emergency crews raced through debris-strewn streets, fighting the spreading fires and evacuating survivors from the wreckage. As sirens wailed through the smoke-filled air, rumors of deliberate sabotage rippled through the terrified crowds, transforming shock into suspicion and fear."
+ sabotage_event.1.a: "We will not rest until those responsible are brought to justice."
+
+ sabotage_event.2.t: "Local Journal Speculating"
+ sabotage_event.2.d: "In the aftermath of the recent events, local newspapers have been making speculations about #y rogue government#! elements operating to distabilize our country in order to gain more power."
+ sabotage_event.2.f: "So I ask you... Dear readers, who stands to gain from such chaos? Who benefits when our cities burn and our people live in fear? With the treat of having military patrolling our streets 24 hours a day. Is it not those who seek to consolidate power, to erode our freedoms under the guise of security? We must remain vigilant against those who would exploit tragedy for their own ends. Our nation deserves better than to be pawns in a game of political ambition."
+ sabotage_event.2.a: "Leave no stone unturned."
+ sabotage_event.2.b: "These are baseless conspiracies."
+
+ police_sabotage_progress_tt: "The police gains progress in the investigations."
+ radicals_sabotage_progress_tt: "The radicals gain progress in their escape."
+ radicals_sabotage_progress_tt_huge: "The radicals make #r significant#! progress in their escape."
+
+ sabotage_event.3.t: "Greater Good"
+ sabotage_event.3.d: "In the wake of the recent events, some voices from the so called #y deep-state#! have suggested we could... Turn things around to our advantage. By implementing stricter control over the population and increasing surveillance, we could ensure such incidents never happen again. #r For the greater good of course...#! "
+ sabotage_event.3.f: "The Director leaned forward, eyes gleaming with a mix of determination and pragmatism. \n\n 'This tragedy has been devastating. You see I am an optimist by nature... I believe that from chaos, order can emerge. It would be utterly irresponsible of us not to take this time as of essence..."
+ sabotage_event.3.a: "There is only one power we can trust... Ours."
+ sabotage_event.3.b: "For the greater good, right ?"
+
+ sabotage_event.66.t: "Shaming Campaign"
+ sabotage_event.66.d: "Radical journals has been targeting our #y Armed Forces#! indicating that our ranks could be responsible for what happened in the capital."
+ sabotage_event.66.f: "The headlines screamed accusations, painting the army as traitors of the nation. Articles detailed alleged meetings of commanders with radical groups, suspicious financial affairs, and whispered rumors of disloyalty. The public's trust in our higher ranks begins to erode quickly as these sensational stories spread like wildfire."
+ sabotage_event.66.a: "This is pure sensationalism."
+ sabotage_event.66.b: "Perhaps there is some truth to it..."
+
+ sabotage_event.4.t: "Another innocent man dead"
+ sabotage_event.4.d: "We received some unsettling news about [SCOPE.sCharacter('killed_commander').GetFullName] being killed just yesterday night while he was going back to the barracks after [SCOPE.sCharacter('killed_commander').GetHerHis] leave. This is probably the fruit of days of public shaming and journal that were trying to frame [SCOPE.sCharacter('killed_commander').GetHerHis] as the culprit behind the recent explosion."
+ sabotage_event.4.f: "The news hit like a thunderclap. Another innocent life lost to the frenzy of suspicion and fear gripping our city. The devout commander, a mere pawn in a larger game, had been relentlessly hounded by sensationalist media and public outrage in the last few days. His death serves as a grim reminder of the dangers of wanna-be vigilantes."
+ sabotage_event.4.a: "What have we come to?"
+ sabotage_event.4.b: "Here goes the #y scapegoat#! we needed."
+
+ sabotage_event.98.t: "We found the Terrorists"
+ # Would be nice to do this dynamically and IF a country actually has backed the radicals
+ # It will appear here, but for now we keep it humble
+ sabotage_event.98.d: "Four individuals have been arrested this morning in connection with the recent explosion in the capital. After an intense shootout in the outskirts of the city that left one terrorist dead, security forces managed to storm the building and arrest them. Preliminary interrogations indicate they are a rogue branch of [SCOPE.gsInterestGroup('reckless_mf_ig').GetNameNoFormatting]."
+ sabotage_event.98.f: "The councillor burst through the doors, scattering papers and knocking over chairs, clutching a torn page from a half-burned journal. #y We found them! #! he shouted. Cheers erupted across the room. At last, the nation and its people could see the light at the end of the tunnel."
+ sabotage_event.98.a: "Arrest [SCOPE.sCharacter('reckless_out_of_govt_leader').GetFullName], he's a traitor of the nation."
+ sabotage_event.98.b: "Those bastards surely do not represent [SCOPE.gsInterestGroup('reckless_mf_ig').GetNameNoFormatting] entirely."
+
+ sabotage_event.99.t: "Radicals Escaped"
+ sabotage_event.99.d: "Amidst the chaos following the recent explosion, radical elements have exploited the confusion to escape justice in our country. Authorities are confirmed they managed to get away and escape to [SCOPE.sCountry('rival_country_1').GetName]."
+ sabotage_event.99.f: "Our security forces were stretched thin, grappling with the immediate crisis. Seizing this opportunity, radical factions orchestrated a daring escape, slipping through the cracks of our overwhelmed defenses. As the dust settled, it became clear that these elements had vanished into the shadows, evading capture and fleeing to [SCOPE.sCountry('rival_country_1').GetName]. Their disappearance raises urgent questions about our preparedness and the need for heightened vigilance against such threats in the future."
+ sabotage_event.99.a: "Publicly denounce [SCOPE.sCountry('rival_country_1').GetName]."
+ sabotage_event.99.b: "We will take action when the time is right."
+
+ sabotage_event.5.t: "Foreign Help"
+ sabotage_event.5.d: "[SCOPE.sCountry('helper_country_1').GetName] And [SCOPE.sCountry('helper_country_2').GetName] have come forward offering help for our cause."
+ sabotage_event.5.f: "In the wake of the recent sabotage, envoys from [SCOPE.sCountry('helper_country_1').GetName] and [SCOPE.sCountry('helper_country_2').GetName] have arrived, bearing offers of assistance. They express solidarity with our plight and propose to share resources, expertise, and intelligence to help us uncover the truth. Their support could prove invaluable as we navigate this crisis."
+ sabotage_event.5.a: "We gratefully accept [SCOPE.sCountry('helper_country_1').GetName]'s help."
+ sabotage_event.5.b: "We gratefully accept [SCOPE.sCountry('helper_country_2').GetName]'s help."
+ sabotage_event.5.c: "We must be cautious accepting foreign help."
+
+ hms_resignation_events.3.t: "Longa Manus"
+ hms_resignation_events.3.d: "For months, agents of the Secret Police have maintained discreet surveillance on [SCOPE.sCharacter('resigning_politician').GetFullName], following a pattern of unusual meetings, coded correspondence, and unexplained transfers of wealth. A recent search of the residence conducted while the target was absent, has yielded documents that strongly suggest coordination with representatives of a [SCOPE.sCountry('foreign_power').GetName]."
+ hms_resignation_events.3.f: "In the great game of nations, the most dangerous pieces are rarely moved openly."
+ hms_resignation_events.3.a: "We cannot compromise our relationship with [SCOPE.sCountry('foreign_power').GetName]."
+ hms_resignation_events.3.b: "Feed him to the newspapers and denounce [SCOPE.sCountry('foreign_power').GetName]."
+ hms_resignation_events.3.c: "If we only had a [concept_secret_service]..."
+ hms_resignation_events.3.e: "Let the [concept_secret_service] do the work for us."
  

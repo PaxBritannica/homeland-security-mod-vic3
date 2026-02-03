@@ -1,5 +1,10 @@
-﻿on_monthly_pulse_country = {
-    on_actions = {
-        # operation_monthly_events
+﻿on_yearly_events = {
+    random_events = {
+        chance_to_happen = 65
+
+        10 = sabotage_event.1
+        15 = hms_resignation_events.3
+        15 = hms_resignation_events.2
+
     }
 }
