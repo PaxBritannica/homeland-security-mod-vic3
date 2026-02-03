@@ -1,0 +1,321 @@
+﻿send_scientific_advisors = {
+    texture = "gfx/interface/icons/lens_toolbar_icons/send_scientific_advisors.dds"
+
+	groups= {
+		general
+	}
+
+	requires_approval = yes
+	should_notify_third_parties = yes
+
+	selectable = {
+		NOT = { is_country_type = decentralized }
+		is_revolutionary = no
+	}
+
+	potential = {
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+			is_revolutionary = no
+		}
+	}
+
+    possible = {
+        # TARGET IS NOT MORE THAN A MINOR POWER AND IS MORE THAN COLD TO US
+        scope:target_country = {
+            any_scope_state = {
+                count > 0
+            }
+            country_rank <= rank_value:minor_power
+            relations:root >= relations_threshold:cold
+        }
+
+        # INVESTMENT LEVEL NEEDED IN FOREIGN AFFAIRS
+        ROOT = {
+            # country_rank >= rank_value:minor_power
+            has_law_or_variant = law_type:law_office_of_foreign_affairs
+            institution_investment_level = {
+                institution = institution_foreign_affairs
+                value >= 1
+            }
+        }
+
+		#HAS DIPLOMATIC INTEREST
+		has_diplomatic_relevance = scope:target_country
+
+        #NOT WAR
+        NOT = {
+            has_war_with = scope:target_country
+        }
+    }
+
+	accept_effect = {
+		# custom_tooltip = {
+		# 	text = send_scientific_advisors_increase_tech_exchange_effect
+		# }
+
+		root = {
+			set_variable = {
+				name = sender_scientific_advisors
+				value = root
+			}
+		}
+
+		scope:target_country = {
+			set_variable = {
+				name = target_country_for_scientific_advisors
+				value = scope:target_country
+			}
+			save_scope_as = target_country_for_scientific_advisors
+		}
+	}
+
+	pact = {
+        cost = 150
+		is_two_sided_pact = yes
+		show_in_outliner = yes
+
+		relations_progress_per_day = 1.5
+		relations_improvement_max = 60
+
+        first_modifier = {
+            country_tech_research_speed_mult = -0.05
+            building_university_throughput_mult = 0.1
+        }
+
+        second_modifier = {
+            country_tech_research_speed_mult = 0.05
+            country_tech_spread_mult = 0.1
+        }
+
+		requirement_to_maintain = {
+			trigger = {
+				has_diplomatic_relevance = scope:target_country
+			}
+		}
+
+	 	requirement_to_maintain = {
+			trigger = {
+				custom_tooltip = {
+					text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS_NOT
+					scope:target_country.relations:root > relations_threshold:poor
+				}
+			}
+
+			show_about_to_break_warning = {
+				scope:target_country.relations:root <= -17 # this is: poor + 3
+				scope:target_country.relations_change_rate:root < 0
+			}
+		}
+
+		requirement_to_maintain = {
+			trigger = {
+				custom_tooltip = {
+					text = "DIPLOMATIC_PACT_REQUIREMENT_NOT_DECENTRALIZED"
+					NOT = { is_country_type = decentralized }
+					scope:target_country = {
+						NOT = { is_country_type = decentralized }
+					}
+				}
+			}
+		}
+
+		requirement_to_maintain = {
+			trigger = {
+				custom_tooltip = {
+					text = "DIPLOMATIC_PACT_REQUIREMENT_AT_PEACE"
+					NOT = { has_war_with = scope:target_country }
+				}
+			}
+		}
+
+		requirement_to_maintain = {
+			trigger = {
+				custom_tooltip = {
+					text = "EQUAL_OR_BETTER_RANK_THAN_TARGET"
+					country_rank >= scope:target_country.country_rank
+				}
+			}
+		}
+
+		requirement_to_maintain = {
+			trigger = {
+				in_default = no
+			}
+		}
+	}
+
+	ai = {
+		max_influence_spending_fraction = 0.20
+	
+		evaluation_chance = {
+			value = 10
+	
+			add = {
+				value = country_rank
+				multiply = 0.05
+			}
+		}
+	
+		#Controls AI acceptance
+		accept_score = {
+			value = 15
+			
+			# Base acceptance for friendly relations
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = genial
+					}
+				}
+				add = 50
+			}
+			
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = amicable
+					}
+				}
+				add = 25
+			}
+			
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = cordial
+					}
+				}
+				add = 15
+			}
+			
+			# Better relations = more likely to accept
+			if = {
+				limit = {
+					relations:scope:actor >= relations_threshold:friendly
+				}
+				add = 30
+			}
+			
+			if = {
+				limit = {
+					relations:scope:actor >= relations_threshold:amicable
+				}
+				add = 15
+			}
+			
+			# If they're technologically behind, they want this more
+			if = {
+				limit = {
+					scope:actor = {
+						country_rank < root.country_rank
+					}
+				}
+				add = 30
+			}
+			
+			# Similar strategic interests
+			if = {
+				limit = {
+					has_strategic_adjacency = scope:actor
+				}
+				add = 20
+			}
+			
+			# Same power bloc
+			if = {
+				limit = {
+					AND = {
+						has_power_bloc = yes
+						scope:actor = {
+							has_power_bloc = yes
+						}
+						power_bloc = scope:actor.power_bloc
+					}
+				}
+				add = 50
+			}
+			
+			# They owe us an obligation
+			if = {
+				limit = {
+					owes_obligation_to = scope:actor
+				}
+				add = 100
+			}
+			
+			# Subject relationship
+			if = {
+				limit = {
+					is_subject_of = scope:actor
+				}
+				add = 200
+			}
+			
+			# Negative modifiers
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = antagonistic
+					}
+				}
+				add = -100
+			}
+			
+			if = {
+				limit = {
+					has_attitude = {
+						who = scope:actor
+						attitude = domineering
+					}
+				}
+				add = -50
+			}
+			
+			# They're at war - less interested in science
+			if = {
+				limit = {
+					is_at_war = yes
+				}
+				add = -30
+			}
+		}
+	
+		will_propose = {
+			scaled_debt <= 0
+			is_at_war = no
+			net_fixed_income > 0
+			has_attitude = {
+				who = scope:target_country
+				attitude = protective
+			}
+		}
+	
+		will_break = {
+			NOT = {
+				has_attitude = {
+					who = scope:target_country
+					attitude = protective
+				}
+			}
+			NOR = {
+				root = {
+					owes_obligation_to = scope:target_country
+				}
+				NOT = {
+					scope:target_country = {
+						owes_obligation_to = root
+					}
+				}
+				AND = {
+					is_at_war = no
+					scope:target_country = { is_at_war = yes }
+				}
+			}
+		}
+	}
+}
