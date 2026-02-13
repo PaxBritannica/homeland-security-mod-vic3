@@ -26,4 +26,4 @@ The following great powers start with established intelligence services:
 - Option for those who want to try out a fast start
 
 ## Infrastructure
-No countries begin with intelligence buildings pre-constructed. All nations must still intelligence buildings from the ground up.
+No countries begin with intelligence buildings pre-constructed. All nations must build intelligence buildings from the ground up.
