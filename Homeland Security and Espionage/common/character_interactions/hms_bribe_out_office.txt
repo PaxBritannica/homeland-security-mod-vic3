@@ -1,8 +1,6 @@
 ﻿bribe_out_of_office = {
     # Actors who are not either Monarchs or Theocratic rulers can be bribed out of office.
 
-    clicksound = "event:/SFX/UI/Military/command_grant"
-
     show_requirements = yes
 
     potential = {
@@ -18,64 +16,18 @@
 			has_role = executive
 		}
 
-        AND = {
-            has_law_or_variant = law_type:law_secret_police
-            # has_technology_researched = HMS_tech_era_2_secret_service # Secret Police will be enough
-
-            owner ?= {
-                NOR = {
-                    has_law_or_variant = law_type:law_monarchy
-                    has_law_or_variant = law_type:law_theocracy
-                }
-            }
-        }
+        has_technology_researched = HMS_tech_era_2_secret_service
 
 		is_immortal = no
 	}
 
     
 
-    possible = {
-        
-
-        # # More likely to succeed if agitator is unpopular in their IG
-        # custom_tooltip = {
-        #     text = bribe_easier_if_unpopular
-        #     OR = {
-        #         interest_group ?= {
-        #             ig_approval <= neutral
-        #         }
-        #         popularity <= 0
-        #     }
-        # }
-    }
+    possible = {}
 
     effect = {
-		# if = {
-		# 	limit = {
-		# 		owner ?= {
-		# 			any_political_movement = {
-		# 				exists = most_desired_law
-		# 				is_revolutionary = yes
-		# 			}
-		# 		}
-		# 	}
-		# 	owner ?= {
-		# 		trigger_event = { id = resignation.2 popup = yes }
-		# 	}
-		# }
-		# else = {
-		# 	owner ?= {
-		# 		trigger_event = { id = resignation.1 popup = yes }
-		# 	}
-		# }
-
         this = {
             save_scope_as = resigning_politician
-
-            interest_group = {
-				save_scope_as = resignation_ig
-			}
         }
 
         owner ?= {
@@ -112,7 +64,9 @@
             add = 50
         }
 
-        # Avoid if agitator supports laws AI wants
+        # Giving too many debug errors for testing other features,
+        # activate once we can focus here
+        # #Avoid if agitator supports laws AI wants
         # if = {
         #     limit = {
         #         scope:actor = {
