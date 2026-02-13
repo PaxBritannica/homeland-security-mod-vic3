@@ -10,3 +10,8 @@ concept_secret_service = {
     texture = "gfx/interface/icons/invention_icons/secret_service_wbg.dds"
     is_loading_tip = yes
 }
+
+concept_foreign_affairs = {
+    texture = "gfx/interface/icons/law_icons/office_of_foreign_affairs.dds"
+    is_loading_tip = yes
+}

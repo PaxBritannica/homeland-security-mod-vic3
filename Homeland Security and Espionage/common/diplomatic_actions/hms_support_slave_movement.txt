@@ -39,10 +39,39 @@
 		#HAS DIPLOMATIC INTEREST
 		has_diplomatic_relevance = scope:target_country
 
-        #NOT WAR
-        NOT = {
-            has_war_with = scope:target_country
-        }
+		NOT = {
+			OR = {
+
+                # NO ALLIANCE, DEFENSIVE PACT OR MUTUAL NON INTERFERENCE TREATY ALLOWED FOR THIS ACTION
+				# WE ARE MEN WITH VALUES, NOT DOUBLE-DEALING DIPLOMATS
+
+                any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = mutual_non_interference
+					}
+				}
+
+				any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = defensive_pact
+					}
+				}
+
+				any_scope_treaty = {
+					binds = root
+					binds = scope:target_country
+					any_scope_article = {
+						has_type = alliance
+					}
+				}
+	
+				has_war_with = scope:target_country
+			}
+		}
 	}
 	
 	pact = {

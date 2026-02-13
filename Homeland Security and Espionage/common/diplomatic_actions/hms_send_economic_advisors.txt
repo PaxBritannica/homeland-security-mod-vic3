@@ -48,13 +48,31 @@
         NOT = {
             has_war_with = scope:target_country
         }
-        
+
+		custom_tooltip = {
+			text = is_not_building_a_country_already_OR_country_target_is_not_already_being_built_tt
+
+			NOR = {
+
+				#IF TARGET COUNTRY HAS ALREADY AN ECONOMIC ADVISORS IN ACT
+				scope:target_country = {
+					any_scope_diplomatic_pact = {
+						is_diplomatic_action_type = send_economic_advisors
+					}
+				}
+	
+				root = {
+					any_scope_diplomatic_pact = {
+						is_diplomatic_action_type = send_economic_advisors
+					}
+				}
+				
+			}
+		}
     }
 
-	accept_effect = {}
-
 	pact = {
-        cost = 300
+        cost = 250
 		is_two_sided_pact = yes
 		show_in_outliner = yes
 
@@ -76,14 +94,15 @@
         }
 
         first_modifier = {
-            # country_bureaucracy_add = -150 # Very expansive Bureaucracy wise # balance ? in correspondance with how much costs to incorporate
             country_pact_leverage_generation_mult = 0.10
         }
 
         second_modifier = {
+
             country_construction_goods_cost_mult = -0.2
             state_tax_capacity_mult = 0.2
             state_construction_mult = 0.2
+
         }
 
 	 	requirement_to_maintain = {
@@ -98,6 +117,33 @@
 			show_about_to_break_warning = {
 				scope:target_country.relations:root <= -17 # this is: poor + 3
 				scope:target_country.relations_change_rate:root < 0
+			}
+		}
+
+		monthly_effect = {
+			custom_tooltip = {
+				text = economic_advisors_pact_tt
+				if = {
+					limit = {
+						AND = {
+							scope:target_country = {
+								relations:root >= 10
+							}
+							NOT = { has_variable = has_ban_je }
+						}
+					}
+					random_list = { 
+						16 = {} # balance ? 
+						1 = { 
+							root = {
+								trigger_event = {
+									id = develop_nation_events.1 # Entry event to MAIN JE BAN / BUILD A NATION
+								}
+							}
+						}
+					}
+				}
+				
 			}
 		}
 
@@ -218,19 +264,19 @@
 				add = 20
 			}
 			
-			# Same power bloc
-			if = {
-				limit = {
-					AND = {
-						has_power_bloc = yes
-						scope:actor = {
-							has_power_bloc = yes
-						}
-						power_bloc = scope:actor.power_bloc
-					}
-				}
-				add = 50
-			}
+			# # Same power bloc
+			# if = {
+			# 	limit = {
+			# 		AND = {
+			# 			has_power_bloc = yes
+			# 			scope:actor = {
+			# 				has_power_bloc = yes
+			# 			}
+			# 			power_bloc = scope:actor.power_bloc
+			# 		}
+			# 	}
+			# 	add = 50
+			# }
 			
 			# They owe us an obligation
 			if = {
@@ -289,12 +335,12 @@
 		}
 	
 		will_break = {
-			NOT = {
-				has_attitude = {
-					who = scope:target_country
-					attitude = protective
-				}
+			
+			has_attitude = {
+				who = scope:target_country
+				attitude = antagonistic
 			}
+			
 			NOR = {
 				root = {
 					owes_obligation_to = scope:target_country

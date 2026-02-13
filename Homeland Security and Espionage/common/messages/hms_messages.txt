@@ -15,3 +15,15 @@ steal_tech_message_for_initiator = {
 	texture = "gfx/interface/icons/notification_icons/influence_bad.dds"
 	notification_type = toast
 }
+
+notify_successful_bribe = {
+	type = country
+	texture = "gfx/interface/icons/notification_icons/influence_bad.dds"
+	notification_type = toast
+}
+
+notify_unsuccessful_bribe = {
+	type = country
+	texture = "gfx/interface/icons/notification_icons/influence_bad.dds"
+	notification_type = toast
+}

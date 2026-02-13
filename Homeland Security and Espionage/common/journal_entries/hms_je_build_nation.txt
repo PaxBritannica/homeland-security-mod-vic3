@@ -1,0 +1,259 @@
+﻿hms_je_build_nation = {
+
+    icon = "gfx/interface/icons/company_charter_icons/monopoly_charter.dds"
+
+    group = je_group_intelligence
+
+    weight = 200
+
+    transferable = no
+    should_be_pinned_by_default = yes
+
+    scripted_button = hms_je_start_national_railway_project
+    scripted_button = hms_je_start_surveying_project
+
+    scripted_progress_bar = national_railway_project_bar
+    scripted_progress_bar = prospecting_initiative_progress_bar
+    scripted_progress_bar = BASE_TRUST_level_progress_bar 
+
+    immediate = {
+
+        #Start JE var
+        set_variable = has_ban_je
+
+        # Replace this with any scope country 
+        if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+                save_scope_as = ban_target
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = encourage_piracy
+                        }
+                    }
+                }
+                save_scope_as = ban_target
+            }
+        }
+
+    }
+
+    modifiers_while_active = {}
+
+    on_monthly_pulse = {
+        effect = {
+
+            # Important: Chechk if Investment is coming from outside Power Bloc only then proceed to assign monthly liberty desire
+            if = {
+                limit = {
+                    NOT = { has_variable = ban_investment_modifier_applied }
+                    scope:ban_target = {
+                        is_in_power_bloc = yes
+                        power_bloc = root.power_bloc
+                    }
+                }
+                set_variable = ban_investment_modifier_applied
+                scope:ban_target = {
+                    add_modifier = {
+                        name = getting_investment_from_powerbloc_member
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    scope:ban_target = {
+                        is_in_power_bloc = yes
+                        NOT = {
+							power_bloc = root.power_bloc
+						}
+                    }
+                }
+                scope:ban_target = {
+                    add_modifier = {
+                        name = getting_investment_from_country_outside_powerbloc
+                    }
+                }
+            }
+
+            # RAILWAY EFFECTS
+            if = {
+                limit = {
+                    scope:journal_entry = {
+                        "scripted_bar_progress(national_railway_project_bar)" >= 25
+                    }
+                }
+                trigger_event = {
+                    id = ban_railroad.2
+                    popup = yes 
+                }
+            }
+            if = {
+                limit = {
+                    scope:journal_entry = {
+                        "scripted_bar_progress(national_railway_project_bar)" >= 50
+                    }
+                }
+                trigger_event = {
+                    id = ban_railroad.4
+                    popup = yes 
+                }
+            }
+
+            # PROSPECTING EFFECT
+            if = {
+                limit = {
+                    scope:journal_entry = {
+                        "scripted_bar_progress(prospecting_initiative_progress_bar)" >= 25
+                    }
+                }
+                trigger_event = {
+                    id = ban_survey.2
+                    popup = yes 
+                }
+            }
+            if = {
+                limit = {
+                    scope:journal_entry = {
+                        "scripted_bar_progress(prospecting_initiative_progress_bar)" >= 50
+                    }
+                }
+                trigger_event = {
+                    id = ban_survey.4
+                    popup = yes 
+                }
+            }
+
+        }
+        random_events = {
+            25 = 0
+
+            ### RAILWAY PROJECT EVENTS
+            ##########################################################################
+            #bad outcomes
+            1 = ban_railroad.10 #bridge collapse
+            1 = ban_railroad.11 #Landowners block
+            # 1 = ban_railroad.12 #More steel needed # balance ? TODO fix modifiers
+            1 = ban_railroad.13 #Disease in camps
+            #good outcomes
+            2 = ban_railroad.20 #foreign engineers
+            2 = ban_railroad.21 #foreign migrant workers
+            2 = ban_railroad.23 #target's capitalists want to invest in the railroad
+            ###########################################################################
+
+
+            ### PROSPECTING PROJECT EVENTS
+            ###########################################################################
+            1 = ban_survey.10 # Expedition Lost
+            1 = ban_survey.11 # Hositle Locals
+            1 = ban_survey.12 # Equipment Failure
+            1 = ban_survey.13 # Rival Claim
+            #good outcomes
+            2 = ban_survey.20 #Hot spring discovery
+            2 = ban_survey.21 #Local prospector knowledge
+            # 2 = ban_survey.22 # Gold Flakes # OFF for now 
+            2 = ban_survey.23 # GP Academics
+        }
+    }
+
+    complete = {
+        custom_tooltip = {
+        	text = je_investigation_success
+        	scope:journal_entry = { "scripted_bar_progress(BASE_TRUST_level_progress_bar)" >= 50 }
+        }
+    }
+
+    on_complete = {
+
+        trigger_event = { id = develop_nation_events.100 popup = yes }
+        
+        #ADD ALL IN PROGRESS VARIABLE THIS IS VITAL TO NOT FQ UP THE NEXT JES
+        remove_variable = ban_railroad_completed
+        remove_variable = ban_railroad_construction_active
+        remove_variable = ban_prospecting_project_completed
+        remove_variable = ban_prospecting_project_active
+        remove_variable = reached_middle_milestone_prospecting
+        remove_variable = reached_middle_milestone_railroad
+
+        remove_variable = ban_investment_modifier_applied
+
+        remove_variable = has_ban_je
+    }
+
+    fail = {
+        OR = {
+            scope:ban_target = {
+                has_war_with = root
+            }
+            scope:ban_target = {
+                is_revolutionary = yes
+            }
+
+            is_revolutionary = yes
+        }
+    }
+
+    on_fail = {
+
+        trigger_event = { id = develop_nation_events.99 popup = yes }
+
+        #ADD ALL IN PROGRESS VARIABLE THIS IS VITAL TO NOT FQ UP THE NEXT JES
+        remove_variable = ban_railroad_completed
+        remove_variable = ban_railroad_construction_active
+        remove_variable = ban_prospecting_project_completed
+        remove_variable = ban_prospecting_project_active
+        remove_variable = reached_middle_milestone_prospecting
+        remove_variable = reached_middle_milestone_railroad
+
+        remove_variable = ban_investment_modifier_applied
+
+        remove_variable = has_ban_je
+    }
+
+    invalid = {}
+
+    on_invalid = {
+
+        remove_variable = ban_railroad_completed
+        remove_variable = ban_railroad_construction_active
+        remove_variable = ban_prospecting_project_completed
+        remove_variable = ban_prospecting_project_active
+        remove_variable = reached_middle_milestone_prospecting
+        remove_variable = reached_middle_milestone_railroad
+
+        remove_variable = ban_investment_modifier_applied
+
+        remove_variable = has_ban_je
+    }
+
+    status_desc = {
+        first_valid = {
+            triggered_desc = {
+                desc = building_target_country_desc_tt
+            }
+        }
+    }
+
+}
