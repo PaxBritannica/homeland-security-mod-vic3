@@ -10,12 +10,18 @@
  lawgroup_foreign_affairs: "Foreign Policies"
  law_militarized_police: "Martial Law"
  law_militarized_police_desc: "The military is granted authority to enforce law and order within the nation, allowing for swift and decisive action during times of unrest or emergency."
+ 
+ #BAN
+ ban_railroad_funding_cost: "Investing in building railways in a foreign land"
+ hms_je_build_nation: "To Build A Nation"
+ building_target_country_desc_tt: "We have pledged to invest in [SCOPE.sCountry('ban_target').GetName]"
 
  #tooltips
  intelligence_op_arm_radicalism_tt: "Start a mission to smuggle @small_arms! weapons in the target country and boost their class inequality to potentially start a revolution movement."
  encourage_piracy_monthly_effect_tt: "Start a mission to fund plundering and disbanding of the target's @convoys! [concept_convoys] and [concept_port_connection]."
  je_intelligence_piracy_bribe_effect_tt: "This will stop the perpetrator from funding the piracy operation against us, but it won't be cheap."
  steal_technology_monthly_effect_tt: "Add a #y small#! monthly probability to #y siphon technology#! from the target country."
+ economic_advisors_pact_tt: "We will gain a monthly chance of triggering an event that will give us a choice to commit in investing in the nation even more. This will happen only when our relations have reached >= 10."
 
  #institutions
  institution_foreign_affairs: "Foreign Affairs"
@@ -50,7 +56,7 @@
 
  #modifiers
  building_intel_hq_throughput_mult: "Secret Service Headquarter Throughput"
- modifier_bribed_resignation: "Bribed Resignation Expanse"
+ modifier_bribed_resignation: "Bribed Resignation"
  modifier_accepted_secret_service_bribe: "Accepted Secret Service Bribe"
  modifier_attempted_bribe_scandal_radicalism: "Attempted Bribe Scandal"
  modifier_attempted_bribe_scandal_legitimacy: "Attempted Bribe Scandal"
@@ -208,6 +214,8 @@
  naval_awareness: "Naval Awareness"
  concept_secret_service: "Secret Service"
  concept_secret_service_desc: "The Secret Service is a government organism concerned with gathering intelligence data and conducting covert operations. Its main role is to protect the nation's interests and population from internal and external threats."
+ concept_foreign_affairs: "Foreign Affairs"
+ concept_foreign_affairs_desc: "Foreign Affairs comprehend all the external actions that aim to expand one nation's global reach through the use of various diplomatic channels and tools. All personnel is permitted to work only with the Foreign Affairs law enacted under the Foreign Policies law category. Foreign Affairs come with their own insitution level which unlocks different friendly and hostile diplomatic actions at different tiers."
 
  concept_naval_awareness_desc: "Increases the effectiveness of our naval forces by improving their ability to detect and respond to enemy movements at sea. Having better @naval_awareness! [concept_naval_awareness] than the enemy provides a chance for them to get the [GetBattleCondition('battle_condition_fog_of_war').GetName] battle condition (debuff) at the start of naval battles."
 
@@ -234,6 +242,8 @@
 
  je_sabotage_joint_secret_service_effort: "Joint Secret Service Effort"
  je_sabotage_joint_secret_service_effort_desc: "Collaborate with allied nations and dispatch more local agents in order to effectively investigate and apprehend the perpetrators behind the explosion."
+ sabotage_police_progress_bar: "Progress of Police's investigation."
+ sabotage_radicals_progress_bar: "Perpetrators' progress to leave the country."
  sabotage_police_progress_bar_desc: "Progress of Police's investigation."
  sabotage_radicals_progress_bar_desc: "Perpetrators' progress to leave the country."
  radicals_plotting_freely: "Perpetrators still at large (Base gain)."
@@ -251,7 +261,7 @@
  family_compensation: "Family Compensation"
  accepted_foreign_assistance: "Accepted Foreign Assistance"
  je_investigation_failure: "Investigation Failure"
- je_investigation_success: "Investigation Success"
+ je_investigation_success: "#yellow Reciprocal Trust#! progress bar reaches 100%"
  
  #COMPANY NAMES
  dynamic_company_type_central_agency: "Central Intelligence Agency"

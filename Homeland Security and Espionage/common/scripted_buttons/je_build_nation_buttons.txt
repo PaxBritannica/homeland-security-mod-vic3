@@ -1,0 +1,111 @@
+﻿################################
+### JE MINERAL SURVEYING PROJECT 
+################################
+hms_je_start_surveying_project = {
+
+    name = hms_je_start_surveying_project
+	desc = hms_je_start_surveying_project_desc
+
+	visible = { always = yes }
+
+    ai_chance = {
+		base = 10
+	}
+
+    possible = {
+		
+        # We do have prospecting
+        has_technology_researched = prospecting
+
+        custom_tooltip = {
+            text = prospecting_project_not_yet_started_tt
+            NOT = { has_variable = ban_prospecting_project_active }
+            NOT = { has_variable = ban_prospecting_project_completed }
+        }
+        
+	}
+
+    effect = {
+        set_variable = ban_prospecting_project_active
+
+        add_modifier = {
+            name = ban_prospecting_funding_cost
+            months = -1
+        }
+
+        scope:ban_target = {
+            add_modifier = {
+                name = ban_prospecting_in_progress # BIG BONUS FOR MINES AND BIG CHANCE OF RESOURCE DISCOVERY
+                months = -1
+            }
+        }
+
+        scope:ban_target = {
+            add_technology_researched = prospecting
+        }
+
+        # Fire the first railroad event
+        trigger_event = {
+            id = ban_survey.1 
+            popup = yes
+        }
+    }
+
+}
+
+
+#########################################
+# NATIONAL RAILROAD PROJECT
+#########################################
+hms_je_start_national_railway_project = {
+
+    name = hms_je_start_national_railway_project
+	desc = hms_je_start_national_railway_project_desc
+
+	visible = { always = yes }
+
+    ai_chance = {
+		base = 10
+	}
+
+    possible = {
+		
+        # We do have railways
+        has_technology_researched = railways
+
+        custom_tooltip = {
+            text = railway_project_not_yet_started_tt
+            NOT = { has_variable = ban_railroad_construction_active }
+            NOT = { has_variable = ban_railroad_completed }
+        }
+        
+	}
+
+    effect = {
+        set_variable = ban_railroad_construction_active
+
+        add_modifier = {
+            name = ban_railroad_funding_cost
+            months = -1
+        }
+
+        scope:ban_target = {
+            add_modifier = {
+                name = ban_railroad_in_progress
+                months = -1
+            }
+        }
+
+        scope:ban_target = {
+            add_technology_researched = railways
+        }
+
+        # Fire the first railroad event
+        trigger_event = {
+            id = ban_railroad.1
+            popup = yes
+        }
+    }
+    
+
+}

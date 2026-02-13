@@ -212,6 +212,16 @@
             }
 
             is_revolutionary = yes
+
+            # WILL FAIL IF PACT IS NOT ENACTED ANYMORE!
+            NOT = {
+                root = {
+                    has_diplomatic_pact = {
+                        who = scope:ban_target
+                        type = send_economic_advisors
+                    }
+                }
+            }
         }
     }
 

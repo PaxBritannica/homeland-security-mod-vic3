@@ -1,0 +1,908 @@
+﻿### Build a Nation - Railroad Event Chain ###
+
+namespace = ban_railroad
+
+# Event 1: Engineers Dispatched
+ban_railroad.1 = {
+	type = country_event
+	placement = root
+
+    event_image = {
+		video = "unspecific_steam_ship"
+	}
+
+	title = ban_railroad.1.t
+	desc = ban_railroad.1.d
+	flavor = ban_railroad.1.f
+
+	duration = 3
+
+	option = {
+		name = ban_railroad.1.a
+
+		custom_tooltip = {
+			text = will_start_working_railways_tt
+			# trigger_event = { # lets try to trigger this from the JE pulse
+			# 	id = ban_railroad.2
+			# 	months = 7
+			# }
+		}
+
+		default_option = yes
+	}
+}
+
+# Event 2: First Rail Lines Laid (~7 months in)
+ban_railroad.2 = { # FIRES AT 50% RAILROAD
+	type = country_event
+	placement = root
+
+	title = ban_railroad.2.t
+	desc = ban_railroad.2.d
+    flavor = ban_railroad.2.f
+
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    event_image = {
+		video = "unspecific_trains"
+	}
+
+	trigger = {
+		has_variable = ban_railroad_construction_active
+		NOT = { has_variable = ban_railroad_completed }
+		NOT = { has_variable = reached_middle_milestone_railroad }
+	}
+
+	immediate = {
+		set_variable = reached_middle_milestone_railroad
+	}
+
+	duration = 3
+
+	# Option A: Stay the course
+	option = {
+		name = ban_railroad.2.a
+
+		# First batch of railroads spawned
+		ban_spawn_railroads_batch = yes
+
+		trigger_event = {
+			id = ban_railroad.3
+			months = 8
+		}
+
+		ai_chance = { base = 70 }
+	}
+
+	# Option B: Invest more to accelerate
+	option = {
+		name = ban_railroad.2.b
+
+		ban_spawn_railroads_batch = yes
+		
+        add_modifier = {
+            name = railways_faster_build_modifier
+            months = 4
+        }
+
+		custom_tooltip = {
+			text = ban_tensions_among_railroad_workers_tt
+			trigger_event = {
+				id = ban_railroad.3
+				months = 5
+			}
+		}
+
+		ai_chance = { base = 30 }
+	}
+}
+
+# Event 3: Worker Tensions on the Line (~12 months in)
+ban_railroad.3 = {
+	type = country_event
+	placement = root
+
+	title = ban_railroad.3.t
+	desc = ban_railroad.3.d
+	flavor = ban_railroad.3.f
+
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    event_image = {
+		video = "votp_realist_household"
+	}
+
+	duration = 3
+
+	# Option A: Pay the workers better
+	option = {
+		name = ban_railroad.3.a
+
+        add_modifier = {
+            name = better_payments_for_railroad_workers
+            months = 6
+        }
+
+		custom_tooltip = { # slightly negative
+			text = negative_progress_railroad_tt
+			set_variable = {
+				name = var_workers_are_working_slower_pace
+				months = 5
+			}
+		}
+
+		ai_chance = { base = 60 }
+	}
+
+	# Option B: Enforce discipline
+	option = {
+		name = ban_railroad.3.b
+
+		add_radicals = {
+			value = 0.05
+		}
+
+		# Some unrest in target country
+		scope:ban_target = {
+			add_radicals = {
+				value = 0.05
+			}
+		}
+
+		custom_tooltip = { # slightly negative
+			text = negative_progress_railroad_tt
+			set_variable = {
+				name = var_workers_are_overworked
+				months = 7
+			}
+		}
+
+		ai_chance = { base = 40 }
+	}
+}
+
+# Event 4: Railroad Network Complete (~16-18 months in)
+ban_railroad.4 = {
+	type = country_event
+	placement = root
+
+	title = ban_railroad.4.t
+	desc = ban_railroad.4.d
+	flavor = ban_railroad.4.f
+
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+    event_image = {
+		video = "unspecific_trains"
+	}
+
+	trigger = {
+		has_variable = ban_railroad_construction_active
+		NOT = { has_variable = ban_railroad_completed }
+	}
+
+	duration = 1
+
+	option = {
+		name = ban_railroad.4.a
+
+		# Final batch of railroads
+		ban_spawn_railroads_batch = yes
+
+		# Remove funding modifier
+		remove_modifier = ban_railroad_funding_cost
+		remove_modifier = ban_railroad_funding_cost_halvened
+
+        add_modifier = {
+           name = foreign_railroad_completed
+		   years = 10
+        }
+
+		scope:ban_target = {
+			remove_modifier = ban_railroad_in_progress
+
+            # Unsure # balance ? ma che glie devo da di piu' ??
+			# add_modifier = {
+			# 	name = ban_railroad_completed
+			# 	months = -1
+			# }
+		}
+
+		# Add bonus progress to main JE
+		set_variable = ban_railroad_completed
+		remove_variable = ban_railroad_construction_active
+
+		# Relations boost
+		change_relations = {
+			country = scope:ban_target
+			value = 15
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+
+############################################################################################
+################### RANDOM EVENTS THAT CAN HAPPEN DURING RAILWAY CONSTRUCTION
+################### THESE CAN EITHER SLOW OR ADD PROGRESS TO THE ACTIVE PROGRESS BAR
+############################################################################################
+
+
+### Build a Nation - Railroad Random Events ###
+### These fire randomly during the railroad construction period ###
+
+# A BRIDGE HAS COLLAPSED
+ban_railroad.10 = {
+	type = country_event
+	placement = root
+
+	title = ban_railroad.10.t
+	desc = ban_railroad.10.d
+	flavor = ban_railroad.10.f
+
+	event_image = {
+		video = "unspecific_fire"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_railroad_construction_active
+		NOT = { has_variable = ban_railroad_completed }
+	}
+
+	cooldown = {
+		years = 2
+	}
+
+	immediate = {
+		set_variable = ban_rr_bridge_collapse_fired
+	}
+
+	# Option A: Emergency rebuild throw money at it
+	option = {
+		name = ban_railroad.10.a
+
+		add_modifier = {
+			name = railways_faster_build_modifier
+			months = 7
+		}
+
+		custom_tooltip = {
+			text = ban_lose_railway_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = -5 name = national_railway_project_bar }
+			}
+		}
+		
+
+		ai_chance = { base = 60 }
+	}
+
+	# Option B: Redesign the route — cheaper but slower
+	option = {
+		name = ban_railroad.10.b
+
+		custom_tooltip = {
+			text = ban_lose_railway_progress_large_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = -10 name = national_railway_project_bar }
+			}
+		}
+
+		ai_chance = { base = 40 }
+	}
+}
+
+# A STOOPID LAND DISPUTE
+ban_railroad.11 = {
+	type = country_event
+	placement = root
+
+	title = ban_railroad.11.t
+	desc = ban_railroad.11.d
+	flavor = ban_railroad.11.f
+
+	event_image = {
+		video = "southamerica_aristocrats"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_railroad_construction_active
+		NOT = { has_variable = ban_railroad_completed }
+	}
+
+	cooldown = {
+		years = 1
+	}
+
+	immediate = {
+		set_variable = ban_rr_land_dispute_fired
+	}
+
+	# Option A: Buy the landowners out
+	option = {
+		name = ban_railroad.11.a
+
+		add_modifier = {
+			name = unexpected_cost_railroad
+			months = 7
+		}
+
+		# No progress loss — money solves the problem
+		scope:ban_target = {
+			add_loyalists = {
+				value = 0.02
+				interest_group = ig_landowners
+			}
+		}
+
+		custom_tooltip = {
+			text = ban_gain_railway_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = 5 name = national_railway_project_bar }
+			}
+		}
+
+		ai_chance = { base = 50 }
+	}
+
+	# Option B: Force the route through — invoke eminent domain
+	option = {
+		name = ban_railroad.11.b
+
+		custom_tooltip = {
+			text = ban_lose_railway_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = -5 name = national_railway_project_bar }
+			}
+		}
+
+		ai_chance = { base = 50 }
+	}
+}
+
+
+# Supply Shortage
+# ban_railroad.12 = {
+# 	type = country_event
+# 	placement = root
+
+# 	title = ban_railroad.12.t
+# 	desc = ban_railroad.12.d
+# 	flavor = ban_railroad.12.f
+
+# 	event_image = {
+# 		video = "middleeast_engineer_blueprint"
+# 	}
+
+# 	duration = 1
+
+# 	trigger = {
+# 		has_variable = ban_railroad_construction_active
+# 		NOT = { has_variable = ban_railroad_completed }
+# 	}
+
+# 	cooldown = {
+# 		days = never_fire_again_modifier_time
+# 	}
+
+# 	immediate = {
+# 		set_variable = ban_rr_supply_shortage_fired
+# 	}
+
+# 	# Option A: Import steel at premium prices
+# 	option = {
+# 		name = ban_railroad.12.a
+
+# 		add_modifier = {
+# 			name = buying_more_steel_for_railway_construction
+# 			months = 7
+# 		}
+
+# 		custom_tooltip = {
+# 			text = ban_lose_railway_progress_small_tt
+# 			je:hms_je_build_nation ?= {
+# 				add_progress = { value = -5 name = national_railway_project_bar }
+# 			}
+# 		}
+
+# 		ai_chance = { base = 50 }
+# 	}
+
+# 	# Option B: Wait for domestic supply to recover
+# 	option = {
+# 		name = ban_railroad.12.b
+
+# 		add_modifier = {
+# 			name = pumping_out_steel
+# 			months = 7
+# 		}
+
+# 		custom_tooltip = {
+# 			text = ban_lose_railway_progress_small_tt
+# 			je:hms_je_build_nation ?= {
+# 				add_progress = { value = -10 name = national_railway_project_bar }
+# 			}
+# 		}
+
+# 		ai_chance = { base = 50 }
+# 	}
+# }
+
+# A disease has struck our camps
+ban_railroad.13 = {
+	type = country_event
+	placement = root
+
+	title = ban_railroad.13.t
+	desc = ban_railroad.13.d
+	flavor = ban_railroad.13.f
+
+	event_image = {
+		video = "unspecific_sick_in_hospital"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_railroad_construction_active
+		NOT = { has_variable = ban_railroad_completed }
+	}
+
+	cooldown = {
+		years = 2
+	}
+
+	immediate = {
+		set_variable = ban_rr_disease_fired
+	}
+
+	# Option A: Fund medical aid and quarantine — halt work temporarily
+	option = {
+		name = ban_railroad.13.a
+
+		add_modifier = {
+			name = unexpected_cost_railroad
+			months = 7
+		}
+
+		custom_tooltip = { # slightly negative
+			text = negative_progress_railroad_tt
+			set_variable = {
+				name = var_healing_workers
+				months = 9
+			}
+		}
+
+		add_technology_progress = {
+			technology = pharmaceuticals
+			progress = 2000
+		}
+
+		# Workers appreciate the care
+		scope:ban_target = {
+			add_loyalists = {
+				value = 0.02
+			}
+
+			add_technology_progress = {
+				technology = pharmaceuticals
+				progress = 2000
+			}
+		}
+
+		ai_chance = { base = 60 }
+	}
+
+	# Option B: Continue construction, replace the fallen
+	option = {
+		name = ban_railroad.13.b
+
+		add_modifier = {
+			name = ban_more_mortality_infrastructure_modifier
+			months = 13
+		}
+
+		custom_tooltip = { # completely left workers to die
+			text = negative_progress_railroad_tt
+			set_variable = {
+				name = var_refused_curing_workers
+				months = 12
+			}
+		}
+
+		scope:ban_target = {
+			add_radicals = {
+				value = 0.05
+			}
+
+			add_modifier = {
+				name = ban_more_mortality_infrastructure_modifier
+				months = 13
+			}
+		}
+
+		add_radicals = {
+			value = 0.03
+		}
+
+		ai_chance = { base = 40 }
+	}
+}
+
+#########################################################################################################
+######
+##################### GOOD EVENTS
+######
+#########################################################################################################
+
+
+# FOREIGN VOLUNTEERS
+ban_railroad.20 = {
+	type = country_event
+	placement = root
+
+	title = ban_railroad.20.t
+	desc = ban_railroad.20.d
+	flavor = ban_railroad.20.f
+
+	event_image = {
+		video = "unspecific_trains"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_railroad_construction_active
+		NOT = { has_variable = ban_railroad_completed }
+	}
+
+	cooldown = {
+		years = 1
+	}
+
+	immediate = {
+		set_variable = ban_rr_foreign_engineers_fired
+	}
+
+	# Option A: Welcome them — free expertise
+	option = {
+		name = ban_railroad.20.a
+
+		default_option = yes
+
+		add_modifier = {
+			name = ban_foreign_volunteer_influx
+			months = 13
+		}
+
+		custom_tooltip = {
+			text = ban_gain_railway_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = 5 name = national_railway_project_bar }
+			}
+		}
+
+		ai_chance = { base = 70 }
+
+		custom_tooltip = {
+			text = short_time_contracts_engineers_tt
+		}
+	}
+
+	# Option B: Welcome them and hire them permanently
+	option = {
+		name = ban_railroad.20.b
+
+		add_modifier = {
+			name = ban_foreign_volunteer_influx
+		}
+
+		add_modifier = {
+			name = unexpected_cost_railroad
+			months = 7
+		}
+
+		custom_tooltip = {
+			text = ban_gain_railway_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = 5 name = national_railway_project_bar }
+			}
+		}
+
+		# Long-term bonus to target's construction
+		scope:ban_target = {
+			add_modifier = {
+				name = ban_foreign_volunteer_influx
+				months = 13
+			}
+		}
+
+		custom_tooltip = {
+			text = long_time_contracts_engineers_tt
+		}
+
+		ai_chance = { base = 30 }
+	}
+
+	option = {
+		name = ban_railroad.20.c
+	}
+}
+
+# More laborers joining the project
+ban_railroad.21 = {
+	type = country_event
+	placement = root
+
+	title = ban_railroad.21.t
+	desc = ban_railroad.21.d
+	flavor = ban_railroad.21.f
+
+	event_image = {
+		video = "asia_poor_people_moving"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_railroad_construction_active
+		NOT = { has_variable = ban_railroad_completed }
+	}
+
+	cooldown = {
+		years = 1
+	}
+
+	# Option A: Hire them all — fast progress
+	option = {
+		name = ban_railroad.21.a
+
+		custom_tooltip = {
+			text = positive_progress_railroad_tt
+			set_variable = {
+				name = var_LOT_paid_wage_workers
+				months = 9
+			}
+		}
+
+		add_modifier = {
+			name = unexpected_cost_railroad
+			months = 7
+			multiplier = 2
+		}
+
+		scope:ban_target = {
+			add_radicals = {
+				value = 0.1
+				pop_type = laborers
+			}
+
+			add_modifier = {
+				name = ban_more_mortality_construction_modifier
+				months = 13
+			}
+		}
+
+		ai_chance = { base = 60 }
+	}
+
+	# Option B: Hire selectively — less progress but save money
+	option = {
+		name = ban_railroad.21.b
+
+		custom_tooltip = {
+			text = positive_progress_railroad_tt
+			set_variable = {
+				name = var_PRO_paid_wage_workers
+				months = 9
+			}
+		}
+
+		add_modifier = {
+			name = unexpected_cost_railroad
+			months = 7
+		}
+
+		ai_chance = { base = 40 }
+	}
+
+	# Option C: Min wage workers
+	option = {
+		name = ban_railroad.21.c
+
+		add_radicals = {
+			value = 0.1
+			pop_type = laborers
+		}
+
+		scope:ban_target = {
+			add_radicals = {
+				value = 0.1
+				strata = lower
+			}
+
+			add_modifier = {
+				name = ban_more_mortality_construction_modifier
+				months = 13
+				multiplier = 1.1
+			}
+		}
+		
+		custom_tooltip = {
+			text = positive_progress_railroad_tt
+			set_variable = {
+				name = var_min_wage_workers
+				months = 9
+			}
+		}
+
+		ai_chance = { base = 40 }
+	}
+}
+
+#Favorable Terrain Discovery TODO
+# ban_railroad.22 = {
+# 	type = country_event
+# 	placement = root
+
+# 	title = ban_railroad.22.t
+# 	desc = ban_railroad.22.d
+# 	flavor = ban_railroad.22.f
+
+# 	event_image = {
+# 		video = "unspecific_desert_expedition"
+# 	}
+
+# 	duration = 1
+
+# 	trigger = {
+# 		NOT = { has_variable = ban_railroad_completed }
+# 	}
+
+# 	cooldown = {
+# 		days = never_fire_again_modifier_time
+# 	}
+
+# 	immediate = {
+# 		set_variable = ban_rr_terrain_fired
+# 	}
+
+# 	# Option A: Reroute through the pass — save time
+# 	option = {
+# 		name = ban_railroad.22.a
+
+# 		je:hms_je_build_nation ?= {
+# 			add_progress = { value = 4 name = national_railway_project_bar }
+# 		}
+
+# 		add_treasury = 5000		# Refund from saved materials
+
+# 		ai_chance = { base = 70 }
+# 	}
+
+# 	# Option B: Keep original route but use the pass for a branch line
+# 	option = {
+# 		name = ban_railroad.22.b
+
+# 		je:hms_je_build_nation ?= {
+# 			add_progress = { value = 2 name = national_railway_project_bar }
+# 		}
+
+# 		# Bonus railway in the discovered area
+# 		scope:ban_target = {
+# 			random_scope_state = {
+# 				limit = { is_incorporated = yes }
+# 				create_building = {
+# 					building = building_railway
+# 					level = 1
+# 					reserves = 1
+# 				}
+# 			}
+# 		}
+
+# 		ai_chance = { base = 30 }
+# 	}
+# }
+
+#Private Investment
+ban_railroad.23 = {
+	type = country_event
+	placement = root
+
+	title = ban_railroad.23.t
+	desc = ban_railroad.23.d
+	flavor = ban_railroad.23.f
+
+	event_image = {
+		video = "europenorthamerica_capitalists_meeting"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_railroad_construction_active
+		NOT = { has_variable = ban_railroad_completed }
+	}
+
+	cooldown = {
+		years = 1
+	}
+
+	immediate = {
+		
+	}
+
+	# Option A: Accept the investment — shared ownership
+	option = {
+		name = ban_railroad.23.a
+
+		remove_modifier = ban_railroad_funding_cost
+		remove_modifier = ban_railroad_funding_cost_halvened
+
+		custom_tooltip = {
+			text = positive_progress_railroad_tt
+			set_variable = {
+				name = var_capitalist_financing
+				months = 9
+			}
+		}
+
+		add_modifier = {
+			name = ban_railroad_funding_cost_halvened
+		}
+
+		#TODO Add VAR FOR dividends difference
+
+		ig:ig_industrialists ?= {
+	        add_modifier = {
+	            name = ig_unappeased
+	            months = 24
+	        }
+		}
+
+		add_radicals = {
+			value = 0.1
+			pop_type = capitalists
+		}
+
+		scope:ban_target = {
+			add_loyalists = {
+				value = 0.1
+				interest_group = ig_industrialists
+			}
+
+			add_loyalists = {
+				value = 0.1
+				pop_type = capitalists
+			}
+		}
+
+		ai_chance = { base = 60 }
+	}
+
+	# Option B: Decline — keep full state control
+	option = {
+		name = ban_railroad.23.b
+		default_option = yes
+
+		#TODO Add VAR FOR dividends difference
+
+		add_loyalists = {
+			value = 0.1
+			pop_type = capitalists
+		}
+
+		scope:ban_target = {
+			add_loyalists = {
+				value = 0.1
+			}
+		}
+
+		ai_chance = { base = 40 }
+	}
+}

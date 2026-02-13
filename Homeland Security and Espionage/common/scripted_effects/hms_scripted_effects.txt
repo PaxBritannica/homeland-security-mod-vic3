@@ -1,0 +1,62 @@
+﻿# Spawns 1 railway in 3 different random states of the target country
+ban_spawn_railroads_batch = {
+	scope:ban_target = {
+		random_scope_state = {
+
+			limit = {
+				is_incorporated = yes
+			}
+
+			save_scope_as = ban_rail_state_1
+
+			create_building = {
+
+				building = building_railway
+				level = 1
+				reserves = 1
+
+			}
+
+		}
+
+		random_scope_state = {
+
+			limit = {
+				is_incorporated = yes
+				NOT = { this = scope:ban_rail_state_1 }
+			}
+
+			save_scope_as = ban_rail_state_2
+
+			create_building = {
+				building = building_railway
+				level = 1
+				reserves = 1
+			}
+            
+		}
+
+		random_scope_state = {
+
+			limit = {
+				is_incorporated = yes
+				NOT = { this = scope:ban_rail_state_1 }
+				NOT = { this = scope:ban_rail_state_2 }
+			}
+
+			create_building = {
+				building = building_railway
+				level = 1
+				reserves = 1
+			}
+		}
+
+	}
+}
+
+# ban_add_bonus_progress = {
+# 	change_variable = {
+# 		name = ban_main_progress
+# 		add = 6		# Each completed action adds 6 months worth of bonus progress
+# 	}
+# }

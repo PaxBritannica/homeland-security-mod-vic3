@@ -10,6 +10,10 @@
  commander_in_danger_tt_low_chance: "There is a low chance of something happening to one of our commanders."
  commander_in_danger_tt_high_chance: "There is a high chance that something could happen to one of our commanders."
  target_armed_radicals_modifier: "Targeted the armed Radicals"
+ perpetrators_escaped_justice_modifier: "Terrorists escaped justice"
+ refused_to_extradate_radicals: "Refused to extradate radicals"
+ accepted_to_extradate_radicals: "Accepted to extradate radicals"
+ perpetrators_caught_modifier: "Justice prevails"
 
  #tooltips
  intelligence_op_arm_radicals_tt: "Corrupt the higher strata and smuggle weapons across the target's border to arm radical factions, increasing political unrest and weakening the target government's stability"
@@ -17,6 +21,7 @@
  pirates_escaped_tooltip: "The search will be unsuccessful, the pirates will remain a threat."
  half_chance_sabotage_progress_tt: "Split chance of police or perpetrators making progress."
  secret_service_handles_tt: "Our [concept_secret service] will handle this quietly."
+ is_not_building_a_country_already_OR_country_target_is_not_already_being_built_tt: "Our Country is not already sending economic advisors to another country OR this country is not already being economically sustained."
  
  
  
@@ -28,7 +33,10 @@
  notification_piracy_initiator_name_message_desc: "It was [SCOPE.sCountry('piracy_initiator').GetName] all along."
  steal_tech_message_for_initiator_name: "Tech Steal operation discovered by [SCOPE.sCountry('steal_tech_target').GetName]"
  steal_tech_message_for_initiator_desc: "Our agents have been caught siphoning technology from [SCOPE.sCountry('steal_tech_target').GetName]. Our operation has been compromised and our mutual relations have been damaged."
-
+ notification_notify_unsuccessful_bribe_name: "Unsuccessful Bribe"
+ notification_notify_successful_bribe: "Successful Bribe"
+ notification_notify_successful_bribe_desc: "[SCOPE.sCharacter('resigning_politician').GetFullName] has retired from political life."
+ notification_notify_unsuccessful_bribe_desc: "[SCOPE.sCharacter('resigning_politician').GetFullName] has refused our offer."
 
 
 
@@ -204,7 +212,8 @@
  sabotage_event.99.d: "Amidst the chaos following the recent explosion, radical elements have exploited the confusion to escape justice in our country. Authorities are confirmed they managed to get away and escape to [SCOPE.sCountry('rival_country_1').GetName]."
  sabotage_event.99.f: "Our security forces were stretched thin, grappling with the immediate crisis. Seizing this opportunity, radical factions orchestrated a daring escape, slipping through the cracks of our overwhelmed defenses. As the dust settled, it became clear that these elements had vanished into the shadows, evading capture and fleeing to [SCOPE.sCountry('rival_country_1').GetName]. Their disappearance raises urgent questions about our preparedness and the need for heightened vigilance against such threats in the future."
  sabotage_event.99.a: "Publicly denounce [SCOPE.sCountry('rival_country_1').GetName]."
- sabotage_event.99.b: "We will take action when the time is right."
+ sabotage_event.99.b: "If we only had a law to engage in [concept_foreign_affairs]"
+ sabotage_event.99.c: "Dispatch a [concept_foreign_affairs] delegation."
 
  sabotage_event.5.t: "Foreign Help"
  sabotage_event.5.d: "[SCOPE.sCountry('helper_country_1').GetName] And [SCOPE.sCountry('helper_country_2').GetName] have come forward offering help for our cause."
@@ -220,4 +229,396 @@
  hms_resignation_events.3.b: "Feed him to the newspapers and denounce [SCOPE.sCountry('foreign_power').GetName]."
  hms_resignation_events.3.c: "If we only had a [concept_secret_service]..."
  hms_resignation_events.3.e: "Let the [concept_secret_service] do the work for us."
+
+ sabotage_event.100.t: "Radicals seeking asylum"
+ sabotage_event.100.d: "A delegation from [SCOPE.sCountry('delegation_sender_country').GetName] has arrived with an important message: local radicals are hiding in our country, they asked us to help them bring them back and face justice in [SCOPE.sCountry('delegation_sender_country').GetName]."
+ sabotage_event.100.f: "In the wake of the recent explosion that hit the capital of [SCOPE.sCountry('delegation_sender_country').GetName] killing dozens, looks like some of the perpetrators decided to cross our border to seek asylum here. \n\n Either we consider them partisans or terrorist, if we decide to not extradate them, [SCOPE.sCountry('delegation_sender_country').GetName] is not going to like it."
+ sabotage_event.100.a: "We won't shelter terrorists. Extradate them to [SCOPE.sCountry('delegation_sender_country').GetName]."
+ sabotage_event.100.b: "Our borders, our laws."
+
+# DELEGATION GETS REFUSED
+sabotage_event.101.t: "Extradition Refused"
+sabotage_event.101.d: "Our delegation returns empty handed. [SCOPE.sCountry('country_where_radicals_seek_refuge').GetName] has formally refused to extradite the #r radicals#! responsible for the bombing, choosing political convenience over justice."
+sabotage_event.101.f: "Behind closed doors, sympathy and expediency speak louder than condemnation."
+sabotage_event.101.a: "#r Terrorists#! protect their own."
+
+# DELEGATION ACCEPTED – EXTRADITION GRANTED
+sabotage_event.102.t: "Extradition Granted"
+sabotage_event.102.d: "[SCOPE.sCountry('country_where_radicals_seek_refuge').GetName] has agreed to our request. The #r radicals#! responsible for the attack will be extradited and face justice under our laws."
+sabotage_event.102.f: "In a dark age engulfed in suspicion and shadows, there are still shared values among rivals and so cooperation remains possible."
+sabotage_event.102.a: "#g Justice#! will be served."
+
+develop_nation_events.1.t: "A Promising Economy"
+develop_nation_events.1.d: "With growing sentiment of #y friendship#! between us and [SCOPE.sCountry('send_economic_advisors_target').GetName], our advisors have started to consider a more #y focused involvement#! in the development of as a sovereign state. \n\nIf we commit to this we will have more options to boost [SCOPE.sCountry('send_economic_advisors_target').GetName]'s critical infrastructure and economy. Embark in this journey will come at a #r considerable cost#!."
+develop_nation_events.1.f: ""
+develop_nation_events.1.a: "[SCOPE.sCountry('send_economic_advisors_target').GetName]'s destiny lies in our hands."
+develop_nation_events.1.b: "As of now we need to focus elsewhere."
+
+develop_nation_events.1.t: "A Promising Economy"
+develop_nation_events.1.d: "With the growing spirit of #y friendship#! between us and [SCOPE.sCountry('send_economic_advisors_target').GetName], our advisors are beginning to see an opportunity. A more #y direct and focused involvement#! in their development could help shape them into a stable and prosperous state. Should we commit to this path, we would gain broader means to strengthen their economy. In return, they would become #g deeply grateful#! perhaps even willing to join our sphere of influence. Still, nothing is guaranteed, and #r unforeseen challenges may yet arise#!."
+develop_nation_events.1.f: "-Their factories are silent and their coffers thin- remarked the appointed advisor. -With our guidance, they could thrive. Without it… others will step in-."
+develop_nation_events.1.a: "[SCOPE.sCountry('send_economic_advisors_target').GetName]'s destiny lies in our hands."
+develop_nation_events.1.b: "Our attention must remain elsewhere, for now."
+
+develop_nation_events.7.t: "The Price of Knowledge"
+develop_nation_events.7.d: "Delegates from [SCOPE.sCountry('country_intel_buyer').GetName] have approached us with discreet inquiries regarding the results of our recent prospecting operations. They are prepared to make a generous offer, no questions asked, in exchange for full access to our findings."
+develop_nation_events.7.f: "There will be a time in which information will travel faster than ore from the earth, and it will be far more valuable."
+develop_nation_events.7.a: "Very well. Knowledge has its price."
+develop_nation_events.7.b: "We are not interested."
+
+
+develop_nation_events.99.t: "Investors Pulling Out"
+develop_nation_events.99.d: "Political #red fervor and instability#! in the region has closed up the possibility to keep investing in [SCOPE.sCountry('ban_target').GetName]. We are retreating all assets and possibly wait for a better opportunity."
+develop_nation_events.99.f: "When goods don't cross borders, soldiers will."
+develop_nation_events.99.a: "That's a #r shame#!."
+
+ ### =============================================
+ ### MAIN COMPLETION EVENT FIRED AT 100% BAN JE
+ ### =============================================
+
+ develop_nation_events.100.t: "A Nation Transformed"
+ develop_nation_events.100.f: "Those who build nations shape the world."
+
+ ### Dynamic descriptions based on target's bloc status
+
+ develop_nation_events.100.d_unaligned: "Our #y monumental effort#! to develop [SCOPE.sCountry('ban_target').GetName] has reached its conclusion. Where once there was crumbling infrastructure, illiteracy, and untapped potential, there now stands a nation with modern infrastructure, all built with our money, our engineers, and our vision.\n\n [SCOPE.sCountry('ban_target').GetName] currently stands unaligned in the great power struggle. Given the extraordinary investment we have made in their future, it would be entirely reasonable to expect them to align with our interests. The question is how we wish to capitalize on this transformation."
+
+ develop_nation_events.100.d_rival_bloc: "Our #y monumental effort#! to develop [SCOPE.sCountry('ban_target').GetName] has reached its conclusion. The transformation has been remarkable and yet, [SCOPE.sCountry('ban_target').GetName] remains a member of a rival power bloc, one that contributed nothing to their modernization.\nThis is an untenable situation. We poured our #yellow treasury and expertise#! into building their nation from the ground up. The least they can do is stand with those who made their prosperity possible. We could #yellow suport their growing demand for independence#! though this will certainly provoke a reaction from their current patron."
+
+ develop_nation_events.100.d_our_bloc: "Our #y monumental effort#! to develop [SCOPE.sCountry('ban_target').GetName] has reached its conclusion. As a member of our power bloc, they were already aligned with our interests,but now that alignment runs deeper than mere politics. Their infrastructure, their institutions, their very economy bears our fingerprints.\n\nThis is an opportunity to solidify our influence and reap the rewards of our considerable investment."
+
+ develop_nation_events.100.a_invite: "Invite [SCOPE.sCountry('ban_target').GetName] to join our power bloc."
+ develop_nation_events.100.a_support_independentism: "Support [SCOPE.sCountry('ban_target').GetName]'s cause for #yellow independentism #!."
+ develop_nation_events.100.b_obligation: "[SCOPE.sCountry('ban_target').GetName] owes us an #yellow Obligation#!."
+ develop_nation_events.100.d_already_ours: "Tighten loyalty and #yellow economic bonds#!."
+ develop_nation_events.100.c_economic: "We don't ask for nothing in return."
+
+ ban_economic_dependency_funder: "Economic Patron"
+ ban_economic_dependency_target: "Economic Dependency"
+
+ develop_nation_events.101.t: "Our Influence is Undermined"
+ develop_nation_events.101.d: "Our delegates have confirmed that a mission from [SCOPE.sCountry('ban_funder').GetName] has begun in [SCOPE.sCountry('ban_target').GetName], offering investments and promises of #yellow economic cooperation#!. Though presented as a gesture of goodwill, their involvement threatens to erode our standing and diminish our #red influence#! over [SCOPE.sCountry('ban_target').GetName]."
+ develop_nation_events.101.f: "The foreign delegation has been received with notable enthusiasm. Public appearances have been few, and discussions largely private. The warmth of the welcome suggests that more than simple trade may be under negotiation."
+ develop_nation_events.101.a: "[SCOPE.sCountry('ban_funder').GetName] can invest however they want."
+ develop_nation_events.101.b: "Publicly denounce [SCOPE.sCountry('ban_funder').GetName]."
+
+ develop_nation_events.102.t: "Crossing a Red Line"
+ develop_nation_events.102.d: "[SCOPE.sCountry('ban_funder').GetName] has succesfully completed its #yellow investment campaign#! and is now demanding that [SCOPE.sCountry('ban_target').GetName] breaks free of our #yellow power bloc#!. The independentism campaign is already under way and this interference is about to generate a serious crysis if we do not act."
+ develop_nation_events.102.f: "What we suspected was indeed true, and now we will have to consider what's ahead. We are on the verge of a serious diplomatic crysis that if not contained could lead to catastrofic consequences."
+ develop_nation_events.102.a: "We must plan our next moves."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ###################################################################
+ ###################################################################
+ #### B A N - B U I L D I N G - A - N A T I O N - E V E N T S - ####
+ ###################################################################
+ ###################################################################
+
+ ### =============================================
+ ### PROGRESS BAR TOOLTIP DESCRIPTIONS
+ ### These show in the JE progress bar breakdown
+ ### =============================================
+
+ ### Base Growth
+ ban_base_growth_tt: "Railroad construction underway"
+ ban_base_growth_survey_tt: "Prospecting underway"
+
+ ### Positive — Hiring Quality
+ ban_min_wage_workers_tt: "Minimum wage labor force"
+ ban_LOT_paid_wage_workers_tt: "Extensive workforce hired"
+ ban_PRO_paid_wage_workers_tt: "Professional workforce recruited"
+
+ ### Negative — Worker Conditions
+ ban_healing_workers_tt: "Workers recovering from illness"
+ ban_workers_slower_pace_tt: "Workers resting, reduced pace"
+ ban_workers_overworked_tt: "Overworked labor force"
+ ban_refused_curing_tt: "Untreated sick workers"
+ hindere_by_locals_tt: "Hindered By Locals"
+ foreign_railroad_completed: "Foreign Railroad Project Completed"
+
+ permanent_research_camp_modifier: "Setup a permanent research camp"
+ support_independentism_modifier: "Supported Independentism"
+ getting_investment_from_powerbloc_member: "Investment Founds From Bloc Member"
+
+ technological_spreader_modifier: "Exporter of Innovation and Expertise"
  
+
+ not_interested_in_build_nation_je_tt: "Will keep the #yellow Send Economic Advisors#! pact Active but won't start the #y To Build A Nation#! Journal Entry."
+ buying_more_steel_for_railway_construction: "Buying more Steel for Railway Construction"
+ pumping_out_steel: "Pumping Out Steel"
+ unexpected_cost_railroad_tt: "Unexpected Cost related to Railway Project"
+ unexpected_cost_prospecting: "Unexpected Cost related to Prospecting Project"
+ ban_more_mortality_construction_modifier: "Higher Mortality Rate in Construction"
+ ban_more_mortality_infrastructure_modifier: "Higher Mortality Rate in Infrastructure"
+ ban_foreign_volunteer_influx: "Foreign Volunteer Workers for Railway Project"
+ ban_railroad_funding_cost_halvened: "Railroad Funding Cost (Halvened)"
+ building_railway_throughput_mult: "Railway Throughput"
+ BASE_TRUST_level_progress_bar_desc: "Level of reciprocal #yellow Trust#!"
+ investing_in_building_railways_in_a_foreign_land: "Investing in building a Railway System in a foreign land"
+
+ railways_faster_build_modifier: "Railway Faster Build"
+ unexpected_cost_railroad: "Unexpected Expense related to Railway Project"
+ permanent_boost_to_prospecting_expertise: "Permanent Boost To Prospecting Expertise"
+
+ ban_lose_railway_progress_large_tt: "#r Lose small #! progress on the Railway project."
+ ban_lose_railway_progress_small_tt: "#r Lose small #! progress on the Railway project."
+ ban_gain_railway_progress_large_tt: "#g Gain Large #! progress on the Railway project."
+ ban_gain_railway_progress_small_tt: "#g Gain Small #! progress on the Railway project."
+ 
+ positive_progress_railroad_tt: "We will gain a #g timed positive variable#! on the #y Railway project#!."
+ negative_progress_railroad_tt: "We will gain a #r timed negative variable#! on the #y Railway project#!."
+ positive_progress_prospecting_tt: "We will gain a #g timed positive variable#! on the #y Prospecting project#!."
+ negative_progress_prospecting_tt: "We will gain a #r timed negative variable#! on the #y Prospecting project#!."
+ ban_prospecting_project_completed_tt: "Prospecting Project Completed"
+ prospecting_project_completed_tt: "Prospecting Project Completed"
+ ban_railway_project_completed_tt: "Railway Project Completed"
+ will_start_working_railways_tt: "#g Progress#! on the Railway System will start."
+
+ ban_prospecting_project_active_tt: "Prospecting Project Underway"
+ ban_national_railway_active_tt: "Railway Project Underway"
+
+
+ ########### BUILD NATIONAL RAILWAY ################
+ hms_je_start_surveying_project: "Start #yellow Mineral Survey#! Project"
+ hms_je_start_surveying_project_desc: "Send mineral experts and technician to [SCOPE.sCountry('ban_target').GetName] in order to find precious minerals and resources."
+ hms_je_start_national_railway_project: "Start #yellow Expand Railway#! Project"
+ hms_je_start_national_railway_project_desc: "Send construction workers and railways engineers to [SCOPE.sCountry('ban_target').GetName] in order to construct railways across the country."
+ national_railway_project_bar: "Railway Construction Progress"
+ BASE_TRUST_level_progress_bar_desc: " Reciprocal #yellow Trust Growth #! "
+ better_payment_for_railroad_workers: "Better Payment For Railroad Contractors"
+ railway_project_not_yet_started_tt: "Railway Construction not yet started"
+ prospecting_project_not_yet_started_tt: "Prospecting Project not yet started"
+ ban_national_railway_built_tt: "Successfully Built National Railway"
+ ban_high_level_of_foreign_investment_tt: "High investment level on Foreign Officers Institution"
+ ban_tensions_among_railroad_workers_tt: "Tensions are rising among the railroad workers."
+ getting_investment_from_country_outside_powerbloc: "Getting Investment from Country Outside Power Bloc"
+ send_economic_advisors_trigger_false_desc_first: "#yellow Send Economic Pact#! ceases"
+
+ ban_base_add_value_tt: "Base level of trust growth"
+ hms_je_build_nation_reason: "In order to build a solid nation out of this country we will need to invest in infrastructure and constructions. \n We can do so by starting a national project in the country. In order to gain reciprocal trust one project must either be #y started#! or #yellow completed#!. In addition to this #yellow Send Economic Advisors#! pact must remain enacted for the whole length. Removing this pact will cause our investors to quit."
+ national_railway_project_bar_desc: "#yellow Expand Railway#! Progress"
+
+ ban_railroad.1.t: "Engineers Dispatched"
+ ban_railroad.1.d: "Our finest #yellow railway engineers#! have been dispatched to [SCOPE.sCountry('ban_target').GetName]. They will survey the terrain, plan optimal routes connecting major #yellow population centers#!, and begin preparations for the largest infrastructure project this nation has ever seen.\n\n The teams carry with them blueprints, surveying equipment, and the expertise needed to bring the iron horse to these lands."
+ ban_railroad.1.f: "'Steel will cross rivers where ferries once failed' remarked the Chief Engineer before departure. 'Give us time, men and money and we will be back as those who brought wonders where there was once only rocks and stones.'"
+ ban_railroad.1.a: "Where the rail goes, #yellow civilization#! follows."
+
+ ban_railroad.2.t: "First Rail Lines Completed"
+ ban_railroad.2.d: "Months of grueling work have yielded results, the first rail lines in [SCOPE.sCountry('ban_target').GetName] are now operational. Locomotives have begun their maiden journeys, connecting previously isolated towns to the wider economy.\n\n The local population watches in wonder as goods and people move at speeds previously unimaginable. Our engineers report that #yellow additional investment#! could significantly accelerate the remaining construction."
+ ban_railroad.2.f: "At precisely dawn, the engine arrived at the newly built station to the cheers of hundreds. Children ran alongside the track, and elders crossed themselves as the machine screamed past. A vast cloud of steam covering the dim sunrays."
+ ban_railroad.2.a: "We shall continue as planned."
+ ban_railroad.2.b: "Invest more to #yellow accelerate#! construction."
+
+ ban_railroad.3.t: "Tensions Among the Rail Workers"
+ ban_railroad.3.d: "Construction crews working on the railroad expansion in [SCOPE.sCountry('ban_target').GetName] have grown restless. The backbreaking labor of blasting through hillsides, bridging ravines, and laying track in harsh conditions has taken its #r toll#!.\n\nThe workers petition for better wages and improved living conditions in the construction camps."
+ ban_railroad.3.f: "'We don't fear the work'" one trackman was overheard saying, 'but we fear being buried beside it.' His companions nodded in grim agreement, unrest was growing among the workers, so many hours and so little pay..."
+ ban_railroad.3.a: "Pay the men and give them some #g rest#!."
+ ban_railroad.3.b: "This is the price of #yellow industrialization#!."
+
+ ban_railroad.4.t: "National Railroad Complete"
+ ban_railroad.4.d: "The railroad network in [SCOPE.sCountry('ban_target').GetName] is complete. A web of iron and steel now connects their major cities, ports, mining regions, and agricultural heartlands. Markets that were once isolated now trade freely, and the economic transformation is already visible.\n\nOur engineers return home seasoned by hardship and triumph alike, having left behind a nation irrevocably transformed."
+ ban_railroad.4.f: "From coast to hinterland, the whistle of the locomotive heralds a new era. Distance has been defeated, the future is here and it arrived by rails.'"
+ ban_railroad.4.a: "A monument of Engineering!"
+
+ ban_railroad.10.t: "Bridge Collapse"
+ ban_railroad.10.d: "#r Disaster#! has struck the railroad project in [SCOPE.sCountry('ban_target').GetName]. A partially completed bridge spanning a major river has collapsed during construction, sparkling a raging fire. Miraculously, there were no casualties besides 2 horses, the collapse occurred during a shift change but the setback is significant due to the lost equipment.\n\n Our chief engineer reports two options: an expensive emergency rebuild using reinforced designs, or a cheaper but slower reroute that avoids the river crossing entirely."
+ ban_railroad.10.f: "The river, it seems, had other plans."
+ ban_railroad.10.a: "Emergency rebuild, spare no expense."
+ ban_railroad.10.b: "Redesign the route around the crossing."
+
+ ban_railroad.11.t: "Landowners Block the Railway"
+ ban_railroad.11.d: "A coalition of wealthy landowners in [SCOPE.sCountry('ban_target').GetName] has organized resistance against the planned rail route, which would cut directly through their most productive estates. We can either negotiate a generous compensation package to buy their cooperation, or invoke the authority of the state to force the route through regardless of their objections."
+ ban_railroad.11.f: "So is true. #yellow Progress and property#! rights make uncomfortable bedfellows."
+ ban_railroad.11.a: "Buy them out."
+ ban_railroad.11.b: "Call in [SCOPE.sCountry('ban_target').GetName], let them deal with it."
+
+ ban_railroad.12.t: "Miscalculated Steel Imports"
+ ban_railroad.12.d: "Construction on the [SCOPE.sCountry('ban_target').GetName] railroad has ground to a halt. Our procurement officers report that the domestic steel supply has been exhausted every foundry is operating at capacity, and demand from the railroad project has outstripped what the local economy can produce.\n\n We can source steel from foreign markets at significantly inflated prices, or we can pause construction and wait for local production to catch up, though this will cost us months of progress."
+ ban_railroad.12.f: "Fast. Cheap. Correct. Choose two."
+ ban_railroad.12.a: "Import steel at premium prices."
+ ban_railroad.12.b: "We will cover with our industries."
+
+ ban_railroad.13.t: "Outbreak in the Construction Camps"
+ ban_railroad.13.d: "A #r virulent outbreak#! has swept through the worker camps along the [SCOPE.sCountry('ban_target').GetName] railroad corridor. Dozens of laborers have fallen ill, and the misterious disease is spreading rapidly through the cramped, unsanitary conditions of the temporary settlements.\n\n We can fund a proper medical response, doctors, clean water supplies, and quarantine measures which will slow construction but #g save lives#!. Or we can press forward, #r replacing sick workers#! with new recruits, though the human cost and the anger it generates will be considerable."
+ ban_railroad.13.f: "The price of progress is most often paid by those suffering in silence."
+ ban_railroad.13.a: "Dispatch a medical team."
+ ban_railroad.13.b: "The construction must continue. Recruit replacements."
+
+ ban_railroad.20.t: "Foreign Engineers Offer Their Services"
+ ban_railroad.20.d: "Word of our railroad project in [SCOPE.sCountry('ban_target').GetName] has spread through the engineering community abroad. A group of #yellow experienced railway engineers#!, veterans of major construction projects in Europe and the Americas, has offered to volunteer their expertise to our cause.\n\n Their knowledge of modern construction techniques, bridge design, and route optimization could prove invaluable. We may also consider hiring them on permanently to provide long-term technical support to our country when the project will be done."
+ ban_railroad.20.f: "Engineers like to solve problems. If there are no problems handily available, they will create their own."
+ ban_railroad.20.a: "Offer them #y short-time#! contracts"
+ ban_railroad.20.b: "Offer them #yellow long-time#! contracts."
+ ban_railroad.20.c: "Decline their help."
+ short_time_contracts_engineers_tt: "We will hire them but just for this work alone."
+ long_time_contracts_engineers_tt: "The Engineers will stick with us and join our country's open positions once we will be done with this project."
+
+ ban_railroad.21.t: "Laborers Flock to the Railroad"
+ ban_railroad.21.d: "News of well-paying construction work has traveled fast across [SCOPE.sCountry('ban_target').GetName]. Hundreds of unemployed laborers, displaced farmers, out-of-work artisans and former soldiers have gathered at construction sites, eager for a chance to earn a wage laying track.\n\n We can hire them all, dramatically increasing the pace of construction at a modest additional cost. Or we can be selective, hiring only the most capable workers to maintain quality while keeping expenses low."
+ ban_railroad.21.f: "Where there is work, there are willing hands."
+ ban_railroad.21.a: "Hire them all. Regardless of the cost."
+ ban_railroad.21.b: "Hire selectively, quality over quantity."
+ ban_railroad.21.c: "Offer them the minimum wage, with no extra expenses."
+
+ # Event 22 localization missing for now, since it became a negative event (bridge collapsed)
+
+ ban_railroad.23.t: "Local Capitalists Seek Partnership"
+ ban_railroad.23.d: "A consortium of wealthy industrialists in [SCOPE.sCountry('ban_target').GetName] has approached us with a proposal: they wish to invest their own capital into the railroad in exchange for partial ownership of certain rail lines and preferential freight rates for their businesses.\n\n Accepting their investment would ease our #yellow financial burden#! and #yellow accelerate construction#!. We could also lose some of the later dividends coming from the project."
+ ban_railroad.23.f: "#yellow Capital#! flows toward opportunity like water toward the sea."
+ ban_railroad.23.a: "Accept the investment. Make it a #y shared#! ownership."
+ ban_railroad.23.b: "Decline, the railroads belong to the people. #yellow And Us#!."
+ var_capitalists_financing: "Added capitalists funds"
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################# SURVEY TERRAIN FOR POSSIBLE MINERALS ##################
+
+ ban_lose_prospecting_progress_large_tt: "#r Lose small #! progress on the Prospecting project."
+ ban_lose_prospecting_progress_small_tt: "#r Lose small #! progress on the Prospecting project."
+ ban_gain_prospecting_progress_large_tt: "#g Gain Large #! progress on the Prospecting project."
+ ban_gain_prospecting_progress_small_tt: "#g Gain Small #! progress on the Prospecting project."
+ ban_prospecting_expedition_members_lost: "We lose valuable members of the expedition team."
+ lost_expedition_members_tt: "Lost Expedition Members"
+ ban_prospecting_expedition_members_lost_tt: "Lost Expedition Members"
+
+ building_coal_mine_throughput_mult: "Coal Mine Throughput"
+ building_iron_mine_throughput_mult: "Iron Mine Throughput"
+ building_gold_mine_throughput_mult: "Gold Mine Throughput"
+ building_sulfur_mine_throughput_mult: "Sulfur Mine Throughput"
+ building_lead_mine_throughput_mult: "Lead Mine Throughput"
+
+ prospecting_initiative_progress_bar: "Prospecting Progress"
+ prospecting_initiative_progress_bar_desc: "#yellow Prospecting Project#! Progress"
+ 
+ ban_prospecting_funding_cost: "Funding a foreign prospecting project"
+ ban_prospecting_in_progress: "Foreign prospectors are surveying our soil"
+ settled_land_dispute_modifier: "Settled a Land Dispute with another country"
+ income_of_sold_land: "Sold Mining Rights on Foreign Territory"
+ income_of_sold_intel: "Income Of Sold Intel"
+ ban_prospecting_completed_tt: "Prospecting Project Completed"
+ ban_railroad_in_progress: "Railroad Project Underway"
+
+ ban_survey.1.t: "Survey Expedition Deployed"
+ ban_survey.1.d: "A team of experienced geologists and prospectors has been dispatched into the interior of [SCOPE.sCountry('ban_target').GetName]. Armed with the latest surveying instruments and geological maps, they will systematically explore the country's terrain in search of #yellow valuable mineral deposits#!. \n\n The expedition will take months, traversing mountains, river valleys, and plains as they collect samples and map formations."
+ ban_survey.1.f: "What lies beneath may reshape the fate of nations."
+ ban_survey.1.a: "Report back with whatever you find."
+
+ ### Survey Event 2: The Interim Report ###
+ ban_survey.2.t: "The Interim Report"
+ ban_survey.2.d: "Our geological survey team in [SCOPE.sCountry('ban_target').GetName] has reached a significant milestone. After months of painstaking fieldwork, collecting soil samples, mapping rock formations, and testing mineral compositions, they have produced a comprehensive interim report detailing their findings so far.\n\nThe data is promising. Our geologists have identified #yellow several areas of significant mineral potential#!, and the second phase of the survey could yield even more valuable results. However, the question now is not what lies beneath the ground, but rather what we do with this knowledge."
+ ban_survey.2.f: "Knowledge is power and power must be wielded wisely."
+ ban_survey.2.a: "Share the findings with [SCOPE.sCountry('ban_target').GetName]."
+ ban_survey.2.b: "Keep the report #y classified#!, knowledge is leverage."
+ ban_survey.2.c: "Expand the survey, our own geologists are learning too."
+
+ ban_survey.3.t: "Discovery in the Field"
+ ban_survey.3.d: "Exciting news from the survey expedition in [SCOPE.sCountry('ban_target').GetName] Our geologists have completed their analysis of the region's subsurface formations. The results are in, and they reveal the true extent of the country's mineral potential."
+ ban_survey.3.a: "Significant mineral wealth confirmed!"
+
+ ###--- Add random events ---###
+ ###--- Add possible OIL events ###
+ ###--- southamerica_child_labor CHILD LABOR EVENT ---###
+ ###--- Add OIL event if we know about pumbjacks ---###
+
+ ban_survey.4.t: "Mineral Survey Complete"
+ ban_survey.4.d: "The mineral survey of [SCOPE.sCountry('ban_target').GetName] has been completed. Our geologists have produced comprehensive maps detailing the location and estimated quantity of mineral resources across the country. During this time we have helped them boosting their mining outputs and discovering possible new resources."
+ ban_survey.4.a: "Excellent work. The earth has revealed its secrets."
+
+ ### Expedition Lost
+ ban_survey.10.t: "Survey Expedition Goes Missing"
+ ban_survey.10.d: "Contact has been lost with our geological survey team operating deep in the interior of [SCOPE.sCountry('ban_target').GetName]. The team was last reported heading into a remote mountain range to investigate promising rock formations. After some time still no word has come since.\n\n The terrain is #r rugged and unmapped#! they may simply be out of messenger range, or something worse may have happened. We can dispatch a well-equipped rescue party immediately, or trust that our experienced surveyors will find their way back on their own."
+ ban_survey.10.f: "The wilderness does not suffer the unprepared."
+ ban_survey.10.a: "Send our #y best explorers#!."
+ ban_survey.10.b: "They're professionals, give them #y time#!."
+
+ ### Hostile Locals
+ ban_survey.11.t: "Hostile Locals"
+ ban_survey.11.d: "Our survey teams in [SCOPE.sCountry('ban_target').GetName] have run into fierce resistance from local communities forcing us to call out for military escorts. In several areas, villagers have confronted our teams directly, demanding they leave.\n\nWe can attempt to win their cooperation by hiring locals as paid workers and guides, or we shall consider hiring more contractors for their safety."
+ ban_survey.11.f: "The earth belongs to those who live upon it, or so they believe."
+ ban_survey.11.a: "Hire locals as #yellow guides and workers#!."
+ ban_survey.11.b: "Request more #y military personnel#!, the survey must continue."
+
+ ### Equipment Failure
+ ban_survey.12.t: "Surveying Instruments Destroyed"
+ ban_survey.12.d: "#y Doretta#!, the pack mule carrying our primary surveying instruments: theodolites, barometers, mineral testing kits, lost its footing on a mountain trail in [SCOPE.sCountry('ban_target').GetName]. The equipment tumbled into a ravine and is beyond salvage.\n\nWithout proper instruments, the accuracy of our geological surveys will be severely compromised."
+ ban_survey.12.f: "A geologist without his tools is merely a man staring at rocks."
+ ban_survey.12.a: "Import replacement instruments."
+ ban_survey.12.b: "Adapt. Improvise."
+
+ ### Rival Claim
+ ban_survey.13.t: "A Foreign Power Claims"
+ ban_survey.13.d: "An unexpected diplomatic complication has arisen. [SCOPE.sCountry('rival_claim_country').GetName] is claiming pre-existing mineral exploration rights in several regions of [SCOPE.sCountry('ban_target').GetName] where our survey teams are currently operating. They demand we cease operations immediately or face diplomatic consequences.\n\nThis is almost certainly an opportunistic power play, but ignoring it could strain relations. We can settle the matter quietly with a financial payment, or reject the claim outright and continue our work."
+ ban_survey.13.f: "The ground yields its riches; nations yield nothing."
+ ban_survey.13.a: "Pay them off, settle this quietly."
+ ban_survey.13.b: "Reject the claim, these rights are ours."
+
+ ### Hot Spring Discovery
+ ban_survey.20.t: "Geothermal Activity Detected"
+ ban_survey.20.d: "Our surveyors in [SCOPE.sCountry('ban_target').GetName] have stumbled upon an area of significant geothermal activity: hot springs, steam vents, and mineral-rich water bubbling up from deep underground. The geological implications are #y exciting#!: such activity often indicates the presence of valuable mineral deposits in the surrounding rock formations.\n\n We can redirect few members of the survey team to investigate this area more closely while the others keep venturing elsewhere, or we could settle a camp here to gather important research data."
+ ban_survey.20.f: "The earth itself speaks to those who listen."
+ ban_survey.20.a: "The Main Survey has priority"
+ ban_survey.20.b: "Establish a #yellow permanent research camp#!."
+ ermanent_research_camp_modifier: "Settled Permanent Research Camp on Foreign Land"
+
+ ### Local Prospector's Knowledge
+ ban_survey.21.t: "An Old Prospector Offers His Secrets"
+ ban_survey.21.d: "An elderly local prospector has approached our survey camp in [SCOPE.sCountry('ban_target').GetName]. Weathered by decades of wandering the hills and river beds, he claims to know the location of mineral deposits that no outsider has ever documented. His eyes are sharp despite his age, and the few samples he's brought are genuine. #yellow He'll share his knowledge for a price#!."
+ ban_survey.21.f: "The land remembers, and so do its oldest sons."
+ ban_survey.21.a: "We have no time to spare for local fools."
+ ban_survey.21.b: "Hire the #yellow Old Man#!."
+ we_cannot_guarantee_this_man_is_legit: "We cannot guarantee this man is legit."
+ old_man_guidance_tt: "Old Man guidance"
+
+#  ### River Gold
+#  ban_survey.22.t: "Gold Flakes in the River"
+#  ban_survey.22.d: "While setting up a base camp along a river in  [SCOPE.sCountry('ban_target').GetName], one of our workers noticed something glinting in the shallows. Gold flakes! Word has spread through the camp like wildfire, and morale has never been higher.\n\n The gold is real, though likely carried downstream from a source further upriver. We can log the find in our survey report and stay focused on the broader mission, or divert part of our team upstream to trace the gold to its source, potentially a much larger deposit."
+#  ban_survey.22.f: "He who has the gold makes the rules."
+#  ban_survey.22.a: "Report the finding"
+#  ban_survey.22.b: "Trace the gold upstream — find the source. §G+£12,000§!"
+
+ ### Academic Expedition
+ ban_survey.23.t: "University Geologists Offer Assistance"
+ ban_survey.23.d: "A prestigious university in [SCOPE.sCountry('country_explorers').GetName] has learned of our mineral survey in [SCOPE.sCountry('ban_target').GetName] and has dispatched a team of academic geologists eager to participate. They bring with them #yellow state-of-the-art#! equipment, the latest geological theories, and a genuine enthusiasm for scientific discovery.\n\n They propose a full data-sharing arrangement, our practical findings combined with their academic analysis could yield far more accurate results."
+ ban_survey.23.f: "Science and statecraft need not be strangers."
+ ban_survey.23.a: "Welcome them. Share all data openly."
+ ban_survey.23.b: "We work better alone."
+
+ shared_prospecting_data_modifier: "Sharing Prospecting research Findings"
+ refused_collaboration_prospecting: "Refused to cooperate with a Great Power on a foreign project"
+
+## ADD OIL EVENT

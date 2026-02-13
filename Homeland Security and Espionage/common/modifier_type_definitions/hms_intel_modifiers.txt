@@ -203,3 +203,72 @@ unit_naval_awareness_mult = {
 #         ai_value=0
 #     }
 # }
+
+
+
+
+
+
+
+
+
+
+
+
+
+############# BAN MODIFIERS ############
+
+#Added due to need in BAN JE
+building_railway_throughput_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+building_coal_mine_throughput_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+building_iron_mine_throughput_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+building_gold_mine_throughput_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+building_sulfur_mine_throughput_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}
+
+building_lead_mine_throughput_mult = {
+    decimals=1
+    color=good
+    percent = yes
+    game_data={
+        ai_value=0
+    }
+}

@@ -1,0 +1,809 @@
+﻿### Build a Nation - Mineral Survey Event Chain ###
+
+namespace = ban_survey
+
+# =============================================
+# Event 1: Survey Expedition Deployed (~1 month after action)
+# =============================================
+
+ban_survey.1 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.1.t
+	desc = ban_survey.1.d
+	flavor = ban_survey.1.f
+
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+	duration = 3
+
+    event_image = {
+        video = "unspecific_trains"
+    }
+
+	option = {
+		name = ban_survey.1.a
+
+        default_option = yes
+
+		trigger_event = {
+			id = ban_survey.2
+			months = 4
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+### Build a Nation - Survey Event 2 (Reworked) ##
+ban_survey.2 = { # FIRES AT 50% PROSPECTING
+	type = country_event
+	placement = root
+
+	title = ban_survey.2.t
+	desc = ban_survey.2.d
+	flavor = ban_survey.2.f
+
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+	event_image = {
+		video = "europenorthamerica_gold_prospectors"
+	}
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+		NOT = { has_variable = reached_middle_milestone_prospecting }
+	}
+
+	immediate = {
+		set_variable = reached_middle_milestone_prospecting
+	}
+
+	duration = 3
+
+	# Share findings with target
+	option = {
+		name = ban_survey.2.a
+
+		change_relations = {
+			country = scope:ban_target
+			value = 10
+		}
+
+		custom_tooltip = {
+			text = ban_gain_prospecting_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = 5 name = prospecting_initiative_progress_bar }
+			}
+		}
+
+		ai_chance = { base = 40 }
+	}
+
+	# Option B: Keep findings classified AND use as trade leverage
+	option = {
+		name = ban_survey.2.b
+
+		change_relations = {
+			country = scope:ban_target
+			value = -5
+		}
+
+		# Useless for now but we could use later to influence trust bar 
+		set_variable = {
+			name = avoided_sharing_initial_findings
+			months = 13
+		}
+
+		trigger_event = {
+			id = develop_nation_events.7
+			months = 6
+		}
+
+		ai_chance = { base = 30 }
+	}
+
+	# Option C: Expand the survey, our geologists are learning too
+	option = {
+		name = ban_survey.2.c
+
+		add_modifier = {
+			name = unexpected_cost_prospecting
+			months = 7
+		}
+
+		# Funder gets domestic mining boost — expertise gained abroad
+		add_modifier = {
+			name = permanent_boost_to_prospecting_expertise
+			months = -1
+		}
+
+		ai_chance = { base = 30 }
+	}
+}
+
+
+# # Event 3: The Discovery (~9 months in) - Random outcome
+# ban_survey.3 = {
+# 	type = country_event
+# 	placement = root
+
+# 	title = ban_survey.3.t
+# 	desc = ban_survey.3.d
+
+# 	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+#     event_image = {
+#         video = "europenorthamerica_gold_prospectors"
+#     }
+
+# 	duration = 3
+
+# 	# Option A: Rich deposits found!
+# 	option = {
+# 		name = ban_survey.3.a
+
+# 		# Higher chance if deep exploration was funded
+# 		trigger = {
+# 			OR = {
+# 				has_variable = ban_survey_deep_exploration
+# 				# Random chance for standard survey too
+# 			}
+# 		}
+
+# 		# Set flag for rich outcome
+# 		set_variable = ban_survey_rich_find
+
+# 		trigger_event = {
+# 			id = ban_survey.4
+# 			months = 3
+# 		}
+
+# 		ai_chance = {
+# 			base = 40
+# 			modifier = {
+# 				trigger = { has_variable = ban_survey_deep_exploration }
+# 				add = 30
+# 			}
+# 		}
+# 	}
+
+# 	# Option B: Modest deposits found
+# 	option = {
+# 		name = ban_survey.3.b
+
+# 		trigger_event = {
+# 			id = ban_survey.4
+# 			months = 3
+# 		}
+
+# 		ai_chance = {
+# 			base = 60
+# 			modifier = {
+# 				trigger = { has_variable = ban_survey_deep_exploration }
+# 				add = -30
+# 			}
+# 		}
+# 	}
+# }
+
+# Event 4: Survey Complete (~12 months in)
+ban_survey.4 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.4.t
+	desc = ban_survey.4.d
+
+	icon = "gfx/interface/icons/event_icons/event_trade.dds"
+
+    event_image = {
+        video = "unspecific_signed_contract"
+    }
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+	}
+
+	duration = 3
+
+	option = {
+		name = ban_survey.4.a
+
+		default_option = yes
+
+		# Remove in-progress modifiers
+		remove_modifier = ban_prospecting_funding_cost
+
+		scope:ban_target = {
+			remove_modifier = ban_prospecting_in_progress
+		}
+
+		### Re-add prospecting bonus for a year to give target country more chance to discover minerals
+		scope:ban_target = {
+			add_modifier = {
+				name = ban_prospecting_in_progress
+				years = 2
+			}
+		}
+
+		# # Mark as done
+		set_variable = ban_prospecting_project_completed
+	    remove_variable = ban_prospecting_project_active
+
+		#final handshake
+		change_relations = {
+			country = scope:ban_target
+			value = 20
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############################################
+###########################################
+############## RANDOM EVENTS 
+##############################################
+#####################################
+
+# LOST EXPEDITION MEMBERS
+ban_survey.10 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.10.t
+	desc = ban_survey.10.d
+	flavor = ban_survey.10.f
+
+	event_image = {
+		video = "ep1_ca_mountain_pass_civilian"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+	}
+
+	cooldown = {
+		years = 1
+	}
+
+	# Option A: Send a rescue party immediately
+	option = {
+		name = ban_survey.10.a
+
+		add_modifier = {
+			name = unexpected_cost_prospecting
+			months = 7
+		}
+
+		custom_tooltip = {
+			text = ban_lose_prospecting_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = -5 name = prospecting_initiative_progress_bar }
+			}
+		}
+
+		ai_chance = { base = 60 }
+	}
+
+	# Option B: Wait — they're experienced, they'll find their way
+	option = {
+		name = ban_survey.10.b
+
+			
+		random_list = {
+			65 = {
+				custom_tooltip = {
+					text = ban_lose_prospecting_progress_small_tt
+					je:hms_je_build_nation ?= {
+						add_progress = { value = -5 name = prospecting_initiative_progress_bar }
+					}
+				}
+			}
+			35 = {
+				custom_tooltip = {
+					text = ban_prospecting_expedition_members_lost_tt
+					set_variable = {
+						name = ban_prospecting_expedition_members_lost
+						months = 13
+					}
+				}
+			}
+		}
+		
+		ai_chance = { base = 40 }
+	}
+}
+
+### HOSTILE LOCALS
+ban_survey.11 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.11.t
+	desc = ban_survey.11.d
+	flavor = ban_survey.11.f
+
+	event_image = {
+		video = "ep1_ca_mountain_pass_military"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+	}
+
+	cooldown = {
+		years = 1
+	}
+
+	# Option A: Hire locals as guides and workers
+	option = {
+		name = ban_survey.11.a
+
+		add_modifier = {
+			name = unexpected_cost_prospecting
+			months = 7
+		}
+
+		custom_tooltip = {
+			text = ban_gain_prospecting_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = 5 name = prospecting_initiative_progress_bar }
+			}
+		}
+
+		# Locals appreciate being included
+		scope:ban_target = {
+			add_loyalists = {
+				value = 0.02
+			}
+		}
+
+		ai_chance = { base = 50 }
+	}
+
+	# Option B: Request military escort > force the survey through
+	option = {
+		name = ban_survey.11.b
+
+		
+		set_variable = {
+			name = var_hindered_by_locals
+			months = 5
+		}
+
+		scope:ban_target = {
+			add_radicals = {
+				value = 0.05
+			}
+		}
+
+		ai_chance = { base = 50 }
+	}
+}
+
+# IF ONLY DEEP ROCK WOULD INVEST IN SOME BETTER EQUIPMENT !!!
+ban_survey.12 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.12.t
+	desc = ban_survey.12.d
+	flavor = ban_survey.12.f
+
+	event_image = {
+		video = "europenorthamerica_gold_prospectors"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+	}
+
+	cooldown = {
+		days = never_fire_again_modifier_time
+	}
+
+	# Option A: Import replacement instruments from abroad
+	option = {
+		name = ban_survey.12.a
+
+		add_modifier = {
+			name = unexpected_cost_prospecting
+			months = 4
+		}
+
+		ai_chance = { base = 50 }
+	}
+
+	# Option B: Improvise with cruder methods — less accurate results
+	option = {
+		name = ban_survey.12.b
+
+		custom_tooltip = {
+			text = ban_lose_prospecting_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = -5 name = prospecting_initiative_progress_bar }
+			}
+		}
+
+		ai_chance = { base = 50 }
+	}
+}
+
+# ONE random country HAVE HAD CLAIMS ON SOME LANDS
+ban_survey.13 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.13.t
+	desc = ban_survey.13.d
+	flavor = ban_survey.13.f
+
+	event_image = {
+		video = "ip2_telegraph_dictate"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+	}
+
+	cooldown = {
+		years = 2
+	}
+
+	immediate = {
+		
+		# Pick a random country with interest on target
+		random_country = {
+			limit = {
+
+				NOT = { THIS = ROOT }
+				NOT = { is_country_type = decentralized }
+				has_strategic_adjacency = scope:ban_target
+				
+			}
+			save_scope_as = rival_claim_country
+		}
+		
+	}
+
+	# Option A: Settle diplomatically — pay off the rival claimant
+	option = {
+		name = ban_survey.13.a
+
+		scope:rival_claim_country = {
+			add_modifier = {
+				name = income_of_sold_land
+				months = 13
+			}
+		}
+
+		add_modifier = {
+			name = settled_land_dispute_modifier
+			months = 13
+		}
+
+		ai_chance = { base = 50 }
+	}
+
+	# Option B: Reject the claim outright — risk diplomatic fallout
+	option = {
+		name = ban_survey.13.b
+
+		scope:rival_claim_country = {
+			change_relations = {
+				country = root
+				value = -15
+			}
+		}
+
+		
+		ai_chance = { base = 50 }
+	}
+}
+
+# =============================================
+# GOOD EVENTSSS
+# =============================================
+
+# geothermal discovery
+ban_survey.20 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.20.t
+	desc = ban_survey.20.d
+	flavor = ban_survey.20.f
+
+	event_image = {
+		video = "europenorthamerica_gold_prospectors"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+	}
+
+	cooldown = {
+		days = never_fire_again_modifier_time
+	}
+
+	# Option A: Redirect the survey team to investigate the area
+	option = {
+		name = ban_survey.20.a
+
+		custom_tooltip = {
+			text = ban_gain_prospecting_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = 5 name = prospecting_initiative_progress_bar }
+			}
+		}
+
+		ai_chance = { base = 60 }
+	}
+
+	# Option B: Investigate AND set up a research camp
+	option = {
+		name = ban_survey.20.b
+
+		add_technology_progress = {
+			technology = pharmaceuticals
+			progress = 2000
+		}
+
+		add_technology_progress = {
+			technology = pumpjacks
+			progress = 1500
+		}
+
+		add_technology_progress = {
+			technology = watertube_boiler
+			progress = 2000
+		}
+
+		add_modifier = {
+			name = permanent_research_camp_modifier
+			months = 25
+		}
+
+		custom_tooltip = {
+			text = ban_lose_prospecting_progress_large_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = -5 name = prospecting_initiative_progress_bar }
+			}
+		}
+
+		ai_chance = { base = 40 }
+	}
+}
+
+# The wisdom of the OLD MAN
+ban_survey.21 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.21.t
+	desc = ban_survey.21.d
+	flavor = ban_survey.21.f
+
+	event_image = {
+		video = "middleeast_engineer_blueprint"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+	}
+
+	cooldown = {
+		years = 2
+	}
+
+	# Option A: Pay the prospector for his knowledge
+	option = {
+		name = ban_survey.21.a
+
+		ai_chance = { base = 50 }
+	}
+
+	# Option B: Hire him as a permanent guide for the expedition
+	option = {
+		name = ban_survey.21.b
+
+		custom_tooltip = {
+			text = we_cannot_guarantee_this_man_is_legit
+
+			set_variable = { name = old_man_guidance months = 5}
+			
+		}
+	}
+}
+
+### WE'RICH!!
+# ban_survey.22 = {
+# 	type = country_event
+# 	placement = root
+
+# 	title = ban_survey.22.t
+# 	desc = ban_survey.22.d
+# 	flavor = ban_survey.22.f
+
+# 	event_image = {
+# 		video = "unspecific_desert_expedition"
+# 	}
+
+# duration = 1
+
+# 	trigger = {
+# 		has_variable = ban_prospecting_project_active
+# 		NOT = { has_variable = ban_prospecting_project_completed }
+# 	}
+
+# 	cooldown = {
+# 		days = never_fire_again_modifier_time
+# 	}
+
+# 	# Option A: Report the find but stay focused on the main survey
+# 	option = {
+# 		name = ban_survey.22.a
+
+# 		je:hms_je_build_nation ?= {
+# 			add_progress = { value = 3 name = mineral_survey_bar }
+# 		}
+
+# 		# Small treasury bonus from the gold itself
+# 		add_treasury = 5000
+
+# 		ai_chance = { base = 60 }
+# 	}
+
+# 	# Option B: Divert part of the team to trace the gold upstream
+# 	option = {
+# 		name = ban_survey.22.b
+
+# 		je:hms_je_build_nation ?= {
+# 			add_progress = { value = 1 name = mineral_survey_bar }
+# 		}
+
+# 		# Bigger payoff — might find the source
+# 		add_treasury = 12000
+
+# 		# Gold rush excitement in target country
+# 		scope:ban_target = {
+# 			add_loyalists = {
+# 				value = 0.03
+# 			}
+# 		}
+
+# 		ai_chance = { base = 40 }
+# 	}
+# }
+
+# Great Power interested in sending explorers
+ban_survey.23 = {
+	type = country_event
+	placement = root
+
+	title = ban_survey.23.t
+	desc = ban_survey.23.d
+	flavor = ban_survey.23.f
+
+	event_image = {
+		video = "europenorthamerica_capitalists_meeting"
+	}
+
+	duration = 1
+
+	trigger = {
+		has_variable = ban_prospecting_project_active
+		NOT = { has_variable = ban_prospecting_project_completed }
+	}
+
+	immediate = {
+		random_country = {
+			limit = {
+				country_rank = rank_value:great_power
+				NOT = { THIS = ROOT }
+			}
+			save_scope_as = country_explorers
+		}
+	}
+
+	cooldown = {
+		years = 1
+	}
+
+	# Option A: Welcome the academics share data
+	option = {
+		name = ban_survey.23.a
+
+		scope:country_explorers = {
+			change_relations = {
+				country = root
+				value = 5
+			}
+		}
+
+		# custom_tooltip = {
+		# 	text = ban_lose_prospecting_progress_small_tt
+		# 	je:hms_je_build_nation ?= {
+		# 		add_progress = { value = -5 name = prospecting_initiative_progress_bar }
+		# 	}
+		# }
+
+		scope:country_explorers = {
+			add_modifier = {
+				name = shared_prospecting_data_modifier
+				months = 13
+			}
+		}
+
+		add_modifier = {
+			name = shared_prospecting_data_modifier
+			months = 13
+		}
+
+		ai_chance = { base = 60 }
+	}
+
+	# Option B: Nah sorry
+	option = {
+		name = ban_survey.23.b
+
+		scope:country_explorers = {
+			change_relations = {
+				country = root
+				value = -5
+			}
+		}
+
+		custom_tooltip = {
+			text = ban_gain_prospecting_progress_small_tt
+			je:hms_je_build_nation ?= {
+				add_progress = { value = 5 name = prospecting_initiative_progress_bar }
+			}
+		}
+
+		# Prestige from exclusive discovery
+		add_modifier = {
+			name = refused_collaboration_prospecting
+		}
+
+		ai_chance = { base = 40 }
+	}
+}

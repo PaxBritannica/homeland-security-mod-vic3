@@ -1,0 +1,609 @@
+﻿namespace = develop_nation_events
+
+develop_nation_events.1 = {
+    type = country_event
+
+	title = develop_nation_events.1.t
+	desc = develop_nation_events.1.d
+	flavor = develop_nation_events.1.f
+
+	event_image = {
+		video = "ep1_clandestine_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 2
+
+    immediate = {
+
+        # get target()
+        if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+                save_scope_as = send_economic_advisors_target
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+                save_scope_as = send_economic_advisors_target
+            }
+        }
+
+    }
+
+	option = {
+		name = develop_nation_events.1.a
+
+		# Setup quick global variable and immediately removed them once the event gets fired from the bloc leader
+		set_global_variable = {
+			name = country_ban_target_global
+			value = scope:send_economic_advisors_target
+		}
+		set_global_variable = {
+			name = country_investor_global
+			value = this
+		}
+		
+		root = {
+            add_journal_entry = {
+                type = hms_je_build_nation
+            }
+        }
+
+		# If part of a bloc, rival bloc leader gets an event notification
+		if = {
+
+			limit = {
+				scope:send_economic_advisors_target= {
+					is_in_power_bloc = yes
+					NOT = {
+						power_bloc = root.power_bloc
+						}
+				}
+			}
+
+			scope:send_economic_advisors_target = {
+				power_bloc ?= {
+					power_bloc_leader = {
+						change_relations = {
+							country = root
+							value = -15
+						}
+
+						# Rival bloc leader gets notified of our intrusion
+						trigger_event = {
+							id = develop_nation_events.101
+						}
+					}
+				}
+			}
+	
+		}
+
+	}
+
+    option = { # nah, not interested (keep economic advisors active though)
+        name = develop_nation_events.1.b 
+
+        custom_tooltip = {
+            text = not_interested_in_build_nation_je_tt
+        }
+    }
+}
+
+# A country with Secret Service approaches us with the intent to buy out our intel
+develop_nation_events.7 = {
+
+    type = country_event
+
+	title = develop_nation_events.7.t
+	desc = develop_nation_events.7.d
+	flavor = develop_nation_events.7.f
+
+	event_image = {
+		video = "ep1_clandestine_meeting"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 2
+
+    immediate = {
+
+        random_country = {
+			limit = {
+				has_technology_researched = HMS_tech_era_2_secret_service
+				NOT = { THIS = ROOT }
+			}
+			save_scope_as = country_intel_buyer
+        }
+    }
+
+    option = {
+        name = develop_nation_events.7.a
+
+        add_modifier = {
+            name = income_of_sold_intel
+            months = -1
+        }
+
+		change_relations = {
+			country = scope:country_intel_buyer
+			value = 10
+		}
+
+    }
+
+    option = {
+        name = develop_nation_events.7.b
+
+        #emtpy for now
+
+    }
+
+}
+
+# ENTRY TO BUILD NATION HAS FAILED 
+develop_nation_events.99 = {
+
+	type = country_event
+	placement = root
+
+	title = develop_nation_events.99.t
+	desc = develop_nation_events.99.d
+	flavor = develop_nation_events.99.f
+
+	immediate = {
+		# get ban_target()
+        if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+                save_scope_as = ban_target
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+                save_scope_as = ban_target
+            }
+        }
+	}
+
+	event_image = {
+		video = "southamerica_election"
+	}
+
+	option = {
+		name = develop_nation_events.99.a
+
+		root = {
+			remove_diplomatic_pact = {
+				country = scope:ban_target
+				type = send_economic_advisors
+			}
+		}
+
+	}
+
+}
+
+### JE IS COMPLETED SUCCESSFULLY AND WE REAP WHAT WE SOW
+### Fires when the Build a Nation JE reaches 100%
+develop_nation_events.100 = {
+	type = country_event
+	placement = root
+
+	title = develop_nation_events.100.t
+	desc = {
+		first_valid = {
+			# Target is in a RIVAL power bloc
+			triggered_desc = {
+				trigger = {
+					scope:ban_target = {
+						is_in_power_bloc = yes
+						NOT = {
+							power_bloc = root.power_bloc
+						}
+					}
+				}
+				desc = develop_nation_events.100.d_rival_bloc
+			}
+			# Target is ALREADY in our power bloc
+			triggered_desc = {
+				trigger = {
+					scope:ban_target = {
+						is_in_power_bloc = yes
+						power_bloc = root.power_bloc
+					}
+				}
+				desc = develop_nation_events.100.d_our_bloc
+			}
+			# Target is UNALIGNED — no power bloc
+			triggered_desc = {
+				trigger = {
+					scope:ban_target = {
+						is_in_power_bloc = no
+					}
+				}
+				desc = develop_nation_events.100.d_unaligned
+			}
+		}
+	}
+	flavor = develop_nation_events.100.f
+
+	event_image = {
+		video = "ep1_power_blocs"
+	}
+
+	duration = 3
+
+    immediate = {
+        # get ban_target()
+        if = {
+            limit = {
+                any_country = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+                save_scope_as = ban_target
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = {
+                        has_diplomatic_pact = {
+                            who = prev
+                            type = send_economic_advisors
+                        }
+                    }
+                }
+                save_scope_as = ban_target
+            }
+        }
+    }
+
+	# OPTION A: Join our power bloc
+	option = {
+		name = develop_nation_events.100.a_invite
+		
+		trigger = {
+			is_in_power_bloc = yes		# We must have a bloc
+			scope:ban_target = {
+				is_in_power_bloc = no
+			}
+		}
+
+		scope:ban_target = {
+			join_power_bloc = root # Joins our Power bloc
+		}
+
+		change_relations = {
+			country = scope:ban_target
+			value = 50
+		}
+
+		ai_chance = { base = 60 }
+	}
+
+	# A2: Target is in a RIVAL bloc , demand they leave at once !!
+	option = {
+		name = develop_nation_events.100.a_support_independentism
+
+		trigger = {
+			is_in_power_bloc = yes
+			scope:ban_target = {
+				is_in_power_bloc = yes
+				NOT = {
+					power_bloc = root.power_bloc
+				}
+			}
+		}
+
+        # Relations hit with the rival bloc leader
+		scope:ban_target = {
+			power_bloc ?= {
+				power_bloc_leader = {
+					change_relations = {
+						country = root
+						value = -50
+					}
+
+					save_scope_as = rival_power_bloc_leader
+				}
+			}
+
+            # Grevissimo! # balance ?
+            add_modifier = {
+                name = support_independentism_modifier
+                months = 25
+            }
+		}
+
+		set_global_variable = {
+			name = country_ban_target_global
+			value = scope:send_economic_advisors_target
+		}
+		set_global_variable = {
+			name = country_investor_global
+			value = this
+		}
+
+		# Moderate relations with target they didn't fully choose this
+		change_relations = {
+			country = scope:ban_target
+			value = 20
+		}
+
+		#trigger event in rival power bloc leader
+		scope:rival_power_bloc_leader = {
+			trigger_event = { id = develop_nation_events.102 }
+		}
+
+		ai_chance = { base = 40 }
+	}
+
+
+	# OPTION B: Demand an obligation
+	option = {
+		name = develop_nation_events.100.b_obligation
+
+		default_option = yes
+
+		# Always available regardless of bloc status
+
+		# Set obligation — they owe us a favor
+		scope:ban_target = {
+			set_owes_obligation_to = {
+				country = root
+				setting = yes
+			}
+		}
+
+		# Good relations — firm but fair
+		change_relations = {
+			country = scope:ban_target
+			value = 30
+		}
+
+		# Small loyalty boost in target  they respect the arrangement
+		scope:ban_target = {
+			add_loyalists = {
+				value = 0.03
+			}
+		}
+
+		ai_chance = { base = 50 }
+	}
+
+
+	# OPTION C: Dont ask for nothing in return and get prestige and infamy reduction
+	option = {
+		name = develop_nation_events.100.c_economic
+
+		# Always available
+
+		add_modifier = {
+			name = technological_spreader_modifier
+			years = 30
+		}
+
+		# Strong relations, everyone profits
+		change_relations = {
+			country = scope:ban_target
+			value = 40
+		}
+
+		ai_chance = { base = 40 }
+	}
+
+	# OPTION D: Already in our bloc // collect rewards
+	# Only visible if target is already a member
+	option = {
+		name = develop_nation_events.100.d_already_ours
+
+		trigger = {
+			is_in_power_bloc = yes
+			scope:ban_target = {
+				is_in_power_bloc = yes
+				power_bloc = root.power_bloc
+			}
+		}
+
+		# They're already ours so get obligation and bloc leverage
+		scope:ban_target = {
+			set_owes_obligation_to = {
+				country = root
+				setting = yes
+			}
+			add_loyalists = {
+				value = 0.05
+			}
+			add_modifier = {
+				name = gratitude_towards_leader
+				years = 6
+			}
+		}
+
+		change_relations = {
+			country = scope:ban_target
+			value = 30
+		}
+
+		# Economic bonus too, tighter integration
+		add_modifier = {
+			name = ban_economic_dependency_funder
+			months = -1
+		}
+
+		ai_chance = { base = 80 }
+	}
+}
+
+#########
+## 	RESPONDING EVENTS
+## 100 >
+#### EVENTS TO NOTIFY EVENTUAL RIVAL BLOC LEADER OF THE FOREIGN INTERVENTION IN ONE OF HIS DOMAINS / JUNIOR MEMBERS
+develop_nation_events.101 = {
+	type = country_event
+	placement = root
+
+	title = develop_nation_events.101.t
+	desc = develop_nation_events.101.d
+	flavor = develop_nation_events.101.f
+
+	immediate = {
+
+		# grab global vars ()
+		every_country = {
+			limit = { this = global_var:country_investor_global }
+			save_scope_as = ban_funder
+		}
+
+		every_country = {
+			limit = { this = global_var:country_ban_target_global }
+			save_scope_as = ban_target
+		}
+
+		# remove them asap ()
+		remove_global_variable = country_investor_global
+		remove_global_variable = country_ban_target_global
+
+	}
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	duration = 1
+
+	# Option A: Accept the loss — focus elsewhere
+	option = {
+		name = develop_nation_events.101.a
+
+	}
+
+	# Option B: Condemn publicly — increase tensions with funder
+	option = {
+		name = develop_nation_events.101.b
+
+		scope:ban_target = {
+			change_relations = {
+				country = root
+				value = -20
+			}
+		}
+
+		default_option = yes
+	}
+}
+
+# AFTER JE IS COMPLETED BY THE FUNDER, IF THEY REQUEST TARGET TO JOIN THEIR POWER BLOC
+# THE ACTUAL POWER BLOC LEADER GETS AN EVENT NOTIFING IT OF WHAT IS HAPPENING
+develop_nation_events.102 = {
+	type = country_event
+	placement = root
+
+	title = develop_nation_events.102.t
+	desc = develop_nation_events.102.d
+	flavor = develop_nation_events.102.f
+
+	immediate = {
+
+		# grab global vars ()
+		every_country = {
+			limit = { this = global_var:country_investor_global }
+			save_scope_as = ban_funder
+		}
+
+		every_country = {
+			limit = { this = global_var:country_ban_target_global }
+			save_scope_as = ban_target
+		}
+
+		# remove them asap ()
+		remove_global_variable = country_investor_global
+		remove_global_variable = country_ban_target_global
+
+	}
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	duration = 1
+
+	# Option A: Aknowledged
+	option = {
+		name = develop_nation_events.102.a
+
+	}
+}

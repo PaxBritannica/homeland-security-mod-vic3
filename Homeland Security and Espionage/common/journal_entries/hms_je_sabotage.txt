@@ -18,7 +18,7 @@
 
 	# immediate = {
 
-    #     # START 2 VARIABLES
+    #     # START 2 VARIABLES # this does not work with event that has scripted bars
         
     #     # ONE IS RADICALS PROGRESS TO ESCAPE THE INVESTIGATION
     #     set_variable = {
@@ -40,8 +40,8 @@
 
     on_weekly_pulse = {
         random_events = {
-            20 = 0
-            1 = sabotage_event.2
+            15 = 0
+            1 = sabotage_event.2 
             1 = sabotage_event.3
             1 = sabotage_event.66 # => triggers event.4 (commander shot) 
             1 = sabotage_event.5
@@ -52,36 +52,28 @@
         custom_tooltip = {
 			text = je_investigation_success
 			scope:journal_entry = {
-				"scripted_bar_progress(sabotage_police_progress_bar)" >= 50
+				"scripted_bar_progress(sabotage_police_progress_bar)" >= 60
 			}
 		}
     }
 
     on_complete = {
-        root = {
-            trigger_event = {
-                id = sabotage_event.98
-                popup = yes
-            }
-        }
+            trigger_event = { id = sabotage_event.98 }
     }
 
     fail = {
         custom_tooltip = {
 			text = je_investigation_failure
 			scope:journal_entry = {
-				"scripted_bar_progress(sabotage_radicals_progress_bar)" >= 50
+				"scripted_bar_progress(sabotage_radicals_progress_bar)" >= 60
 			}
 		}
     }
 
     on_fail = {
-        root = {
-            trigger_event = {
-                id = sabotage_event.99
-                popup = yes
-            }
-        }
+        
+            trigger_event = { id = sabotage_event.99 }
+        
     }
 
     invalid = {}

@@ -1,0 +1,221 @@
+﻿#RAILROADS BAR 
+national_railway_project_bar = {
+	name = "national_railway_project_bar"
+	desc = "national_railway_project_bar_desc"
+
+    default = yes
+
+    ### Build a Nation - Railroad Progress Bar Monthly Growth ###
+### All variables influence the bar's growth rate ###
+
+monthly_progress = {
+
+    
+    # BASE GROWTH
+    if = {
+        limit = {
+            has_variable = ban_railroad_construction_active
+        }
+        add = {
+            desc = "ban_base_growth_tt"
+            value = 2
+        }
+    }
+
+    # Minimum wage workers cheap labor, small boost
+    if = {
+        limit = {
+            has_variable = var_min_wage_workers
+        }
+        add = {
+            desc = "ban_min_wage_workers_tt"
+            value = 0.5
+        }
+    }
+
+    # Extensive hiring lots of workers, solid boost
+    if = {
+        limit = {
+            has_variable = var_LOT_paid_wage_workers
+        }
+        add = {
+            desc = "ban_LOT_paid_wage_workers_tt"
+            value = 1
+        }
+    }
+
+    # Selective professional hiring, best workers, best boost
+    if = {
+        limit = {
+            has_variable = var_PRO_paid_wage_workers
+        }
+        add = {
+            desc = "ban_PRO_paid_wage_workers_tt"
+            value = 2
+        }
+    }
+
+    # =============================================
+    # NEGATIVE Worker condition debuffs
+
+    # Workers healing small slowdown while they recover
+    if = {
+        limit = {
+            has_variable = var_healing_workers
+        }
+        add = {
+            desc = "ban_healing_workers_tt"
+            value = -1
+        }
+    }
+
+    # Workers resting at slower pace ,slight delay
+    if = {
+        limit = {
+            has_variable = var_workers_are_working_slower_pace
+        }
+        add = {
+            desc = "ban_workers_slower_pace_tt"
+            value = -1
+        }
+    }
+
+    # Workers are overworked, noticeable slowdown
+    if = {
+        limit = {
+            has_variable = var_workers_are_overworked
+        }
+        add = {
+            desc = "ban_workers_overworked_tt"
+            value = -1
+        }
+    }
+
+    # Refused to cure sick workers, morale collapsed
+    if = {
+        limit = {
+            has_variable = var_refused_curing_workers
+        }
+        add = {
+            desc = "ban_refused_curing_tt"
+            value = -2
+        }
+    }
+}
+    
+
+	start_value = 0
+	min_value = 0
+	max_value = 50
+}
+
+# PROSPECTING BAR
+prospecting_initiative_progress_bar = {
+	name = "prospecting_initiative_progress_bar"
+	desc = "prospecting_initiative_progress_bar_desc"
+
+    default = yes
+
+	monthly_progress = {
+        
+        if = {
+            limit = {
+                has_variable = ban_prospecting_project_active
+            }
+            add = {
+                desc = "ban_base_growth_survey_tt"
+                value = 2
+            }
+        }
+        # We decided to trust the old man
+        if = {
+            limit = {
+                has_variable = old_man_guidance
+            }
+            add = {
+                desc = "old_man_guidance_tt"
+                value = 1
+            }
+        }
+        # Hindered by local troubles 
+        if = {
+            limit = {
+                has_variable = var_hindered_by_locals
+            }
+            add = {
+                desc = "hindered_by_locals_tt"
+                value = -1
+            }
+        }
+        if = {
+            limit = {
+                has_variable = ban_prospecting_expedition_members_lost
+            }
+            add = {
+                desc = "lost_expedition_members_tt"
+                value = -1
+            }
+        }
+    }
+
+	start_value = 0
+	min_value = 0
+	max_value = 50
+}
+
+BASE_TRUST_level_progress_bar = {
+    name = "BASE_TRUST_level_progress_bar"
+	desc = "BASE_TRUST_level_progress_bar_desc"
+
+    default_green = yes
+
+	monthly_progress = {
+        if = {
+            limit = {
+                has_variable = ban_railroad_construction_active
+            }
+            add = {
+                desc = "ban_national_railway_active_tt"
+                value = 1
+            }
+        }
+        if = {
+            limit = {
+                has_variable = ban_prospecting_project_active
+            }
+            add = {
+                desc = "ban_prospecting_project_active_tt"
+                value = 1
+            }
+        }
+        if = {
+            limit = {
+                has_variable = ban_railroad_completed
+            }
+            add = {
+                desc = "ban_railway_project_completed_tt"
+                value = 2
+            }
+        }
+        if = {
+            limit = {
+                has_variable = ban_prospecting_project_completed
+            }
+            add = {
+                desc = "ban_prospecting_project_completed_tt"
+                value = 2
+            }
+        }
+        # Removing base growth preferring influenced growth instead
+        # else = {
+        #     add = {
+        #         desc = "ban_base_add_value_tt"
+        #         value = 2
+        #     }
+        # } 
+	}
+
+	start_value = 0
+	min_value = 0
+	max_value = 50
+}

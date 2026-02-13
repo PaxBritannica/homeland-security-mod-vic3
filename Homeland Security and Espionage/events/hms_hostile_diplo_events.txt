@@ -361,7 +361,7 @@ hostile_diplo_events.4 = {
         root = {
             add_modifier = {
                 name = piracy_loot_modifier
-                # months = 9 LOOT IS MINE FOREVER MWAHAH
+                months = 9
                 multiplier = piracy_loot_value
             }
         }
@@ -390,7 +390,7 @@ hostile_diplo_events.4 = {
                 root = {
                     add_modifier = {
                         name = piracy_loot_modifier
-                        # months = 9 LOOT IS MINE FOREVER MWAHAH
+                        months = 9
                         multiplier = piracy_loot_value_greedy
                     }
                 }
@@ -400,7 +400,7 @@ hostile_diplo_events.4 = {
                 root = {
                     add_modifier = {
                         name = piracy_loot_modifier
-                        # months = 9 LOOT IS MINE FOREVER MWAHAH
+                        months = 9
                         multiplier = piracy_loot_value
                     }
                     add_modifier = {

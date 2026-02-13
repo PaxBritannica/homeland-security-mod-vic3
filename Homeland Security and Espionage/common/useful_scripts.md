@@ -125,3 +125,37 @@ ig:ig_industrialists ?= {
 	            months = 36
 	        }
 		}
+
+
+# Send globals across unrelated events using global vars and removing them asap so they do not suffer overlapping
+# Setup quick global variable and immediately removed them once the event gets fired from the bloc leader
+# Remember to do it before actually triggering the event
+
+		set_global_variable = {
+			name = country_ban_target_global
+			value = scope:send_economic_advisors_target
+		}
+		set_global_variable = {
+			name = country_investor_global
+			value = this
+		}
+
+# call them back in the event immediate = {} block
+immediate = {
+
+		# grab global vars ()
+		every_country = {
+			limit = { this = global_var:country_investor_global }
+			save_scope_as = ban_funder
+		}
+
+		every_country = {
+			limit = { this = global_var:country_ban_target_global }
+			save_scope_as = ban_target
+		}
+
+		# remove them asap ()
+		remove_global_variable = country_investor_global
+		remove_global_variable = country_ban_target_global
+
+	}
