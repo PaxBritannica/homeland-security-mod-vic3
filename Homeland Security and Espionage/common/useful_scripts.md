@@ -84,4 +84,44 @@ if = {
     }
     
 }
+
+# Set global variable and retrieve it 
+# usefult to cross reference countries and other var across journals or events
+set_global_variable = {
+    name = some_global_var
+    target = this
+}
+
+global_var:some_global_var = {
+    # do something in this country scope
+}
         
+
+#
+# Useful to check if a SPECIFIC country has a SPECIFIC PACT with ANY COUNTRY
+NOR = {
+
+    #IF TARGET COUNTRY HAS ALREADY AN ECONOMIC ADVISORS IN ACT
+    scope:target_country = {
+        any_scope_diplomatic_pact = {
+            is_diplomatic_action_type = send_economic_advisors
+        }
+    }
+
+    root = {
+        any_scope_diplomatic_pact = {
+            is_diplomatic_action_type = send_economic_advisors
+        }
+    }
+    
+}
+
+# maxe X ig unappeased 
+
+ig:ig_industrialists ?= {
+	    	join_revolution = yes
+	        add_modifier = {
+	            name = ig_unappeased
+	            months = 36
+	        }
+		}
