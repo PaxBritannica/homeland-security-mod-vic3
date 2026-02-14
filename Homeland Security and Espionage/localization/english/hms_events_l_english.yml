@@ -166,6 +166,12 @@
  je_intelligence_privacy_on_complete_tt: "The piracy activities financed by the unknown country will cease."
 
  ### SABOTAGE EVENT ### BIG EXPLOSION HITS THE CITY CENTER
+ ### 
+ ###
+ ###
+ ###
+
+ political_unrest_modifier: "Times of Political Unrest"
 
  sabotage_event.1.t: "Catastrophic Explosion"
  sabotage_event.1.d: "#r A devastating explosion#! has struck the capital center, claiming at least #r 10 lives and leaving dozens wounded#!. Preliminary investigations indicate this was a deliberate act of #y sabotage#! designed to cripple our nation's critical infrastructure. While the perpetrators remain unknown, authorities are investigating whether this attack stems from growing domestic extremism or represents the work of foreign operatives."
@@ -189,7 +195,7 @@
  sabotage_event.3.b: "For the greater good, right ?"
 
  sabotage_event.66.t: "Shaming Campaign"
- sabotage_event.66.d: "Radical journals has been targeting our #y Armed Forces#! indicating that our ranks could be responsible for what happened in the capital."
+ sabotage_event.66.d: "#r Radical journals#! have been targeting our #y Armed Forces#! indicating that our ranks could be responsible for what happened in the capital."
  sabotage_event.66.f: "The headlines screamed accusations, painting the army as traitors of the nation. Articles detailed alleged meetings of commanders with radical groups, suspicious financial affairs, and whispered rumors of disloyalty. The public's trust in our higher ranks begins to erode quickly as these sensational stories spread like wildfire."
  sabotage_event.66.a: "This is pure sensationalism."
  sabotage_event.66.b: "Perhaps there is some truth to it..."
@@ -383,7 +389,7 @@ develop_nation_events.99.a: "That's a #r shame#!."
  unexpected_cost_railroad: "Unexpected Expense related to Railway Project"
  permanent_boost_to_prospecting_expertise: "Permanent Boost To Prospecting Expertise"
 
- ban_lose_railway_progress_large_tt: "#r Lose small #! progress on the Railway project."
+ ban_lose_railway_progress_large_tt: "#r Lose Large #! progress on the Railway project."
  ban_lose_railway_progress_small_tt: "#r Lose small #! progress on the Railway project."
  ban_gain_railway_progress_large_tt: "#g Gain Large #! progress on the Railway project."
  ban_gain_railway_progress_small_tt: "#g Gain Small #! progress on the Railway project."
@@ -475,6 +481,8 @@ develop_nation_events.99.a: "That's a #r shame#!."
  ban_railroad.20.c: "Decline their help."
  short_time_contracts_engineers_tt: "We will hire them but just for this work alone."
  long_time_contracts_engineers_tt: "The Engineers will stick with us and join our country's open positions once we will be done with this project."
+ extra_engineers_short_time_contract: "Extra Engineers with Short Term Contracts"
+ extra_engineers_long_time_contract: "Extra Engineers with Long Term Contracts"
 
  ban_railroad.21.t: "Laborers Flock to the Railroad"
  ban_railroad.21.d: "News of well-paying construction work has traveled fast across [SCOPE.sCountry('ban_target').GetName]. Hundreds of unemployed laborers, displaced farmers, out-of-work artisans and former soldiers have gathered at construction sites, eager for a chance to earn a wage laying track.\n\n We can hire them all, dramatically increasing the pace of construction at a modest additional cost. Or we can be selective, hiring only the most capable workers to maintain quality while keeping expenses low."

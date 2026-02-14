@@ -225,15 +225,12 @@
 				add = 20
 			}
 			
-			# Same power bloc
+			# We share power bloc
 			if = {
 				limit = {
-					AND = {
-						has_power_bloc = yes
-						scope:actor = {
-							has_power_bloc = yes
-						}
-						power_bloc = scope:actor.power_bloc
+					scope:actor = {
+						is_in_power_bloc = yes
+						power_bloc = root.power_bloc
 					}
 				}
 				add = 50

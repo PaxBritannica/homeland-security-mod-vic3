@@ -264,19 +264,16 @@
 				add = 20
 			}
 			
-			# # Same power bloc
-			# if = {
-			# 	limit = {
-			# 		AND = {
-			# 			has_power_bloc = yes
-			# 			scope:actor = {
-			# 				has_power_bloc = yes
-			# 			}
-			# 			power_bloc = scope:actor.power_bloc
-			# 		}
-			# 	}
-			# 	add = 50
-			# }
+			# We share power bloc
+			if = {
+				limit = {
+					scope:actor = {
+						is_in_power_bloc = yes
+						power_bloc = root.power_bloc
+					}
+				}
+				add = 50
+			}
 			
 			# They owe us an obligation
 			if = {

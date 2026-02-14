@@ -179,7 +179,7 @@ state_apparatus_happy = {
 
 framed_for_sabotage_modifier = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-    character_popularity_add = -35
+    character_popularity_add = -15
 }
 
 perpetrators_escaped_justice_modifier = {
@@ -201,7 +201,7 @@ perpetrators_caught_modifier = {
 political_unrest_modifier = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
     country_legitimacy_base_add = -10
-    political_movement_radicalism_add = 0.2
+    political_movement_radicalism_add = 0.1
 }
 
 political_tension_country_modifier = {
@@ -321,9 +321,9 @@ ban_more_mortality_infrastructure_modifier = {
     building_group_bg_infrastructure_laborers_mortality_mult = 0.05
 }
 
-ban_foreign_volunteer_influx = {
+ban_foreign_engineers_volunteer_influx = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-    country_mass_migration_attraction_mult = 0.1
+    building_engineers_job_attractiveness_mult = 0.1
 }
 
 ban_foreign_engineers_influx = {

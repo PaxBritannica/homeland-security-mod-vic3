@@ -84,7 +84,7 @@
 
 	start_value = 0
 	min_value = 0
-	max_value = 50
+	max_value = 60
 }
 
 sabotage_radicals_progress_bar = {
@@ -157,12 +157,12 @@ sabotage_radicals_progress_bar = {
 		else = {
 			add = {
 				desc = "radicals_plotting_freely"
-				value = 3
+				value = 2
 			}
 		}
 	}
 	start_value = 0
 	min_value = 0
-	max_value = 50
+	max_value = 60
 }
 

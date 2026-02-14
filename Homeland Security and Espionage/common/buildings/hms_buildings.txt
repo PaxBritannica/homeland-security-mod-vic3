@@ -33,21 +33,9 @@
 		# Great powers prioritize it
 		if = {
 			limit = { is_great_power = yes }
-			multiply = 1.3
+			multiply = 1.1
 		}
 		
-		# Higher priority if in rivalries
-		if = {
-			limit = {
-				any_scope_country = {
-					has_diplomatic_pact = {
-						who = ROOT
-						type = rivalry
-					}
-				}
-			}
-			multiply = 1.4
-		}
 	}
 	
 }

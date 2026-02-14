@@ -5,7 +5,7 @@
 		scope:character ?= {
 			has_role = admiral
 		}
-		our_side_naval_awareness < enemy_side_naval_awareness
+		friendly_side_naval_awareness < enemy_side_naval_awareness
 	}
 
 	modifier = {

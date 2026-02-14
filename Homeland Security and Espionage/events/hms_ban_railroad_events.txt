@@ -565,9 +565,7 @@ ban_railroad.20 = {
 		years = 1
 	}
 
-	immediate = {
-		set_variable = ban_rr_foreign_engineers_fired
-	}
+	immediate = {}
 
 	# Option A: Welcome them — free expertise
 	option = {
@@ -576,16 +574,12 @@ ban_railroad.20 = {
 		default_option = yes
 
 		add_modifier = {
-			name = ban_foreign_volunteer_influx
+			name = ban_foreign_engineers_volunteer_influx
 			months = 13
 		}
 
-		custom_tooltip = {
-			text = ban_gain_railway_progress_small_tt
-			je:hms_je_build_nation ?= {
-				add_progress = { value = 5 name = national_railway_project_bar }
-			}
-		}
+		set_variable = extra_engineers_short_time_contract
+
 
 		ai_chance = { base = 70 }
 
@@ -599,7 +593,8 @@ ban_railroad.20 = {
 		name = ban_railroad.20.b
 
 		add_modifier = {
-			name = ban_foreign_volunteer_influx
+			name = ban_foreign_engineers_volunteer_influx
+			years = 2
 		}
 
 		add_modifier = {
@@ -607,17 +602,12 @@ ban_railroad.20 = {
 			months = 7
 		}
 
-		custom_tooltip = {
-			text = ban_gain_railway_progress_small_tt
-			je:hms_je_build_nation ?= {
-				add_progress = { value = 5 name = national_railway_project_bar }
-			}
-		}
+		set_variable = extra_engineers_long_time_contract
 
 		# Long-term bonus to target's construction
 		scope:ban_target = {
 			add_modifier = {
-				name = ban_foreign_volunteer_influx
+				name = ban_foreign_engineers_volunteer_influx
 				months = 13
 			}
 		}

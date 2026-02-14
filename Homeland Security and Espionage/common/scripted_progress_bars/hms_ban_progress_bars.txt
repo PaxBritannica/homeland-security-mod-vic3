@@ -33,6 +33,28 @@ monthly_progress = {
         }
     }
 
+    # Engineers Influx
+    if = {
+        limit = {
+            has_variable = extra_engineers_short_time_contract
+        }
+        add = {
+            desc = "extra_engineers_short_time_contract"
+            value = 1
+        }
+    }
+
+    # Engineers Influx with long term modifier
+    if = {
+        limit = {
+            has_variable = extra_engineers_long_time_contract
+        }
+        add = {
+            desc = "extra_engineers_long_time_contract"
+            value = 1
+        }
+    }
+
     # Extensive hiring lots of workers, solid boost
     if = {
         limit = {

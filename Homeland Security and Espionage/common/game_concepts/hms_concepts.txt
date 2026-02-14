@@ -2,7 +2,7 @@
 #     texture = ""
 # }
 
-naval_awareness = {
+concept_naval_awareness = {
     texture = "gfx/interface/icons/concept_icons/naval_awareness_small.dds"
 }
 
