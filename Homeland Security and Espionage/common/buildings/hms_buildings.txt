@@ -79,18 +79,6 @@ INJECT_OR_CREATE:building_military_intel_hq = {
 			multiply = 1.3
 		}
 		
-		# Higher priority if in rivalries
-		if = {
-			limit = {
-				any_scope_country = {
-					has_diplomatic_pact = {
-						who = ROOT
-						type = rivalry
-					}
-				}
-			}
-			multiply = 1.4
-		}
 	}
 }
 

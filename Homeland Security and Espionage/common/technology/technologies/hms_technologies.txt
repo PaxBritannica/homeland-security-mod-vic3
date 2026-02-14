@@ -56,9 +56,9 @@ HMS_tech_era_2_secret_service = {
         # Higher priority if in rivalries
         if = {
             limit = {
-                any_scope_country = {
+                any_country = {
                     has_diplomatic_pact = {
-                        who = ROOT
+                        who = root
                         type = rivalry
                     }
                 }
@@ -108,9 +108,9 @@ HMS_tech_era_3_extended_networks = {
         # Higher priority if in rivalries
         if = {
             limit = {
-                any_scope_country = {
+                any_country = {
                     has_diplomatic_pact = {
-                        who = ROOT
+                        who = root
                         type = rivalry
                     }
 
@@ -189,9 +189,9 @@ HMS_tech_era_4_homeland_security = {
         # Higher priority if in rivalries
         if = {
             limit = {
-                any_scope_country = {
+                any_country = {
                     has_diplomatic_pact = {
-                        who = ROOT
+                        who = root
                         type = rivalry
                     }
                 }
