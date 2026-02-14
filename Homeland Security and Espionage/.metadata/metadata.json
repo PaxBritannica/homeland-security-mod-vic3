@@ -1,10 +1,10 @@
 {
   "name" : "[1.12] Intelligence & Foreign Policies",
-	"id" : "",
+	"id" : "paxintelligence",
   "version" : "1.0b",
   "supported_game_version" : "1.12.*",
-  "picture": "prova_thumbnail.png",
-  "short_description" : "Homeland Security & Intelligence Mod is a comprehensive overhaul mod for Victoria 3 that enhances the gameplay experience by introducing new mechanics, technologies, and features focused on national security and intelligence operations.",
+  "picture": "thumbnail.png",
+  "short_description" : "Homeland Security And Foreign Policies is a comprehensive overhaul mod for Victoria 3 that enhances the gameplay experience by introducing new mechanics, technologies, and features focused on national security and intelligence operations.",
   "tags" : [
     "Economy And Buildings",
     "Expansion",
