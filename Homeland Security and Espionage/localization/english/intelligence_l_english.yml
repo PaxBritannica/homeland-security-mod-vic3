@@ -53,6 +53,8 @@
  building_intel_hq_desc: "A dedicated facility for training and deploying intelligence agents to conduct espionage and other covert operations."
  building_military_intel_hq: "Military Intelligence HQ"
  building_military_intel_desc: "A dedicated facility for gathering military intelligence and passing it to the officers on the field or at seas."
+ state_building_intel_hq_max_level_add: "Max Secret Service HQ Levels"
+ state_building_military_intel_hq_max_level_add: "Max Military Intelligence HQ Levels"
 
  #modifiers
  building_intel_hq_throughput_mult: "Secret Service Headquarter Throughput"

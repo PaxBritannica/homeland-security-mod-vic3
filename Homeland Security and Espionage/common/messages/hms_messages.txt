@@ -27,3 +27,9 @@ notify_unsuccessful_bribe = {
 	texture = "gfx/interface/icons/notification_icons/influence_bad.dds"
 	notification_type = toast
 }
+
+notify_caught_counterintelligence_message_tt = {
+	texture = "gfx/interface/icons/notification_icons/diplomatic_play.dds"
+	type = country
+    notification_type = popup
+}

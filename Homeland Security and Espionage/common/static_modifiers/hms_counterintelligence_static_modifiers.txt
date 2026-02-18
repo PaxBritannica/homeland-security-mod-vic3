@@ -1,0 +1,104 @@
+﻿# Active during the sweep intel HQ working overtime
+hms_counterintel_sweep_in_progress = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    building_intel_hq_throughput_mult = -0.3
+}
+
+# # Event 30: Feeding false intel to caught agent
+# hms_feeding_false_intel = {
+#     icon = "gfx/interface/icons/modifier_icons/modifier_espionage.dds"
+#     building_intel_hq_throughput_mult = 0.10
+# }
+
+# # Event 31: Intercepted coded communications
+# hms_intercepted_communications = {
+#     icon = "gfx/interface/icons/modifier_icons/modifier_espionage.dds"
+#     country_tech_research_speed_mult = 0.03
+# }
+
+# Event 32 Option A: Double agent working for us
+hms_double_agent_asset = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+    building_intel_hq_throughput_mult = 0.10
+    country_influence_mult = 0.05
+}
+
+arrested_a_loyalist_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+    country_prestige_mult = -0.07
+    country_authority_mult = -0.05
+}
+
+small_legitimacy_debuff_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+    country_legitimacy_add = -10
+}
+
+# # Event 32 Option B: Disinformation campaign active
+hms_disinformation_campaign = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+    building_intel_hq_throughput_mult = 0.05
+}
+
+country_center_of_international_plot_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+    building_intel_hq_throughput_mult = 0.1
+    country_influence_mult = 0.1
+}
+
+# # Event 40 Option B: Heavy-handed sweep, oppressive but effective
+# hms_heavy_handed_sweep = {
+#     icon = "gfx/interface/icons/modifier_icons/modifier_political_movement.dds"
+#     country_authority_mult = 0.05
+#     country_legitimacy_govt_total_clout_add = -0.05
+# }
+
+# # Event 41 Option B: IG distrusts the intelligence apparatus
+hms_ig_distrusts_intelligence = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+    interest_group_approval_add = -3
+}
+
+# # Completion Option A: Successful sweep, detected and shut down operations
+hms_successful_counterintel_sweep = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+    building_intel_hq_throughput_mult = 0.15
+    country_prestige_mult = 0.05
+    country_authority_add = 100
+    country_legitimacy_govt_total_clout_add = 0.1
+}
+
+# # Completion Option B: Shadow awareness
+hms_shadow_awareness = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+    building_intel_hq_throughput_mult = 0.1
+    country_tech_research_speed_mult = 0.1
+}
+
+# Event 50 Option B: Handler under surveillance intel gathering bonus
+hms_handler_under_surveillance = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+    building_intel_hq_throughput_mult = 0.10
+    country_influence_mult = 0.1
+}
+
+# Event 51 Option B: We turned their operation powerful long-term advantage
+hms_turned_operation = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+    building_intel_hq_throughput_mult = 0.15
+    country_authority_mult = 0.05
+    country_government_agents_pol_str_mult = 0.1
+}
+
+# Event 51 Option B: Applied to the hostile country their operation is compromised
+hms_compromised_operation = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+    building_intel_hq_throughput_mult = -0.2
+    country_government_agents_pol_str_mult = -0.3
+}
+
+hms_exposed_operation_from_high_investment_home_affairs = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+    country_prestige_mult = -0.1
+    country_influence_mult = -0.1
+}

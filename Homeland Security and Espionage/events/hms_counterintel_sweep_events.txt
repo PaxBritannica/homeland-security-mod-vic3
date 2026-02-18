@@ -1,0 +1,1903 @@
+namespace = hms_counterintel
+
+# INTRO 
+hms_counterintel.1 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.1.t
+    desc = hms_counterintel.1.d
+    flavor = hms_counterintel.1.f
+
+    event_image = {
+        video = "ep1_clandestine_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {}
+    immediate = {}
+
+    option = {
+        name = hms_counterintel.1.a
+        default_option = yes
+        ai_chance = { base = 10 }
+    }
+
+}
+
+### =============================================
+### EVENT 10: Milestone 1 ~ Preliminary Findings (25%)
+### =============================================
+hms_counterintel.10 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.10.t
+    desc = hms_counterintel.10.d
+    flavor = hms_counterintel.10.f
+
+    event_image = {
+        video = "ep1_clandestine_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = counterintel_sweep_reached_milestone_1}
+    }
+    immediate = {
+        set_variable = counterintel_sweep_reached_milestone_1
+    }
+
+    # Option A: Widen the search > more resources, more coverage
+    option = {
+        name = hms_counterintel.10.a
+
+        add_modifier = {
+            name = general_network_cost_modifier_medium 
+            months = 10
+        }
+
+        set_variable = {
+            name = hms_ci_informant_network
+            months = 12
+        }
+
+        ai_chance = { base = 60 }
+    }
+
+    # Option B: Focus on known threats > cheaper but narrower
+    option = {
+        name = hms_counterintel.10.b
+
+        default_option = yes
+
+        ai_chance = { base = 40 }
+    }
+}
+
+### =============================================
+### EVENT 20: Milestone 2 > Narrowing Down (50%)
+### Checks if there are ACTUAL hostile operations and hints at it
+### =============================================
+hms_counterintel.20 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.20.t
+    desc = {
+        first_valid = {
+
+            # Something IS detected > vague hint
+            triggered_desc = {
+                trigger = {
+                    OR = {
+
+                        any_country = {
+                            has_diplomatic_pact = { who = prev type = arm_radicals }
+                        }
+                        any_country = {
+                            has_diplomatic_pact = { who = prev type = steal_tech }
+                        }
+                        any_country = {
+                            has_diplomatic_pact = { who = prev type = encourage_piracy }
+                        }
+                        any_country = {
+                            has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+                        }
+
+                        # ADD HERE ANY FUTURE HOSTILE ACTIONS THAT COULD BE REVEALED
+                    }
+                }
+
+                desc = hms_counterintel.20.d_suspicious
+            }
+
+            # Nothing found
+            triggered_desc = {
+                trigger = { always = yes }
+                desc = hms_counterintel.20.d_clean
+            }
+        }
+    }
+    flavor = hms_counterintel.20.f
+
+    event_image = {
+        video = "ep1_clandestine_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = counterintel_sweep_reached_milestone_2}
+    }
+    immediate = {
+        set_variable = counterintel_sweep_reached_milestone_2
+    }
+
+    # Option A: Intensify and end quicker 
+    option = {
+        name = hms_counterintel.20.a
+
+        add_modifier = {
+            name = intelligence_medium_effort_modifier
+            months = 10
+        }
+
+        custom_tooltip = {
+            text = "sweep_has_received_additional_funding_tt"
+            set_variable = {
+                name = hms_ci_intensified_sweep
+            }
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B Proceed at current pace 
+    option = {
+        name = hms_counterintel.20.b
+
+        default_option = yes
+
+        ai_chance = { base = 50 }
+    }
+
+}
+
+
+#####################################
+#####################################
+### RANDOM GOOD EVENTS
+### FISHED FROM RANDOM EVENT BLOCK JE
+#####################################
+
+### =============================================
+### # 30: Foreign Agent Caught > reveals one hostile pact
+### =============================================
+hms_counterintel.30 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.30.t
+    desc = hms_counterintel.30.d
+    flavor = hms_counterintel.30.f
+
+    event_image = {
+        video = "gfx/event_pictures/ip3_policeraid.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_agent_caught_fired }
+        
+        # Must actually have someone targeting us
+        OR = {
+
+            any_country = {
+                has_diplomatic_pact = { who = prev type = arm_radicals }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = steal_tech }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = encourage_piracy }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+            }
+
+            # ADD HERE ANY FUTURE HOSTILE ACTIONS THAT COULD BE REVEALED
+        }
+    }
+
+    immediate = {
+        set_variable = hms_ci_agent_caught_fired
+
+        # Find the hostile actor > prioritize arm_radicals, then steal_tech, then piracy, then slave movement
+        if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = arm_radicals }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = arm_radicals }
+                }
+                save_scope_as = hms_caught_spy_country
+            }
+            set_variable = hms_caught_spy_type_radicals
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = steal_tech }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = steal_tech }
+                }
+                save_scope_as = hms_caught_spy_country
+            }
+            set_variable = hms_caught_spy_type_tech
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+                save_scope_as = hms_caught_spy_country
+            }
+            set_variable = hms_caught_spy_type_piracy
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+                }
+                save_scope_as = hms_caught_spy_country
+            }
+            set_variable = hms_caugth_spy_slave_revolt
+        }
+    }
+
+    # Option A: Expel the agent and confront the country publicly
+    option = {
+        name = hms_counterintel.30.a
+
+        # Reveal the hostile country => relations hit
+        change_relations = {
+            country = scope:hms_caught_spy_country
+            value = -25
+        }
+
+        # Remove the hostile pact
+        if = {
+            limit = { has_variable = hms_caught_spy_type_radicals }
+            scope:hms_caught_spy_country = {
+                remove_diplomatic_pact = { country = root type = arm_radicals }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_caught_spy_type_tech }
+            scope:hms_caught_spy_country = {
+                remove_diplomatic_pact = { country = root type = steal_tech }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_caught_spy_type_piracy }
+            scope:hms_caught_spy_country = {
+                remove_diplomatic_pact = { country = root type = encourage_piracy }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_caugth_spy_slave_revolt }
+            scope:hms_caught_spy_country = {
+                remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+
+        # Cleanup type flags
+        remove_variable = hms_caught_spy_type_radicals
+        remove_variable = hms_caught_spy_type_tech
+        remove_variable = hms_caught_spy_type_piracy
+        remove_variable = hms_caugth_spy_slave_revolt
+
+        ai_chance = { base = 70 }
+
+        default_option = yes
+    }
+
+    # Option B: Keep the agent under surveillance and do not alarm the rival country
+    option = {
+        name = hms_counterintel.30.b
+
+        # Cleanup type flags
+        remove_variable = hms_caught_spy_type_radicals
+        remove_variable = hms_caught_spy_type_tech
+        remove_variable = hms_caught_spy_type_piracy
+        remove_variable = hms_caugth_spy_slave_revolt
+
+        ai_chance = { base = 30 }
+    }
+}
+
+### =============================================
+### # 31: Casual message reveals inter-national spy operation
+### =============================================
+hms_counterintel.31 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.31.t
+    desc = hms_counterintel.31.d
+    flavor = hms_counterintel.31.f
+
+    event_image = {
+        video = "middleeast_middleclass_cafe"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_messages_intercepted_fired }
+    }
+
+    immediate = {
+        set_variable = hms_ci_messages_intercepted_fired
+
+        # Pick 1st random country 
+        random_country = {
+            limit = {
+        
+                NOT = { THIS = ROOT }
+                country_rank >= rank_value:great_power
+        
+            }
+            save_scope_as = random_great_power_1
+        }
+
+        #Pick 2nd random country
+        random_country = {
+            limit = {
+        
+                NOT = { THIS = ROOT }
+                NOT = { THIS = scope:random_great_power_1 }
+                country_rank >= rank_value:great_power
+        
+            }
+            save_scope_as = random_great_power_2
+        }
+
+    }
+
+    # Option A: Help country 1
+    option = {
+        name = hms_counterintel.31.a
+
+        scope:random_great_power_1 = {
+            change_relations = {
+                country = root
+                value = 20
+            }
+        }
+
+        scope:random_great_power_2 = {
+            change_relations = {
+                country = root
+                value = -10
+            }
+        }
+
+        add_modifier = {
+            name = country_center_of_international_plot_modifier
+            months = 13
+        }
+
+        # custom_tooltip = {
+        #     text = expect_retaliation_from_great_power_2_tt
+
+        #     random_list = {
+        #         20 = {}
+        #         20 = {}
+        #         20 = {}
+        #         10 = {}
+        #     }
+
+        # }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Help country 2
+    option = {
+        name = hms_counterintel.31.b
+
+        add_modifier = {
+            name = country_center_of_international_plot_modifier
+            months = 13
+        }
+
+        scope:random_great_power_2 = {
+            change_relations = {
+                country = root
+                value = 20
+            }
+        }
+
+        scope:random_great_power_1 = {
+            change_relations = {
+                country = root
+                value = -10
+            }
+        }
+
+        # custom_tooltip = {
+        #     text = expect_retaliation_from_great_power_1_tt
+
+        #     random_list = {
+        #         20 = {}
+        #         20 = {}
+        #         20 = {}
+        #         10 = {}
+        #     }
+
+        # }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option C
+    option = {
+        name = hms_counterintel.31.c
+
+        default_option = yes
+
+        ai_chance = { base = 40 }
+    }
+}
+
+
+### =============================================
+### # 32: Double Agent Recruited
+### =============================================
+hms_counterintel.32 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.32.t
+    desc = hms_counterintel.32.d
+    flavor = hms_counterintel.32.f
+
+    event_image = {
+        video = "unspecific_signed_contract"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_double_agent_fired }
+        # Must have someone actually targeting us
+        OR = {
+            any_country = {
+                has_diplomatic_pact = { who = prev type = arm_radicals }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = steal_tech }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = encourage_piracy }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+            }
+        }
+    }
+
+    immediate = {
+        set_variable = hms_ci_double_agent_fired
+
+        # Find the hostile actor > prioritize arm_radicals, then steal_tech, then piracy, then slave movement
+        if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = arm_radicals }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = arm_radicals }
+                }
+                save_scope_as = hms_caught_spy_country
+            }
+            set_variable = hms_caught_spy_type_radicals
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = steal_tech }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = steal_tech }
+                }
+                save_scope_as = hms_caught_spy_country
+            }
+            set_variable = hms_caught_spy_type_tech
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+                save_scope_as = hms_caught_spy_country
+            }
+            set_variable = hms_caught_spy_type_piracy
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+                }
+                save_scope_as = hms_caught_spy_country
+            }
+            set_variable = hms_caugth_spy_slave_revolt
+        }
+    }
+
+    # Option A: Use the double agent for counterintelligence
+    option = {
+        name = hms_counterintel.32.a
+
+        add_modifier = {
+            name = general_network_cost_modifier_small
+            years = 1
+        }
+
+        add_modifier = {
+            name = hms_double_agent_asset
+            years = 10
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Use them to feed disinformation
+    option = {
+        name = hms_counterintel.32.b
+
+        scope:hms_caught_spy_country = {
+            add_modifier = {
+                name = hms_disinformation_campaign
+                months = 24
+            }
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option C: Dispose of him
+    option = {
+        name = hms_counterintel.32.c
+
+        if = {
+            limit = { has_variable = hms_caught_spy_type_radicals }
+            scope:hms_caught_spy_country = {
+                remove_diplomatic_pact = { country = root type = arm_radicals }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+
+        else_if = {
+            limit = { has_variable = hms_caught_spy_type_tech }
+            scope:hms_caught_spy_country = {
+                remove_diplomatic_pact = { country = root type = steal_tech }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+
+        else_if = {
+            limit = { has_variable = hms_caught_spy_type_piracy }
+            scope:hms_caught_spy_country = {
+                remove_diplomatic_pact = { country = root type = encourage_piracy }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+
+        else_if = {
+            limit = { has_variable = hms_caugth_spy_slave_revolt }
+            scope:hms_caught_spy_country = {
+                remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+
+        ai_chance = { base = 50 }
+    }
+}
+
+### =============================================
+### # 33: Expand our networks
+### =============================================
+hms_counterintel.33 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.33.t
+    desc = hms_counterintel.33.d
+    flavor = hms_counterintel.33.f
+
+    event_image = {
+        video = "ep1_clandestine_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_informant_fired }
+    }
+
+    immediate = {
+        set_variable = hms_ci_informant_fired
+    }
+
+    # Option A: Pay informants well > costs money but faster sweep
+    option = {
+        name = hms_counterintel.33.a
+
+        add_modifier = {
+            name =  general_network_cost_modifier_small
+            months = 13
+        }
+
+        set_variable = {
+            name = hms_ci_informant_network
+            months = 13
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Use coercion FREE but add radicals
+    option = {
+        name = hms_counterintel.33.b
+
+        set_variable = {
+            name = hms_ci_informant_network
+            months = 7
+        }
+
+        add_radicals = {
+            value = 0.01
+            strata = upper
+        }
+
+        add_radicals = {
+            value = 0.02
+            strata = middle
+        }
+
+        add_radicals = {
+            value = 0.03
+            strata = lower
+        }
+
+        ai_chance = { base = 50 }
+    }
+}
+
+
+
+
+### =============================================
+### RANDOM BAD EVENTS (40-43)
+### =============================================
+
+
+
+### =============================================
+### WHAT DO YOU MEAN YOU JUST ARRESTED A VETERAN ?
+### =============================================
+hms_counterintel.40 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.40.t
+    desc = hms_counterintel.40.d
+    flavor = hms_counterintel.40.f
+
+    event_image = {
+        video = "middleeast_police_breaking_door"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+    duration = 1
+
+    trigger = {
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_false_positive_fired }
+    }
+
+    immediate = {
+        set_variable = hms_ci_false_positive_fired
+    }
+
+    # Option A: Release and apologize at the cost of prestige
+    option = {
+        name = hms_counterintel.40.a
+
+        add_modifier = {
+            name = arrested_a_loyalist_modifier
+            years = 5
+        }
+
+        add_radicals = {
+            value = 0.05
+            pop_type = government_agents
+        }
+
+        ai_chance = { base = 60 }
+    }
+
+    # Option B: Keep them detained => maintain authority but add radicals
+    option = {
+        name = hms_counterintel.40.b
+
+        add_radicals = {
+            value = 0.1
+            pop_type = officers
+        }
+
+        ai_chance = { base = 40 }
+    }
+}
+
+
+### =============================================
+### PARANOIA SPREADS TO GOVERNMENT
+### =============================================
+hms_counterintel.41 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.41.t
+    desc = hms_counterintel.41.d
+    flavor = hms_counterintel.41.f
+
+    event_image = {
+        video = "unspecific_politicians_arguing"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+    duration = 1
+
+    trigger = {
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_paranoia_fired }
+    }
+
+    immediate = {
+        set_variable = hms_ci_paranoia_fired
+
+        # Hit approval of random government IG
+        random_interest_group = {
+            limit = {
+                is_in_government = yes
+            }
+            save_scope_as = random_ig_targeted
+        }
+    }
+
+    # Option A: Reassure the government SLOW SWEEP
+    option = {
+        name = hms_counterintel.41.a
+
+        default_option = yes
+
+        custom_tooltip = {
+            text = progress_will_slow_down_to_reassure_government_tt
+            set_variable = {
+                name = hms_ci_government_paranoia
+                months = 6
+            }
+        }
+
+        ai_chance = { base = 50 }
+
+        trigger_event = {
+            id = hms_counterintel.42
+            months = 3
+        }
+
+    }
+
+    # Option B: Ignore their concerns FATSER BUT but IG approval hit
+    option = {
+        name = hms_counterintel.41.b
+
+        # Hit approval of random government IG
+        scope:random_ig_targeted = {
+
+            add_modifier = {
+                name = hms_ig_distrusts_intelligence
+                months = 12
+            }
+            
+        }
+
+        trigger_event = {
+            id = hms_counterintel.42
+            months = 3
+        }
+
+        ai_chance = { base = 50 }
+    }
+}
+
+##     THIS TRIGGERS NEXT EVENT
+##        |
+##        |
+##        |
+##       \|/
+
+# 42: Mole in the Agency => progress sabotage
+hms_counterintel.42 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.42.t
+    desc = hms_counterintel.42.d
+    flavor = hms_counterintel.42.f
+
+    event_image = {
+        video = "ep1_clandestine_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        # has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_mole_fired }
+    }
+
+    immediate = {
+        set_variable = hms_ci_mole_fired
+    }
+
+    # Option A: Root out the mole => costs time and money
+    option = {
+        name = hms_counterintel.42.a
+
+        add_modifier = {
+            name = intelligence_medium_effort_modifier
+            months = 6
+        }
+
+        ai_chance = { base = 60 }
+    }
+
+    # Option B: Continue despite the mole => save money but progress suffers
+    option = {
+        name = hms_counterintel.42.b
+
+        set_variable = {
+            name = hms_ci_mole_active
+            months = 12
+        }
+
+        # shall the mole have its own JE ?? Interesting lets think about that 
+        # trigger_event = {
+        #     id = hms_counterintel.44
+        #     months = 4
+        # }
+
+        ai_chance = { base = 40 }
+    }
+}
+
+# 43: Diplomatic Incident LEAKED accidentally precious info and exposed own overseas operations
+hms_counterintel.43 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.43.t
+    desc = hms_counterintel.43.d
+    flavor = hms_counterintel.43.f
+
+    event_image = {
+        video = "middleeast_middleclass_cafe"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+    duration = 1
+
+    trigger = {
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_diplomatic_incident_fired }
+        # Only fires if we're actually running hostile ops ourselves
+        OR = {
+            any_country = {
+                root = { has_diplomatic_pact = { who = prev type = arm_radicals } }
+            }
+            any_country = {
+                root = { has_diplomatic_pact = { who = prev type = steal_tech } }
+            }
+            any_country = {
+                root = { has_diplomatic_pact = { who = prev type = encourage_piracy } }
+            }
+            any_country = {
+                root = { has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement } } 
+            }
+        }
+    }
+
+    immediate = {
+        set_variable = hms_ci_diplomatic_incident_fired
+
+        # Find one of our own hostile pact targets
+        if = {
+            limit = {
+                any_country = {
+                    root = { has_diplomatic_pact = { who = prev type = arm_radicals } }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = { has_diplomatic_pact = { who = prev type = arm_radicals } }
+                }
+                save_scope_as = hms_exposed_target
+            }
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    root = { has_diplomatic_pact = { who = prev type = steal_tech } }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = { has_diplomatic_pact = { who = prev type = steal_tech } }
+                }
+                save_scope_as = hms_exposed_target
+            }
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    root = { has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement } }
+                }
+            }
+            random_country = {
+                limit = {
+                    root = { has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement } }
+                }
+                save_scope_as = hms_exposed_target
+            }
+        }
+        else = {
+            random_country = {
+                limit = {
+                    root = { has_diplomatic_pact = { who = prev type = encourage_piracy } }
+                }
+                save_scope_as = hms_exposed_target
+            }
+        }
+    }
+
+    # Option A: Cover it up costs money and prestige
+    option = {
+        name = hms_counterintel.43.a
+
+        add_modifier = {
+            name = intelligence_medium_effort_modifier
+            months = 7
+        }
+
+        add_radicals = {
+            value = 0.1
+            pop_type = government_agents
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Brazen it out > relations damage but keep the operation
+    option = {
+        name = hms_counterintel.43.b
+
+        change_relations = {
+            country = scope:hms_exposed_target
+            value = -35
+        }
+
+        ai_chance = { base = 50 }
+    }
+}
+
+
+### Possible Mole Development # TODO
+
+
+### =============================================
+### EVENT 50: Surveillance Breakthrough (Home Affairs >= 4)
+### Mid-sweep detection > intercept a handler meeting
+### =============================================
+hms_counterintel.50 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.50.t
+    desc = hms_counterintel.50.d
+    flavor = hms_counterintel.50.f
+
+    event_image = {
+        video = "unspecific_factory_closed"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_surveillance_breakthrough_fired }
+
+        # Gated behind Home Affairs investment level 4
+        institution_investment_level = {
+            institution = institution_home_affairs
+            value >= 4
+        }
+
+        # Must have someone actually targeting us
+        OR = {
+            any_country = {
+                has_diplomatic_pact = { who = prev type = arm_radicals }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = steal_tech }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = encourage_piracy }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+            }
+        }
+    }
+
+    immediate = {
+        set_variable = hms_ci_surveillance_breakthrough_fired
+
+        # Priority order: steal_tech > arm_radicals > piracy > abolitionist
+        if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = steal_tech }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = steal_tech }
+                }
+                save_scope_as = hms_surveilled_country
+            }
+            set_variable = hms_surveilled_type_tech
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = arm_radicals }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = arm_radicals }
+                }
+                save_scope_as = hms_surveilled_country
+            }
+            set_variable = hms_surveilled_type_radicals
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+                save_scope_as = hms_surveilled_country
+            }
+            set_variable = hms_surveilled_type_piracy
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+                }
+                save_scope_as = hms_surveilled_country
+            }
+            set_variable = hms_surveilled_type_abolitionist
+        }
+    }
+
+    # Option A: Arrest the handler and shut down the operation
+    option = {
+        name = hms_counterintel.50.a
+
+        custom_tooltip = {
+            text = enemy_not_notified_tt
+        }
+
+        # Remove the hostile pact based on type
+        if = {
+            limit = { has_variable = hms_surveilled_type_tech }
+            scope:hms_surveilled_country = {
+                remove_diplomatic_pact = { country = root type = steal_tech }
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_surveilled_type_radicals }
+            scope:hms_surveilled_country = {
+                remove_diplomatic_pact = { country = root type = arm_radicals }
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_surveilled_type_piracy }
+            scope:hms_surveilled_country = {
+                remove_diplomatic_pact = { country = root type = encourage_piracy }
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_surveilled_type_abolitionist }
+            scope:hms_surveilled_country = {
+                remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
+            }
+        }
+
+        # Cleanup type flags
+        remove_variable = hms_surveilled_type_tech
+        remove_variable = hms_surveilled_type_radicals
+        remove_variable = hms_surveilled_type_piracy
+        remove_variable = hms_surveilled_type_abolitionist
+
+        ai_chance = { base = 70 }
+    }
+
+    # Option B: tell newspapers
+    option = {
+        name = hms_counterintel.50.b
+
+        # Remove the hostile pact based on type
+        if = {
+            limit = { has_variable = hms_surveilled_type_tech }
+            scope:hms_surveilled_country = {
+                remove_diplomatic_pact = { country = root type = steal_tech }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_surveilled_type_radicals }
+            scope:hms_surveilled_country = {
+                remove_diplomatic_pact = { country = root type = arm_radicals }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_surveilled_type_piracy }
+            scope:hms_surveilled_country = {
+                remove_diplomatic_pact = { country = root type = encourage_piracy }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_surveilled_type_abolitionist }
+            scope:hms_surveilled_country = {
+                remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+
+        add_modifier = {
+            name = hms_handler_under_surveillance
+            months = 12
+        }
+
+        change_relations = {
+            country = scope:hms_surveilled_country
+            value = -30
+        }
+
+        # Cleanup type flags
+        remove_variable = hms_surveilled_type_tech
+        remove_variable = hms_surveilled_type_radicals
+        remove_variable = hms_surveilled_type_piracy
+        remove_variable = hms_surveilled_type_abolitionist
+
+        ai_chance = { base = 30 }
+    }
+}
+
+### =============================================
+### EVENT 51: Deep Cover Asset Activated (Home Affairs >= 5)
+### AKA The most powerful mid-sweep detection
+### =============================================
+hms_counterintel.51 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.51.t
+    desc = hms_counterintel.51.d
+    flavor = hms_counterintel.51.f
+
+    event_image = {
+        video = "europenorthamerica_capitalists_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        has_variable = hms_counterintel_sweep_active
+        NOT = { has_variable = hms_ci_deep_cover_fired }
+
+        # Gated behind Home Affairs investment level 5
+        institution_investment_level = {
+            institution = institution_home_affairs
+            value >= 5 # balance ? make 4 ?
+        }
+
+        # Must have someone actually targeting us
+        OR = {
+            any_country = {
+                has_diplomatic_pact = { who = prev type = arm_radicals }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = steal_tech }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = encourage_piracy }
+            }
+            any_country = {
+                has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+            }
+        }
+    }
+
+    immediate = {
+        set_variable = hms_ci_deep_cover_fired
+
+        # Priority order: arm_radicals > piracy > abolitionist > steal_tech
+        # (different from event 50 so they don't always target the same pact)
+        if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = arm_radicals }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = arm_radicals }
+                }
+                save_scope_as = hms_deep_cover_country
+            }
+            set_variable = hms_deep_cover_type_radicals
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = encourage_piracy }
+                }
+                save_scope_as = hms_deep_cover_country
+            }
+            set_variable = hms_deep_cover_type_piracy
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = support_slave_abolitionist_movement }
+                }
+                save_scope_as = hms_deep_cover_country
+            }
+            set_variable = hms_deep_cover_type_abolitionist
+        }
+        else_if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = prev type = steal_tech }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = prev type = steal_tech }
+                }
+                save_scope_as = hms_deep_cover_country
+            }
+            set_variable = hms_deep_cover_type_tech
+        }
+    }
+
+    # Option A: Full exposure > shut down the operation and humiliate them publicly
+    option = {
+        name = hms_counterintel.51.a
+
+        # Remove the hostile pact based on type
+        if = {
+            limit = { has_variable = hms_deep_cover_type_radicals }
+            scope:hms_deep_cover_country = {
+                remove_diplomatic_pact = { country = root type = arm_radicals }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_deep_cover_type_piracy }
+            scope:hms_deep_cover_country = {
+                remove_diplomatic_pact = { country = root type = encourage_piracy }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_deep_cover_type_abolitionist }
+            scope:hms_deep_cover_country = {
+                remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+        else_if = {
+            limit = { has_variable = hms_deep_cover_type_tech }
+            scope:hms_deep_cover_country = {
+                remove_diplomatic_pact = { country = root type = steal_tech }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+        }
+
+        # Harsher diplomatic consequences > we have undeniable proof
+        change_relations = {
+            country = scope:hms_deep_cover_country
+            value = -40
+        }
+
+        scope:hms_deep_cover_country = {
+            add_modifier = {
+                name = hms_exposed_operation_from_high_investment_home_affairs
+                years = 3
+            }
+            add_radicals = {
+                value = 0.05
+                pop_type = government_agents
+            }
+        }
+
+        add_loyalists = {
+            value = 0.05
+            pop_type = government_agents
+        }
+
+        # Cleanup type flags
+        remove_variable = hms_deep_cover_type_radicals
+        remove_variable = hms_deep_cover_type_piracy
+        remove_variable = hms_deep_cover_type_abolitionist
+        remove_variable = hms_deep_cover_type_tech
+
+        ai_chance = { base = 60 }
+    }
+
+    # Option B: Use the asset to poison country intel and agents pol power 
+    option = {
+        name = hms_counterintel.51.b
+
+        add_modifier = {
+            name = hms_turned_operation
+            years = 3
+        }
+
+        scope:hms_deep_cover_country = {
+            add_modifier = {
+                name = hms_compromised_operation
+                years = 3
+            }
+            post_notification = notify_caught_counterintelligence_message_tt
+        }
+
+        # They owe us > diplomatic leverage from the exposure
+        scope:hms_deep_cover_country = {
+            set_owes_obligation_to = {
+                country = root
+                setting = yes
+            }
+        }
+
+        # Cleanup type flags
+        remove_variable = hms_deep_cover_type_radicals
+        remove_variable = hms_deep_cover_type_piracy
+        remove_variable = hms_deep_cover_type_abolitionist
+        remove_variable = hms_deep_cover_type_tech
+
+        ai_chance = { base = 40 }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#       ####    ####
+#       #  #    #  #
+#       ####    ####
+    
+
+### =============================================
+### EVENT 100: Sweep Complete > THE BIG DETECTION ROLL
+### Checks all hostile pacts targeting ROOT
+### Random chance to detect each one
+### =============================================
+hms_counterintel.100 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.100.t
+
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = {
+                    has_variable = hms_ci_detected_something
+                }
+                desc = hms_counterintel.100.d_found
+            }
+            triggered_desc = {
+                trigger = { always = yes }
+                desc = hms_counterintel.100.d_clean
+            }
+        }
+    }
+
+    flavor = hms_counterintel.100.f
+
+    event_image = {
+        video = "ep1_clandestine_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 3
+
+    trigger = {}
+
+    immediate = {
+
+        # CHECK FOR ARM RADICALS TARGETING US
+        if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = root type = arm_radicals }
+                }
+            }
+            # Save scope FIRST > guaranteed to exist if we're inside this if block
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = root type = arm_radicals }
+                }
+                save_scope_as = hms_detected_radicals_country
+            }
+            # Then roll for detection > only sets the variable on success
+            random_list = {
+                60 = {
+                    modifier = {
+                        trigger = { has_variable = hms_ci_intensified_sweep }
+                        add = 25
+                    }
+                    set_variable = hms_ci_detected_radicals
+                    set_variable = hms_ci_detected_something
+                }
+                40 = {
+                    modifier = {
+                        trigger = { has_variable = hms_ci_intensified_sweep }
+                        add = -25
+                    }
+                }
+            }
+        }
+
+        # CHECK FOR TECH STEAL TARGETING US
+        if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = root type = steal_tech }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = root type = steal_tech }
+                }
+                save_scope_as = hms_detected_tech_country
+            }
+            random_list = {
+                60 = {
+                    modifier = {
+                        trigger = { has_variable = hms_ci_intensified_sweep }
+                        add = 25
+                    }
+                    set_variable = hms_ci_detected_tech
+                    set_variable = hms_ci_detected_something
+                }
+                40 = {
+                    modifier = {
+                        trigger = { has_variable = hms_ci_intensified_sweep }
+                        add = -25
+                    }
+                }
+            }
+        }
+
+        # CHECK FOR PIRACY TARGETING US
+        if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = root type = encourage_piracy }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = root type = encourage_piracy }
+                }
+                save_scope_as = hms_detected_piracy_country
+            }
+            random_list = {
+                60 = {
+                    modifier = {
+                        trigger = { has_variable = hms_ci_intensified_sweep }
+                        add = 25
+                    }
+                    set_variable = hms_ci_detected_piracy
+                    set_variable = hms_ci_detected_something
+                }
+                40 = {
+                    modifier = {
+                        trigger = { has_variable = hms_ci_intensified_sweep }
+                        add = -25
+                    }
+                }
+            }
+        }
+
+        # CHECK FOR SLAVE REVOLT TARGETING US
+        if = {
+            limit = {
+                any_country = {
+                    has_diplomatic_pact = { who = root type = support_slave_abolitionist_movement }
+                }
+            }
+            random_country = {
+                limit = {
+                    has_diplomatic_pact = { who = root type = support_slave_abolitionist_movement }
+                }
+                save_scope_as = hms_detected_abolitionist_country
+            }
+            random_list = {
+                60 = {
+                    modifier = {
+                        trigger = { has_variable = hms_ci_intensified_sweep }
+                        add = 25
+                    }
+                    set_variable = hms_ci_detected_abolitionist
+                    set_variable = hms_ci_detected_something
+                }
+                40 = {
+                    modifier = {
+                        trigger = { has_variable = hms_ci_intensified_sweep }
+                        add = -25
+                    }
+                }
+            }
+        }
+    }
+
+    # Option A: Act on all intelligence > confront and shut down detected operations
+    option = {
+        name = hms_counterintel.100.a
+
+        trigger = {
+            has_variable = hms_ci_detected_something
+        }
+
+        # Shut down detected arm radicals
+        if = {
+            limit = { has_variable = hms_ci_detected_radicals }
+
+            scope:hms_detected_radicals_country = {
+                remove_diplomatic_pact = { country = root type = arm_radicals }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+
+            change_relations = {
+                country = scope:hms_detected_radicals_country
+                value = -40
+            }
+        }
+
+        # Shut down detected tech theft
+        if = {
+            limit = { has_variable = hms_ci_detected_tech }
+
+            scope:hms_detected_tech_country = {
+                remove_diplomatic_pact = { country = root type = steal_tech }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+
+            change_relations = {
+                country = scope:hms_detected_tech_country
+                value = -40
+            }
+
+            # Anti-proliferation shield
+            set_variable = {
+                name = successful_tech_defense_against_thieves
+                months = 24
+            }
+        }
+
+        # Shut down detected piracy
+        if = {
+            limit = { has_variable = hms_ci_detected_piracy }
+
+            scope:hms_detected_piracy_country = {
+                remove_diplomatic_pact = { country = root type = encourage_piracy }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+
+            change_relations = {
+                country = scope:hms_detected_piracy_country
+                value = -40
+            }
+        }
+
+        # Shut down detected abolitionist incitement
+        if = {
+            limit = { has_variable = hms_ci_detected_abolitionist }
+
+            scope:hms_detected_abolitionist_country = {
+                remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
+                post_notification = notify_caught_counterintelligence_message_tt
+            }
+
+            change_relations = {
+                country = scope:hms_detected_abolitionist_country
+                value = -40
+            }
+        }
+
+        add_modifier = {
+            name = hms_successful_counterintel_sweep
+            years = 3
+        }
+
+        # Cleanup detection vars
+        remove_variable = hms_ci_detected_radicals
+        remove_variable = hms_ci_detected_tech
+        remove_variable = hms_ci_detected_piracy
+        remove_variable = hms_ci_detected_abolitionist
+        remove_variable = hms_ci_detected_something
+        remove_variable = hms_ci_intensified_sweep
+
+        ai_chance = { base = 80 }
+    }
+
+    # Option B: Keep quiet > use the intelligence passively
+    option = {
+        name = hms_counterintel.100.b
+
+        trigger = {
+            has_variable = hms_ci_detected_something
+        }
+
+        # Don't shut down pacts but get a defensive modifier
+        add_modifier = {
+            name = hms_shadow_awareness
+            months = -1
+        }
+
+        # Cleanup detection vars
+        remove_variable = hms_ci_detected_radicals
+        remove_variable = hms_ci_detected_tech
+        remove_variable = hms_ci_detected_piracy
+        remove_variable = hms_ci_detected_abolitionist
+        remove_variable = hms_ci_detected_something
+        remove_variable = hms_ci_intensified_sweep
+
+        ai_chance = { base = 20 }
+    }
+
+    # Option C: Nothing found > clean bill of health
+    option = {
+        name = hms_counterintel.100.c
+
+        trigger = {
+            NOT = { has_variable = hms_ci_detected_something }
+        }
+
+        add_modifier = {
+            name = hms_successful_counterintel_sweep
+            years = 2
+        }
+
+        remove_variable = hms_ci_intensified_sweep
+
+        default_option = yes
+        ai_chance = { base = 100 }
+    }
+}
+
+### =============================================
+### EVENT 99: Sweep Failed
+### =============================================
+
+hms_counterintel.99 = {
+    type = country_event
+    placement = root
+
+    title = hms_counterintel.99.t
+    desc = hms_counterintel.99.d
+
+    event_image = {
+        video = "unspecific_politicians_arguing"
+    }
+
+    duration = 1
+
+    trigger = {}
+    immediate = {}
+
+    option = {
+        name = hms_counterintel.99.a
+        default_option = yes
+    }
+}

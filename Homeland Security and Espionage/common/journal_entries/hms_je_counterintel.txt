@@ -1,0 +1,178 @@
+﻿### Homeland Counter Intel Sweep To Discover possible hostile manouvers
+
+hms_je_counterintel_sweep = {
+
+    group = je_group_intelligence
+
+    weight = 200
+
+    transferable = no 
+
+    should_be_pinned_by_default = yes
+
+    scripted_progress_bar = counterintel_sweep_progress_bar
+
+    immediate = {
+        set_variable = hms_counterintel_sweep_active
+    }
+
+    modifiers_while_active = {
+        hms_counterintel_sweep_in_progress
+    }
+
+    on_monthly_pulse = {
+        effect = {
+
+            # MILESTONE 1: At 25% ~ Preliminary Findings
+            if = {
+                limit = {
+
+                    scope:journal_entry = {
+                        "scripted_bar_progress(counterintel_sweep_progress_bar)" >= 12
+                    }
+
+                }
+
+                trigger_event = {
+                    id = hms_counterintel.10
+                    popup = yes
+                }
+            }
+
+            # MILESTONE 2: At 50% ~ Narrowing Down
+            if = {
+                limit = {
+
+                    scope:journal_entry = {
+                        "scripted_bar_progress(counterintel_sweep_progress_bar)" >= 25
+                    }
+
+                }
+
+                trigger_event = {
+                    id = hms_counterintel.20
+                    popup = yes
+                }
+            }
+
+        }
+
+        random_events = {
+            30 = 0
+
+            ### GOOD OUTCOMES
+            2 = hms_counterintel.30  # Foreign agent caught
+            2 = hms_counterintel.31  # Coded messages intercepted
+            1 = hms_counterintel.32  # Double agent recruited
+            2 = hms_counterintel.33  # Informant network expanded
+
+            ### BAD OUTCOMES
+            1 = hms_counterintel.40  # False positive — arrested a loyalist
+            1 = hms_counterintel.41  # Paranoia in government
+            1 = hms_counterintel.42  # Mole in the agency
+            1 = hms_counterintel.43  # Diplomatic incident
+
+            ### TRIGGER OTHER NON RELATED EVENTS
+            ### Like A Favor For a Friend ?
+
+            ### HOME AFFAIRS GATED — higher investment unlocks better detection
+            2 = hms_counterintel.50  # Surveillance breakthrough (Home Affairs >= 4)
+            2 = hms_counterintel.51  # Deep cover asset activated (Home Affairs >= 5)
+            
+        }
+
+    }
+
+    complete = {
+        custom_tooltip = {
+            text = counterintel_sweep_complete_tt
+            scope:journal_entry = {
+                "scripted_bar_progress(counterintel_sweep_progress_bar)" >= 50
+            }
+        }
+    }
+
+    on_complete = {
+
+        # THE BIG REVEAL ~ detection event
+        trigger_event = { id = hms_counterintel.100 popup = yes }
+
+        # Cleanup
+        remove_variable = hms_counterintel_sweep_active
+        remove_variable = counterintel_sweep_reached_milestone_1
+        remove_variable = counterintel_sweep_reached_milestone_2
+
+        # Random event guard variables
+        remove_variable = hms_ci_agent_caught_fired
+        remove_variable = hms_ci_messages_intercepted_fired
+        remove_variable = hms_ci_double_agent_fired
+        remove_variable = hms_ci_informant_fired
+        remove_variable = hms_ci_false_positive_fired
+        remove_variable = hms_ci_paranoia_fired
+        remove_variable = hms_ci_mole_fired
+        remove_variable = hms_ci_diplomatic_incident_fired
+        remove_variable = hms_ci_intensified_sweep
+        remove_variable = hms_ci_surveillance_breakthrough_fired
+        remove_variable = hms_ci_deep_cover_fired
+
+        # Set cooldown !!! 2 years before next sweep
+        set_variable = {
+            name = hms_counterintel_sweep_cooldown
+            years = 2
+        }
+    }
+
+    fail = {
+        # Fails if we are in default, buildings gets destroyes, or we get revolution
+        OR = {
+
+            is_revolutionary = yes
+            in_default = yes
+
+            NOT = {
+                any_scope_state = {
+                    has_building = building_intel_hq
+                }
+            }
+
+        }
+    }
+
+    on_fail = {
+        trigger_event = { id = hms_counterintel.99 popup = yes }
+
+        remove_variable = hms_counterintel_sweep_active
+        remove_variable = counterintel_sweep_reached_milestone_1
+        remove_variable = counterintel_sweep_reached_milestone_2
+
+        remove_variable = hms_ci_agent_caught_fired
+        remove_variable = hms_ci_messages_intercepted_fired
+        remove_variable = hms_ci_double_agent_fired
+        remove_variable = hms_ci_informant_fired
+        remove_variable = hms_ci_false_positive_fired
+        remove_variable = hms_ci_paranoia_fired
+        remove_variable = hms_ci_mole_fired
+        remove_variable = hms_ci_diplomatic_incident_fired
+        remove_variable = hms_ci_intensified_sweep
+        remove_variable = hms_ci_surveillance_breakthrough_fired
+        remove_variable = hms_ci_deep_cover_fired
+
+        # Set cooldown !!! 2 years before next sweep
+        set_variable = {
+            name = hms_counterintel_sweep_cooldown
+            years = 1
+        }
+    }
+
+    invalid = {}
+
+    on_invalid = {}
+
+    status_desc = {
+        first_valid = {
+            triggered_desc = {
+                desc = hms_counterintel_sweep_status_tt
+            }
+        }
+    }
+}

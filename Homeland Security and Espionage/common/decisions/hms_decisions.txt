@@ -1,0 +1,75 @@
+﻿hms_launch_counterintelligence_sweep = {
+
+    is_shown = {
+        has_technology_researched = HMS_tech_era_4_homeland_security # Now called Counterintelligence
+    }
+
+    possible = {
+
+        custom_tooltip = {
+            text = "must_wait_cooldown_counterintelligence_tt"
+            NOT = { has_variable = hms_counterintel_sweep_cooldown }
+        }
+
+        custom_tooltip = {
+            text = counterintelligence_sweep_is_not_already_active_tt
+            NOT = { has_variable = is_sweeping_country_counterintelligence }
+        }
+
+        
+
+         # Must have intel HQ somewhere
+         any_scope_state = {
+            has_building = building_intel_hq
+        }
+
+        # Must have Office of Foreign Affairs law ??? # balance ? For now it can stay off
+        # has_law_or_variant = law_type:law_office_of_foreign_affairs
+
+        # Must have Home Affairs >= 3
+        institution_investment_level = {
+            institution = institution_home_affairs
+            value >= 3
+        }
+
+        # Not in default or revolution
+        in_default = no
+        is_revolutionary = no
+
+    }
+
+    when_taken = {
+
+		set_variable = {
+            name = is_sweeping_country_counterintelligence
+            years = 1
+        }
+
+        add_modifier = {
+            name = general_network_cost_modifier_small
+            years = 1
+        }
+
+        add_journal_entry = {
+            type = hms_je_counterintel_sweep
+        }
+
+	}
+
+	ai_chance = {
+		value = 10
+
+        # AI WILL CONSIDER SWEEPING IF BEEN TARGETED BY HOSTILE MANOUVERS RECENTLY
+        modifier = {
+            trigger = {
+                OR = {
+                    has_variable = recently_fought_pirates
+                    has_variable = recently_bribed_pirates 
+                    has_variable = successful_tech_defense_against_thieves
+                }
+            }
+            add = 35
+        }
+	}
+
+}

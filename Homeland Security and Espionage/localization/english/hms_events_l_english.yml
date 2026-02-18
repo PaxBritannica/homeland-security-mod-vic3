@@ -37,6 +37,10 @@
  notification_notify_successful_bribe: "Successful Bribe"
  notification_notify_successful_bribe_desc: "[SCOPE.sCharacter('resigning_politician').GetFullName] has retired from political life."
  notification_notify_unsuccessful_bribe_desc: "[SCOPE.sCharacter('resigning_politician').GetFullName] has refused our offer."
+ notification_notify_caught_counterintelligence_message_tt_name: "Hostile Operation Discovered"
+ notification_notify_caught_counterintelligence_message_tt_desc: "One of our agents has been compromised meaning one of our operation has stopped."
+ send_scientific_advisors_action_notification_third_party_break_name: "Scientific Delegation pulled out of [TARGET_COUNTRY.GetName]"
+ send_scientific_advisors_action_notification_third_party_break_desc: "[INITIATOR_COUNTRY.GetName] has retired its scientific delegation from [TARGET_COUNTRY.GetName]"
 
 
 
@@ -630,3 +634,308 @@ develop_nation_events.99.a: "That's a #r shame#!."
  refused_collaboration_prospecting: "Refused to cooperate with a Great Power on a foreign project"
 
 ## ADD OIL EVENT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################################
+######################################################################################
+######################################################################################
+
+#### COUNTERINTELLIGENCE SWEEP
+general_network_cost_modifier_small: "General Cost Related to Intelligence"
+general_network_cost_modifier_medium: "General Cost Related to Intelligence"
+general_network_cost_modifier_huge: "General Cost Related to Intelligence"
+counterintel_sweep_complete_tt: "The Counterintelligence progress reaches #yellow 100%#!"
+enemy_not_notified_tt: "Enemy won't receive any notification."
+
+counterintelligence_sweep_is_not_already_active_tt: "Counter Intelligence Sweep is not already in place"
+
+### =============================================
+### DECISION FOR COUNTERINTELLIGENCE SWEEP 
+### =============================================
+
+counterintel_sweep_progress_bar: "Counterintelligence Sweep"
+counterintel_sweep_progress_bar_desc: "Counterintelligence Sweep Progress"
+
+hms_launch_counterintelligence_sweep: "Launch Counterintelligence Sweep"
+hms_launch_counterintelligence_sweep_desc: "Order our intelligence apparatus to conduct a thorough sweep of the #yellow homeland#!, searching for foreign agents, saboteurs, and hostile intelligence operations. #red This will launch random events but also uncover (with chance) possible hostile diplomatic actions against us if they are in act#!."
+hms_not_already_sweeping_tt: "Not currently conducting a counterintelligence sweep"
+hms_sweep_cooldown_tt: "Must wait before launching another sweep."
+
+ ### =============================================
+ ### JOURNAL ENTRY
+ ### =============================================
+
+ hms_je_counterintel_sweep: "Counterintelligence Sweep"
+ hms_counterintel_sweep_status_tt: "Our agents are combing through intelligence networks, intercepting communications, and tracking suspicious activity across our #y Homeland#!."
+
+ ### =============================================
+ ### PROGRESS BAR
+ ### =============================================
+
+ counterintel_sweep_progress_bar: "Sweep Progress"
+ counterintel_sweep_progress_bar_desc: "Counterintelligence #y Operation Progress#!"
+ hms_ci_base_growth_tt: "Counterintelligence sweep underway"
+ hms_ci_advanced_foreign_affairs_tt: "Advanced Home Affairs Infrastructure"
+ hms_ci_momentum_boost_tt: "Investigation momentum"
+ hms_ci_informant_network_tt: "Expanded informant network"
+ hms_ci_mole_active_tt: "Mole sabotaging the investigation"
+ hms_ci_government_paranoia_tt: "Government interference"
+ hms_ci_intensified_sweep_tt: "Decision to Intensify Operation"
+
+ ### =============================================
+ ### EVENT 1: SWEEP LAUNCHED
+ ### =============================================
+
+ hms_counterintel.1.t: "The Sweep Begins"
+ hms_counterintel.1.d: "At our directive, agents from the [concept_secret_service] have fanned out across the country. Posing as customs inspectors, postal clerks, and telegraph operators, they are quietly cataloguing every foreign national with diplomatic or commercial ties.\n\n#y We must dig deep#!. But if we find something, we will be in a position to act decisively."
+ hms_counterintel.1.f: "Mouth shut, the enemy is listening."
+ hms_counterintel.1.a: "Very well, proceed with the sweep."
+
+ ### =============================================
+ ### EVENT 10: MILESTONE 1 — PRELIMINARY FINDINGS (25%)
+ ### =============================================
+
+ hms_counterintel.10.t: "Preliminary Findings"
+ hms_counterintel.10.d: "Our agents have completed the first phase of the sweep. They've mapped out the foreign #red intelligence presence in our major cities#!, embassy staff with suspicious routines, commercial attachés who spend too much time near military installations, and a handful of unregistered foreign nationals who arrived on diplomatic ships but never checked in with customs.\n\nThe question now is whether to widen the search by recruiting more informants from the civilian population, or to focus our resources on the most promising leads."
+ hms_counterintel.10.f: "The web of espionage is wider than we thought."
+ hms_counterintel.10.a: "Widen the search. Recruit more civilian informants."
+ hms_counterintel.10.b: "We will do with what we have."
+
+ ### =============================================
+ ### EVENT 20: MILESTONE 2 — NARROWING DOWN (50%)
+ ### =============================================
+
+ hms_counterintel.20.t: "Narrowing the Search"
+ hms_counterintel.20.d_suspicious: "The sweep has progressed far enough that our analysts are beginning to see patterns. Certain communications channels are being used with unusual frequency. Our agents report contacts with foreign operatives that go beyond normal diplomatic activity.\n\nSomething is out there. We're not sure what yet, but the signs are unmistakable. We can confirm #yellow at least one active operation against#! us is being conducting by a foreign power."
+ hms_counterintel.20.d_clean: "Halfway through the sweep, our agents have found nothing of substance. The foreign intelligence presence in our country appears to be limited to routine diplomatic observation, #green nothing hostile or subversive#!.\n\nWe can intensify the remaining investigation to be absolutely certain, or simply maintain the current pace and wrap up on schedule."
+ hms_counterintel.20.f: "Patience and persistence are the our best weapons in times like this."
+ hms_counterintel.20.a: "Intensify #yellow the Sweep and double the effort#!."
+ hms_counterintel.20.b: "Continue at your current pace."
+
+ ### =============================================
+ ### RANDOM GOOD EVENTS (30-33)
+ ### =============================================
+
+ ### 30: Foreign Agent Caught
+ hms_counterintel.30.t: "Agent Apprehended"
+ hms_counterintel.30.d: "Our #yellow counterintelligence team#! helped by a small group from the [concept_army] has stormed an office of one of the national newspapers. During the raid we have apprehended a foreign operative #r red-handed#!. The agent was using one of the office to print and transmit top-down messages to other infiltrators. His ties with [SCOPE.sCountry('hms_caught_spy_country').GetName] are confirmed. How do we want to approach this?"
+ hms_counterintel.30.f: "So once the sound of bayonets and swords swinging all across the office started all of a sudden the spider has become the fly."
+ hms_counterintel.30.a: "#r Jail him#! and denounce [SCOPE.sCountry('ban_target').GetName] publicly."
+ hms_counterintel.30.b: "Keep them under surveillance for now."
+
+ ### 31: Coded Messages Intercepted
+ hms_counterintel.31.t: "International Plot"
+ hms_counterintel.31.d: "Our postal surveillance team has intercepted a batch of #y suspicious letters#! containing hidden messages written in some sort of invisible ink between the lines of ordinary commercial correspondence. The code is sophisticated and unveils an international plot taking place in our country. [SCOPE.sCountry('random_great_power_1').GetName] is sending an agent to #r 'dispose'#! of one of [SCOPE.sCountry('random_great_power_2').GetName]'s #yellow leading government#! member. \n\n We could use what we gathered to gain some advantage from all of this."
+ hms_counterintel.31.f: "Every letter tells two stories one for the reader, one for the spy. But beware of who you chose to befriend here as one does not get to certain places without getting some people upset on the way."
+ hms_counterintel.31.a: "Inform [SCOPE.sCountry('random_great_power_1').GetName] about his agent being compromised."
+ hms_counterintel.31.b: "Inform [SCOPE.sCountry('random_great_power_2').GetName] of this before is too late."
+ country_center_of_international_plot_modifier: "We are at the center of a political international plot."
+ expect_retaliation_from_great_power_1_tt: "Expect #r retaliation#! from [SCOPE.sCountry('random_great_power_1').GetName]"
+ expect_retaliation_from_great_power_2_tt: "Expect #r retaliation#! from [SCOPE.sCountry('random_great_power_2').GetName]"
+ hms_counterintel.31.c: "Turn a blind eye, #y better#! not get involved."
+
+ ### 32: Double Agent Recruited
+ hms_counterintel.32.t: "A Defector in Their Ranks"
+ hms_counterintel.32.d: "We have been approached by one defector from [SCOPE.sCountry('hms_caught_spy_country').GetName]. Disillusioned with their handlers and fearful of being recalled, they are willing to work for us in exchange for protection and a modest pension.\n\n He confirmed [SCOPE.sCountry('hms_caught_spy_country').GetName] is conducting hostile operations in our country. \nHe might be a valuable asset if used correctly."
+ hms_counterintel.32.f: "Today's enemy agent is tomorrow's most valuable asset."
+ hms_counterintel.32.a: "#y Recruit him#! for permanent counterintelligence work."
+ hms_counterintel.32.b: "Use him to feed #red false intel#!."
+ hms_counterintel.32.c: "Maybe he could use a cup of #red Special Tea#!."
+
+ ### 33: Informant Network Expanded
+ hms_counterintel.33.t: "New Eyes and Ears"
+ hms_counterintel.33.d: "From trade workers who notice unusual cargo, innkeepers who overhear foreign conversations, railway clerks who track suspicious passengers.\n\nThese civilian contacts could significantly accelerate our investigation. We can approach them and #y offer a fair price#! to ensure their loyalty and cooperation, or lean on them through less savory means, effective but liable to breed resentment."
+ hms_counterintel.33.f: "The interests of the nation are best preserved in silence. Spoken softly, carried carefully, and never written twice.."
+ hms_counterintel.33.a: "#yellow Buy#! their loyalty."
+ hms_counterintel.33.b: "Use #r coercion#!. We need results, not friends."
+
+ ### =============================================
+ ### RANDOM BAD EVENTS (40-43)
+ ### =============================================
+
+ ### 40: False Positive We Arrested a Loyalist
+ hms_counterintel.40.t: "A Terrible Mistake"
+ hms_counterintel.40.d: "Our agents, acting on what appeared to be #yellow solid intelligence#!, raided the home of a prominent citizen suspected of being a foreign agent. They found nothing. The man is a decorated retired veteran and loyal patriot whose only crime was corresponding with a foreign university about agricultural research.\n\nThe arrest was #red public and humiliating#!. His family is outraged, his neighbors are talking, and the local press is asking uncomfortable questions about our methods."
+ hms_counterintel.40.f: "In the pursuit of shadows, even the innocent can be burned. But if that's a decorated man who fought for the country..."
+ hms_counterintel.40.a: "Release him with a #yellow formal apology#!. Accept the embarrassment."
+ hms_counterintel.40.b: "Keep him detained. We cannot appear weak."
+
+ ### 41: Paranoia in Government
+ hms_counterintel.41.t: "Whispers in the Corridors of Power"
+ hms_counterintel.41.d: "A few of our covert reports have reached government representatives of [SCOPE.sInterestGroup('random_ig_target').GetName] that #r were not authorized#! to read them. Ministers are accusing each others and now a witch hunt campaign is taking place in the highest seats of our country. Committee meetings have descended into #y mutual suspicion#!. \n\nThis political atmosphere is making our investigators' work harder. We can pause and reassure the government that they are not under suspicion, or press on and accept that some political friction is the price of security."
+ hms_counterintel.41.f: "The enemy of trust is not treachery, it is suspicion."
+ hms_counterintel.41.a: "Reassure the #yellow government#!."
+ hms_counterintel.41.b: "They are not #red untouchable#!."
+
+ ### 42: Mole in the Agency
+ hms_counterintel.42.t: "The Mole"
+ hms_counterintel.42.d: "#yellow A disturbing pattern#! has emerged from our internal audit: classified reports about the internal operation progress are reaching people who should not have access to them. Someone within our own [concept_secret_service] is leaking information.\n\nA #r mole#!. If left in place, they will continue to undermine the investigation, warning hostile actors of our movements. We can divert resources to root them out immediately, or accept the compromise and push through despite the leak."
+ hms_counterintel.42.f: "Who watches the watchers?"
+ hms_counterintel.42.a: "#red Root out the mole#!. At any cost."
+ hms_counterintel.42.b: "Press on, we'll deal with the mole later."
+
+ ### 43: Diplomatic Incident
+ hms_counterintel.43.t: "Our Own Secrets Exposed"
+ hms_counterintel.43.d: "In a cruel irony, the thoroughness of our #yellow internal review#! has inadvertently exposed one of our own covert operations abroad. Documents related to our activities against [SCOPE.sCountry('hms_exposed_target').GetName] were found during a routine internal audit and one of our less discreet agents has already been seen discussing them in a manner that has reached foreign ears.\n\n[SCOPE.sCountry('hms_exposed_target').GetName] may not yet know the full extent of our operations, but the risk of exposure is very real."
+ hms_counterintel.43.f: "Those who hunt in glass houses should draw the curtains first."
+ hms_counterintel.43.a: "Offer a #r cup of tea#! to the loose-lipped."
+ hms_counterintel.43.b: "Brazen it out. What are they going to do about it anyway?"
+
+
+ ### =============================================
+ ### EVENT 50: Surveillance Breakthrough (Home Affairs >= 4)
+ ### =============================================
+
+ hms_handler_under_surveillance: "Foreign Handler Under Surveillance"
+ hms_turned_operation: "Turned Enemy Operation"
+ hms_compromised_operation: "Poisoned Intelligence"
+
+ hms_counterintel.50.t: "Surveillance Breakthrough"
+ hms_counterintel.50.d: "Our domestic surveillance network has produced a #yellow remarkable catch#!. Agents from [concept_secret_service], operating on standing warrants to monitor foreign nationals, observed a clandestine meeting between a known foreign diplomat and several unregistered individuals in a rented warehouse near the docks.\n\n Intercepted correspondence, and testimony from a turned informant all point to the same conclusion: [SCOPE.sCountry('hms_surveilled_country').GetName] is running an active intelligence operation against us. We have identified the handler and can move against them immediately."
+ hms_counterintel.50.f: "The walls have ears and in this day, those ears belong to us."
+ hms_counterintel.50.a: "Arrest the handler. #yellow Shut it#! down quietly."
+ hms_counterintel.50.b: "#yellow Newspapers#! will have a field day with this." # todonewsp
+
+ ### =============================================
+ ### EVENT 51: Deep Cover Asset Activated (Home Affairs >= 5)
+ ### =============================================
+
+ hms_counterintel.51.t: "Deep Cover Asset Activated"
+ hms_counterintel.51.d: "A message has arrived through our most secure channels.\nYears ago, we placed a sleeping cell inside the foreign intelligence apparatus of a rival power. Once thought gone, the agent has now surfaced with extraordinary evidence.\n\nThey have obtained proof that [SCOPE.sCountry('hms_deep_cover_country').GetName] is conducting hostile operations against our country. Names, dates, methods, funding sources. Everything documented with meticulous precision."
+ hms_counterintel.51.f: "The deepest roots bear the most dangerous fruit."
+ hms_counterintel.51.a: "#yellow Full exposure#! humiliate them on the world stage."
+ hms_counterintel.51.b: "Negotiate behind #y close doors#!."
+ hms_exposed_operation_from_high_investment_home_affairs: "Intelligence Operations under Global Scrutiny"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ### =============================================
+ ### EVENT 99: SWEEP FAILED
+ ### =============================================
+ hms_counterintel.99.t: "Sweep Abandoned"
+ hms_counterintel.99.d: "Circumstances have forced us to abandon the counterintelligence home operation before it could reach #yellow completion#!. Our agents have been recalled and the investigation files archived. We have to work with what we gathered so far. \n\n#y Whatever we might have found will remain in the shadows for now#!."
+ hms_counterintel.99.f: "A moment of respite for all those who still conspirate against their own people... Today they won the battle but not the war."
+ hms_counterintel.99.a: "A regrettable setback."
+
+ ### =============================================
+ ### EVENT 100: COMPLETION — THE BIG REVEAL
+ ### =============================================
+ hms_counterintel.100.t: "The Final Report"
+ hms_counterintel.100.d_found: "The counterintelligence sweep is #y complete#!, and the results are #r alarming#!. Our agents have confirmed the existence of hostile intelligence operations targeting our country. Foreign operatives have been identified, their methods documented, and their handlers traced back to their governments. These could not be all of them but it's a good start."
+ hms_counterintel.100.d_clean: "The counterintelligence sweep is complete. After months of painstaking investigation, monitoring communications, tracking foreign nationals, auditing financial transfers, and debriefing informants ... Our agents have found no evidence of hostile intelligence operations targeting our country.\n\n This is welcome news. Either we are not currently the target of foreign espionage, or our adversaries are operating with a level of #yellow sophistication that exceeds our ability to detect them#!. In either case, we can take pride in the thoroughness of our investigation."
+ hms_counterintel.100.f: "The truth, once found, demands #y action#!."
+ hms_counterintel.100.a: "Confront and shut down all detected operations."
+ hms_counterintel.100.b: "Stay quiet. Monitor from the shadows."
+ hms_counterintel.100.c: "A clean bill of health. For now."
+ must_wait_cooldown_counterintelligence_tt: "Recently Swept Country (Must wait #yellow 2 years#! if completed, #y 1#! if failed)."
+
+ ### =============================================
+ ### MODIFIER LOCALIZATION
+ ### =============================================
+
+ hms_je_counterintel_sweep_reason: "Our #yellow counterintelligence apparatus#! has been directed to uncover hostile activities operating within our borders. #yellow The greater the investment in our Home Affairs Institution, the higher the likelihood of exposing foreign interference through random and periodic reports#!. Once the operation concludes, our agents will deliver a comprehensive briefing detailing all discoveries."
+
+ hms_counterintel_sweep_in_progress: "Counterintelligence Sweep Active"
+ hms_feeding_false_intel: "Feeding False Intelligence"
+ hms_intercepted_communications: "Intercepted Communications"
+ hms_double_agent_asset: "Double Agents"
+ hms_disinformation_campaign: "Contaminated Intel"
+ hms_heavy_handed_sweep: "Heavy-Handed Security Measures"
+ hms_ig_distrusts_intelligence: "Distrusts Intelligence Apparatus"
+ hms_successful_counterintel_sweep: "Successful Counterintelligence Sweep"
+ hms_shadow_awareness: "Shadow Awareness"
+ hms_clean_sweep: "Clean Counterintelligence Record"
+ small_legitimacy_debuff_modifier: "Government Paranoia"
+ progress_will_slow_down_to_reassure_government_tt: "Progress will slow down to reassure government officials."
+ intelligence_medium_effort_modifier: "Intelligence Related Expenses"
+ sweep_has_received_additional_funding_tt: "Operation Will #g speed up a bit#! and generate more chance of uncovering hostile operations."

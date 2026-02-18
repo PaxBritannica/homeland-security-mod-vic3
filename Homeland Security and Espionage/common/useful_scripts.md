@@ -1,3 +1,13 @@
+# # ADD HERE ANY FUTURE HOSTILE ACTIONS THAT COULD BE REVEALED
+CHECK COUNTERINTELLIGENCE SWEEP EVENT 20 AND REMEMBER TO ADD ANY NEW HOSTILE ACTION THERE IN ORDER
+FOR IT TO BE DETECTABLE BY THE SWEEP
+
+
+
+
+
+
+
 # If a journal entry exist add progress to its scripted bars
 if = {
     limit = {
@@ -159,3 +169,19 @@ immediate = {
 		remove_global_variable = country_ban_target_global
 
 	}
+
+
+# Hit approval of random government IG
+        random_interest_group = {
+            limit = {
+                is_in_government = yes
+            }
+            add_modifier = {
+                name = hms_ig_distrusts_intelligence
+                months = 12
+            }
+        }
+
+## Notification system for major diplo actions
+ military_assistance_action_notification_third_party_name: "[concept_military_assistance] to [TARGET_COUNTRY.GetName]"
+ military_assistance_action_notification_third_party_desc: "[INITIATOR_COUNTRY.GetName] is providing [concept_military_assistance] to [TARGET_COUNTRY.GetName]"

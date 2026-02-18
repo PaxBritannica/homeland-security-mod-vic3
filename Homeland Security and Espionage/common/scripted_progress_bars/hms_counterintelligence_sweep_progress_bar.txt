@@ -1,0 +1,85 @@
+﻿### Homeland Security Mod - Counterintelligence Sweep Progress Bar ###
+
+counterintel_sweep_progress_bar = {
+    name = "counterintel_sweep_progress_bar"
+    desc = "counterintel_sweep_progress_bar_desc"
+
+    default = yes
+
+    monthly_progress = {
+
+        # BASE GROWTH — always active during sweep
+        if = {
+            limit = {
+                has_variable = hms_counterintel_sweep_active
+            }
+            add = {
+                desc = "hms_ci_base_growth_tt"
+                value = 2
+            }
+        }
+
+        # INTEL HQ BONUS — better infrastructure = faster sweep
+        if = {
+            limit = {
+                has_variable = hms_counterintel_sweep_active
+                institution_investment_level = {
+                    institution = institution_home_affairs
+                    value >= 4
+                }
+            }
+            add = {
+                desc = "hms_ci_advanced_home_affairs_tt"
+                value = 1
+            }
+        }
+
+        # INFORMANT NETWORK — Hired civs in event 10
+        if = {
+            limit = {
+                has_variable = hms_ci_informant_network
+            }
+            add = {
+                desc = "hms_ci_informant_network_tt"
+                value = 1
+            }
+        }
+
+        # FINISH ASAP
+        if = {
+            limit = {
+                has_variable = hms_ci_intensified_sweep
+            }
+            add = {
+                desc = "hms_ci_intensified_sweep_tt"
+                value = 2
+            }
+        }
+
+        # MOLE IN AGENCY — sabotaging from within
+        if = {
+            limit = {
+                has_variable = hms_ci_mole_active
+            }
+            add = {
+                desc = "hms_ci_mole_active_tt"
+                value = -2
+            }
+        }
+
+        # PARANOIA — government officials interfering with investigations
+        if = {
+            limit = {
+                has_variable = hms_ci_government_paranoia
+            }
+            add = {
+                desc = "hms_ci_government_paranoia_tt"
+                value = -1
+            }
+        }
+    }
+
+    start_value = 0
+    min_value = 0
+    max_value = 50
+}
