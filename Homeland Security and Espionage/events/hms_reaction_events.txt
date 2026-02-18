@@ -1,0 +1,59 @@
+### =============================================
+### EVENT Generic Reaction after being discovered
+### Triggered on the HOSTILE ACTOR when their operation is uncovered
+### More to come different reaction with different outcomes ?
+### =============================================
+
+namespace = reaction_events
+
+reaction_events.1 = {
+    type = country_event
+    placement = root
+
+    title = reaction_events.1.t
+    desc = reaction_events.1.d
+    flavor = reaction_events.1.f
+
+    event_image = {
+        video = "gfx/event_pictures/ip3_policeraid.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {}
+
+    immediate = {
+        # IT WORKS!!
+        root.var:caught_by = {
+            save_scope_as = caught_by
+        }
+    }
+
+    # Option A: Accept the humiliation
+    option = {
+        name = reaction_events.1.a
+        default_option = yes
+
+        custom_tooltip = {
+            text = warning_effects_tt
+        }
+
+        # already hit on the root event chain
+        # add_modifier = {
+        #     name = hms_exposed_operation_shame
+        #     months = 24
+        # }
+
+        #cleanup var
+        remove_variable = caught_by
+
+        ai_chance = { base = 60 }
+    }
+
+    # IDEAS FOR MORE FLAVORED FUTURE DIPLOMATIC DEFENSES
+    # # Option B: Deny everything
+    # # Option C: Retaliate
+}

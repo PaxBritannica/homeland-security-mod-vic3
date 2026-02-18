@@ -305,28 +305,44 @@ hms_counterintel.30 = {
             limit = { has_variable = hms_caught_spy_type_radicals }
             scope:hms_caught_spy_country = {
                 remove_diplomatic_pact = { country = root type = arm_radicals }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_caught_spy_type_tech }
             scope:hms_caught_spy_country = {
                 remove_diplomatic_pact = { country = root type = steal_tech }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_caught_spy_type_piracy }
             scope:hms_caught_spy_country = {
                 remove_diplomatic_pact = { country = root type = encourage_piracy }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_caugth_spy_slave_revolt }
             scope:hms_caught_spy_country = {
                 remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
 
@@ -636,7 +652,11 @@ hms_counterintel.32 = {
             limit = { has_variable = hms_caught_spy_type_radicals }
             scope:hms_caught_spy_country = {
                 remove_diplomatic_pact = { country = root type = arm_radicals }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
 
@@ -644,7 +664,11 @@ hms_counterintel.32 = {
             limit = { has_variable = hms_caught_spy_type_tech }
             scope:hms_caught_spy_country = {
                 remove_diplomatic_pact = { country = root type = steal_tech }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
 
@@ -652,7 +676,11 @@ hms_counterintel.32 = {
             limit = { has_variable = hms_caught_spy_type_piracy }
             scope:hms_caught_spy_country = {
                 remove_diplomatic_pact = { country = root type = encourage_piracy }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
 
@@ -660,7 +688,11 @@ hms_counterintel.32 = {
             limit = { has_variable = hms_caugth_spy_slave_revolt }
             scope:hms_caught_spy_country = {
                 remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
 
@@ -1245,28 +1277,45 @@ hms_counterintel.50 = {
             limit = { has_variable = hms_surveilled_type_tech }
             scope:hms_surveilled_country = {
                 remove_diplomatic_pact = { country = root type = steal_tech }
-                post_notification = notify_caught_counterintelligence_message_tt
+                # save the root inside anothers country scope 
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_surveilled_type_radicals }
             scope:hms_surveilled_country = {
                 remove_diplomatic_pact = { country = root type = arm_radicals }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_surveilled_type_piracy }
             scope:hms_surveilled_country = {
                 remove_diplomatic_pact = { country = root type = encourage_piracy }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_surveilled_type_abolitionist }
             scope:hms_surveilled_country = {
                 remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
 
@@ -1410,28 +1459,44 @@ hms_counterintel.51 = {
             limit = { has_variable = hms_deep_cover_type_radicals }
             scope:hms_deep_cover_country = {
                 remove_diplomatic_pact = { country = root type = arm_radicals }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_deep_cover_type_piracy }
             scope:hms_deep_cover_country = {
                 remove_diplomatic_pact = { country = root type = encourage_piracy }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_deep_cover_type_abolitionist }
             scope:hms_deep_cover_country = {
                 remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
         else_if = {
             limit = { has_variable = hms_deep_cover_type_tech }
             scope:hms_deep_cover_country = {
                 remove_diplomatic_pact = { country = root type = steal_tech }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
         }
 
@@ -1480,7 +1545,11 @@ hms_counterintel.51 = {
                 name = hms_compromised_operation
                 years = 3
             }
-            post_notification = notify_caught_counterintelligence_message_tt
+            set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
         }
 
         # They owe us > diplomatic leverage from the exposure
@@ -1755,7 +1824,11 @@ hms_counterintel.100 = {
 
             scope:hms_detected_radicals_country = {
                 remove_diplomatic_pact = { country = root type = arm_radicals }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
 
             change_relations = {
@@ -1770,7 +1843,11 @@ hms_counterintel.100 = {
 
             scope:hms_detected_tech_country = {
                 remove_diplomatic_pact = { country = root type = steal_tech }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
 
             change_relations = {
@@ -1791,7 +1868,11 @@ hms_counterintel.100 = {
 
             scope:hms_detected_piracy_country = {
                 remove_diplomatic_pact = { country = root type = encourage_piracy }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
 
             change_relations = {
@@ -1806,7 +1887,11 @@ hms_counterintel.100 = {
 
             scope:hms_detected_abolitionist_country = {
                 remove_diplomatic_pact = { country = root type = support_slave_abolitionist_movement }
-                post_notification = notify_caught_counterintelligence_message_tt
+                set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
             }
 
             change_relations = {

@@ -185,3 +185,28 @@ immediate = {
 ## Notification system for major diplo actions
  military_assistance_action_notification_third_party_name: "[concept_military_assistance] to [TARGET_COUNTRY.GetName]"
  military_assistance_action_notification_third_party_desc: "[INITIATOR_COUNTRY.GetName] is providing [concept_military_assistance] to [TARGET_COUNTRY.GetName]"
+
+
+### save the root inside anothers country scope 
+root scope 
+    scope:target_country = {
+        set_variable = {
+            name = caught_by
+            value = prev # or root
+    }
+}
+# we use this to trigger the reaction event in the country that got caught 
+scope:target_country = {
+        set_variable = {
+        name = caught_by
+        value = prev
+    }
+    trigger_event = { id = reaction_generic_event.1 }
+}
+
+# then in immediate of the reaction event we do
+immediate = {
+        root.var:caught_by = {
+            save_scope_as = caught_by
+        }
+    }

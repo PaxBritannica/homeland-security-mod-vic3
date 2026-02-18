@@ -46,6 +46,16 @@
 
  #
 
+ ### =============================================
+ ### EVENT: Generic Reaction — Your Operation Was Exposed
+ ### =============================================
+
+ reaction_events.1.t: "Operation Compromised"
+ reaction_events.1.d: "One of our #yellow agents#! has been arrested in [SCOPE.sCountry('caught_by').GetName], therefore #y one of our operation has stopped#!."
+ reaction_events.1.f: "In the shadow war, even the hunter can become the hunted."
+ reaction_events.1.a: "That's Unfortunate."
+ warning_effects_tt: "As a consequence our relationship might have #r taken a hit#!. And we could have received negative modifiers."
+
  # ARM THE RADICALS
  hostile_diplo_events.1.t: "Arsenal of Revolution"
  hostile_diplo_events.1.d: "Our Secret Service has established smuggling routes into [SCOPE.sCountry('arm_radicals_operation_target').GetName]. Local radicals are prepared to act, but request additional arms and funding. With our support, they believe the regime could be challenged far sooner."

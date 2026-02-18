@@ -97,6 +97,12 @@ hms_compromised_operation = {
     country_government_agents_pol_str_mult = -0.3
 }
 
+#generic reaction event modifier 
+# hms_exposed_operation_shame = {
+#     icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+#     building_intel_hq_throughput_mult = -0.05
+# }
+
 hms_exposed_operation_from_high_investment_home_affairs = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
     country_prestige_mult = -0.1
