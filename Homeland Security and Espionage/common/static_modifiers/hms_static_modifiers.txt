@@ -1,16 +1,16 @@
 ﻿founded_secret_service_domestic_focus = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     country_authority_mult = 0.1
 }
 
 founded_secret_service_foreign_focus = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
     country_influence_mult = 0.1
     country_max_declared_interests_add = 1
 }
 
 founded_secret_service_government_focus = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     country_legitimacy_base_add = 25
 }
 
@@ -25,22 +25,22 @@ modifier_accepted_secret_service_bribe = {
 }
 
 modifier_attempted_bribe_scandal_radicals = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
     political_movement_radicalism_add = 0.1
 }
 
 modifier_attempted_bribe_scandal_legitimacy = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
     country_legitimacy_base_add = -15
 }
 
 modifier_attempted_bribe_scandal_authority = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
     country_authority_mult = -0.1
 }
 
 modifier_more_movement_radicalism = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
     political_movement_radicalism_add = 0.2
 }
 
@@ -69,6 +69,21 @@ intelligence_network_cost_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
 	country_expenses_add = 1
     # add small arms ?
+}
+
+general_network_cost_modifier_small = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 5000
+}
+
+general_network_cost_modifier_medium = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 7500
+}
+
+general_network_cost_modifier_huge = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 15000
 }
 
 # balance these 2s
@@ -100,7 +115,6 @@ decisive_anti_piracy_victory_modifier = {
     country_prestige_from_navy_power_projection_mult = 0.05
     unit_navy_experience_gain_mult = 0.1
 }
-
 
 intelligence_medium_effort_modifier = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
@@ -162,7 +176,7 @@ sabotage_declined_foreign_assistance = {
 }
 
 state_apparatus_not_happy = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
     country_authority_mult = -0.1
     country_bureaucrats_pol_str_mult = -0.1
     country_government_agents_pol_str_mult = -0.3
@@ -170,7 +184,7 @@ state_apparatus_not_happy = {
 }
 
 state_apparatus_happy = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     country_authority_mult = 0.1
     country_bureaucrats_pol_str_mult = 0.1
     country_government_agents_pol_str_mult = 0.3
@@ -199,19 +213,19 @@ perpetrators_caught_modifier = {
 }
 
 political_unrest_modifier = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
     country_legitimacy_base_add = -10
     political_movement_radicalism_add = 0.1
 }
 
 political_tension_country_modifier = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
     state_radicals_from_political_movements_mult = 0.02
     political_movement_radicalism_mult = 0.02
 }
 
 foreign_economic_investment = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
     state_tax_capacity_mult = 0.2
     state_construction_mult = 0.2
 }
@@ -244,7 +258,7 @@ ban_railroad_funding_cost_halvened = {
 }
 
 ban_railroad_in_progress = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
 
 	building_railway_throughput_mult = 0.15
 	state_construction_mult = 0.2
@@ -274,7 +288,7 @@ ban_prospecting_funding_cost = {
 }
 
 ban_prospecting_in_progress = { ### BIG # balance ?
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
 
     building_coal_mine_throughput_mult = 0.1
     building_iron_mine_throughput_mult = 0.1
@@ -286,48 +300,48 @@ ban_prospecting_in_progress = { ### BIG # balance ?
 }
 
 permanent_boost_to_prospecting_expertise = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
 
     country_resource_discovery_chance_mult = 0.1
 }
 
 unexpected_cost_railroad = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
     country_expenses_add = 5500
 }
 
 unexpected_cost_prospecting = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
     country_expenses_add = 5500
 }
 
 buying_more_steel_for_railway_construction = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
     state_buy_orders_steel_add = 10
 }
 
 pumping_out_steel = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
     building_still_mill_throughput_add = -10
 }
 
 ban_more_mortality_construction_modifier = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
     building_group_bg_construction_laborers_mortality_mult = 0.05
 }
 
 ban_more_mortality_infrastructure_modifier = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
     building_group_bg_infrastructure_laborers_mortality_mult = 0.05
 }
 
 ban_foreign_engineers_volunteer_influx = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
     building_engineers_job_attractiveness_mult = 0.1
 }
 
 ban_foreign_engineers_influx = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
     building_engineers_job_attractiveness_mult = 0.15
 }
 
@@ -337,71 +351,60 @@ settled_land_dispute_modifier = {
 }
 
 income_of_sold_land = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
     country_tax_income_add = 4000
 }
 
 income_of_sold_intel = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
     country_tax_income_add = 4000
 }
 
 permanent_research_camp_modifier = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
     country_expenses_add = 5000
     country_production_tech_spread_mult = 1
 }
 
 shared_prospecting_data_modifier = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
     country_production_tech_spread_mult = 1
 }
 
 refused_collaboration_prospecting = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
     country_influence_add = 100
     country_prestige_add = 10
 }
 
 ban_sv_geological_leverage = {
-	icon = gfx/interface/icons/modifier_icons/modifier_flag_positive.dds
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	country_leverage_generation_mult = 0.1
 }
 
-### Build a Nation - Completion Modifiers ###
-
-# Funder benefits from economic dependency — trade and market advantages
-ban_economic_dependency_funder = {
-	icon = gfx/interface/icons/modifier_icons/modifier_trade_routes.dds
-
-	country_trade_route_competitiveness_mult = 0.10
-	country_prestige_add = 15
-	country_trade_route_quantity_add = 2
-}
-
 support_independentism_modifier = {
-    icon = gfx/interface/icons/modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
     country_liberty_desire_add = 5
 }
 
 getting_investment_from_powerbloc_member = {
-    icon = gfx/interface/icons/modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
     country_liberty_desire_add = -5
 }
 
 getting_investment_from_country_outside_powerbloc = {
-    icon = gfx/interface/icons/modifier_icons/modifier_flag_negative.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
     country_liberty_desire_add = 5
 }
 
 gratitude_towards_leader = {
-    icon = gfx/interface/icons/modifier_icons/modifier_flag_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
     country_liberty_desire_add = -5
     country_liberty_desire_decrease_mult = 0.15
 }
 
 technological_spreader_modifier = {
-    icon = gfx/interface/icons/modifier_icons/modifier_statue_positive.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     country_prestige_mult = 0.1
     country_infamy_decay_mult = 0.1
 }

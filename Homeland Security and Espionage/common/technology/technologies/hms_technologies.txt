@@ -17,20 +17,20 @@ HMS_tech_era_2_secret_service = {
 
 		state_migration_pull_mult = -0.1
 
-		# For future we will have our own institution and so we will add institutional max level add
-		# eg as seen for workplace safety tech investment
-		# country_institution_workplace_safety_max_investment_add = 3
+		#Add max cap for intel HQ after researching Secret Service
+		state_building_intel_hq_max_level_add = 10
+		# Add Home Affairs Investment Level
+		country_institution_home_affairs_max_investment_add = 1
 	}
 
 	# triggers event
 	on_researched = {
 
-		set_global_variable = hms_tech_secret_service_researched
-
 		trigger_event = {
 			id = hms_secret_service_events.1
 			days = 0
 		}
+
 	}
 
 	#ai research propensity
@@ -83,6 +83,11 @@ HMS_tech_era_3_extended_networks = {
 		country_influence_mult = 0.1
 
 		country_institution_foreign_affairs_max_investment_add = 2
+
+		# +10 intel hq max level
+		state_building_intel_hq_max_level_add = 5
+		# Add Home Affairs Investment Level
+		country_institution_home_affairs_max_investment_add = 1
 	}
 	
 	#ai research propensity
@@ -164,6 +169,12 @@ HMS_tech_era_4_homeland_security = {
 		country_society_tech_spread_mult = -0.10
 
 		country_institution_foreign_affairs_max_investment_add = 1
+
+		# +10 intel hq max level
+		state_building_intel_hq_max_level_add = 5
+
+		# Add Home Affairs Investment Level
+		country_institution_home_affairs_max_investment_add = 1
 	}
 	
 	#ai research propensity

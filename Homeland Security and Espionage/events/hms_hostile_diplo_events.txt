@@ -119,7 +119,7 @@ hostile_diplo_events.2 = {
         name = hostile_diplo_events.2.a
         add_modifier = {
             name = target_armed_radicals_modifier
-            months = 12
+            years = 2
         }
         add_radicals = {
             value = 0.05
@@ -130,12 +130,12 @@ hostile_diplo_events.2 = {
         name = hostile_diplo_events.2.b
         add_modifier = {
             name = target_armed_radicals_modifier
-            months = 25
+            years = 1
         }
         add_modifier = {
-            name = intelligence_network_cost_modifier
-            multiplier = intelligence_op_multiplier_medium
-            months = 25
+            name = intelligence_medium_effort_modifier
+            # multiplier = intelligence_op_multiplier_medium
+            years = 1
         }
     }
 

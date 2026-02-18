@@ -1,7 +1,9 @@
 ﻿INJECT_OR_CREATE:building_intel_hq = {
 	building_group = bg_intel_buildings
+
 	city_type = city
 	ownership_type = self
+
 	icon = "gfx/interface/icons/building_icons/secret_service_hq.dds"
 	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"
 
@@ -10,6 +12,8 @@
 	
 	unlocking_technologies = { HMS_tech_era_2_secret_service }
 	required_construction = construction_cost_high
+
+	has_max_level = yes
 	
 
 	production_method_groups = {
@@ -44,6 +48,8 @@ INJECT_OR_CREATE:building_military_intel_hq = {
 	building_group = bg_intel_buildings
 	city_type = city
 	ownership_type = self
+
+	has_max_level = yes
 
 	icon = "gfx/interface/icons/building_icons/military_intel_hq.dds"
 	background = "gfx/interface/icons/building_icons/backgrounds/building_panel_bg_monuments.dds"

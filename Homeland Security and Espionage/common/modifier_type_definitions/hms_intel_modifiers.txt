@@ -272,3 +272,20 @@ building_lead_mine_throughput_mult = {
         ai_value=0
     }
 }
+
+#Added modifier to cap the Intel HQ and military intel buildings max levels
+state_building_intel_hq_max_level_add = {
+	decimals=0
+	color=good
+	game_data={
+		ai_value=0
+	}
+}
+
+state_building_military_intel_hq_max_level_add = {
+    decimals=0
+	color=good
+	game_data={
+		ai_value=0
+	}
+}

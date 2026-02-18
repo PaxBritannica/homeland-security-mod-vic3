@@ -498,12 +498,6 @@ develop_nation_events.100 = {
 			value = 30
 		}
 
-		# Economic bonus too, tighter integration
-		add_modifier = {
-			name = ban_economic_dependency_funder
-			months = -1
-		}
-
 		ai_chance = { base = 80 }
 	}
 }

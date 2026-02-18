@@ -5,6 +5,9 @@
 
 	modifier = {
 		military_formation_organization_gain_mult = 0.2
+
+		#Add max cap for Military Intel HQ after researching Military Statistics (Now Military Intelligence)
+		state_building_military_intel_hq_max_level_add = 10
 	}
 
 	unlocking_technologies = {
