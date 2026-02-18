@@ -92,6 +92,12 @@
 						country = scope:piracy_target
 						type = encourage_piracy
 					}
+
+					set_variable = {
+						name = caught_by
+						value = root
+					}
+					trigger_event = { id = reaction_events.1 }
 				}
 			}
 		}

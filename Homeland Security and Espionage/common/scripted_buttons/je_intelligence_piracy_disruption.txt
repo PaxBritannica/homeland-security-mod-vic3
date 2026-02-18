@@ -39,7 +39,11 @@ hms_je_piracy_bribed = {
 					type = encourage_piracy
 				}
 				
-				post_notification = stopped_attack_message
+				set_variable = {
+                    name = caught_by
+                    value = prev
+                }
+                trigger_event = { id = reaction_events.1 }
 			}
 
 		}
