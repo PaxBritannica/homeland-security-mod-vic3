@@ -264,6 +264,7 @@
  accepted_foreign_assistance: "Accepted Foreign Assistance"
  je_investigation_failure: "Investigation Failure"
  je_investigation_success: "#yellow Reciprocal Trust#! progress bar reaches 100%"
+ third_condition_send_economic_advisors_je_tt: "#yellow Send Economic Advisors#! stops being enacted."
  
  #COMPANY NAMES
  dynamic_company_type_central_agency: "Central Intelligence Agency"

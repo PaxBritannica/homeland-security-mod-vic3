@@ -160,7 +160,7 @@ HMS_tech_era_4_homeland_security = {
 		state_tax_capacity_mult = 0.1
 		state_incorporation_speed_mult = 0.1
 		state_loyalists_from_political_movements_mult = 0.2
-		country_authority_mult = 0.2
+		country_authority_mult = 0.1
 		state_bureaucracy_population_base_cost_factor_mult = -0.05
 		state_radicals_from_political_movements_mult = -0.2
 

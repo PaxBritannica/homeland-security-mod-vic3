@@ -15,21 +15,15 @@ pm_hms_group_2_tier_1 = {
 	texture = "gfx/interface/icons/pms_icons/army_office.dds"
 
 	unlocking_technologies = {
-		military_statistics # This now unlocked via the reworked military_statistics technology
+		military_statistics
 	}
 
 	disallowing_laws = {
 		law_peasant_levies
 	}
 
-	# country_modifiers = {
-	# 	workforce_scaled = {
-	# 		country_prestige_from_army_power_projection_mult = 0.02
-	# 	}
-	# }
-
 	state_modifiers = {
-		workforce_scaled = {
+		level_scaled = {
 			state_conscription_rate_mult = 0.02
 		}
 	}
@@ -46,8 +40,6 @@ pm_hms_group_2_tier_1 = {
 
 			# output goods
 			goods_output_army_intel_add = 4
-			unit_army_offense_mult = 0.01
-			unit_army_experience_gain_mult = 0.01
 		}
 
 		level_scaled = {
@@ -55,6 +47,10 @@ pm_hms_group_2_tier_1 = {
 			building_employment_machinists_add = 150
 			building_employment_engineers_add = 200
 			building_employment_officers_add = 250
+
+			# Moved multipliers in level scale 
+			unit_army_offense_mult = 0.01
+			unit_army_experience_gain_mult = 0.01
 		}
 	}
 }
@@ -72,16 +68,11 @@ pm_hms_group_2_tier_2 = {
 	}
 
 	unlocking_technologies = {
-		military_statistics # This now unlocked via the reworked military_statistics technology
+		military_statistics
 	}
 
-	# not valid for navy
-	# disallowing_laws = {
-	# 	law_peasant_levies
-	# }
-
 	country_modifiers = {
-		workforce_scaled = {
+		level_scaled = {
 			country_prestige_from_navy_power_projection_mult = 0.02
 		}
 	}
@@ -94,8 +85,6 @@ pm_hms_group_2_tier_2 = {
 
 	building_modifiers = {
 		workforce_scaled = {
-			# naval_base_training_rate_add = 0.01 # verify
-
 			# input goods
 			goods_input_paper_add = 2
 			goods_input_intel_add = 12
@@ -103,16 +92,18 @@ pm_hms_group_2_tier_2 = {
 			goods_input_small_arms_add = 2
 
 			# output goods
-			goods_output_naval_intel_add = 4
-			unit_navy_offense_mult = 0.01
-			unit_navy_experience_gain_mult = 0.01
 			goods_output_naval_intel_add = 9
 		}
+
 		level_scaled = {
 			building_employment_clerks_add = 250
 			building_employment_machinists_add = 150
 			building_employment_engineers_add = 200
 			building_employment_officers_add = 250
+
+			# Moved multipliers in level scale 
+			unit_navy_offense_mult = 0.01
+			unit_navy_experience_gain_mult = 0.01
 		}
 	}
 }

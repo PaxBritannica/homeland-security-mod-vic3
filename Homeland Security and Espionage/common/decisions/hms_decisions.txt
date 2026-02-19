@@ -16,8 +16,6 @@
             NOT = { has_variable = is_sweeping_country_counterintelligence }
         }
 
-        
-
          # Must have intel HQ somewhere
          any_scope_state = {
             has_building = building_intel_hq

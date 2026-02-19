@@ -65,26 +65,37 @@ INJECT_OR_CREATE:building_military_intel_hq = {
 		hms_pmg_group_2
 	}
 
-	# country_modifiers = {
-	# 	workforce_scaled = {
-	# 		country_bureaucracy_add = 25
-	# 	}
-		
-	# 	level_scaled = {
-	# 		country_prestige_add = 10
-	# 		country_influence_add = 5
-	# 	}
-	# }
-
 	ai_value = {
-		value = 2
+		value = 800
 
-		# Great powers prioritize it
+		# Great powers should always want military intel
 		if = {
-			limit = { is_great_power = yes }
-			multiply = 1.3
+			limit = { 
+				owner ?= {
+					country_rank >= rank_value:great_power
+				} 
+			}
+			multiply = 1.5
 		}
-		
+
+		# Major powers too
+		if = {
+			limit = { 
+				owner ?= {
+					country_rank >= rank_value:major_power
+				} 
+			}
+			multiply = 1.1
+		}
+
+		if = {
+			limit = { 
+				owner ?= {
+					country_rank >= rank_value:minor_power
+				} 
+			}
+			multiply = 0.03
+		}
 	}
 }
 

@@ -768,7 +768,7 @@ sabotage_event.99 = { # Terrorist group escapes the national boundaries
         }
 
         scope:rival_country_1 = {
-            trigger_event = { id = hms_sabotage_event.100 }
+            trigger_event = { id = sabotage_event.100 }
         }
 
         root = {
