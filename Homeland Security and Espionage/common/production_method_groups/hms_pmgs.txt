@@ -17,10 +17,10 @@ hms_pmg_group_2 = {
 	ai_selection = most_productive
 
 	production_methods = {
-		pm_hms_group_2_tier_0
+		# pm_hms_group_2_tier_0
 		pm_hms_group_2_tier_1
 		pm_hms_group_2_tier_2
-		# pm_hms_group_2_tier_3
+		pm_hms_group_2_tier_3
 	}
 
 }
@@ -36,4 +36,43 @@ hms_pmg_group_3 = {
 		pm_hms_group_3_tier_2
 	}
 
+}
+
+hms_pmg_group_4 = { # Army Intelligence Planning
+
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_military.dds"
+	ai_selection = most_productive
+
+	production_methods = {
+		pm_hms_group_4_tier_0 # no intelligence division
+		pm_hms_group_4_tier_1 # logistical supervision
+		pm_hms_group_4_tier_2 # strategic planning office
+							  # operational doctrine
+	}
+
+}
+
+hms_pmg_group_5 = { # Naval Intelligence Planning
+
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_military.dds"
+	ai_selection = most_productive
+
+	production_methods = {
+		pm_hms_group_5_tier_0 # no intelligence division
+		pm_hms_group_5_tier_1 # coastal surveillance
+		pm_hms_group_5_tier_2 # Coordinated Fleet Operations
+		                      # 
+	}
+
+}
+
+#CANALS & Strategic Ports Update
+hms_pmg_canal_intelligence = {
+    texture = "gfx/interface/icons/generic_icons/mixed_icon_military.dds"
+
+    production_methods = {
+        hms_pm_canal_shipping_registry
+        hms_pm_canal_intelligence_station
+        hms_pm_canal_listening_kits
+    }
 }

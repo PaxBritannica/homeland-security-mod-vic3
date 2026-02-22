@@ -821,6 +821,7 @@ hms_sweep_cooldown_tt: "Must wait before launching another sweep."
  hms_counterintel.33.f: "The interests of the nation are best preserved in silence. Spoken softly, carried carefully, and never written twice.."
  hms_counterintel.33.a: "#yellow Buy#! their loyalty."
  hms_counterintel.33.b: "Use #r coercion#!. We need results, not friends."
+ distinguished_visitor_modifier: "Hosting an Illustrous Scholar"
 
  ### =============================================
  ### RANDOM BAD EVENTS (40-43)

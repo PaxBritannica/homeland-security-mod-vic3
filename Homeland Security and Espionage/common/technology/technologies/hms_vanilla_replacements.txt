@@ -1,21 +1,17 @@
-﻿REPLACE_OR_CREATE:military_statistics = {
-	era = era_3
-	texture = "gfx/interface/icons/invention_icons/military_statistics.dds"
-	category = military
+﻿INJECT:military_statistics = {
+	
+	modifier = {
+		#Add max cap for Military Intel HQ after researching Military Statistics (Now Military Intelligence)
+		state_building_military_intel_hq_max_level_add = 20
+	}
+
+}
+
+INJECT:sea_lane_strategies = {
 
 	modifier = {
-		military_formation_organization_gain_mult = 0.2
-
-		#Add max cap for Military Intel HQ after researching Military Statistics (Now Military Intelligence)
-		state_building_military_intel_hq_max_level_add = 10
+		#Add 1 max level cap to our new building for strategic ports
+		state_building_strategic_harbor_max_level_add = 1
 	}
 
-	unlocking_technologies = {
-		electric_telegraph
-		general_staff
-	}
-
-	ai_weight = {
-		value = 1
-	}
 }

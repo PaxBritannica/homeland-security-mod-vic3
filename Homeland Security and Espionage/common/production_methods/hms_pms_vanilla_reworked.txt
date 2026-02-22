@@ -1,14 +1,8 @@
-﻿REPLACE_OR_CREATE:pm_switch_boards = {
+﻿INJECT:pm_switch_boards = {
 	texture = "gfx/interface/icons/production_method_icons/telephone_switchboards.dds"
 
 	unlocking_technologies = {
 		central_planning
-	}
-
-	country_modifiers = {
-		workforce_scaled = {
-			country_bureaucracy_add = 125
-		}
 	}
 
 	state_modifiers = {
@@ -19,13 +13,10 @@
 
 	building_modifiers = {
 		workforce_scaled = {
-			goods_input_paper_add = 20
-			goods_input_telephones_add = 5
             goods_input_intel_add = 7
 		}
 
 		level_scaled = {
-			building_employment_clerks_add = 500
             building_employment_academics_add = 200
 		}
 	}

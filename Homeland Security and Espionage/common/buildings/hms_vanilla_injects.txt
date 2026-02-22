@@ -1,0 +1,30 @@
+﻿# Injects to maximize compatibility
+INJECT:building_university = {
+	production_method_groups = {
+		hms_pmg_group_3
+	}
+}
+
+INJECT:building_barrack = {
+    production_method_groups = {
+        hms_pmg_group_4
+    }
+}
+
+INJECT:building_naval_base = {
+    production_method_groups = {
+        hms_pmg_group_5
+    }
+}
+
+INJECT:building_suez_canal = {
+    production_method_groups = {
+        hms_pmg_canal_intelligence
+    }
+}
+
+INJECT:building_panama_canal = {
+    production_method_groups = {
+        hms_pmg_canal_intelligence
+    }
+}

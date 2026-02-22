@@ -51,10 +51,12 @@
  #buildings
  building_intel_hq: "Secret Service HQ"
  building_intel_hq_desc: "A dedicated facility for training and deploying intelligence agents to conduct espionage and other covert operations."
+ building_strategic_harbor: "Strategic Harbor"
  building_military_intel_hq: "Military Intelligence HQ"
- building_military_intel_desc: "A dedicated facility for gathering military intelligence and passing it to the officers on the field or at seas."
+ building_military_intel_desc: "A dedicated facility for gathering military intelligence and passing it to the relative intelligence divisions."
  state_building_intel_hq_max_level_add: "Max Secret Service HQ Levels"
  state_building_military_intel_hq_max_level_add: "Max Military Intelligence HQ Levels"
+ state_building_strategic_harbor_max_level_add: "Max Strategic Harbor Level"
 
  #modifiers
  building_intel_hq_throughput_mult: "Secret Service Headquarter Throughput"
@@ -169,7 +171,7 @@
 
  #pops
  government_agents_no_icon: "Agents"
- government_agents_desc: "Trained government agents working within our intelligence networks. They belong to ideologies close to Intelligentsia and Petite Bourgeoisie."
+ government_agents_desc: "Trained government agents working within our intelligence networks. They most often make the interest of the government"
  government_agents: "@government_agents! $government_agents_no_icon$"
  government_agents_only_icon: "@government_agents!"
 
@@ -181,23 +183,43 @@
  goods_input_army_intel_add: "@army_intel! Army Intel input"
  goods_input_naval_intel_add: "@naval_intel! Naval Intel input"
 
+ hms_pmg_canal_intelligence: "Strait Control"
+
  #production methods groups and tiers
  hms_pmg_group_1: "State Networks"
  hms_pmg_group_2: "Reserved Offices"
  hms_pmg_group_3: "Criptography Offices"
+ hms_pmg_group_4: "Army Intelligence Division"
+ hms_pmg_group_5: "Naval Intelligence Division"
 
  pm_hms_group_1_tier_0: "Local Informants"
  pm_hms_group_1_tier_1: "Professional Agents"
  pm_hms_group_1_tier_2: "Government Cells"
 
- pm_hms_group_2_tier_0: "No Reserved Offices"
- pm_hms_group_2_tier_1: "Army Intelligence Office"
- pm_hms_group_2_tier_2: "Navy Intelligence Office"
- pm_hms_group_2_tier_3: "Bureau of Foreign Affairs"
+#  pm_hms_group_2_tier_0: "No Reserved Offices"
+ pm_hms_group_2_tier_1: "Field Reports"
+ pm_hms_group_2_tier_2: "Combined Analysis"
+ pm_hms_group_2_tier_3: "Signal Analysis Division"
 
  pm_hms_group_3_tier_0: "No Encryption"
  pm_hms_group_3_tier_1: "Manual Cryptoanalysis"
  pm_hms_group_3_tier_2: "Mechanical Cyphers"
+
+ pm_hms_group_4_tier_0: "No Intelligence Division"
+ pm_hms_group_4_tier_1: "Logistical Supervision"
+ pm_hms_group_4_tier_2: "Strategic Planning Office"
+
+ pm_hms_group_5_tier_0: "No Intelligence Division"
+ pm_hms_group_5_tier_1: "Coastal Surveillance"
+ pm_hms_group_5_tier_2: "Coordinated Fleet Operations"
+
+ #PMs for the vanilla canals
+ hms_pm_canal_shipping_registry: "Shipping Registry"
+ hms_pm_canal_intelligence_station: "Intelligence Station"
+ hms_pm_canal_listening_kits: "Listening Kits"
+
+ #PMs for the vanilla straits
+ 
 
  #vanilla replacements
  military_statistics: "Military Intelligence"
