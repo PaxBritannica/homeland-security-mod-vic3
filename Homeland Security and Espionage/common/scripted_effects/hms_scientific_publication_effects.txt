@@ -1,0 +1,59 @@
+﻿#### ---- BREAKTHROUGH POSITIVE =======>
+
+add_progress_effect_small = {
+
+    if = {
+		limit = {
+			has_journal_entry = hms_je_joint_publication
+		}
+		je:hms_je_joint_publication ?= {
+			add_progress = { value = 15 name = breakthrough_progress_bar }
+		}
+	}
+
+}
+
+add_progress_effect_medium = {
+
+    if = {
+		limit = {
+			has_journal_entry = hms_je_joint_publication
+		}
+		je:hms_je_joint_publication ?= {
+			add_progress = { value = 25 name = breakthrough_progress_bar }
+		}
+	}
+
+}
+
+
+
+#### ---- SETBACKS NEGATIVE <=======
+
+add_setback_effect_small = {
+
+    if = {
+		limit = {
+			has_journal_entry = hms_je_joint_publication
+		}
+
+		je:hms_je_joint_publication ?= {
+			add_progress = { value = 15 name = setbacks_progress_bar }
+		}
+	}
+
+}
+
+add_setback_effect_medium = {
+
+    if = {
+		limit = {
+			has_journal_entry = hms_je_joint_publication
+		}
+
+		je:hms_je_joint_publication ?= {
+			add_progress = { value = 25 name = setbacks_progress_bar }
+		}
+	}
+
+}

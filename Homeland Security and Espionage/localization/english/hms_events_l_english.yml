@@ -917,6 +917,7 @@ hms_sweep_cooldown_tt: "Must wait before launching another sweep."
  hms_counterintel.99.d: "Circumstances have forced us to abandon the counterintelligence home operation before it could reach #yellow completion#!. Our agents have been recalled and the investigation files archived. We have to work with what we gathered so far. \n\n#y Whatever we might have found will remain in the shadows for now#!."
  hms_counterintel.99.f: "A moment of respite for all those who still conspirate against their own people... Today they won the battle but not the war."
  hms_counterintel.99.a: "A regrettable setback."
+ hms_ci_advanced_home_affairs_tt: "Advanced Home Affairs Institution"
 
  ### =============================================
  ### EVENT 100: COMPLETION — THE BIG REVEAL

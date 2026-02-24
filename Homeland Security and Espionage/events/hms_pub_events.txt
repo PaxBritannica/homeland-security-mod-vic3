@@ -1,0 +1,2175 @@
+﻿namespace = scientific_pub_events
+
+###-------------------------
+### START ENTRY triggered in scientific advisors pact
+###-------------------------
+scientific_pub_events.1 = {
+
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.1.t
+    desc = scientific_pub_events.1.desc
+    flavor = scientific_pub_events.1.f
+
+    event_image = {
+        texture = "gfx/event_pictures/scientific_1.dds"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 3
+
+    trigger = {
+        has_variable = target_country_for_scientific_advisors
+        country_rank >= rank_value:minor_power
+    
+        any_country = {
+            has_diplomatic_pact = {
+                who = root
+                type = send_scientific_advisors
+            }
+            country_rank >= rank_value:minor_power
+        }
+    
+        NOT = { has_variable = hms_joint_publication_active }
+        NOT = { has_variable = finished_publication_completed }
+        NOT = { has_variable = finished_publication_lost }
+    }
+    
+    immediate = {
+        random_country = {
+            limit = {
+                has_diplomatic_pact = {
+                    who = root
+                    type = send_scientific_advisors
+                }
+                country_rank >= rank_value:minor_power
+            }
+            save_scope_as = pub_partner
+        }
+    }
+
+    # Option A: Society Research only if at least one society tech unresearched by both
+    option = {
+        name = scientific_pub_events.1.a
+
+        trigger = {
+            custom_tooltip = {
+                text = hms_pub_society_available_tt
+                OR = {
+                    NOT = { has_technology_researched = pan-nationalism }   # era 3
+                    NOT = { has_technology_researched = human_rights }      # era 3
+                    NOT = { has_technology_researched = psychoanalysis }    # era 4
+                    NOT = { has_technology_researched = macroeconomics }    # era 5
+                }
+            }
+        }
+
+        set_variable = hms_pub_field_society
+
+        set_variable = {
+            name = hms_pub_partner
+            value = scope:pub_partner
+        }
+
+        add_journal_entry = {
+            type = hms_je_joint_publication
+        }
+
+        ai_chance = { base = 33 }
+    }
+
+    # Option B: Military Research
+    option = {
+        name = scientific_pub_events.1.b
+
+        trigger = {
+            custom_tooltip = {
+                text = hms_pub_military_available_tt
+                OR = {
+                    NOT = { has_technology_researched = military_statistics }      # era 3
+                    NOT = { has_technology_researched = breech_loading_artillery } # era 3
+                    NOT = { has_technology_researched = wargaming }                # era 4
+                    NOT = { has_technology_researched = chemical_warfare }         # era 5
+                }
+            }
+        }
+
+        set_variable = hms_pub_field_military
+        set_variable = {
+            name = hms_pub_partner
+            value = scope:pub_partner
+        }
+
+        add_journal_entry = {
+            type = hms_je_joint_publication
+        }
+
+        ai_chance = { base = 33 }
+    }
+
+    # Option C: Production Research
+    option = {
+        name = scientific_pub_events.1.c
+
+        trigger = {
+            custom_tooltip = {
+                text = hms_pub_production_available_tt
+                OR = {
+                    NOT = { has_technology_researched = electrical_generation } # era 3
+                    NOT = { has_technology_researched = dynamite }              # era 3
+                    NOT = { has_technology_researched = telephone }             # era 4
+                    NOT = { has_technology_researched = compression_ignition }  # era 5
+                }
+            }
+        }
+
+        set_variable = hms_pub_field_production
+        set_variable = {
+            name = hms_pub_partner
+            value = scope:pub_partner
+        }
+
+        add_journal_entry = {
+            type = hms_je_joint_publication
+        }
+
+        ai_chance = { base = 33 }
+    }
+
+    # Option D: Decline
+    option = {
+        name = scientific_pub_events.1.d
+        default_option = yes
+
+        ai_chance = { base = 1 }
+    }
+}
+
+###-------------------------
+### EVENT 20: Milestone 2 — Approaching Publication
+###-------------------------
+scientific_pub_events.20 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.20.t
+    desc = scientific_pub_events.20.d
+    flavor = scientific_pub_events.20.f
+
+    event_image = {
+        texture = "gfx/event_pictures/scientific_3.dds"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_milestone_2_fired }
+    }
+    immediate = {
+        set_variable = hms_pub_milestone_2_fired
+
+        root.var:hms_pub_partner = {
+            save_scope_as = pub_partner
+        }
+    }
+
+    # Option A: Rush to publication — progress but risky
+    option = {
+        name = scientific_pub_events.20.a
+
+        add_modifier = {
+            name = costs_related_to_publication_modifier_small
+            months = 7
+        }
+
+        custom_tooltip = {
+            text = progress_tt
+            add_progress_effect_medium = yes
+        }
+        custom_tooltip = {
+            text = minor_setback_tt
+            add_setback_effect_small = yes
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Thorough peer review — safe, bonus at completion
+    option = {
+        name = scientific_pub_events.20.b
+        default_option = yes
+
+        custom_tooltip = {
+            text = minor_progress_tt
+            add_progress_effect_small = yes
+        }
+
+        ai_chance = { base = 50 }
+    }
+}
+
+###-------------------------
+### EVENT 30: The Great Dinner Party
+###-------------------------
+scientific_pub_events.30 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.30.t
+    desc = scientific_pub_events.30.d
+    flavor = scientific_pub_events.30.f
+
+    event_image = {
+        video = "europenorthamerica_london_center"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_eureka_fired }
+    }
+
+    immediate = {
+        set_variable = hms_pub_eureka_fired
+    }
+
+    # Option A: Host the dinner — expensive, stalls the paper, but intel payoff
+    option = {
+        name = scientific_pub_events.30.a
+
+        custom_tooltip = {
+            text = minor_setback_tt
+            add_setback_effect_small = yes
+        }
+
+        add_modifier = {
+            name = costs_related_to_publication_modifier_medium
+            multiplier = 2
+            months = 7
+        }
+        
+        add_modifier = {
+            name = hms_dinner_party_networks
+            months = 24
+        }
+
+        add_radicals = {
+            value = 0.15
+            strata = lower
+        }
+
+        add_loyalists = {
+            value = 0.2
+            pop_type = academics
+        }
+
+        ig:ig_intelligentsia = {
+            add_modifier = {
+                name = hms_ig_academic_recognition
+                months = 13
+            }
+        }
+
+        random_list = {
+            30 = {}
+            70 = {
+                trigger_event = {
+                    id = scientific_pub_events.37
+                    days = 7
+                }
+            }
+        }
+
+        ai_chance = { base = 40 }
+    }
+
+    # Option B: Host but keep it modest
+    option = {
+        name = scientific_pub_events.30.b
+        default_option = yes
+
+        add_modifier = {
+            name = costs_related_to_publication_modifier_small
+            months = 7
+        }
+
+        random_list = {
+            60 = {}
+            40 = {
+                custom_tooltip = {
+                    text = minor_setback_tt
+                    add_setback_effect_small = yes
+                }
+            }
+        }
+
+        add_modifier = {
+            name = hms_dinner_party_networks
+            months = 7
+        }
+
+        add_radicals = {
+            value = 0.05
+            strata = lower
+        }
+
+        add_loyalists = {
+            value = 0.1
+            pop_type = academics
+        }
+
+        ai_chance = { base = 40 }
+    }
+
+    # Option C: Decline — focus on the publication
+    option = {
+        name = scientific_pub_events.30.c
+
+        add_progress_effect_small = yes
+
+        ai_chance = { base = 20 }
+    }
+}
+
+###-------------------------
+### EVENT 31: Generous Patron
+###-------------------------
+scientific_pub_events.31 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.31.t
+    desc = scientific_pub_events.31.d
+    flavor = scientific_pub_events.31.f
+
+    gui_window = event_window_1char_tabloid
+	left_icon = scope:hms_pub_patron_leader
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_patron_fired }
+    }
+    immediate = {
+        set_variable = hms_pub_patron_fired
+
+        # Military research — Armed Forces patron
+        if = {
+            limit = { has_variable = hms_pub_field_military }
+            ig:ig_armed_forces = {
+                save_scope_as = hms_pub_patron_ig
+                leader = {
+                    save_scope_as = hms_pub_patron_leader
+                }
+            }
+        }
+
+        # Society research — Intelligentsia patron
+        else_if = {
+            limit = { has_variable = hms_pub_field_society }
+            ig:ig_intelligentsia = {
+                save_scope_as = hms_pub_patron_ig
+                leader = {
+                    save_scope_as = hms_pub_patron_leader
+                }
+            }
+        }
+
+        # Production research — Industrialists patron
+        else_if = {
+            limit = { has_variable = hms_pub_field_production }
+            ig:ig_industrialists = {
+                save_scope_as = hms_pub_patron_ig
+                leader = {
+                    save_scope_as = hms_pub_patron_leader
+                }
+            }
+        }
+    }
+
+    # Option A: Accept the funding
+    option = {
+        name = scientific_pub_events.31.a
+        default_option = yes
+
+        custom_tooltip = {
+            text = minor_progress_tt
+            add_progress_effect_small = yes
+        }
+
+        add_modifier = {
+            name = hms_accepted_research_fund
+            years = 1
+        }
+
+        scope:hms_pub_patron_ig = {
+            add_modifier = {
+                name = hms_ig_patron_of_science
+                months = 36
+            }
+        }
+
+        add_radicals = {
+            value = 0.05
+            pop_type = academics
+        }
+
+        ai_chance = { base = 70 }
+    }
+
+    # Option B: Decline prestige, no progress
+    option = {
+        name = scientific_pub_events.31.b
+
+        add_modifier = {
+            name = hms_kept_research_unfunded
+            years = 3
+        }
+
+        scope:hms_pub_patron_ig = {
+            add_modifier = {
+                name = hms_ig_patronage_rejected
+                months = 24
+            }
+        }
+
+        add_loyalists = {
+            value = 0.2
+            pop_type = academics
+        }
+
+        ai_chance = { base = 30 }
+    }
+}
+
+
+###-------------------------
+### EVENT 32: Peer Review Praise
+###-------------------------
+scientific_pub_events.32 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.32.t
+    desc = scientific_pub_events.32.d
+    flavor = scientific_pub_events.32.f
+
+    event_image = {
+        video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_praise_fired }
+
+        # At least one non-partner country exists
+        any_country = {
+            NOT = { this = root }
+            NOT = { this = root.var:hms_pub_partner }
+            country_rank >= rank_value:minor_power
+            relations:root >= relations_threshold:cold
+        }
+    }
+
+    immediate = {
+        set_variable = hms_pub_praise_fired
+
+        # get Partner ()
+        root.var:hms_pub_partner = {
+            save_scope_as = pub_partner
+        }
+
+        # --- HELPER COUNTRY 1 ---
+        # Try major power, cold+ relations first
+        if = {
+            limit = {
+                any_country = {
+                    NOT = { this = root }
+                    NOT = { this = root.var:hms_pub_partner }
+                    country_rank >= rank_value:major_power
+                    relations:root >= relations_threshold:cold
+                }
+            }
+            random_country = {
+                limit = {
+                    NOT = { this = root }
+                    NOT = { this = root.var:hms_pub_partner }
+                    country_rank >= rank_value:major_power
+                    relations:root >= relations_threshold:cold
+                }
+                root = {
+                    set_variable = { name = interested_country_1 value = prev years = 1 }
+                }
+                save_scope_as = helper_country_1
+            }
+        }
+        # Fallback: any minor power+
+        else = {
+            random_country = {
+                limit = {
+                    NOT = { this = root }
+                    NOT = { this = root.var:hms_pub_partner }
+                    country_rank >= rank_value:minor_power
+                }
+                root = {
+                    set_variable = { name = interested_country_1 value = this years = 1 }
+                }
+                save_scope_as = helper_country_1
+            }
+        }
+
+        # --- HELPER COUNTRY 2 ---
+        # Try major power, cold+ relations, different from helper 1
+        if = {
+            limit = {
+                any_country = {
+                    NOT = { this = root }
+                    NOT = { this = root.var:hms_pub_partner }
+                    NOT = { this = scope:helper_country_1 }
+                    country_rank >= rank_value:major_power
+                    relations:root >= relations_threshold:cold
+                }
+            }
+            random_country = {
+                limit = {
+                    NOT = { this = root }
+                    NOT = { this = root.var:hms_pub_partner }
+                    NOT = { this = scope:helper_country_1 }
+                    country_rank >= rank_value:major_power
+                    relations:root >= relations_threshold:cold
+                }
+                root = {
+                    set_variable = { name = interested_country_2 value = prev years = 1 }
+                }
+                save_scope_as = helper_country_2
+            }
+        }
+        # Fallback: any minor power+, different from helper 1
+        else_if = {
+            limit = {
+                any_country = {
+                    NOT = { this = root }
+                    NOT = { this = root.var:hms_pub_partner }
+                    NOT = { this = scope:helper_country_1 }
+                    country_rank >= rank_value:minor_power
+                }
+            }
+            random_country = {
+                limit = {
+                    NOT = { this = root }
+                    NOT = { this = root.var:hms_pub_partner }
+                    NOT = { this = scope:helper_country_1 }
+                    country_rank >= rank_value:minor_power
+                }
+                root = {
+                    set_variable = { name = interested_country_2 value = this years = 1 }
+                }
+                save_scope_as = helper_country_2
+            }
+        }
+        # If no second country found, helper_country_2 won't exist — options handle this
+    }
+
+    # Option A: Invite reviewers to contribute progress
+    option = {
+        name = scientific_pub_events.32.a
+
+        custom_tooltip = {
+            text = minor_progress_tt
+            add_progress_effect_small = yes
+        }
+
+        scope:helper_country_1 = {
+            change_relations = {
+                country = prev
+                value = 10
+            }
+        }
+
+        scope:helper_country_2 = {
+            change_relations = {
+                country = prev
+                value = 10
+            }
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Thank them and press on
+    option = {
+        name = scientific_pub_events.32.b
+        default_option = yes
+
+        random_list = {
+            60 = {
+                custom_tooltip = {
+                    text = rival_countries_publication_tt
+
+                    set_variable = { name = set_started_rival_publication years = 1 }
+                    
+                    set_variable = {
+                        name = rival_publisher_1
+                        value = scope:helper_country_1
+                        years = 1
+                    }
+
+                    set_variable = {
+                        name = rival_publisher_2
+                        value = scope:helper_country_2
+                        years = 1
+                    }
+
+                }
+            }
+            40 = {
+                custom_tooltip = {
+                    text = minor_setback_tt
+                    add_setback_effect_small = yes
+                }
+            }
+        }
+
+        change_relations = {
+            country = scope:pub_partner
+            value = 20
+        }
+
+        ai_chance = { base = 50 }
+    }
+}
+
+###-------------------------
+### EVENT 33: Foreign Scholar Joins
+###-------------------------
+scientific_pub_events.33 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.33.t
+    desc = scientific_pub_events.33.d
+    flavor = scientific_pub_events.33.f
+
+    event_image = {
+        video = "gfx/event_pictures/middleeast_engineer_blueprint.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_scholar_fired }
+        any_country = {
+            NOT = { this = root }
+            relations:root >= relations_threshold:neutral
+            country_rank >= rank_value:major_power
+        }
+    }
+
+    immediate = {
+        set_variable = hms_pub_scholar_fired
+
+        random_country = {
+            limit = {
+                NOT = { this = root }
+                country_rank >= rank_value:major_power
+                relations:root >= relations_threshold:neutral
+            }
+            save_scope_as = hms_pub_scholar_country
+        
+            ig:ig_intelligentsia = {
+                leader = {
+                    save_scope_as = hms_pub_foreign_scholar
+                }
+            }
+        }
+    }
+
+    # Option A: Welcome the scholar progress, costs money
+    option = {
+        name = scientific_pub_events.33.a
+        default_option = yes
+
+        custom_tooltip = {
+            text = minor_progress_tt
+            add_progress_effect_small = yes
+        }
+
+        add_modifier = {
+            name = distinguished_visitor_modifier
+            years = 1 
+        }
+
+        ai_chance = { base = 60 }
+    }
+
+    # Option B: Decline
+    option = {
+        name = scientific_pub_events.33.b
+
+        random_list = {
+            60 = {}
+            40 = {
+                custom_tooltip = {
+                    text = minor_setback_tt
+                    add_setback_effect_small = yes
+                }
+            }
+        }
+
+        ai_chance = { base = 40 }
+    }
+}
+
+##-------------------------
+## EVENT 34: Sharing is caring fire after PEER REVIEW PRAISE event 32 
+##-------------------------
+scientific_pub_events.34 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.34.t
+    desc = scientific_pub_events.34.d
+    flavor = scientific_pub_events.34.f
+
+    event_image = {
+        video = "unspecific_ruler_speaking_to_people"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_archival_fired }
+        has_variable = hms_pub_praise_fired # EVENT 32: Peer Review Praise has to be fired first
+        has_variable = interested_country_1 # at least one interested country from praise event
+        has_variable = interested_country_2
+    }
+
+    immediate = {
+        set_variable = hms_pub_archival_fired
+
+        root.var:hms_pub_partner = {
+            save_scope_as = pub_partner
+        }
+
+        root.var:interested_country_1 = {
+            save_scope_as = interested_country_1
+        }
+
+        root.var:interested_country_2 = {
+            save_scope_as = interested_country_2
+        }
+
+    }
+
+    # Option A: Sharing is caring
+    option = {
+        name = scientific_pub_events.34.a
+        default_option = yes
+
+        custom_tooltip = {
+            text = minor_progress_tt
+            add_progress_effect_small = yes
+        }
+
+        change_relations = {
+            country = scope:pub_partner
+            value = 10
+        }
+
+        scope:interested_country_1 = {
+            change_relations = {
+                country = prev
+                value = 10
+            }
+        }
+
+        scope:interested_country_2 = {
+            change_relations = {
+                country = prev
+                value = 10
+            }
+        }
+
+        add_radicals = {
+            value = 0.05
+            pop_type = government_agents
+        }
+
+        ai_chance = { base = 60 }
+    }
+
+    # Option B: Use this to our advantage : keep the nationalist framing : enemies start rival paper
+    option = {
+        name = scientific_pub_events.34.b
+
+        custom_tooltip = {
+            text = minor_setback_tt
+            add_setback_effect_small = yes
+        }
+
+        custom_tooltip = {
+            text = progress_tt
+            add_progress_effect_medium = yes
+        }
+
+        scope:pub_partner = {
+            change_relations = {
+                country = prev
+                value = -20
+            }
+        }
+
+        scope:interested_country_1 = {
+            change_relations = {
+                country = prev
+                value = -20
+            }
+        }
+
+        scope:interested_country_2 = {
+            change_relations = {
+                country = prev
+                value = -20
+            }
+        }
+
+        add_loyalists = {
+            value = 0.1
+            pop_type = academics
+        }
+
+        custom_tooltip = {
+            text = rival_countries_publication_tt
+
+            set_variable = { name = set_started_rival_publication years = 1 }
+            
+            set_variable = {
+                name = rival_publisher_1
+                value = scope:interested_country_1
+                years = 1
+            }
+
+            set_variable = {
+                name = rival_publisher_2
+                value = scope:interested_country_2
+                years = 1
+            }
+
+        }
+
+        ai_chance = { base = 40 }
+    }
+}
+
+
+### NEUTRAL 
+###-------------------------
+### EVENT 35: Academic Rivalry Intelligentsia vs Petite Bourgeoisie
+###-------------------------
+scientific_pub_events.35 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.35.t
+    desc = scientific_pub_events.35.d
+    flavor = scientific_pub_events.35.f
+
+    event_image = {
+        texture = "gfx/event_pictures/scientific_3.dds"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_ig_rivalry_fired }
+    }
+    immediate = {
+        set_variable = hms_pub_ig_rivalry_fired
+
+        ig:ig_intelligentsia = {
+            save_scope_as = intelligentsia
+        }
+
+        ig:ig_petty_bourgeoisie = {
+            save_scope_as = petty_burg
+        }
+    }
+
+    # Option A: Side with the Intelligentsia — theoretical purity
+    option = {
+        name = scientific_pub_events.35.a
+
+        ig:ig_intelligentsia = {
+            add_modifier = {
+                name = hms_ig_academic_recognition
+                months = 24
+            }
+        }
+
+        ig:ig_petty_bourgeoisie = {
+            add_modifier = {
+                name = hms_ig_academic_snubbed
+                months = 24
+            }
+        }
+
+        add_loyalists = {
+            value = 0.05
+            pop_type = academics
+        }
+
+        add_radicals = {
+            value = 0.01
+            pop_type = engineers
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Side with the Petite Bourgeoisie — practical applications
+    option = {
+        name = scientific_pub_events.35.b
+
+        ig:ig_petty_bourgeoisie = {
+            add_modifier = {
+                name = hms_ig_academic_recognition
+                months = 24
+            }
+        }
+
+        ig:ig_intelligentsia = {
+            add_modifier = {
+                name = hms_ig_academic_snubbed
+                months = 24
+            }
+        }
+
+        add_loyalists = {
+            value = 0.05
+            pop_type = engineers
+        }
+
+        add_radicals = {
+            value = 0.01
+            pop_type = academics
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+}
+
+
+###-------------------------
+### EVENT 36: Laboratory Modernization
+###-------------------------
+
+scientific_pub_events.36 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.36.t
+    desc = scientific_pub_events.36.d
+    flavor = scientific_pub_events.36.f
+
+    event_image = {
+        texture = "gfx/event_pictures/scientific_2.dds"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_laboratory_fired }
+    }
+    immediate = {
+        set_variable = hms_pub_laboratory_fired
+    }
+
+    # Option A: Fund new laboratories, treasury + goods
+    option = {
+        name = scientific_pub_events.36.a
+
+        add_modifier = {
+            name = costs_related_to_publication_modifier_small
+            months = 10
+        }
+    
+        add_modifier = {
+            name = new_goods_needed_for_labs
+            months = 10
+        }
+        
+        custom_tooltip = {
+            text = progress_tt
+            add_progress_effect_medium = yes
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Make do with what we have, risk it
+    option = {
+        name = scientific_pub_events.36.b
+        default_option = yes
+
+        random_list = {
+            60 = {
+                
+            }
+            20 = {
+                custom_tooltip = {
+                    text = minor_setback_tt
+                    add_setback_effect_small = yes
+                }
+            }
+            20 = {
+                custom_tooltip = {
+                    text = setback_tt
+                    add_setback_effect_medium = yes
+                }
+            }
+        }
+
+        ai_chance = { base = 50 }
+    }
+}
+
+###-------------------------
+### EVENT 37: A Compromising Secret dinner party paid off
+###-------------------------
+scientific_pub_events.37 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.37.t
+    desc = scientific_pub_events.37.d
+    flavor = scientific_pub_events.37.f
+
+    event_image = {
+        video = "ep1_clandestine_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 1
+
+    trigger = {
+        
+        # any_country = {
+        #     NOT = { this = root }
+        #     NOT = { this = root.var:hms_pub_partner }
+        #     country_rank >= rank_value:great_power
+        # }
+
+    }
+
+    immediate = {
+
+        random_country = {
+            limit = {
+                NOT = { this = root }
+                NOT = { this = root.var:hms_pub_partner }
+                country_rank >= rank_value:major_power
+            }
+            save_scope_as = hms_pub_blackmail_target
+        }
+
+    }
+
+    # Option A: Coerce them into funding our project
+    option = {
+        name = scientific_pub_events.37.a
+
+        custom_tooltip = {
+            text = progress_tt
+            add_progress_effect_medium = yes
+        }
+
+        change_relations = {
+            country = scope:hms_pub_blackmail_target
+            value = -10
+        }
+
+        ai_chance = { base = 40 }
+    }
+
+    # Option B: Extract an obligation, leverage for the future
+    option = {
+        name = scientific_pub_events.37.b
+        default_option = yes
+
+        scope:hms_pub_blackmail_target = {
+            set_owes_obligation_to = {
+                country = root
+                setting = yes
+            }
+        }
+
+        change_relations = {
+            country = scope:hms_pub_blackmail_target
+            value = -10
+        }
+
+        ai_chance = { base = 40 }
+    }
+
+    # Option C: Bury the secret
+    option = {
+        name = scientific_pub_events.37.c
+
+        change_relations = {
+            country = scope:hms_pub_blackmail_target
+            value = 30
+        }
+
+        ai_chance = { base = 20 }
+    }
+}
+
+###-------------------------
+### EVENT 40: Academic Disagreement
+###-------------------------
+scientific_pub_events.40 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.40.t
+    desc = scientific_pub_events.40.d
+    flavor = scientific_pub_events.40.f
+
+    event_image = {
+        video = "southamerica_aristocrats"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_disagreement_fired }
+    }
+    immediate = {
+        set_variable = hms_pub_disagreement_fired
+
+        # get Partner ()
+        root.var:hms_pub_partner = {
+            save_scope_as = pub_partner
+        }
+    }
+
+    # Option A: Concede to partner setback, good relations
+    option = {
+        name = scientific_pub_events.40.a
+
+        random_list = {
+            60 = {
+                change_relations = {
+                    country = root.var:hms_pub_partner
+                    value = 10
+                }
+            }
+            40 = {
+                custom_tooltip = {
+                    text = minor_setback_tt
+                    add_setback_effect_small = yes
+                }
+            }
+        }
+
+        
+
+        ai_chance = { base = 40 }
+    }
+
+    # Option B: Insist on your approach — bad relations, no setback
+    option = {
+        name = scientific_pub_events.40.b
+
+        random_list = {
+            60 = {
+                change_relations = {
+                    country = root.var:hms_pub_partner
+                    value = -10
+                }
+            }
+            40 = {
+                custom_tooltip = {
+                    text = minor_progress_tt
+                    add_progress_effect_small = yes
+                }
+            }
+        }
+
+        ai_chance = { base = 30 }
+    }
+
+    # Option C: Compromise — small setback
+    option = {
+        name = scientific_pub_events.40.c
+        default_option = yes
+
+        custom_tooltip = {
+            text = minor_setback_tt
+            add_setback_effect_small = yes
+        }
+
+        ai_chance = { base = 30 }
+    }
+}
+
+###-------------------------
+### EVENT 41: Data Corruption due to Fire
+###-------------------------
+scientific_pub_events.41 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.41.t
+    desc = scientific_pub_events.41.d
+    flavor = scientific_pub_events.41.f
+
+    event_image = {
+        video = "unspecific_fire"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_corruption_fired }
+    }
+    immediate = {
+        set_variable = hms_pub_corruption_fired
+    }
+
+    # Option A: Pay to reconstruct money but less setback
+    option = {
+        name = scientific_pub_events.41.a
+
+        add_modifier = {
+            name = costs_related_to_publication_modifier_medium
+            months = 7
+        }
+
+            custom_tooltip = {
+                text = minor_setback_tt
+                add_setback_effect_small = yes
+            }
+    
+            # custom_tooltip = {
+            #     text = progress_tt
+            #     add_progress_effect_small = yes
+            # }
+
+        ai_chance = { base = 60 }
+    }
+
+    # Option B: Start over free but worse
+    option = {
+        name = scientific_pub_events.41.b
+        default_option = yes
+
+        custom_tooltip = {
+            text = setback_tt
+            add_setback_effect_medium = yes
+        }
+
+        ai_chance = { base = 40 }
+    }
+}
+
+###-------------------------
+### EVENT 42: Rival Publication Race
+###-------------------------
+scientific_pub_events.42 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.42.t
+    desc = scientific_pub_events.42.d
+    flavor = scientific_pub_events.42.f
+
+    event_image = {
+        texture = "gfx/event_pictures/scientific_3.dds"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_rival_fired }
+        has_variable = set_started_rival_publication 
+    }
+
+    immediate = {
+        set_variable = hms_pub_rival_fired
+
+        root.var:rival_publisher_1 = {
+            save_scope_as = rival_country_1
+        }
+
+        root.var:rival_publisher_2 = {
+            save_scope_as = rival_country_2
+        }
+    }
+
+    # Option A: Rush
+    option = {
+        name = scientific_pub_events.42.a
+
+        add_modifier = {
+            name = costs_related_to_publication_modifier_small
+            months = 7
+        }
+        
+        custom_tooltip = {
+            text = minor_progress_tt
+            add_progress_effect_small = yes
+        }
+        custom_tooltip = {
+            text = minor_setback_tt
+            add_setback_effect_small = yes
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Stay the course
+    option = {
+        name = scientific_pub_events.42.b
+        default_option = yes
+
+        random_list = {
+            50 = {}
+            50 = {
+                custom_tooltip = {
+                    text = minor_setback_tt
+                    add_setback_effect_small = yes
+                }
+            }
+        }
+
+        ai_chance = { base = 30 }
+    }
+
+    # Option C: Spy on the rivals
+    option = {
+        name = scientific_pub_events.42.c
+
+        trigger_event = {
+            id = scientific_pub_events.46
+            days = 15
+        }
+
+        ai_chance = { base = 20 }
+    }
+}
+
+
+###-------------------------
+### EVENT 43: Funding Crisis
+###-------------------------
+scientific_pub_events.43 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.43.t
+    desc = scientific_pub_events.43.d
+    flavor = scientific_pub_events.43.f
+
+    event_image = {
+        video = "africa_leader_arguing"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_funding_crisis_fired }
+
+        any_country = {
+            NOT = { this = root }
+            NOT = { this = root.var:hms_pub_partner }
+            relations:root >= relations_threshold:neutral
+            country_rank >= rank_value:major_power
+        }
+    }
+
+    immediate = {
+        set_variable = hms_pub_funding_crisis_fired
+
+        # get Partner ()
+        root.var:hms_pub_partner = {
+            save_scope_as = pub_partner
+        }
+
+        # Find a friendly major power investor
+        random_country = {
+            limit = {
+                NOT = { this = root }
+                NOT = { this = root.var:hms_pub_partner }
+                country_rank >= rank_value:major_power
+                relations:root >= relations_threshold:neutral
+            }
+            save_scope_as = hms_pub_investor_scope
+        }
+    }
+
+    # Option A: Seek international investors — requires a friendly major power
+    option = {
+        name = scientific_pub_events.43.a
+
+        trigger = {
+            exists = scope:hms_pub_investor_scope
+        }
+
+        # They fund us, we owe them
+        scope:hms_pub_investor_scope = {
+            set_owes_obligation_to = {
+                country = root
+                setting = yes
+            }
+        }
+
+        change_relations = {
+            country = scope:hms_pub_investor_scope
+            value = 10
+        }
+
+        custom_tooltip = {
+            text = minor_progress_tt
+            add_progress_effect_small = yes
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Threaten to withdraw pressuring partner 
+    option = {
+        name = scientific_pub_events.43.b
+
+        change_relations = {
+            country = root.var:hms_pub_partner
+            value = -15
+        }
+
+        random_list = {
+            50 = {
+                # Partner caves, funds the shortfall
+                custom_tooltip = {
+                    text = minor_progress_tt
+                    add_progress_effect_small = yes
+                }
+            }
+            50 = {
+                # Partner calls our bluff
+                custom_tooltip = {
+                    text = setback_tt
+                    add_setback_effect_medium = yes
+                }
+            }
+        }
+
+        ai_chance = { base = 30 }
+    }
+
+    # Option C: Accept austerity
+    option = {
+        name = scientific_pub_events.43.c
+        default_option = yes
+
+        add_modifier = {
+            name = costs_related_to_publication_modifier_medium
+            months = 10
+        }
+
+        custom_tooltip = {
+            text = minor_setback_tt
+            add_setback_effect_small = yes
+        }
+
+        ai_chance = { base = 20 }
+    }
+}
+
+###-------------------------
+### EVENT 44: Lead Scholar Falls Ill
+###-------------------------
+scientific_pub_events.44 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.44.t
+    desc = scientific_pub_events.44.d
+    flavor = scientific_pub_events.44.f
+
+    event_image = {
+        video = "gfx/event_pictures/europenorthamerica_opium_smoker.bk2"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        NOT = { has_variable = hms_pub_illness_fired }
+    }
+    immediate = {
+        set_variable = hms_pub_illness_fired
+
+        # get Partner ()
+        root.var:hms_pub_partner = {
+            save_scope_as = pub_partner
+        }
+    }
+
+    # Option A: Hire a replacement
+    option = {
+        name = scientific_pub_events.44.a
+
+        add_modifier = {
+            name = costs_related_to_publication_modifier_small
+            months = 12
+        }
+
+        ai_chance = { base = 50 }
+    }
+
+    # Option B: Wait for recovery
+    option = {
+        name = scientific_pub_events.44.b
+        default_option = yes
+
+        custom_tooltip = {
+            text = setback_tt
+            add_setback_effect_medium = yes
+        }
+
+        ai_chance = { base = 30 }
+    }
+
+    # Option C: Ask partner to send their best — setback BUT good relations
+    option = {
+        name = scientific_pub_events.44.c
+
+        custom_tooltip = {
+            text = minor_setback_tt
+            add_setback_effect_small = yes
+        }
+        custom_tooltip = {
+            text = minor_progress_tt
+            add_progress_effect_small = yes
+        }
+
+        change_relations = {
+            country = scope:pub_partner
+            value = -5
+        }
+
+        scope:pub_partner = {
+            add_modifier = {
+                name = costs_related_to_publication_modifier_medium
+                months = 10
+            }
+        }
+
+        ai_chance = { base = 20 }
+    }
+}
+
+
+###-------------------------
+### EVENT 46: Sabotage the Rival, follow-up from event 42 spy option
+###-------------------------
+scientific_pub_events.46 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.46.t
+    desc = scientific_pub_events.46.d
+    flavor = scientific_pub_events.46.f
+
+    event_image = {
+        video = "ep1_clandestine_meeting"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {
+        AND = {
+            NOT = { has_variable =  fired_event_46 }
+            has_variable = rival_publisher_1 
+            has_variable = rival_publisher_2
+        }
+
+        #check if the je is still active since this event is delayed
+        has_journal_entry = hms_je_joint_publication
+    }
+
+    immediate = {
+        set_variable = fired_event_46
+
+        # get Partner ()
+        root.var:hms_pub_partner = {
+            save_scope_as = pub_partner
+        }
+
+        root.var:rival_publisher_1 = {
+            save_scope_as = rival_country_1
+        }
+
+        root.var:rival_publisher_2 = {
+            save_scope_as = rival_country_2
+        }
+    }
+
+    # Option A: Violent disruption — burn the lab, destroy their notes
+    option = {
+        name = scientific_pub_events.46.a
+
+        random_list = {
+            60 = {
+                # Success — their research is ruined, big progress for us
+                custom_tooltip = {
+                    text = progress_tt
+                    add_progress_effect_medium = yes
+                }
+
+                custom_tooltip = hms_pub_sabotage_success_tt
+            }
+            25 = {
+                # Partial success — some damage done
+                custom_tooltip = {
+                    text = minor_progress_tt
+                    add_progress_effect_small = yes
+                }
+                custom_tooltip = {
+                    text = minor_setback_tt
+                    add_setback_effect_small = yes
+                }
+
+                custom_tooltip = hms_pub_sabotage_partial_tt
+            }
+            15 = {
+                # Caught — international scandal
+
+                custom_tooltip = {
+                    text = setback_tt
+                    add_setback_effect_medium = yes
+                }
+
+                if = {
+                    limit = { exists = scope:rival_country_1 }
+                    change_relations = {
+                        country = scope:rival_country_1
+                        value = -25
+                    }
+                }
+
+                if = {
+                    limit = { exists = scope:rival_country_2 }
+                    change_relations = {
+                        country = scope:rival_country_2
+                        value = -25
+                    }
+                }
+
+                custom_tooltip = hms_pub_sabotage_caught_tt
+            }
+        }
+
+        ai_chance = { base = 40 }
+    }
+
+    # Option B: Bribe the lead scientist to abandon the project
+    option = {
+        name = scientific_pub_events.46.b
+        default_option = yes
+
+        add_modifier = {
+            name = bribe_rival_scientist_cost
+            months = 10
+        }
+
+        random_list = {
+            80 = {
+                # Success — scientist leaves, their project collapses
+                custom_tooltip = {
+                    text = minor_progress_tt
+                    add_progress_effect_small = yes
+                }
+
+                custom_tooltip = hms_pub_bribe_success_tt
+            }
+            20 = {
+                # Backfire — scientist reports us, scandal
+                custom_tooltip = {
+                    text = minor_setback_tt
+                    add_setback_effect_small = yes
+                }
+
+                add_modifier = {
+                    name = scandal_in_scientific_community
+                    months = 10
+                }
+
+                if = {
+                    limit = { exists = scope:rival_country_1 }
+                    change_relations = {
+                        country = scope:rival_country_1
+                        value = -25
+                    }
+                }
+
+                if = {
+                    limit = { exists = scope:rival_country_2 }
+                    change_relations = {
+                        country = scope:rival_country_2
+                        value = -25
+                    }
+                }
+
+                custom_tooltip = hms_pub_bribe_backfire_tt
+            }
+        }
+
+        ai_chance = { base = 60 }
+    }
+
+    option = {
+        name = scientific_pub_events.46.c
+
+        custom_tooltip = {
+            text = minor_setback_tt
+            add_setback_effect_small = yes
+        }
+
+        ai_chance = { base = 20 }
+    }
+}
+
+###-------------------------
+### EVENT 99: Failure => Publication Abandoned
+###-------------------------
+scientific_pub_events.99 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.99.t
+    desc = scientific_pub_events.99.d
+    flavor = scientific_pub_events.99.f
+
+    event_image = {
+        video = "unspecific_politicians_arguing"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 1
+
+    trigger = {}
+    immediate = {}
+
+    option = {
+        name = scientific_pub_events.99.a
+        default_option = yes
+
+        add_modifier = {
+            name = failed_publication_hit_modifier
+            months = 13
+        }
+
+        #can also do this here, does not matter because its not checked in triggers, just cleanup for variables after publication ends
+        remove_variable = hms_pub_field_society
+        remove_variable = hms_pub_field_military
+        remove_variable = hms_pub_field_production
+
+        remove_variable = hms_pub_partner
+        remove_variable = interested_country_1
+        remove_variable = interested_country_2
+
+        ai_chance = { base = 100 }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###-------------------------
+### EVENT 100: Completion — Tech Progress Reward
+###-------------------------
+
+scientific_pub_events.100 = {
+    type = country_event
+    placement = root
+
+    title = scientific_pub_events.100.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_variable = hms_pub_field_society }
+                desc = scientific_pub_events.100.d_society
+            }
+            triggered_desc = {
+                trigger = { has_variable = hms_pub_field_military }
+                desc = scientific_pub_events.100.d_military
+            }
+            triggered_desc = {
+                trigger = { has_variable = hms_pub_field_production }
+                desc = scientific_pub_events.100.d_production
+            }
+        }
+    }
+    flavor = scientific_pub_events.100.f
+
+    event_image = {
+        video = "unspecific_world_fair"
+    }
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+    duration = 3
+
+    trigger = {}
+
+    immediate = {
+        set_variable = {
+            name = hms_pub_progress_amount
+            value = 3500
+        }
+
+        # possible leverages REMOVED for now
+        # if = {
+        #     limit = { has_variable = hms_pub_peer_reviewed }
+        #     change_variable = {
+        #         name = hms_pub_progress_amount
+        #         add = 1500
+        #     }
+        # }
+        # if = {
+        #     limit = { has_variable = hms_pub_dinner_leverage }
+        #     change_variable = {
+        #         name = hms_pub_progress_amount
+        #         add = 1000
+        #     }
+        # }
+        # if = {
+        #     limit = { has_variable = hms_pub_nationalist_framing }
+        #     change_variable = {
+        #         name = hms_pub_progress_amount
+        #         add = 500
+        #     }
+        #     change_variable = {
+        #         name = hms_pub_partner_progress
+        #         add = -500
+        #     }
+        # }
+
+        # set_variable = {
+        #     name = hms_pub_partner_progress
+        #     value = root.var:hms_pub_progress_amount
+        # }
+
+        # change_variable = {
+        #     name = hms_pub_partner_progress
+        #     divide = 2
+        # }
+
+        root.var:hms_pub_partner = {
+            save_scope_as = pub_partner
+        }
+
+        if = {
+            limit = { has_variable = interested_country_1 }
+            root.var:interested_country_1 = {
+                save_scope_as = interested_country_1
+            }
+        }
+        if = {
+            limit = { has_variable = interested_country_2 }
+            root.var:interested_country_2 = {
+                save_scope_as = interested_country_2
+            }
+        }
+    }
+
+    ###--- Option A: Share credit equally ---###
+    option = {
+        name = scientific_pub_events.100.a
+        default_option = yes
+
+        add_modifier = {
+            name = spearhead_of_publication_modifier
+            years = 10
+        }
+
+        scope:pub_partner = {
+            change_relations = {
+                country = root 
+                value = 20
+            }
+
+            add_modifier = {
+                name = spearhead_of_publication_modifier
+                years = 10
+            }
+        }
+
+        if = {
+            limit = { exists = scope:interested_country_1 }
+            scope:interested_country_1 = {
+                change_relations = { country = root value = 20 }
+                add_modifier = { name = recognized_as_junior_member_of_publication_modifier years = 3 }
+            }
+        }
+
+        if = {
+            limit = { exists = scope:interested_country_2 }
+            scope:interested_country_2 = {
+                change_relations = { country = root value = 20 }
+                add_modifier = { name = recognized_as_junior_member_of_publication_modifier years = 3 }
+            }
+        }
+
+        ### SOCIETY ###
+        if = {
+            limit = { has_variable = hms_pub_field_society }
+
+            random_list = {
+                1 = {
+                    trigger = { NOT = { has_technology_researched = pan-nationalism } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_pan-nationalism_tt
+                        add_technology_progress = { technology = pan-nationalism progress = root.var:hms_pub_progress_amount }
+
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = pan-nationalism progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = human_rights } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_human_rights_tt
+                        add_technology_progress = { technology = human_rights progress = root.var:hms_pub_progress_amount }
+
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = human_rights progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = psychoanalysis } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_psychoanalysis_tt
+                        add_technology_progress = { technology = psychoanalysis progress = root.var:hms_pub_progress_amount }
+
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = psychoanalysis progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = macroeconomics } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_macroeconomics_tt
+                        add_technology_progress = { technology = macroeconomics progress = root.var:hms_pub_progress_amount }
+
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = macroeconomics progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        ### MILITARY ###
+        if = {
+            limit = { has_variable = hms_pub_field_military }
+
+            random_list = {
+                1 = {
+                    trigger = { NOT = { has_technology_researched = military_statistics } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_military_statistics_tt
+                        add_technology_progress = { technology = military_statistics progress = root.var:hms_pub_progress_amount }
+                        
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = military_statistics progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = breech_loading_artillery } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_breech_loading_artillery_tt
+                        add_technology_progress = { technology = breech_loading_artillery progress = root.var:hms_pub_progress_amount }
+                        
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = breech_loading_artillery progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = wargaming } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_wargaming_tt
+                        add_technology_progress = { technology = wargaming progress = root.var:hms_pub_progress_amount }
+                        
+
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = wargaming progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = chemical_warfare } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_chemical_warfare_tt
+                        add_technology_progress = { technology = chemical_warfare progress = root.var:hms_pub_progress_amount }
+                        
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = chemical_warfare progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+            }
+        }
+
+        ### PRODUCTION ###
+        if = {
+            limit = { has_variable = hms_pub_field_production }
+
+            random_list = {
+                1 = {
+                    trigger = { NOT = { has_technology_researched = electrical_generation } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_electrical_generation_tt
+                        add_technology_progress = { technology = electrical_generation progress = root.var:hms_pub_progress_amount }
+                        
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = electrical_generation progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = dynamite } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_dynamite_tt
+                        add_technology_progress = { technology = dynamite progress = root.var:hms_pub_progress_amount }
+                        
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = dynamite progress = root.var:hms_pub_progress_amount }
+                    }
+                }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = telephone } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_telephone_tt
+                        add_technology_progress = { technology = telephone progress = root.var:hms_pub_progress_amount }
+                        
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = telephone progress = root.var:hms_pub_progress_amount }
+                        }
+                    }
+                }
+                1 = {
+                    trigger = { NOT = { has_technology_researched = compression_ignition } }
+                    custom_tooltip = {
+                        text = hms_pub_tech_compression_ignition_tt
+                        add_technology_progress = { technology = compression_ignition progress = root.var:hms_pub_progress_amount }
+                        
+                        scope:pub_partner = {
+                            add_technology_progress = { technology = compression_ignition progress = root.var:hms_pub_progress_amount }
+                    }
+                }
+                }
+            }
+        }
+
+        #remove these 3 here not in JE otherwise the description gets messed up and we need the variables for the tooltip conditions
+        remove_variable = hms_pub_field_society
+        remove_variable = hms_pub_field_military
+        remove_variable = hms_pub_field_production
+
+        remove_variable = hms_pub_partner
+        remove_variable = interested_country_1
+        remove_variable = interested_country_2
+
+        # remove_variable = hms_pub_peer_reviewed
+        # remove_variable = hms_pub_dinner_leverage
+        # remove_variable = hms_pub_nationalist_framing
+        remove_variable = hms_pub_progress_amount
+        remove_variable = hms_pub_partner_progress
+
+        ai_chance = { base = 70 }
+    }
+
+}

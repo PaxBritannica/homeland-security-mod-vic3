@@ -1,0 +1,276 @@
+﻿l_english:
+
+ ### =============================================
+ ### JOURNAL ENTRY
+ ### =============================================
+
+ hms_je_joint_publication: "Joint Scientific Publication"
+ hms_pub_status_society_tt: "Our academics and those of [SCOPE.sCountry('pub_partner').GetName] are collaborating on a groundbreaking paper in the #yellow Social sciences#!."
+ hms_pub_status_military_tt: "Our scholars and those of [SCOPE.sCountry('pub_partner').GetName] are collaborating on a groundbreaking paper in #yellow Military science#!."
+ hms_pub_status_production_tt: "Our scholars and those of [SCOPE.sCountry('pub_partner').GetName] are collaborating on a groundbreaking paper in #yellow Resource technology.#!"
+ hms_pub_status_generic_tt: "A joint publication is underway with [SCOPE.sCountry('pub_partner').GetName]."
+ breakthrough_progress_bar_desc: "Research #g Progress#!"
+ setbacks_progress_bar_desc: "Research #r Setbacks#!"
+
+ minor_setback_tt: "Publication receives a #r minor setback#!"
+ setback_tt: "Publication receives a #r setback#!"
+ minor_progress_tt: "Publication receives #green minor progress#!"
+ progress_tt: "Publication receives #green progress#!"
+
+ je_pub_completion_tt: "Research #g Progress#! reaches 100%"
+ je_pub_fail_tt: "Research #r Setbacks#! reaches 100%"
+
+ no_scientific_advisors_pact_between_tt: "We break our #yellow Scientific Advisors Pact#!"
+
+ ### =============================================
+ ### PROGRESS BAR
+ ### =============================================
+
+ hms_je_joint_publication_reason: "Our scientific teams are working on a theory that could potentially shake the entire scientific community. Should we reach this goal our technological advancement will be notable and we will get #yellow global recognition#!."
+
+ breakthrough_progress_bar: "Breakthrough"
+ setbacks_progress_bar: "Setbacks"
+
+ scientific_publication_progress_bar: "Publication Progress"
+ scientific_publication_progress_bar_desc: "Tracks the progress of the joint scientific publication."
+ hms_pub_base_growth_tt: "Baseline research collaboration"
+ hms_pub_senior_partner_tt: "Partner's superior academic resources"
+ hms_pub_eureka_momentum_tt: "Breakthrough momentum"
+ hms_pub_patron_funding_tt: "Patron-funded research"
+ hms_pub_foreign_scholar_tt: "Visiting foreign scholar"
+ hms_pub_disagreement_tt: "Academic disagreement"
+ hms_pub_rival_racing_tt: "Pressure from rival publication"
+ hms_pub_scholar_ill_tt: "Lead scholar incapacitated"
+ 
+ hms_joint_publication_in_progress: "Joint Publication in Progress"
+ hms_accepted_research_fund: "Research Funding Accepted"
+ hms_kept_research_unfunded: "Research Left Unfunded"
+ distinguished_visitor_modifier: "Distinguished Visitor"
+ costs_related_to_publication_modifier_small: "Minor Publication Costs"
+ costs_related_to_publication_modifier_medium: "Significant Publication Costs"
+ bribe_rival_scientist_cost: "Bribed Rival Scientist"
+ scandal_in_scientific_community: "Scandal in the Scientific Community"
+ failed_publication_hit_modifier: "Failed Publication"
+ instant_prestige_early_pub: "Early Publication in Scientific Field"
+
+ ### =============================================
+ ### MODIFIERS
+ ### =============================================
+ hms_joint_publication_in_progress: "Joint Publication In Progress"
+ hms_pub_shared_preliminary_data: "Shared Preliminary Data"
+ hms_pub_hoarded_findings: "Classified Research Advantage"
+ hms_pub_salvaged_notes: "Salvaged Research Notes"
+ hms_pub_society_breakthrough: "Groundbreaking Social Sciences Publication"
+ hms_pub_military_breakthrough: "Groundbreaking Military Sciences Publication"
+ hms_pub_production_breakthrough: "Groundbreaking Industrial Sciences Publication"
+
+ ### =============================================
+ ### EVENT 1: Entry => A Joint Publication Opportunity
+ ### =============================================
+ scientific_pub_events.1.t: "An Opportunity for Joint Publication"
+ scientific_pub_events.1.desc: "A delegation of academics from [SCOPE.sCountry('pub_partner').GetName] has arrived at our leading university with a remarkable proposal. They believe that by combining research efforts, our two nations could produce a paper of #yellow unprecedented significance#!, one that may reshape an entire field of study.\n\nThe scholars are eager to begin, but the question remains: which discipline should we focus our combined intellect upon?"
+ scientific_pub_events.1.f: "Alone we can observe. Together, perhaps, we can understand."
+ scientific_pub_events.1.a: "Focus on the #yellow social sciences#!."
+ scientific_pub_events.1.b: "Focus on #yellow military science.#!"
+ scientific_pub_events.1.c: "Focus on #yellow industrial technology#!."
+ scientific_pub_events.1.d: "We have no time for such ventures."
+
+ ### =============================================
+ ### EVENT 20: Ex Milestone Approaching Publication
+ ### =============================================
+ scientific_pub_events.20.t: "Approaching Publication"
+ scientific_pub_events.20.d: "The manuscript is taking shape. After days of intense collaboration, late nights in the laboratory, and spirited debates across the seminar table, the joint publication with [SCOPE.sCountry('pub_partner').GetName] is approaching completion.\n\nThe lead scholars estimate that with a final concentrated push and additional funding they could rush the paper to press. Alternatively, a more measured approach with formal peer review would strengthen the work's credibility and lasting impact, though it will take longer."
+ scientific_pub_events.20.f: "The final mile is always the longest."
+ scientific_pub_events.20.a: "Fund an accelerated push to publication."
+ scientific_pub_events.20.b: "Submit for formal peer review first."
+
+ ### =============================================
+ ### EVENT 30: The Great Dinner
+ ### =============================================
+ scientific_pub_events.30.t: "The Grand Dinner"
+ scientific_pub_events.30.d: "Our [concept_secret_service] has proposed we host a lavish dinner party for the scientific and political elite of the world with the pretest of a funding event for our #yellow new research#! a grand affair of champagne, conversation, and intrigue.\n\nAmid the clinking glasses and flattering toasts, our agents would work the room, cultivating relationships with prominent scientists and learning their secrets. \n\nThe cost would be considerable, and diverting our attention from the publication itself could slow progress. But the intelligence gathered at such an event could prove #yellow invaluable#!."
+ scientific_pub_events.30.f: "The most dangerous weapon at a dinner party is a sober listener."
+ scientific_pub_events.30.a: "Spare no expense. This dinner must be #yellow legendary#!."
+ scientific_pub_events.30.b: "Host something more modest."
+ scientific_pub_events.30.c: "We have a paper to finish. Decline."
+ hms_dinner_party_networks: "Dinner Party Networks"
+
+ ### =============================================
+ ### EVENT 31: Generous Patron
+ ### =============================================
+ scientific_pub_events.31.t: "A Generous Patron"
+ scientific_pub_events.31.d: "[SCOPE.sCharacter('hms_pub_patron_leader').GetFullName] of the [SCOPE.gsInterestGroup('hms_pub_patron_ig').GetNameNoFormatting] has taken notice of the joint research project and is offering substantial private funding. The money would allow the team to hire additional researchers, purchase better equipment, and significantly accelerate their work.\n\n#y There is, naturally, a condition#!. The patron wishes to have priority access on the discoveries and credits in the final publication. Some of the more idealistic scholars bristle at commercializing pure research."
+ scientific_pub_events.31.f: "Money cannot buy knowledge, #y but it can certainly rent the laboratory#!."
+ scientific_pub_events.31.a: "Accept the #yellow generous funding#!."
+ scientific_pub_events.31.b: "Decline, #yellow academic independence#! is paramount."
+ hms_ig_patron_of_science: "Patron Of Science"
+ hms_ig_patronage_rejected: "Patronage Rejected"
+
+ ### =============================================
+ ### EVENT 32: Peer Review Praise
+ ### =============================================
+ scientific_pub_events.32.t: "International Academic Interest"
+ scientific_pub_events.32.d: "Word of our #yellow joint research#! has spread through academic circles, and several distinguished scholars from other nations have written to express admiration for the methodology employed. Remarkably [SCOPE.sCountry('helper_country_1').GetName] and [SCOPE.sCountry('helper_country_2').GetName] are declared their interest in the early drafts and would like to contribute with their papers."
+ scientific_pub_events.32.f: "Recognition among peers is the truest measure of scholarly worth."
+ scientific_pub_events.32.a: "Invite them to contribute directly."
+ scientific_pub_events.32.b: "#yellow Thank them#! and press on."
+ rival_countries_publication_tt: "[SCOPE.sCountry('helper_country_1').GetName] and [SCOPE.sCountry('helper_country_2').GetName] will start their own #red rival #! publication."
+
+ ### =============================================
+ ### EVENT 33: Foreign Scholar Joins
+ ### =============================================
+ scientific_pub_events.33.t: "A Distinguished Visitor"
+ scientific_pub_events.33.d: "The illustrous, [SCOPE.sCharacter('hms_pub_foreign_scholar').GetFullName] leader of the #yellow intelligentsia#! in [SCOPE.sCountry('hms_pub_scholar_country').GetName] has expressed interest in joining the research project. Their expertise would be invaluable, and their published works are widely cited across the academic world.\n\nHowever, hosting such a distinguished figure requires proper #yellow accommodations#!, a research #yellow stipend#!, and #yellow laboratory access#!. The costs are not trivial, but the potential contribution to the publication's quality and prestige is considerable."
+ scientific_pub_events.33.f: "Genius knows no borders, though it does require a travel stipend and a bed to rest."
+ scientific_pub_events.33.a: "Welcome the scholar and fund their stay."
+ scientific_pub_events.33.b: "Decline, our team is sufficient."
+
+ ### =============================================
+ ### EVENT 34: Sharing is caring
+ ### =============================================
+ scientific_pub_events.34.t: "A Campaign of Sharing"
+ scientific_pub_events.34.d: "One of our #yellow leading scientists#! has been presenting preliminary findings at public lectures, granting interviews to newspapers, and discussing the work at salons across the continent.\n\nNone of this would be objectionable, were it not for his insistence on framing the entire endeavor as a triumph of our #red nation alone#!.'\n\nThe international scientific community is growing skeptical. Colleagues in [SCOPE.sCountry('pub_partner').GetName] are furious. Scholars abroad are beginning to question whether supporting this work merely advances our agenda at their expense."
+ scientific_pub_events.34.f: "Knowledge shared is knowledge doubled. Knowledge hoarded is suspicion earned."
+ scientific_pub_events.34.a: "Sharing is caring. Reaffirm the #yellow collaboration#!."
+ scientific_pub_events.34.b: "He has a point. Let us use this to #yellow our advantage#!."
+
+ ### =============================================
+ ### EVENT 35: ADVERSARY PAPER ? EVENT CHAIN 
+ ### =============================================
+
+ scientific_pub_events.35.t: "A Question of Credit"
+ scientific_pub_events.35.d: "A bitter dispute has broken out over the direction of the joint publication. The [SCOPE.gsInterestGroup('intelligentsia').GetNameNoFormatting] insist that the paper must foreground its #yellow theoretical contributions#!. The elegant proofs, the mathematical models, the grand unifying framework. Without these, they argue, the work is mere cataloguing.\n\nThe [SCOPE.gsInterestGroup('petty_burg').GetNameNoFormatting] see it differently. They demand the paper emphasize its #yellow practical applications#! how the findings can be commercialized, what new industries might emerge, which existing processes can be improved. Theory without application, they argue, is an expensive hobby.\n\nBoth sides have made it clear they expect our support."
+ scientific_pub_events.35.f: "The question is never who discovered the truth, but who gets to name it."
+ scientific_pub_events.35.a: "The theoretical framework is paramount."
+ scientific_pub_events.35.b: "Practical applications must take priority."
+ 
+ hms_ig_academic_snubbed: "Academic Snubbed"
+ hms_ig_academic_recognition: "Academic Recognition"
+
+ ### =============================================
+ ### EVENT 36: Laboratory Modernization
+ ### =============================================
+ scientific_pub_events.36.t: "Outdated Equipment"
+ scientific_pub_events.36.d: "The lead researchers have submitted a #y formal request#! for #yellow new laboratory equipment#!. The current instruments, they explain, are simply inadequate for the precision required by the next phase of experiments.\n\nFunding new equipment would be costly but would dramatically accelerate the work."
+ scientific_pub_events.36.f: "A craftsman is only as good as his tools."
+ scientific_pub_events.36.a: "Fund new laboratories and equipment."
+ scientific_pub_events.36.b: "Make do with what we have."
+ hms_pub_lab_failure_tt: "Tools will fail and we will hit a setback"
+ new_goods_needed_for_labs: "Expanding Laboratories"
+
+ ### =============================================
+ ### EVENT 37: A Compromising Secret
+ ### =============================================
+ scientific_pub_events.37.t: "A Compromising Secret"
+ scientific_pub_events.37.d: "Our dinner party has borne fruit #y beyond expectations#!. Among the loose talk and indiscreet boasts, our agents uncovered something extraordinary, a deeply compromising secret involving a #yellow senior figure#! in [SCOPE.sCountry('hms_pub_blackmail_target').GetName].\n\nThe details are damning enough that [SCOPE.sCountry('hms_pub_blackmail_target').GetName]#yellow 's government#! would go to considerable lengths to prevent their publication."
+ scientific_pub_events.37.f: "Every secret has a price. The question is who pays it."
+ scientific_pub_events.37.a: "Maybe [SCOPE.sCountry('hms_pub_blackmail_target').GetName] can put some funds into our project."
+ scientific_pub_events.37.b: "We won't talk in exchange of an #yellow Obligation#!."
+ scientific_pub_events.37.c: "Bury the secret. Their gratitude will be worth more."
+
+ ### =============================================
+ ### EVENT 40: Academic Disagreement
+ ### =============================================
+
+ scientific_pub_events.40.t: "Academic Disagreement"
+ scientific_pub_events.40.d: "A heated dispute has erupted between our scholars and those from [SCOPE.sCountry('pub_partner').GetName]. The disagreement concerns fundamental methodology. Our team favors an #yellow empirical approach#! based on observation, while our partners insist on a more theoretical framework.\n\nPublications have stalled as both sides dig in. Left unresolved, this could put the project at risk significantly. We must decide how to handle this #y intellectual impasse#!."
+ scientific_pub_events.40.f: "Where two scholars agree, one of them becomes unnecessary."
+ scientific_pub_events.40.a: "Defer to our partners' methodology."
+ scientific_pub_events.40.b: "Insist on our approach."
+ scientific_pub_events.40.c: "Propose a compromise."
+
+ ### =============================================
+ ### EVENT 41: Data Corruption
+ ### =============================================
+ scientific_pub_events.41.t: "Research Notes Damaged"
+ scientific_pub_events.41.d: "#r Disaster#! has struck the research project. A fire in one of the laboratories has destroyed months of carefully compiled experimental records. The lead researcher is devastated. much of the data was unique and cannot be easily reproduced.\n\nWe can attempt to reconstruct the lost work from secondary sources and correspondence, though this will be expensive. Otherwise, the affected sections will need to be redone from scratch."
+ scientific_pub_events.41.f: "Knowledge is fragile. Paper, inflammable."
+ scientific_pub_events.41.a: "Fund reconstruction from backup sources."
+ scientific_pub_events.41.b: "Start the affected sections over."
+
+ ### =============================================
+ ### EVENT 42: Rival Publication Race
+ ### =============================================
+ scientific_pub_events.42.t: "A Rival Publication Emerges"
+ scientific_pub_events.42.d: "Troubling news from abroad. [SCOPE.sCountry('rival_country_1').GetName] and [SCOPE.sCountry('rival_country_2').GetName] appear to be working on a strikingly similar topic. Their preliminary publications suggest they are approaching the same conclusions from a different angle. Bad news is... They may reach print before we do.\n\nBeing scooped would dramatically reduce the impact and prestige of our work."
+ scientific_pub_events.42.f: "In the race for knowledge, second place is first forgotten."
+ scientific_pub_events.42.a: "Rush the publication, fund an #yellow accelerated timeline#!!"
+ scientific_pub_events.42.b: "Stay the course and trust in quality."
+ scientific_pub_events.42.c: "This sounds like a job for the [concept_secret_service]."
+
+ ### =============================================
+ ### EVENT 43: Funding Crisis
+ ### =============================================
+ scientific_pub_events.43.t: "The Treasury Tightens"
+ scientific_pub_events.43.d: "The government of [SCOPE.sCountry('pub_partner').GetName] has announced austerity measures that could impact the budget allocations for our academic studies.\n\n We could get back to [SCOPE.sCountry('hms_pub_investor_scope').GetName] who has previously shown interest in the project, for more #yellow additional funding#!."
+ scientific_pub_events.43.f: "Science races through but the finish line is held by the state treasury."
+ scientific_pub_events.43.a: "Seek International Investors."
+ scientific_pub_events.43.b: "Threaten to withdraw from the publication."
+ scientific_pub_events.43.c: "Accept the austerity measures."
+
+ ### =============================================
+ ### EVENT 44: Lead Scholar Falls Ill
+ ### =============================================
+ scientific_pub_events.44.t: "The Lead Scholar Falls Ill"
+ scientific_pub_events.44.d: "Grave news from the university. The lead researcher on the joint publication has fallen seriously ill and is unable to continue working for the foreseeable future. Their expertise was central to the project, but his #yellow addictions#! got the best of him. No one else on the team possesses the same depth of knowledge in the critical areas.\n\nWe must find a way forward. Hiring a replacement will be costly but faster, or we can wait for a natural recovery. Our partners at [SCOPE.sCountry('pub_partner').GetName] may also be able to send one of their scholars to fill the gap."
+ scientific_pub_events.44.f: "Even the sharpest mind is housed in fragile flesh."
+ scientific_pub_events.44.a: "Hire more scholars."
+ scientific_pub_events.44.b: "Wait for recovery."
+ scientific_pub_events.44.c: "Ask our partner to send their best."
+
+ ### =============================================
+ ### EVENT 46: Sabotage the Rival
+ ### =============================================
+ scientific_pub_events.46.t: "Our Agents Are In Position"
+ scientific_pub_events.46.d: "Our intelligence operatives have successfully managed to get their hands on the research made by [SCOPE.sCountry('rival_country_1').GetName] and [SCOPE.sCountry('rival_country_2').GetName]. They report that the rival publication is further along than we feared; another few months and they will beat us to press.\n\nHowever, our agents are now in a position to act. We could authorize a more... direct approach to eliminating the competition, or we could attempt to simply buy their lead scientist out from under them."
+ scientific_pub_events.46.f: "In the shadow war of ideas, the pen is only mightier when the sword is sheathed."
+ scientific_pub_events.46.a: "Send in the saboteurs."
+ scientific_pub_events.46.b: "Offer their lead scientist a generous retirement package."
+ scientific_pub_events.46.c: "Cancel the operation."
+
+ hms_pub_sabotage_success_tt: "Our agents destroyed the rival research; their project is in ruins."
+ hms_pub_sabotage_partial_tt: "The operation was messy. Some damage was done, but our agents drew unwanted attention."
+ hms_pub_sabotage_caught_tt: "Disaster! Our agents were caught red-handed. An international scandal erupts."
+ hms_pub_bribe_success_tt: "The scientist accepted our offer and quietly departed. The rival project has collapsed."
+ hms_pub_bribe_partial_tt: "The scientist took the money, but a capable replacement was quickly found. The rival project continues."
+ hms_pub_bribe_backfire_tt: "The scientist reported our bribery attempt to the authorities. A diplomatic incident ensues."
+
+ ### =============================================
+ ### EVENT 99: Failure Publication Abandoned
+ ### =============================================
+
+ scientific_pub_events.99.t: "Publication Abandoned"
+ scientific_pub_events.99.d: "The joint publication with [SCOPE.sCountry('pub_partner').GetName] has been officially abandoned.Too many setbacks have hit the scientific team and now the half-finished manuscripts sits gathering dust."
+ scientific_pub_events.99.f: "Some books are #y destined#! to remain unwritten."
+ scientific_pub_events.99.a: "Truly a misadventure".
+
+ ### =============================================
+ ### EVENT 100: Completion Publication Released
+ ### =============================================
+
+ scientific_pub_events.100.t: "A Landmark Publication!"
+ scientific_pub_events.100.d_society: "It is done! After months of tireless collaboration, the joint publication with [SCOPE.sCountry('pub_partner').GetName] has been released to widespread acclaim. The paper presents a revolutionary framework for understanding social organization, political economy, and the forces that shape civilizations.\n\nAcademic circles across the world are abuzz. Universities are revising their curricula. Governments are requesting copies for their policy advisors. This is a triumph of international scientific cooperation and a testament to what our two nations can achieve together."
+ scientific_pub_events.100.d_military: "It is done! The joint military sciences publication with [SCOPE.sCountry('pub_partner').GetName] has been released, and its implications are staggering. The paper introduces new principles of ballistic science, tactical organization, and logistical planning that challenge decades of established military doctrine.\n\nWar colleges across the continent are scrambling to incorporate the findings. Our generals are already discussing how to apply the theories to modernize our armed forces. This publication will shape the art of war for a generation."
+ scientific_pub_events.100.d_production: "It is done! The joint industrial sciences publication with [SCOPE.sCountry('pub_partner').GetName] has been released to extraordinary interest from manufacturers and engineers worldwide. The paper details revolutionary advances in materials science, production efficiency, and mechanical engineering that promise to transform factory output.\n\nIndustrialists are already commissioning new equipment based on the findings. Our factories stand to benefit enormously from the techniques described within."
+ scientific_pub_events.100.f: "Today we have added a page to the book of human knowledge."
+ scientific_pub_events.100.a: "#yellow For Science#!!."
+ #  scientific_pub_events.100.b: "Ensure our nation receives primary recognition."
+ spearhead_of_publication_modifier: "Globally Recognized Scientific Publication"
+ recognized_as_junior_member_of_publication_modifier: "Junior Member of Recognized Scientific Publication"
+
+ ### =============================================
+ ### TECH AWARD TOOLTIPS
+ ### =============================================
+
+ hms_pub_tech_pan_nationalism_tt: "Our publication has advanced research in #yellow Pan-Nationalism#!."
+ hms_pub_tech_human_rights_tt: "Our publication has advanced research in #yellow Human Rights#!."
+ hms_pub_tech_psychoanalysis_tt: "Our publication has advanced research in #yellow Psychoanalysis#!."
+ hms_pub_tech_macroeconomics_tt: "Our publication has advanced research in #yellow Macroeconomics#!."
+ hms_pub_tech_military_statistics_tt: "Our publication has advanced research in #yellow Military Statistics#!."
+ hms_pub_tech_breech_loading_artillery_tt: "Our publication has advanced research in #yellow Breech-Loading Artillery#!."
+ hms_pub_tech_wargaming_tt: "Our publication has advanced research in #yellow Wargaming#!."
+ hms_pub_tech_chemical_warfare_tt: "Our publication has advanced research in #yellow Chemical Warfare#!."
+ hms_pub_tech_electrical_generation_tt: "Our publication has advanced research in #yellow Electrical Generation#!."
+ hms_pub_tech_dynamite_tt: "Our publication has advanced research in #yellow Dynamite#!."
+ hms_pub_tech_telephone_tt: "Our publication has advanced research in the #yellow Telephone#!."
+ hms_pub_tech_compression_ignition_tt: "Our publication has advanced research in #yellow Compression Ignition#!."

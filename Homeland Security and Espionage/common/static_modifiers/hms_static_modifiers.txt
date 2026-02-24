@@ -408,3 +408,120 @@ technological_spreader_modifier = {
     country_prestige_mult = 0.1
     country_infamy_decay_mult = 0.1
 }
+
+### Joint Scientific Publication Modifier ###
+hms_joint_publication_in_progress = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_positive.dds
+    country_tech_spread_mult = 0.05
+    building_university_throughput_add = 0.1
+}
+
+hms_accepted_research_fund = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_positive.dds
+    country_tax_income_add = 7500
+}
+
+hms_kept_research_unfunded = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_positive.dds
+    building_university_throughput_add = 0.1
+    country_influence_add = 100
+}
+
+distinguished_visitor_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+    country_prestige_mult = 0.05
+    country_expenses_add = 3000
+}
+
+costs_related_to_publication_modifier_small = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+    country_expenses_add = 3000
+}
+
+costs_related_to_publication_modifier_medium = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+    country_expenses_add = 5000
+    country_tech_spread_mult = -0.05
+    building_university_throughput_add = 0.1
+}
+
+bribe_rival_scientist_cost = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+    country_expenses_add = 7000
+}
+
+scandal_in_scientific_community = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+    country_influence_mult = -0.1
+    country_tech_spread_mult = -0.2
+}
+
+failed_publication_hit_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds 
+    country_prestige_mult = -0.15
+    country_tech_spread_mult = -0.2
+}
+
+instant_prestige_early_pub = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+    country_prestige_mult = 0.1
+    country_tech_spread_mult = 0.1
+}
+
+hms_ig_academic_recognition = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+    interest_group_approval_add = 3
+}
+
+hms_ig_academic_snubbed = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+    interest_group_approval_add = -2
+}
+
+funding_new_laboratories = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+    country_expenses_add = 3000
+}
+
+new_goods_needed_for_labs = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_negative.dds
+    building_tooling_workshop_throughput_add = -0.3
+    building_electrics_industry_throughput_add = -0.3
+}
+
+hms_ig_patron_of_science = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_diplomacy.dds
+    interest_group_approval_add = 3
+}
+
+hms_ig_patronage_rejected = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_diplomacy.dds
+    interest_group_approval_add = -3
+}
+
+hms_dinner_party_networks = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_diplomacy.dds
+    state_intelligence_agency_efficiency_mult = 0.1
+    state_pop_qualifications_mult = 0.05
+}
+
+hms_dinner_party_networks = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_diplomacy.dds
+    building_intel_hq_throughput_mult = 0.2
+    country_influence_mult = 0.05
+    state_pop_qualifications_mult = 0.05
+    country_tech_spread = 0.1
+}
+
+spearhead_of_publication_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+    country_prestige_mult = 0.15
+    country_tech_spread_mult = 0.15
+    building_university_throughput_add = 0.15
+}
+
+recognized_as_junior_member_of_publication_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+    country_prestige_mult = 0.1
+    country_tech_spread_mult = 0.05
+}

@@ -1,0 +1,178 @@
+﻿hms_je_joint_publication = {
+
+    icon = "gfx/interface/icons/achievements/achievement_euphoric.dds"
+
+    group = je_group_intelligence
+
+    weight = 100
+
+    transferable = no
+    should_be_pinned_by_default = yes
+
+    scripted_progress_bar = breakthrough_progress_bar
+    scripted_progress_bar = setbacks_progress_bar
+
+    immediate = {
+        set_variable = hms_joint_publication_active
+
+        if = {
+            limit = {
+                has_variable = hms_pub_partner
+            }
+
+            var:hms_pub_partner = {
+                save_scope_as = pub_partner
+            }
+        }
+    }
+
+    modifiers_while_active = {
+        hms_joint_publication_in_progress
+    }
+
+    on_weekly_pulse = {
+
+        random_events = {
+            15 = 0
+
+            2 = scientific_pub_events.20
+
+            ### GOOD EVENTS
+            2 = scientific_pub_events.30  # Eureka moment
+            2 = scientific_pub_events.31  # Generous patron
+            1 = scientific_pub_events.32  # Peer review praise => follow up event possible enemy race event 42, event 34 is linked also
+            2 = scientific_pub_events.33  # Foreign scholar joins
+            1 = scientific_pub_events.34  # Archival discovery
+
+            2 = scientific_pub_events.35  # Academic Recognition (NEUTRAL)
+            2 = scientific_pub_events.36  # New Laboratory Needed NEUTRAL
+
+            ### BAD EVENTS
+            2 = scientific_pub_events.40  # Academic disagreement
+            1 = scientific_pub_events.41  # Data corruption
+            1 = scientific_pub_events.42  # Rival publication race => follow up event 46
+            1 = scientific_pub_events.43  # Funding crisis
+            1 = scientific_pub_events.44  # Scholar falls ill
+
+            #46 does not get triggered randomly
+        }
+
+    }
+
+    complete = {
+        custom_tooltip = {
+            text = je_pub_completion_tt
+            scope:journal_entry = {
+                "scripted_bar_progress(breakthrough_progress_bar)" >= 100
+            }
+        }
+    }
+
+    on_complete = {
+        trigger_event = { id = scientific_pub_events.100 popup = yes }
+
+        remove_variable = hms_joint_publication_active
+        
+
+
+        remove_variable = set_started_rival_publication 
+
+        remove_variable = hms_pub_milestone_2_fired
+        remove_variable = hms_pub_eureka_fired
+        remove_variable = hms_pub_patron_fired
+        remove_variable = hms_pub_praise_fired
+        remove_variable = hms_pub_scholar_fired
+        remove_variable = hms_pub_archival_fired
+        remove_variable = hms_pub_disagreement_fired
+        remove_variable = hms_pub_corruption_fired
+        remove_variable = hms_pub_rival_fired
+        remove_variable = hms_pub_funding_crisis_fired
+        remove_variable = hms_pub_illness_fired
+        remove_variable = hms_pub_laboratory_fired
+        remove_variable = hms_pub_ig_rivalry_fired
+
+        # SET COMPLETED ENTRY # MUST WAIT ANOTHER 7 YEARS TO TRY 
+        set_variable = {
+            name = finished_publication_completed
+            years = 7
+        }
+    }
+
+    fail = {
+        OR = {
+            custom_tooltip = {
+                text = je_pub_fail_tt
+                scope:journal_entry = {
+                    "scripted_bar_progress(setbacks_progress_bar)" >= 100
+                }
+            }
+            custom_tooltip = {
+                text = no_scientific_advisors_pact_between_tt
+                NOT = {
+                    has_diplomatic_pact = {
+                        who = root.var:hms_pub_partner
+                        type = send_scientific_advisors
+                    }
+                }
+            }
+            
+            
+            is_revolutionary = yes
+            in_default = yes
+        }
+    }
+
+    on_fail = {
+        trigger_event = { id = scientific_pub_events.99 popup = yes }
+
+        remove_variable = hms_joint_publication_active
+
+        remove_variable = set_started_rival_publication 
+        remove_variable = hms_pub_milestone_2_fired
+
+        remove_variable = hms_pub_eureka_fired
+        remove_variable = hms_pub_patron_fired
+        remove_variable = hms_pub_praise_fired
+        remove_variable = hms_pub_scholar_fired
+        remove_variable = hms_pub_archival_fired
+        remove_variable = hms_pub_disagreement_fired
+        remove_variable = hms_pub_corruption_fired
+        remove_variable = hms_pub_rival_fired
+        remove_variable = hms_pub_funding_crisis_fired
+        remove_variable = hms_pub_illness_fired
+        remove_variable = hms_pub_laboratory_fired
+        remove_variable = hms_pub_ig_rivalry_fired
+
+        # SET COMPLETED ENTRY # MUST WAIT ANOTHER 5 YEARS (2 < OF COMPLETED ) TO TRY 
+        set_variable = {
+            name = finished_publication_lost
+            years = 5
+        }
+    }
+
+    invalid = {}
+
+    on_invalid = {
+        remove_variable = hms_joint_publication_active
+    }
+
+    status_desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_variable = hms_pub_field_society }
+                desc = hms_pub_status_society_tt
+            }
+            triggered_desc = {
+                trigger = { has_variable = hms_pub_field_military }
+                desc = hms_pub_status_military_tt
+            }
+            triggered_desc = {
+                trigger = { has_variable = hms_pub_field_production }
+                desc = hms_pub_status_production_tt
+            }
+            triggered_desc = {
+                desc = hms_pub_status_generic_tt
+            }
+        }
+    }
+}

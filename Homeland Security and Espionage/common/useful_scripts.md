@@ -33,6 +33,18 @@ random_country = {
     save_scope_as = helper_country_1
 }
 
+random_country = {
+    limit = {
+
+        NOT = { THIS = ROOT } 
+        NOT = { is_country_type = decentralized }
+        has_strategic_adjacency = root
+        relations:root >= relations_threshold:cold
+
+    }
+    save_scope_as = helper_country_1
+}
+
 # Pick the other target of a specific pact, MAKE SURE PACT is BILATERAL in is_two_sided_pact = yes
 # Here prev can be replace with root 
  if = {

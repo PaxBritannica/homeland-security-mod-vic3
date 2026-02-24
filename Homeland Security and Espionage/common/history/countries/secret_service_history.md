@@ -19,6 +19,12 @@ The following great powers start with established intelligence services:
 - Prussia (PRU)
 - Paraguay (PRG) - *required for stability*
 
+By the 1830s, countries like Mexico and Brazil operated informal intelligence 
+and political surveillance networks, which functioned as early forms of secret service, 
+even though fully professional intelligence agencies did not yet exist.
+
+Added: Mexico and Brazil
+
 ### Era 3: Extended Network
 **Belgium (BEL)** uniquely starts with advanced intelligence capabilities and National Guard so it can start building Secret Service HQs right away. This is done reflecting its historical position as:
 - One of Europe's leading intelligence investors
