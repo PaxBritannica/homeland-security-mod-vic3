@@ -9,7 +9,7 @@
 			limit = {
 				institution_investment_level = {
 					institution = institution_police
-					value >= 2
+					value >= 3
 				}
 			}
             add = {
@@ -84,7 +84,7 @@
 
 	start_value = 0
 	min_value = 0
-	max_value = 60
+	max_value = 100
 }
 
 sabotage_radicals_progress_bar = {
@@ -157,12 +157,12 @@ sabotage_radicals_progress_bar = {
 		else = {
 			add = {
 				desc = "radicals_plotting_freely"
-				value = 2
+				value = 1.5
 			}
 		}
 	}
 	start_value = 0
 	min_value = 0
-	max_value = 60
+	max_value = 100
 }
 

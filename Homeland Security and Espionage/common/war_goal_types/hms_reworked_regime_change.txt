@@ -1,0 +1,364 @@
+﻿# ============================================================
+#  A smarter, ideology-driven regime change war goal that:
+#    - Mirrors your governance AND economic system onto the target
+#    - Installs a ruler sharing your ideology in a compatible IG
+#    - Maximises starting relations and power-bloc integration
+#    - Is gated behind institution_foreign_affairs investment >= 2
+#
+#  Does NOT replace the vanilla regime_change goal.
+# ============================================================
+
+war_goal_enforce_regime_change = {
+	icon = "gfx/interface/icons/lens_toolbar_icons/enforce_regime_change.dds"
+
+	kind = regime_change
+
+	settings = {
+		require_target_be_part_of_war
+
+		# Validation
+		validate_conflicts_war_goals_all
+		# validate_regime_change # we remove this because we want to allow this manouver for governments that are ideologically similar 
+	}
+
+	execution_priority = 20
+
+	contestion_type = control_target_country_capital
+
+	target_type = country
+
+	possible = {}
+
+	valid = {}
+
+	# ----------------------------------------------------------
+	#  MANEUVERS COST
+	#  Slightly heavier than vanilla regime_change (10) to
+	#  reflect the additional coordination required.
+	# ----------------------------------------------------------
+	maneuvers = {
+		value = 0
+
+		add = {
+			desc = "MANEUVERS_BASE_VALUE"
+			value = 15
+		}
+	}
+
+	# ----------------------------------------------------------
+	#  INFAMY
+	#  Identical formula to vanilla regime_change so it stays fair
+	# ----------------------------------------------------------
+	infamy = {
+		value = 0
+
+		# a bit more base value because the action is quite disruptive
+		add = {
+			desc = "INFAMY_BASE_VALUE"
+			value = 0.7
+		}
+
+		scope:target_country = {
+			multiply = {
+				desc = "INFAMY_TARGET_COUNTRY_POPULATION_FACTOR"
+				add = {
+					every_scope_state = {
+						add = {
+							value = state_population
+							divide = define:NDiplomacy|WAR_GOAL_INFAMY_POPULATION_SCALING_FACTOR
+							multiply = define:NDiplomacy|WAR_GOAL_INFAMY_POPULATION_SCALING_MULTIPLIER
+							multiply = {
+								value = 1
+								if = {
+									limit = {
+										is_incorporated = no
+									}
+									add = define:NDiplomacy|WAR_GOAL_INFAMY_UNINCORPORATED_FACTOR
+								}
+							}
+							max = define:NDiplomacy|WAR_GOAL_INFAMY_POPULATION_SCALING_MULTIPLIER_MAX_PER_STATE
+						}
+					}
+				}
+				add = 1
+				max = define:NDiplomacy|WAR_GOAL_INFAMY_POPULATION_SCALING_MULTIPLIER_MAX_TOTAL
+			}
+		}
+
+		multiply = {
+			desc = "country_infamy_generation_against_unrecognized_mult"
+			value = 1
+			if = {
+				limit = {
+					NOR = {
+						is_country_type = unrecognized
+						is_country_type = decentralized
+					}
+					scope:target_country = {
+						OR = {
+							is_country_type = unrecognized
+							is_country_type = decentralized
+						}
+					}
+				}
+				add = modifier:country_infamy_generation_against_unrecognized_mult
+			}
+		}
+
+		multiply = {
+			desc = "INFAMY_FROM_LOYAL_SUBJECT"
+			value = 1
+
+			if = {
+				limit = {
+					scope:target_country = {
+						is_subject_of = root
+						liberty_desire < define:NDiplomacy|WAR_GOAL_INFAMY_LOW_LIBERTY_DESIRE_THRESHOLD
+					}
+				}
+				multiply = define:NDiplomacy|WAR_GOAL_INFAMY_LOW_LIBERTY_DESIRE_SUBJECT_MULT
+			}
+		}
+
+		multiply = {
+			desc = "INFAMY_FROM_REBELLIOUS_SUBJECT"
+			value = 1
+
+			if = {
+				limit = {
+					scope:target_country = {
+						is_subject_of = root
+						is_diplomatic_play_enemy_of = root
+						scope:diplomatic_play ?= {
+							initiator_is = scope:target_country
+						}
+					}
+				}
+				multiply = define:NDiplomacy|WAR_GOAL_INFAMY_REBELLING_SUBJECT_MULT
+			}
+		}
+
+		min = {
+			desc = "INFAMY_MINIMUM_VALUE"
+			value = 0.5
+		}
+	}
+
+
+	on_enforced = {
+
+		# ── STEP 1: ALIGN GOVERNANCE LAW ──────────────────────
+		scope:target_country = {
+			activate_law = root.active_law:lawgroup_governance_principles.law_type
+		}
+
+		# ── STEP 2: ALIGN ECONOMIC SYSTEM ─────────────────────
+		# Align their economic law to ours.
+
+		scope:target_country = {
+			if = {
+				limit = {
+					# Only override if they currently lack our economic law 
+					NOT = {
+						has_law = root.active_law:lawgroup_economic_system.law_type
+					}
+				}
+				activate_law = root.active_law:lawgroup_economic_system.law_type
+			}
+		}
+
+		# ── STEP 3: SAVE INSTALLER IDEOLOGY ───────────────────
+		# take ideology and save it to assign to the new installed leader
+		root = {
+			ruler = {
+				ideology = {
+					save_scope_as = installer_ideology
+				}
+			}
+		}
+
+		# ── STEP 4: INSTALL A COMPATIBLE RULER ────────────────
+		scope:target_country = {
+
+			# Pick the Interest Group in the target country that mirrors ours
+			random_interest_group = {
+				limit = {
+					type = root.ruler.interest_group_type
+				}
+				save_scope_as = installed_ig
+			}
+
+			# Create the new installed ruler character
+			create_character = {
+				ideology = scope:installer_ideology
+				interest_group = scope:installed_ig
+				ruler = yes
+				ig_leader = yes
+				on_created = {
+
+					# Marks them as a foreign-backed appointment
+					add_trait = political_appointee
+					# Gives them enough political clout to survive the first years in office
+					add_trait = experienced_political_operator
+
+				}
+			}
+
+			# Give the installed IG a strong, long-decaying bonus
+			# so they don't get voted/pushed out immediately.
+			# 10 years decaying = meaningful entrenchment without dooming the target country to permanent instability.
+			scope:installed_ig = {
+				add_modifier = {
+					name = regime_change_ig_bonus # vanilla
+					years = 10
+					is_decaying = yes
+				}
+			}
+		}
+
+		# ── STEP 5: MAXIMISE STARTING RELATIONS ───────────────
+		scope:target_country = {
+
+			# Hard relation reset towards us and our rivals
+			set_relations = {
+				country = root
+				value = 200 # max relations to installer helps mitigate attitude malus
+			}
+
+			# honeymoon modifier to gift them extra temporary stability, boosted relations, free legitimacy etc..
+			add_modifier = {
+				name = diplomatic_honeymoon
+				years = 5
+				is_decaying = yes
+			}
+
+			# change targets view on the global stage as power now aligned with installer so
+			# they get a relations boost with our allies and a malus with our enemies.
+            every_country = {
+                limit = {
+                    has_attitude = {
+                        who = root
+                        attitude = antagonistic  
+                    }
+                }
+                scope:target_country = {
+                    change_relations = {
+                        country = prev
+                        value = -100
+                    }
+                }
+            }
+
+
+		# ── STEP 5.5: REMOVE ALL NEGATIVE DIPLO ACTION VS INITIATOR IN TARGET COUNTRY ─────────────
+
+		remove_diplomatic_pact = {
+			country = root
+			type = rivalry
+		}
+		remove_diplomatic_pact = {
+			country = root
+			type = embargo
+		}
+		remove_diplomatic_pact = {
+			country = root
+			type = arm_radicals
+		}
+		remove_diplomatic_pact = {
+			country = root
+			type = ban_embassy
+		}
+		remove_diplomatic_pact = {
+			country = root
+			type = expel_diplomats
+		}
+		remove_diplomatic_pact = {
+			country = root
+			type = steal_tech
+		}
+		remove_diplomatic_pact = {
+			country = root
+			type = encourage_piracy
+		}
+		remove_diplomatic_pact = {
+			country = root
+			type = support_slave_abolitionist_movement
+		}
+
+
+
+		}
+
+		
+
+		# ── STEP 6: BREAK HOSTILE POWER BLOC TIES ─────────────
+		scope:target_country = {
+			if = {
+				limit = {
+					is_in_power_bloc = yes
+					NOT = {
+						is_in_same_power_bloc = root
+					}
+				}
+				power_bloc = {
+					add_leverage = {
+						target = scope:target_country
+						value = -1000
+					}
+				}
+			}
+		}
+
+		# ── STEP 7: INTEGRATE INTO OUR POWER BLOC ─────────────
+		# Hard pull into our sphere of influence without automatic entry
+		root = {
+			if = {
+				limit = {
+					is_in_power_bloc = yes
+				}
+				power_bloc = {
+					add_leverage = {
+						target = scope:target_country
+						value = 1000
+					}
+				}
+			}
+
+			set_variable = {
+				name = enforced_regime_to_country
+				value = scope:target_country
+			}
+		}
+
+		# ── STEP 8: FIRE FOLLOW-UP EVENT ──────────────────────
+		# Fires 1 day later on the target country => handles narrative
+
+		root = {
+			set_variable = {
+				name = realigned_country
+				value = scope:target_country
+			}
+			trigger_event = {
+				id = enforce_regime_change.1
+				days = 1
+			}
+		}
+
+
+		scope:target_country = {
+			set_variable = {
+				name = enforced_regime_by_country
+				value = root
+			}
+			trigger_event = {
+				id = enforce_regime_change.2
+				days = 1
+			}
+		}
+	}
+
+	ai = {
+		# AI prefers this as it has more weight than vanilla regime_change
+		is_significant_demand = yes
+	}
+}

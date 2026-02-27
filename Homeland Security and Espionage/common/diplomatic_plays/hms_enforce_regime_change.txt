@@ -1,0 +1,31 @@
+﻿enforce_regime_change = {
+    war_goal = war_goal_enforce_regime_change
+
+    texture = "gfx/interface/icons/lens_toolbar_icons/enforce_regime_change.dds"
+
+    possible = {
+        NOT = { is_country_type = decentralized }
+
+        aggressive_diplomatic_plays_permitted = yes
+
+        NOT = { is_subject_of = scope:target_country }
+
+        scope:target_country = {
+            NOT = { is_country_type = decentralized }
+            NOT = { is_subject_of = root }
+        }
+
+        institution_investment_level = {
+            institution = institution_foreign_affairs
+            value >= 3
+        }
+    }
+
+    ai_acceptance_max = 90
+
+    on_weekly_pulse = {}
+
+    on_war_begins = {}
+
+    on_war_end = {}
+}

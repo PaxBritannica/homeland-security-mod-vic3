@@ -125,7 +125,6 @@ REPLACE_OR_CREATE:combat_unit_type_armored_train = {
     formation_modifier = {
         military_formation_mobilization_speed_mult = -0.75
         military_formation_movement_speed_mult = -0.50
-        military_formation_attrition_mult = 0.50
     }
 
 	unlocking_technologies = { mobile_armor }

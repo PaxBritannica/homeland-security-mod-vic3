@@ -1,0 +1,163 @@
+﻿namespace = enforce_regime_change
+
+# --------------------------------------------------------------
+#  Fires on the INSTALLER COUNTRY .
+# --------------------------------------------------------------
+enforce_regime_change.1 = {
+	type = country_event
+	placement = root
+
+	title = enforce_regime_change.1.t
+	desc = enforce_regime_change.1.d
+	flavor = enforce_regime_change.1.f
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	event_image = {
+		video = "votp_gunboat_diplomacy"
+	}
+
+	immediate = {
+		root.var:realigned_country = {
+			save_scope_as = realigned_country
+		}
+	}
+
+	# Simple notification — smooth handover confirmed
+	option = {
+		name = enforce_regime_change.1.a
+
+		# Small prestige reward for a clean operation
+		add_modifier = {
+			name = successful_regime_change_prestige
+			years = 3
+			is_decaying = yes
+		}
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+# --------------------------------------------------------------
+#  Fired at war end for TARGET COUNTRY
+# --------------------------------------------------------------
+enforce_regime_change.2 = {
+	type = country_event
+	placement = root
+
+	title = enforce_regime_change.2.t
+	desc = enforce_regime_change.2.d
+	flavor = enforce_regime_change.2.f
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	# Fires on the newly regime-changed country
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/politicians_arguing"
+
+    immediate = {
+        root.var:enforced_regime_by_country = {
+            save_scope_as = realigned_to_country
+        }
+    }
+
+	option = {
+		name = enforce_regime_change.2.a
+
+		# Smooth transition: installed IG gets extra authority
+		scope:installed_ig = {
+			add_modifier = {
+				name = ig_regime_change_diplomatic_honeymoon
+				months = 6
+				is_decaying = yes
+			}
+		}
+
+		default_option = yes
+
+		# There s optimism in the air! Temporary stability boost as everyone adjusts to the new order
+		add_modifier = {
+			name = transition_stability_bonus
+			years = 2
+			is_decaying = yes
+		}
+
+		ai_chance = {
+			base = 60
+		}
+	}
+
+	option = {
+		name = enforce_regime_change.2.b
+
+		add_modifier = {
+			name = transition_instability
+			years = 2
+			is_decaying = yes
+		}
+
+		# could explore in the future
+		# trigger_event = {
+		# 	id = enforce_regime_change.3
+		# 	years = 1
+		# }
+
+	}
+}
+
+### COMING NEXT ??
+
+# winds of change ?
+enforce_regime_change.3 = {
+	type = country_event
+	placement = root
+
+	title = enforce_regime_change.3.t
+	desc = enforce_regime_change.3.d
+	flavor = enforce_regime_change.3.f
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	event_image = {
+		video = "votp_gunboat_diplomacy"
+	}
+
+	immediate = {
+		# root.var:enforced_regime_to_country = {
+		# 	save_scope_as = realigned_country
+		# }
+	}
+
+	option = {
+		name = enforce_regime_change.3.a
+
+		# # Alert the installer — the new regime is struggling to consolidate power
+		# every_country = {
+		# 	limit = {
+		# 		relations:root >= 190
+		# 		has_war = no
+		# 		NOT = { this = root }
+		# 	}
+		# 	trigger_event = {
+		# 		id = enforce_regime_change.4
+		# 		days = 1
+		# 	}
+		# }
+
+		# ai_chance = {
+		# 	base = 100
+		# }
+	}
+
+	option = {
+		name = enforce_regime_change.3.b
+	}
+}

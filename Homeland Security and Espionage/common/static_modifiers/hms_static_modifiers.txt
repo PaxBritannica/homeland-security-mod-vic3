@@ -1,4 +1,44 @@
-﻿founded_secret_service_domestic_focus = {
+﻿#        .<CCCCCCCCCCCCCCCCCCC>>>;````-: "?$.`?$$$ c "? \
+#      ,<CCCCC>><<<<CCCCC<<CCCCCCCC>>`:``:: "$c "" $r  ? \
+#     ;CCCCCCCCCCCCC>>><CCCC;CCCCCCCC>``:.``.`?$c  $$ L -
+#    CCCCCCCCC>>;<<CCCCC><CCCC>`CCCC>>. ``:>`;: ?$ $$.`?c \
+#   <CCCCCCCCCCCCC>;;,`<CC>CCCC> `<C>. `;::`  `; ` $$$  $c`
+#  :' ,ccccc.`<CCC>..`:.`C>.`<C`>>:`< ;:``;; `: ;: $$$  $$ .
+#   c$$$$$$$$hc.`<<C;>>.`:: `." :;>:: `;: `;;: `;; $$$ r'$r?.
+#  J$$$$$$$$$$$$$c.`'''< ``;.`::.`:;;;.`;; `;;: `; $$><$ $>`h
+# J$$$$$$$$$$$$$$$$$c,`:-;: `: `;: `;;;: :; `;;; `;<$>`$ $$ 3>
+# ?cc,`$$$$$$????$$$$$$c,``;:`;: :;:``;;: :: :;;: :`$$ ? $$.?>
+#  ""?,$$$CC>c?"""CC$$$$$$c `- `: `;;:`;;: `:`;;; ` $$c c`$L?h
+# ,$   `$$C>>.-????""?$$$$$$c.  `: `;;: ;;; ; :;;;' 3$$ $ $L`P
+# ,"=  ,$$C>;L c$     ,"<<CCC>>.`:;:``;: `;:.: ;;;';<$$ $r?$ F
+#.$$$$$$iCC<<$c,`    ,J$c,>>>>>>;.`;::``; `;;; `;.;  $$c`F?$ $.
+#<$$$$$C$C<<C$$$$$$$$$$$$$$5CC>>>>;.`:; `;: :;'`;:;  $$$ F?$r`h
+#`$$$$C$C<<<C$$$$$$$$$$$$$$5CCCCCCC>;, `-`;:.; ;;;   $$$ F?$L`$c
+# $$$F3C><<<<?$$$$$$$$$$$$CCCCCCCCCCC> ?,z, `::;'    $$$.`<$$ $$
+# ?$C?C<<??<;<$$$$$$$$$$5C>>>CCCCCCCC.,c$$$F'`       $$$$ <$$ $?c
+# `$$c;;`;;''<$$$$$$$$$5CCCCCCCCCC?$$$$$$$P'         $$$$e $$.? $
+#  ?$$$$$CCCC$$$$$$$$$55CCCCCCCCCC,""???"            <$$$$ $$L`,$b
+#  `$C??777CCC$$$$$$555CCCCCCCCCCC>'   ::            <$$$$ $$$.`$$c
+#   `C>;????=>;>3$$$555CCCCCCCCCC / xhn.`:.          <$$$$r<$$L <$$.
+#    `h<<Ccc=;iJ$$$$555CCCCCCCCC' >:MMMM.`:..        `$$$$F<$$$  ?$$
+#     `$6666655$$$$555CCCCCCC>'',<>'MMMM':'''  .,.    $$$$L`$$$> `$$F
+#      `$$$$$$XX$$$55CCCC>'',;<<<>>."""  ,nmMMMMMMMM. $$$$$.?$$$  ?$h
+#       `??$$$$$???''''..:<<>>'''''.,,xnMMPPP""""'... $$$$$h`$$$r- ?$h
+#           ```     ?hi>>>'',nMMMMMMMMP"".::::::::::: ?$$$$$ $$$$ h $$.
+#                    "?".ndMMMMP""' .:::::::::::::::::<$$$$$.`$$$ ? ?$h
+#                    xdMMMMP" :!!>:::::::::::::::::::`$$$$$$ $$$  3 ?$c
+#                  .xMMMP"".:<!!!!>>:::::::::::::::::: $$$$$$ ?$$L`$F`$$.
+#                 ;MMP" :!!!!!!!!!>>>::::::::::::::::: $$$$$$>`$$$.<$ ?$$
+#                ,P" .:!!!!!!!!!!!:>:::::::::::::::::: $$$$$$$ ?$$>`$LJ$$L
+#                ' :!!!!!!!!!!!!!!:::::::::::::::::::: $$$$$$$.<$$h ?$$$$$c
+#                .!!!!!!!!!!!!!!!!:::::::::::::::::::: $$$$$$$L`$$$><$$$$$$
+
+
+#############################################################################
+### GENERAL UNCATEGORISED MODIFIERS
+#############################################################################
+
+founded_secret_service_domestic_focus = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     country_authority_mult = 0.1
 }
@@ -237,13 +277,13 @@ shamed_as_foreign_spy = {
 
 refused_to_extradate_radicals = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-    country_influence_mult = 0.1
+    country_influence_mult = 0.2
     country_infamy_decay_mult = -0.2
 }
 
 accepted_to_extradate_radicals = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-    country_prestige_mult = 0.1
+    country_prestige_mult = 0.05
     country_infamy_decay_mult = 0.2
 }
 
@@ -490,23 +530,23 @@ new_goods_needed_for_labs = {
 }
 
 hms_ig_patron_of_science = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_diplomacy.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     interest_group_approval_add = 3
 }
 
 hms_ig_patronage_rejected = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_diplomacy.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
     interest_group_approval_add = -3
 }
 
 hms_dinner_party_networks = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_diplomacy.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     state_intelligence_agency_efficiency_mult = 0.1
     state_pop_qualifications_mult = 0.05
 }
 
 hms_dinner_party_networks = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_diplomacy.dds
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     building_intel_hq_throughput_mult = 0.2
     country_influence_mult = 0.05
     state_pop_qualifications_mult = 0.05
@@ -524,4 +564,9 @@ recognized_as_junior_member_of_publication_modifier = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
     country_prestige_mult = 0.1
     country_tech_spread_mult = 0.05
+}
+
+ig_behind_terror_attack = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+    interest_group_approval_add = -7
 }

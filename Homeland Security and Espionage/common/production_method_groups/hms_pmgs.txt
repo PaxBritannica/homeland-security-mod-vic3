@@ -38,30 +38,30 @@ hms_pmg_group_3 = {
 
 }
 
-hms_pmg_group_4 = { # Army Intelligence Planning
+hms_pmg_group_4 = { # Logistics for Army and Navy
 
 	texture = "gfx/interface/icons/generic_icons/mixed_icon_military.dds"
 	ai_selection = most_productive
 
 	production_methods = {
-		pm_hms_group_4_tier_0 # no intelligence division
-		pm_hms_group_4_tier_1 # logistical supervision
-		pm_hms_group_4_tier_2 # strategic planning office
-							  # operational doctrine
+		pm_hms_group_4_tier_0 # no logi
+		pm_hms_group_4_tier_1 # bare bone logi
+		pm_hms_group_4_tier_2 # organized logi
+		pm_hms_group_4_tier_3 # big logi
 	}
 
 }
 
-hms_pmg_group_5 = { # Naval Intelligence Planning
+hms_pmg_group_5 = { # Naval Logistic
 
 	texture = "gfx/interface/icons/generic_icons/mixed_icon_military.dds"
 	ai_selection = most_productive
 
 	production_methods = {
 		pm_hms_group_5_tier_0 # no intelligence division
-		pm_hms_group_5_tier_1 # coastal surveillance
-		pm_hms_group_5_tier_2 # Coordinated Fleet Operations
-		                      # 
+		# pm_hms_group_5_tier_1 # does this make sense ? nah
+		pm_hms_group_5_tier_2 # Fuelling stations
+		pm_hms_group_5_tier_3 # Underway replenishment
 	}
 
 }

@@ -8,33 +8,44 @@ pm_hms_group_5_tier_0 = {
     }
 }
 
-### TIER 1: Coastal Surveillance # coastal watchtowers and patrol boats
 pm_hms_group_5_tier_1 = {
-    texture = "gfx/interface/icons/pms_icons/coastal_surveillance.dds"
+    texture = "gfx/interface/icons/pms_icons/logistical_navy_supervision_1.dds"
 
     unlocking_technologies = {
-        military_statistics
+        drydocks
     }
 
     building_modifiers = {
         level_scaled = {
-            # Consumption — MHQ outputs 9 naval_intel, so 1 MHQ supplies ~4 naval base levels
             goods_input_naval_intel_add = 2
 
-            # Combat bonuses
-            unit_offense_add = 2.5
-            unit_defense_add = 1
+            unit_navy_experience_gain_add = 0.2
 
-            building_employment_officers_add = 150
-            building_employment_government_agents_add = 250
+            building_employment_officers_add = 100
         }
     }
-
 }
 
-### TIER 2: Coordinated Fleet Operations
 pm_hms_group_5_tier_2 = {
-    texture = "gfx/interface/icons/pms_icons/coordinated_fleet_ops.dds"
+    texture = "gfx/interface/icons/pms_icons/logistical_navy_supervision_2.dds"
+
+    unlocking_technologies = {
+        hydraulic_cranes
+    }
+
+    building_modifiers = {
+        level_scaled = {
+            goods_input_naval_intel_add = 5
+
+            unit_navy_experience_gain_add = 0.3
+
+            building_employment_officers_add = 150
+        }
+    }
+}
+
+pm_hms_group_5_tier_3 = {
+    texture = "gfx/interface/icons/pms_icons/logistical_navy_supervision_3.dds"
 
     unlocking_technologies = {
         sea_lane_strategies
@@ -42,17 +53,16 @@ pm_hms_group_5_tier_2 = {
 
     building_modifiers = {
         level_scaled = {
-            # Heavier consumption — 1 MHQ level supplies ~2 naval base levels
-            goods_input_naval_intel_add = 5
+            goods_input_naval_intel_add = 8
 
-            # Stronger combat bonuses
-            unit_offense_add = 5
-            unit_defense_add = 3
-            unit_morale_add = 1
+            unit_navy_experience_gain_add = 0.5
 
-            building_employment_officers_add = 250
-            building_employment_government_agents_add = 350
+            building_employment_officers_add = 200
+        }
+
+        unscaled = {
+            goods_input_oil_add = 5
+            goods_input_merchant_marine_add = 5
         }
     }
-
 }

@@ -78,6 +78,7 @@
  unit_naval_awareness_add: "Naval Awareness"
  unit_naval_awareness_mult: "Naval Awareness"
  country_government_agents_pol_str_mult: "Government Agents Political Strength"
+ ig_behind_terror_attack: "Rogue Branch Behind Terror Attack"
 
  anti_proliferation_modifier: "Anti-Proliferation Measures"
  stolen_tech_military_modifier: "Stolen Military Technology"
@@ -89,6 +90,16 @@
  triggered_desc_qualified_police_patrolling_law_tt: "High law enforcement institution is effectively investigating and pursuing perpetrators."
  triggered_desc_unqualified_police_patrolling_law_tt: "Low law enforcement institution is allowing radicals to evade investigations."
  has_neither_bribed_or_fought_pirates_tt: "Has neither #r fought or bribed#! pirates recently."
+ 
+ #diplo plays
+ enforce_regime_change: "Enforce Political Realignment"
+ enfroce_regime_change_action_name : "Enforce Political Realignment"
+ war_goal_war_goal_enforce_regime_change: "Enforce Political Realignment"
+ war_goal_war_goal_enforce_regime_change_type_name: "Enforce Political Realignment"
+ diplomatic_honeymoon: "Diplomatic Honeymoon"
+ successul_regime_change_prestige: "Successfully Enforced Political Realignment"
+ ig_regime_change_diplomatic_honeymoon: "Interest Group Approval from Political Realignment"
+ transition_instability: "Problematic Transition of Power"
  
 
  #diplo actions
@@ -189,8 +200,8 @@
  hms_pmg_group_1: "State Networks"
  hms_pmg_group_2: "Reserved Offices"
  hms_pmg_group_3: "Criptography Offices"
- hms_pmg_group_4: "Army Intelligence Division"
- hms_pmg_group_5: "Naval Intelligence Division"
+ hms_pmg_group_4: "Army Logistical Office"
+ hms_pmg_group_5: "Fleet Logistics"
 
  pm_hms_group_1_tier_0: "Local Informants"
  pm_hms_group_1_tier_1: "Professional Agents"
@@ -205,13 +216,15 @@
  pm_hms_group_3_tier_1: "Manual Cryptoanalysis"
  pm_hms_group_3_tier_2: "Mechanical Cyphers"
 
- pm_hms_group_4_tier_0: "No Intelligence Division"
- pm_hms_group_4_tier_1: "Logistical Supervision"
- pm_hms_group_4_tier_2: "Strategic Planning Office"
+ pm_hms_group_4_tier_0: "No Dedicated Logistic"
+ pm_hms_group_4_tier_1: "Organized Convoys"
+ pm_hms_group_4_tier_2: "Mobile Supply Doctrine"
+ pm_hms_group_4_tier_3: "Escorted Merchant Vessels"
 
- pm_hms_group_5_tier_0: "No Intelligence Division"
- pm_hms_group_5_tier_1: "Coastal Surveillance"
- pm_hms_group_5_tier_2: "Coordinated Fleet Operations"
+ pm_hms_group_5_tier_0: "No Dedicated Logistic"
+ pm_hms_group_5_tier_1: "Dedicated Dry Docks"
+ pm_hms_group_5_tier_2: "Fuelling Stations"
+ pm_hms_group_5_tier_3: "Underway Replenishment"
 
  #PMs for the vanilla canals
  hms_pm_canal_shipping_registry: "Shipping Registry"
@@ -236,6 +249,7 @@
  #concepts
  army_awareness: "Army Awareness"
  naval_awareness: "Naval Awareness"
+ concept_naval_awareness: "Naval Awareness"
  concept_secret_service: "Secret Service"
  concept_secret_service_desc: "The Secret Service is a government organism concerned with gathering intelligence data and conducting covert operations. Its main role is to protect the nation's interests and population from internal and external threats."
  concept_foreign_affairs: "Foreign Affairs"
@@ -296,5 +310,24 @@
  NAVAL_AWARENESS_TOOLTIP: "#header [concept_naval_awareness]#!\n@naval_awareness! [MilitaryFormation.MakeScope.ScriptValue('formation_naval_awareness')|1] [concept_naval_awareness] on average."
  NAVAL_AWARENESS_ICON: "@naval_awareness!"
 
- 
+ ###
+ ### New Diplo Action Event
+ ###
+
+ # TRIGGERED IN TARGET
+ enforce_regime_change.2.t: "A New Order Imposed"
+ enforce_regime_change.2.d: "The war is over with [SCOPE.sCountry('realigned_to_country').GetName] and with it our former government. Foreign soldiers still patrol our streets as the new administration, men and women chosen not by our people but by [SCOPE.sCountry('realigned_to_country').GetName] interests settles into the ministries and palaces of power. How this #yellow transition#! unfolds will define the next decade."
+ enforce_regime_change.2.f: "The ink on the peace treaty is barely dry, and yet.. the voices of people left unspoken whisper of change."
+ enforce_regime_change.2.a: "This transition is #green good#! for us."
+ enforce_regime_change.2.b: "The #yellow old guard#! still lurks."
+ enforce_regime_change.2.c: "The #yellow people#! will not accept this government."
+
+ # TRIGGERED IN INITIATOR
+ enforce_regime_change.1.t: "A Clean Victory"
+ enforce_regime_change.1.d: "Our troops are returning #yellow triumphant#!. Reports from [SCOPE.sCountry('realigned_country').GetName] confirm that the #yellow installed government#! has taken power without significant resistance. Altough we shall be ready to defend the appointed leadership from eventual upcoming rebellions."
+ enforce_regime_change.1.f: "A textbook operation, written in blood and patriotism."
+ enforce_regime_change.1.a: "Our #yellow influence#! knows no border."
+ successful_regime_change_prestige: "Successfully Enforced Political Realignment"
+ enforce_regime_change.3.t: "Winds Of Change"
+ enforce_regime_change.3.b: "Things are finally setting for the better."
  

@@ -52,7 +52,7 @@
         custom_tooltip = {
 			text = je_investigation_success
 			scope:journal_entry = {
-				"scripted_bar_progress(sabotage_police_progress_bar)" >= 60
+				"scripted_bar_progress(sabotage_police_progress_bar)" >= 100
 			}
 		}
     }
@@ -65,7 +65,7 @@
         custom_tooltip = {
 			text = je_investigation_failure
 			scope:journal_entry = {
-				"scripted_bar_progress(sabotage_radicals_progress_bar)" >= 60
+				"scripted_bar_progress(sabotage_radicals_progress_bar)" >= 100
 			}
 		}
     }

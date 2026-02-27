@@ -14,13 +14,14 @@
  refused_to_extradate_radicals: "Refused to extradate radicals"
  accepted_to_extradate_radicals: "Accepted to extradate radicals"
  perpetrators_caught_modifier: "Justice prevails"
+ shamed_as_foreign_spy: "Appointed as Foreign Spy"
 
  #tooltips
  intelligence_op_arm_radicals_tt: "Corrupt the higher strata and smuggle weapons across the target's border to arm radical factions, increasing political unrest and weakening the target government's stability"
  support_slaves_movement_tt: "Maintain contact with abolitionists movements to cement unrest in the target country's society."
  pirates_escaped_tooltip: "The search will be unsuccessful, the pirates will remain a threat."
  half_chance_sabotage_progress_tt: "Split chance of police or perpetrators making progress."
- secret_service_handles_tt: "Our [concept_secret service] will handle this quietly."
+ secret_service_handles_tt: "Our [concept_secret_service] will handle this quietly."
  is_not_building_a_country_already_OR_country_target_is_not_already_being_built_tt: "Our Country is not already sending economic advisors to another country OR this country is not already being economically sustained."
  
  
@@ -185,6 +186,8 @@
  ###
  ###
 
+ opposed_criticism_modifier: "Opposed Criticism"
+ intelligence_low_effort_modifier: "Low Effort Intelligence Operation"
  political_unrest_modifier: "Times of Political Unrest"
 
  sabotage_event.1.t: "Catastrophic Explosion"
@@ -223,13 +226,13 @@
  sabotage_event.98.t: "We found the Terrorists"
  # Would be nice to do this dynamically and IF a country actually has backed the radicals
  # It will appear here, but for now we keep it humble
- sabotage_event.98.d: "Four individuals have been arrested this morning in connection with the recent explosion in the capital. After an intense shootout in the outskirts of the city that left one terrorist dead, security forces managed to storm the building and arrest them. Preliminary interrogations indicate they are a rogue branch of [SCOPE.gsInterestGroup('reckless_mf_ig').GetNameNoFormatting]."
+ sabotage_event.98.d: "Four individuals have been arrested this morning in connection with the recent explosion in the capital. After an intense shootout in the outskirts of the city that left one terrorist dead, security forces managed to storm the building and arrest them. Preliminary interrogations indicate they are a #red rogue branch#! of the #yellow [SCOPE.gsInterestGroup('reckless_mf_ig').GetNameNoFormatting]#!."
  sabotage_event.98.f: "The councillor burst through the doors, scattering papers and knocking over chairs, clutching a torn page from a half-burned journal. #y We found them! #! he shouted. Cheers erupted across the room. At last, the nation and its people could see the light at the end of the tunnel."
- sabotage_event.98.a: "Arrest [SCOPE.sCharacter('reckless_out_of_govt_leader').GetFullName], he's a traitor of the nation."
+ sabotage_event.98.a: "Arrest [SCOPE.sCharacter('reckless_mf_leader').GetFullName], he's a traitor of the nation."
  sabotage_event.98.b: "Those bastards surely do not represent [SCOPE.gsInterestGroup('reckless_mf_ig').GetNameNoFormatting] entirely."
 
  sabotage_event.99.t: "Radicals Escaped"
- sabotage_event.99.d: "Amidst the chaos following the recent explosion, radical elements have exploited the confusion to escape justice in our country. Authorities are confirmed they managed to get away and escape to [SCOPE.sCountry('rival_country_1').GetName]."
+ sabotage_event.99.d: "Amidst the chaos following the recent explosion, radical elements have exploited the confusion to escape justice in our country. Authorities have confirmed they managed to get away and escape to [SCOPE.sCountry('rival_country_1').GetName]."
  sabotage_event.99.f: "Our security forces were stretched thin, grappling with the immediate crisis. Seizing this opportunity, radical factions orchestrated a daring escape, slipping through the cracks of our overwhelmed defenses. As the dust settled, it became clear that these elements had vanished into the shadows, evading capture and fleeing to [SCOPE.sCountry('rival_country_1').GetName]. Their disappearance raises urgent questions about our preparedness and the need for heightened vigilance against such threats in the future."
  sabotage_event.99.a: "Publicly denounce [SCOPE.sCountry('rival_country_1').GetName]."
  sabotage_event.99.b: "If we only had a law to engage in [concept_foreign_affairs]"
@@ -251,20 +254,20 @@
  hms_resignation_events.3.e: "Let the [concept_secret_service] do the work for us."
 
  sabotage_event.100.t: "Radicals seeking asylum"
- sabotage_event.100.d: "A delegation from [SCOPE.sCountry('delegation_sender_country').GetName] has arrived with an important message: local radicals are hiding in our country, they asked us to help them bring them back and face justice in [SCOPE.sCountry('delegation_sender_country').GetName]."
+ sabotage_event.100.d: "A group of #red radicals#! from [SCOPE.sCountry('delegation_sender_country').GetName] has tried to cross our border. Their country is requesting #yellow immediate extradition#!. They are suspected perpetrators of a terror attack that took innocent lives."
  sabotage_event.100.f: "In the wake of the recent explosion that hit the capital of [SCOPE.sCountry('delegation_sender_country').GetName] killing dozens, looks like some of the perpetrators decided to cross our border to seek asylum here. \n\n Either we consider them partisans or terrorist, if we decide to not extradate them, [SCOPE.sCountry('delegation_sender_country').GetName] is not going to like it."
  sabotage_event.100.a: "We won't shelter terrorists. Extradate them to [SCOPE.sCountry('delegation_sender_country').GetName]."
  sabotage_event.100.b: "Our borders, our laws."
 
 # DELEGATION GETS REFUSED
 sabotage_event.101.t: "Extradition Refused"
-sabotage_event.101.d: "Our delegation returns empty handed. [SCOPE.sCountry('country_where_radicals_seek_refuge').GetName] has formally refused to extradite the #r radicals#! responsible for the bombing, choosing political convenience over justice."
+sabotage_event.101.d: "Our delegation returns empty handed. [SCOPE.sCountry('delegation_receiver_country').GetName] has formally refused to extradite the #r radicals#! responsible for the bombing, choosing political convenience over justice."
 sabotage_event.101.f: "Behind closed doors, sympathy and expediency speak louder than condemnation."
 sabotage_event.101.a: "#r Terrorists#! protect their own."
 
 # DELEGATION ACCEPTED – EXTRADITION GRANTED
 sabotage_event.102.t: "Extradition Granted"
-sabotage_event.102.d: "[SCOPE.sCountry('country_where_radicals_seek_refuge').GetName] has agreed to our request. The #r radicals#! responsible for the attack will be extradited and face justice under our laws."
+sabotage_event.102.d: "Good news. The #r radicals#! responsible for the attack will be extradited by the government of [SCOPE.sCountry('delegation_receiver_country').GetName] and will face justice under our laws."
 sabotage_event.102.f: "In a dark age engulfed in suspicion and shadows, there are still shared values among rivals and so cooperation remains possible."
 sabotage_event.102.a: "#g Justice#! will be served."
 

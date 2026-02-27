@@ -1,0 +1,80 @@
+#' ;C>;> J$$$$$$$$$$$$$$$$$$$$$$$$$????????$$$.`C''''<><>', CC,.,;;C>'`<CCC
+#  <CCC  $$$$$$$$$$$$$$$$$$$$$P"  .,ccccccc$$$$. ,CCC>;,;<C,.``'''  ,<> .,'
+# ,CCC .<$$$$$$$$$$$$$$$$$$$$"  zJ$$$$$$$$$$$$$$c <CCCC`<CCCCCCCCC>,`CC'<'
+#,CCC ; J$$$$$$$$$$$$$$$$$$$$,c$$??C????""???$$$$hc`'>' ;.``<CC>>><C C> C>
+#CC>>;C ?$$$$$???????$$$$$$$$$$$FJP",c==="   J$$$$$c ;, <CC> <C><\<> C>;CC;
+#>  >' . $$P".,,zzcc, "$$$$$$$$$;" ,.    $" J$$$$$$$ <C> CCC <C < > <C `CCC
+#;<CCCC .`$,J$$$PCCC>?<C$$$$$$$$L -??    ,c$$$$$$$$$c C',CC> <' C,,;>   `CC
+#CCCC>',C ?$$CCJ?""'_`,`"$$$$$$$$$c,=cccd$$$$$$$$$$$$ C <C>  ,; C <>     `C
+#CCCC;,> .`$$$",==""-.  c<$$$$$$$$$$JJJJC?$$$$$$$$$$$ < CC < CC C,`>      `
+#CCCCCC;<C,`$F' .    `,JC:<$$$$$$$$$$$$$$$$$$$$$$$$$$>` <>-C CC,`C,`,.
+#`<C>`'CCCC,`h.,..,,,c$3C>:3$$$$$$$$$$$$$$$$$$$$$$$$$$ < <,<><`C;.`, <> .
+#    <C`<CC> $$$$$$$$$$$CC;<$$$$$$$$$$$$$$$$$$$$$$$$$$r`<;CCCCCCC>.' <> C;,
+#  ;CCC. CC>-`$$$$$$$$$$$CC:$$$$$$$$$?$$$$$$$$$$$$$$$$$.`<'`<CCCC>',C' <CCC
+#  <CC',<>',;.?$$$$$$$$$$C>;$$$$$9???-<$$$$$$$$$$$$$$$$$c,`-.``---''.,CCC>>
+#,C'CCCC ;.`C> $$$$$$$$$$$>`$$$$$F<;,c$$$$$$$$$$$$$$$$$$$$L `C>>;;<CCCCCCCC
+#C> CC>C,`C,`> `?$$$$$$$$$h;` `"'.<$$$$$$$$$$$$$$$$$$$$$$$P . CCCCC,.;;.`''
+#'  `C `C;CC,CC; "$$$$$$$$$$$$$$$$<$$$$$$$$$$$$$$$$$$$$$$P' C,`CCCCCCCCCCCC
+#    `C,.``<CCCCC, ?$$$$$$$$$$$????""'"""" J$$$$$$$$$$$$" ..`C,C>`<<<<>>''<
+#     `CCCC;.``<CC>.`$$$$$$$???     .,c=:c$$$$$$$$$$$$P',$'< CC'C;  <CCCC>;
+
+
+# ============================================================
+#  Applied to the TARGET COUNTRY for 5 decaying years after
+# ------------------------------------------------------------
+
+diplomatic_honeymoon = {
+
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	
+	country_improve_relations_speed_mult = 0.30
+	country_prestige_add = 50
+	country_authority_add = 200
+	country_influence_add = 200
+	country_infamy_decay_mult = 0.20
+	country_diplomatic_play_maneuvers_add = 0.10
+    country_legitimacy_base_add = 80
+
+}
+
+successful_regime_change_prestige = {
+	
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	
+	country_prestige_mult = 0.2
+	country_influence_mult = 0.3
+
+}
+
+transition_stability_bonus = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	# Pops are cautiously accepting the new order
+	state_turmoil_effects_mult = -0.15
+
+}
+
+ig_regime_change_diplomatic_honeymoon = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_approval_add = 3
+	interest_group_pol_str_mult = 0.3
+}
+
+transition_instability = {
+	state_turmoil_effects_mult = 0.2
+	state_mortality_turmoil_mult = 0.1
+
+	# Law enactment is harder while the political situation
+	country_law_enactment_success_add = -0.05
+	country_minting_mult = -0.1
+}
+
+# This is in vanilla already
+# regime_change_ig_bonus = {
+#	# Vanilla gives the installed IG a pop approval boost.
+#	# You can increase these values here if vanilla feels too weak.
+#	ig_approval_add = 15         # vanilla is typically 10
+#	ig_pop_attraction_mult = 0.20
+# }
+
+
+

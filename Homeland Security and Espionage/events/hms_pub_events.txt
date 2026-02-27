@@ -1460,9 +1460,9 @@ scientific_pub_events.43 = {
         }
 
         # They fund us, we owe them
-        scope:hms_pub_investor_scope = {
+        root = {
             set_owes_obligation_to = {
-                country = root
+                country = scope:hms_pub_investor_scope 
                 setting = yes
             }
         }
@@ -1897,10 +1897,10 @@ scientific_pub_events.100 = {
     trigger = {}
 
     immediate = {
-        set_variable = {
-            name = hms_pub_progress_amount
-            value = 3500
-        }
+        # set_variable = {
+        #     name = hms_pub_progress_amount
+        #     value = 3500
+        # }
 
         # possible leverages REMOVED for now
         # if = {
@@ -2002,51 +2002,81 @@ scientific_pub_events.100 = {
             random_list = {
                 1 = {
                     trigger = { NOT = { has_technology_researched = pan-nationalism } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_pan-nationalism_tt
-                        add_technology_progress = { technology = pan-nationalism progress = root.var:hms_pub_progress_amount }
-
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = pan-nationalism progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = pan-nationalism }
+                        add_technology_progress = { technology = pan-nationalism progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = pan-nationalism
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = pan-nationalism }
+                            add_technology_progress = { technology = pan-nationalism progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = pan-nationalism
                         }
                     }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = human_rights } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_human_rights_tt
-                        add_technology_progress = { technology = human_rights progress = root.var:hms_pub_progress_amount }
-
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = human_rights progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = human_rights }
+                        add_technology_progress = { technology = human_rights progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = human_rights
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = human_rights }
+                            add_technology_progress = { technology = human_rights progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = human_rights
                         }
                     }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = psychoanalysis } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_psychoanalysis_tt
-                        add_technology_progress = { technology = psychoanalysis progress = root.var:hms_pub_progress_amount }
-
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = psychoanalysis progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = psychoanalysis }
+                        add_technology_progress = { technology = psychoanalysis progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = psychoanalysis
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = psychoanalysis }
+                            add_technology_progress = { technology = psychoanalysis progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = psychoanalysis
                         }
                     }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = macroeconomics } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_macroeconomics_tt
-                        add_technology_progress = { technology = macroeconomics progress = root.var:hms_pub_progress_amount }
-
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = macroeconomics progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = macroeconomics }
+                        add_technology_progress = { technology = macroeconomics progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = macroeconomics
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = macroeconomics }
+                            add_technology_progress = { technology = macroeconomics progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = macroeconomics
                         }
                     }
                 }
             }
-
-
         }
 
         ### MILITARY ###
@@ -2056,46 +2086,77 @@ scientific_pub_events.100 = {
             random_list = {
                 1 = {
                     trigger = { NOT = { has_technology_researched = military_statistics } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_military_statistics_tt
-                        add_technology_progress = { technology = military_statistics progress = root.var:hms_pub_progress_amount }
-                        
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = military_statistics progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = military_statistics }
+                        add_technology_progress = { technology = military_statistics progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = military_statistics
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = military_statistics }
+                            add_technology_progress = { technology = military_statistics progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = military_statistics
                         }
                     }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = breech_loading_artillery } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_breech_loading_artillery_tt
-                        add_technology_progress = { technology = breech_loading_artillery progress = root.var:hms_pub_progress_amount }
-                        
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = breech_loading_artillery progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = breech_loading_artillery }
+                        add_technology_progress = { technology = breech_loading_artillery progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = breech_loading_artillery
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = breech_loading_artillery }
+                            add_technology_progress = { technology = breech_loading_artillery progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = breech_loading_artillery
                         }
                     }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = wargaming } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_wargaming_tt
-                        add_technology_progress = { technology = wargaming progress = root.var:hms_pub_progress_amount }
-                        
-
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = wargaming progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = wargaming }
+                        add_technology_progress = { technology = wargaming progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = wargaming
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = wargaming }
+                            add_technology_progress = { technology = wargaming progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = wargaming
                         }
                     }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = chemical_warfare } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_chemical_warfare_tt
-                        add_technology_progress = { technology = chemical_warfare progress = root.var:hms_pub_progress_amount }
-                        
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = chemical_warfare progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = chemical_warfare }
+                        add_technology_progress = { technology = chemical_warfare progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = chemical_warfare
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = chemical_warfare }
+                            add_technology_progress = { technology = chemical_warfare progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = chemical_warfare
                         }
                     }
                 }
@@ -2109,47 +2170,79 @@ scientific_pub_events.100 = {
             random_list = {
                 1 = {
                     trigger = { NOT = { has_technology_researched = electrical_generation } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_electrical_generation_tt
-                        add_technology_progress = { technology = electrical_generation progress = root.var:hms_pub_progress_amount }
-                        
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = electrical_generation progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = electrical_generation }
+                        add_technology_progress = { technology = electrical_generation progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = electrical_generation
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = electrical_generation }
+                            add_technology_progress = { technology = electrical_generation progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = electrical_generation
                         }
                     }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = dynamite } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_dynamite_tt
-                        add_technology_progress = { technology = dynamite progress = root.var:hms_pub_progress_amount }
-                        
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = dynamite progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = dynamite }
+                        add_technology_progress = { technology = dynamite progress = 3500 }
                     }
-                }
+                    else = {
+                        add_technology_researched = dynamite
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = dynamite }
+                            add_technology_progress = { technology = dynamite progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = dynamite
+                        }
+                    }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = telephone } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_telephone_tt
-                        add_technology_progress = { technology = telephone progress = root.var:hms_pub_progress_amount }
-                        
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = telephone progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = telephone }
+                        add_technology_progress = { technology = telephone progress = 3500 }
+                    }
+                    else = {
+                        add_technology_researched = telephone
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = telephone }
+                            add_technology_progress = { technology = telephone progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = telephone
                         }
                     }
                 }
                 1 = {
                     trigger = { NOT = { has_technology_researched = compression_ignition } }
-                    custom_tooltip = {
-                        text = hms_pub_tech_compression_ignition_tt
-                        add_technology_progress = { technology = compression_ignition progress = root.var:hms_pub_progress_amount }
-                        
-                        scope:pub_partner = {
-                            add_technology_progress = { technology = compression_ignition progress = root.var:hms_pub_progress_amount }
+                    if = {
+                        limit = { can_research = compression_ignition }
+                        add_technology_progress = { technology = compression_ignition progress = 3500 }
                     }
-                }
+                    else = {
+                        add_technology_researched = compression_ignition
+                    }
+                    scope:pub_partner = {
+                        if = {
+                            limit = { can_research = compression_ignition }
+                            add_technology_progress = { technology = compression_ignition progress = 3500 }
+                        }
+                        else = {
+                            add_technology_researched = compression_ignition
+                        }
+                    }
                 }
             }
         }

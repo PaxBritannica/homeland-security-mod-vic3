@@ -37,8 +37,8 @@ pm_hms_group_2_tier_1 = {
             building_employment_engineers_add = 200
             building_employment_officers_add = 250
 
-            unit_army_experience_gain_mult = 0.01
-            unit_navy_experience_gain_mult = 0.01
+            # unit_army_experience_gain_mult = 0.01
+            # unit_navy_experience_gain_mult = 0.01
         }
     }
 }
@@ -70,8 +70,8 @@ pm_hms_group_2_tier_2 = {
             building_employment_engineers_add = 250
             building_employment_officers_add = 300
 
-            unit_army_experience_gain_mult = 0.02
-            unit_navy_experience_gain_mult = 0.02
+            # unit_army_experience_gain_mult = 0.02
+            # unit_navy_experience_gain_mult = 0.02
         }
     }
 
@@ -102,8 +102,8 @@ pm_hms_group_2_tier_3 = {
 			building_employment_engineers_add = 300
 			building_employment_officers_add = 350
 	
-			unit_army_experience_gain_mult = 0.03
-			unit_navy_experience_gain_mult = 0.03
+			# unit_army_experience_gain_mult = 0.03
+			# unit_navy_experience_gain_mult = 0.03
 		}
 	}
 }

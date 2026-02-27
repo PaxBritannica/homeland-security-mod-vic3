@@ -43,12 +43,13 @@ sabotage_event.1 = {
         # There EXISTS a revolutionary IG with a reckless/ambitious leader
         any_interest_group = {
             is_in_government = no
-            leader = {
-                OR = {
-                    has_trait = reckless
-                    has_trait = ambitious
-                }
-            }
+            # # balance ? ready to balance this 
+            # leader = {
+            #     OR = {
+            #         has_trait = reckless
+            #         has_trait = ambitious
+            #     }
+            # }
             OR = {
                 is_insurrectionary = yes
                 ig_approval <= angry
@@ -57,27 +58,34 @@ sabotage_event.1 = {
     }
 
     immediate = {
-        # MOVED TO EVENT 98
-        # # Now grab the actual IG and leader for use in the event
-        # random_interest_group = {
-        #     limit = {
-        #         is_in_government = no
-        #         leader = {
-        #             OR = {
-        #                 has_trait = reckless
-        #                 has_trait = ambitious
-        #             }
-        #         }
-        #         OR = {
-        #             is_insurrectionary = yes
-        #             ig_approval <= angry
-        #         }
-        #     }
-        #     save_scope_as = reckless_mf_ig
-        #     leader = {
-        #         save_scope_as = reckless_mf_leader
-        #     }
-        # }
+        
+        random_interest_group = {
+            limit = {
+                is_in_government = no
+                # leader = {
+                #     OR = {
+                #         has_trait = reckless
+                #         has_trait = ambitious
+                #     }
+                # }
+                OR = {
+                    is_insurrectionary = yes
+                    ig_approval <= angry
+                }
+            }
+            # save_scope_as = reckless_mf_ig
+            # leader = {
+            #     save_scope_as = reckless_mf_leader
+            # }
+
+            root = {
+                set_variable = {
+                    name = ig_behind_explosion
+                    value = prev # get () this in event 98
+                }
+            }
+
+        }
 
         set_variable = {
             name = explosion_event_happened
@@ -212,7 +220,7 @@ sabotage_event.3 = { # Secret service tells this is a good opportunity to expand
         root = {
             add_modifier = {
                 name = state_apparatus_not_happy
-                years = 15
+                years = 10
             }
 
             add_radicals = {
@@ -230,7 +238,7 @@ sabotage_event.3 = { # Secret service tells this is a good opportunity to expand
         root = {
             add_modifier = {
                 name = state_apparatus_happy
-                years = 15
+                years = 10
             }
 
             add_radicals = {
@@ -529,7 +537,7 @@ sabotage_event.5 = {
         # Pick second friendly helper, excluding the first
         random_country = {
 			limit = {
-                
+                country_rank >= rank_value:minor_power
                 NOT = { THIS = ROOT }
                 NOT = { is_country_type = decentralized }
                 NOT = { THIS = scope:helper_country_1}
@@ -652,31 +660,21 @@ sabotage_event.98 = { # Found the perpetrators
 	duration = 1
 
 	trigger = {
-
+        has_variable = ig_behind_explosion
     }
 
     immediate = {
 
-        random_interest_group = {
-            limit = {
-                is_in_government = no
-                leader = {
-                    OR = {
-                        has_trait = reckless
-                        has_trait = ambitious
-                    }
-                }
-                OR = {
-                    is_insurrectionary = yes
-                    ig_approval <= angry
-                }
-            }
+        root.var:ig_behind_explosion = {
             save_scope_as = reckless_mf_ig
+        }
+
+        root.var:ig_behind_explosion = {
             leader = {
                 save_scope_as = reckless_mf_leader
             }
         }
-
+        
     }
 
     option = {
@@ -687,15 +685,20 @@ sabotage_event.98 = { # Found the perpetrators
         }
 
         scope:reckless_mf_ig = {
-            add_radicals = {
-                value = 0.03
+            add_modifier = {
+                name = ig_behind_terror_attack
+                years = 10
+                is_decaying = yes
             }
         }
 
         add_modifier = {
             name = perpetrators_caught_modifier
             years = 10
+            is_decaying = yes
         }
+
+        remove_variable = ig_behind_explosion
     }
 
     option = {
@@ -704,7 +707,10 @@ sabotage_event.98 = { # Found the perpetrators
         add_modifier = {
             name = perpetrators_caught_modifier
             years = 10
+            is_decaying = yes
         }
+
+        remove_variable = ig_behind_explosion
     }
 
 }
@@ -737,6 +743,13 @@ sabotage_event.99 = { # Terrorist group escapes the national boundaries
                 NOT = { is_country_type = decentralized }
             }
             save_scope_as = rival_country_1
+
+            # install a reference to us in the country where they escaped
+            set_variable = {
+                name = refugees_fleed_in_other_country
+                value = root
+            }
+
         }
 
         root = {
@@ -815,10 +828,6 @@ sabotage_event.99 = { # Terrorist group escapes the national boundaries
            has_law_or_variant = law_type:law_office_of_foreign_affairs 
         }
 
-        scope:country = {
-            set_variable = sent_delegation_for_terrorist_extradition
-        }
-
         scope:rival_country_1 = {
             trigger_event = {
                 id = sabotage_event.100
@@ -843,17 +852,30 @@ sabotage_event.100 = { # RIVAL COUNTRY RECEIVES NEWS THAT A DELEGATION HAS ARRIV
         video = "europenorthamerica_capitalists_meeting"
     }
 
+    trigger = {
+        has_variable = refugees_fleed_in_other_country
+    }
+
     duration = 1
 
     immediate = {
 
-        random_country = {
-            limit = {
-                    has_variable = country_sabotaged
-            }
+        root.var:refugees_fleed_in_other_country = {
             save_scope_as = delegation_sender_country
-            remove_variable = country_sabotaged
         }
+
+        # random_country = {
+
+        #     limit = {
+        #             AND = {
+        #                 has_variable = refugees_fleed_in_other_country
+        #                 refugees_fleed_in_other_country = root
+        #             }
+        #         }
+
+        #     save_scope_as = delegation_sender_country
+        #     remove_variable = refugees_fleed_in_other_country
+        # }
 
         root = {
             set_variable = country_where_radicals_seek_refuge # Connects to the 2 possible outcome events to send back to the country originally sending the delegation
@@ -866,32 +888,38 @@ sabotage_event.100 = { # RIVAL COUNTRY RECEIVES NEWS THAT A DELEGATION HAS ARRIV
 
         add_modifier = {
             name = accepted_to_extradate_radicals
-            years = 15
+            years = 10
         }
 
-        change_relations = {
-            country = scope:delegation_sender_country
-            value = 25
-        }
+        
 
         scope:delegation_sender_country = {
             trigger_event = {
                 id = sabotage_event.102 # MUITO BUENO
             }
+
+            change_relations = {
+                country = root
+                value = 15
+            }
         }
 
         ai_chance = {
-            base = 10
-        
-            if = {
-                limit = {
-                    scope:delegation_sender_country = {
-                        relations:root <= -25
-                    }
-                }
-                multiply = 5
-            }
+            base = 20
         }
+
+        # ai_chance = {
+        #     base = 10
+        
+        #     if = {
+        #         limit = {
+        #             scope:delegation_sender_country = {
+        #                 relations:root <= -25
+        #             }
+        #         }
+        #         multiply = 5
+        #     }
+        # }
 
     }
 
@@ -900,7 +928,8 @@ sabotage_event.100 = { # RIVAL COUNTRY RECEIVES NEWS THAT A DELEGATION HAS ARRIV
 
         add_modifier = {
             name = refused_to_extradate_radicals
-            years = 15
+            years = 10
+            is_decaying = yes
         }
 
         add_radicals = {
@@ -921,16 +950,20 @@ sabotage_event.100 = { # RIVAL COUNTRY RECEIVES NEWS THAT A DELEGATION HAS ARRIV
 
         ai_chance = {
             base = 10
-        
-            if = {
-                limit = {
-                    scope:delegation_sender_country = {
-                        relations:root <= -25
-                    }
-                }
-                multiply = 5
-            }
         }
+
+        # ai_chance = {
+        #     base = 10
+        
+        #     if = {
+        #         limit = {
+        #             scope:delegation_sender_country = {
+        #                 relations:root <= -25
+        #             }
+        #         }
+        #         multiply = 5
+        #     }
+        # }
     }
 
 }
@@ -1008,7 +1041,7 @@ sabotage_event.102 = { # Receive the news that the rival nation has extradated t
     }
 
     option = {
-        name = sabotage_event.101.a
+        name = sabotage_event.102.a
 
         default_option = yes
 
@@ -1022,6 +1055,7 @@ sabotage_event.102 = { # Receive the news that the rival nation has extradated t
         add_modifier = {
             name = perpetrators_caught_modifier
             years = 10
+            is_decaying = yes
         }
 
     }
