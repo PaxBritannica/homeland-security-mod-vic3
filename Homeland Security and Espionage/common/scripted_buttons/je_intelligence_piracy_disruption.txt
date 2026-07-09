@@ -63,10 +63,13 @@ hms_je_piracy_fought = {
 	}
 
 	possible = {
-		AND = {
-			navy_size >= 20
-			not = {
-				has_variable = recently_fought_pirates
+		custom_tooltip = {
+			text = is_possible_to_fight_pirates_tt
+			AND = {
+				navy_size >= 10
+				not = {
+					has_variable = recently_fought_pirates
+				}
 			}
 		}
 	}

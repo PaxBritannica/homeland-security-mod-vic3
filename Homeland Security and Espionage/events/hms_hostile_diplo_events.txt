@@ -445,6 +445,7 @@ hostile_diplo_events.5 = {
     duration = 1
 
     trigger = {
+        NOT = { has_variable = has_je_piracy_active }
     }
 
     immediate = {
@@ -501,33 +502,35 @@ hostile_diplo_events.6 = {
         name = hostile_diplo_events.6.a
         default_option = yes
 
-        random_list = {
-            15 = {
+        set_variable = pirates_engaged
 
-                custom_tooltip = {
-                    text = pirates_escaped_tooltip
-                }
+        # random_list = {
+        #     15 = {
 
-            }
+        #         custom_tooltip = {
+        #             text = pirates_escaped_tooltip
+        #         }
 
-            70 = {
+        #     }
+
+        #     70 = {
                 
-				trigger_event = { 
-					id = hostile_diplo_events.8 
-					days = 30
-				}
+		# 		trigger_event = { 
+		# 			id = hostile_diplo_events.8 
+		# 			days = 30
+		# 		}
 
-            }
+        #     }
 
-            15 = {
+        #     15 = {
                 
-				trigger_event = { 
-					id = hostile_diplo_events.7 
-					days = 30
-				}
+		# 		trigger_event = { 
+		# 			id = hostile_diplo_events.7 
+		# 			days = 30
+		# 		}
 
-            }
-        }
+        #     }
+        # }
 
         ai_chance = {
             base = 10

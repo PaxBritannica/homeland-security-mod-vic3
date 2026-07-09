@@ -79,6 +79,7 @@
  unit_naval_awareness_mult: "Naval Awareness"
  country_government_agents_pol_str_mult: "Government Agents Political Strength"
  ig_behind_terror_attack: "Rogue Branch Behind Terror Attack"
+ piracy_bribed_modifier: "Bribed Pirates"
 
  anti_proliferation_modifier: "Anti-Proliferation Measures"
  stolen_tech_military_modifier: "Stolen Military Technology"
@@ -93,7 +94,7 @@
  
  #diplo plays
  enforce_regime_change: "Enforce Political Realignment"
- enfroce_regime_change_action_name : "Enforce Political Realignment"
+ enforce_regime_change_action_name : "Enforce Political Realignment"
  war_goal_war_goal_enforce_regime_change: "Enforce Political Realignment"
  war_goal_war_goal_enforce_regime_change_type_name: "Enforce Political Realignment"
  diplomatic_honeymoon: "Diplomatic Honeymoon"
@@ -277,6 +278,12 @@
  je_sabotage_compensate_families_desc: "Provide financial assistance to the families affected by the explosion to help them recover from their losses and demonstrate #g our commitment to their well-being#!."
  hms_enforce_martial_law_desc: "The military is granted authority to #y enforce law and order#! within the nation, allowing for swift and decisive action during times of unrest or emergency."
  compensation_for_the_families: "Compensation for the families affected by the explosion"
+ hms_piracy_progress_bar: "Anti-Piracy Operation"
+ hms_piracy_progress_bar_desc: "#green Navy#!"
+ hms_piracy_progress_bar_desc_2: "#red Pirates#!"
+ je_intelligence_piracy_fail_tt: "Failed to Bribe Pirates"
+ target_has_not_researched_sea_lanes_strategy_tt: "The target country has not researched #yellow Sea Lanes Strategy#!."
+ is_possible_to_fight_pirates_tt: "We have more than 10 available naval units and we haven't sent the navy yet."
 
  je_sabotage_joint_secret_service_effort: "Joint Secret Service Effort"
  je_sabotage_joint_secret_service_effort_desc: "Collaborate with allied nations and dispatch more local agents in order to effectively investigate and apprehend the perpetrators behind the explosion."
@@ -330,4 +337,3 @@
  successful_regime_change_prestige: "Successfully Enforced Political Realignment"
  enforce_regime_change.3.t: "Winds Of Change"
  enforce_regime_change.3.b: "Things are finally setting for the better."
- 

@@ -222,3 +222,6 @@ immediate = {
             save_scope_as = caught_by
         }
     }
+
+# add or subtract infamy
+change_infamy = 5

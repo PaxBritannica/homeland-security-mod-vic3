@@ -954,3 +954,51 @@ hms_sweep_cooldown_tt: "Must wait before launching another sweep."
  progress_will_slow_down_to_reassure_government_tt: "Progress will slow down to reassure government officials."
  intelligence_medium_effort_modifier: "Intelligence Related Expenses"
  sweep_has_received_additional_funding_tt: "Operation Will #g speed up a bit#! and generate more chance of uncovering hostile operations."
+
+
+
+ #MEDIATE EVENT CHAIN
+ ### DIPLOMATIC ACTION ###
+ hms_da_impose_mediation: "Mediation"
+ hms_da_impose_mediation_desc: "Leverage our #yellow diplomatic weight#! to intervene in a foreign war, pressuring one or both belligerents to seek peace."
+ hms_mediation_target_at_war_with_tt: "We must not have another mediation ongoing."
+ hms_mediation_target_at_war_tt: "Target country must be at war with another country."
+ hms_mediation_min_relations_tt: "We must have at least cold relations with the target."
+ 
+ ### EVENT 1: WAR SELECTION ###
+ mediation_events.1.t: "Imposing Our Will"
+ mediation_events.1.desc: "Our diplomats have made contact with [SCOPE.sCountry('side_a').GetName]'s government. We can choose which war we can mediate."
+ mediation_events.1.f: "The strong do what they can, and the weak suffer what they must."
+ mediation_events.1.a: "Mediate the war against [SCOPE.sCountry('war_opponent_1').GetName]."
+ mediation_events.1.b: "Mediate the war against [SCOPE.sCountry('war_opponent_2').GetName]."
+ mediation_events.1.c: "Mediate the war against [SCOPE.sCountry('war_opponent_3').GetName]."
+ mediation_events.1.d: "This requires further consideration."
+
+ ### JOURNAL ENTRY ###
+ mediation_attacker_title: "#y Attacker#!"
+ mediation_defender_title: "#y Defender#!"
+ hms_je_mediation: "Mediation"
+ hms_je_mediation_reason: "[SCOPE.sCountry('attacker').GetName] has attacked [SCOPE.sCountry('defender').GetName].\n\nWe have dispatched a team of diplomats to mediate the conflict. We will focus our efforts on pressuring one of the sides to give in, diminishing their #yellow war support#! and pushing them to seek peace.\n\n #yellow Important:#! Pressuring one side only will grant us an #yellow Obligation#! from his opponent."
+ je_mediation_support_a_desc: "Focus our pressure to force [SCOPE.sCountry('side_b').GetName] to give in, diminishing their war support."
+ je_mediation_support_b_desc: "Focus our pressure to force [SCOPE.sCountry('side_a').GetName] to give in, diminishing their war support."
+ hms_mediation_already_pressuring_tt: "Available if we are #yellow not#! already pressuring one of the sides."
+ je_mediation_support_a: "Pressure [SCOPE.sCountry('side_b').GetName]."
+ je_mediation_support_b: "Pressure [SCOPE.sCountry('side_a').GetName]."
+ hms_neutral_mediation: "We have a neutral stance."
+ hms_pressuring_side_a: "We are Pressuring [SCOPE.sCountry('side_a').GetName] government."
+ hms_pressuring_side_b: "We are Pressuring [SCOPE.sCountry('side_b').GetName] government."
+ mediation_debuffer_tt: "Applying Diplomatic Pressure"
+ je_mediation_threaten_side_a: "Enact aggressive measures against [SCOPE.sCountry('side_a').GetName] to lower their morale support."
+ je_mediation_threaten_side_b: "Enact aggressive measures against [SCOPE.sCountry('side_b').GetName] to lower their morale support."
+
+ ### EVENT 99: FAILURE ###
+ mediation_events.99.t: "A Mediator Scorned"
+ mediation_events.99.d: "Our mediation efforts have come to nothing. Whether through our own weakness, changing circumstances, or the sheer stubbornness of the belligerents, we have failed to bring the conflict to a close.\n\nThe international community takes note."
+ mediation_events.99.f: "A #yellow Great Power#! that cannot impose its will is great in name only."
+ mediation_events.99.a: "This is but a setback."
+ 
+ ### EVENT 100: SUCCESS ###
+ mediation_events.100.t: "Peace Through Strength"
+ mediation_events.100.d: "The guns have fallen silent. The war between [SCOPE.sCountry('side_a').GetName] has attacked [SCOPE.sCountry('side_b').GetName] is over, and our role in bringing about its conclusion has not gone unnoticed.\n\nThe international community recognizes our nation as a decisive force in the pursuit of regional peace."
+ mediation_events.100.f: "Peace is not the absence of war, but the presence of superior negotiating power."
+ mediation_events.100.a: "We played our cards."

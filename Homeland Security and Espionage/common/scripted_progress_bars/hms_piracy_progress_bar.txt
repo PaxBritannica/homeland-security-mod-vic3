@@ -1,0 +1,11 @@
+﻿hms_piracy_progress_bar = {
+	name = hms_piracy_progress_bar
+	desc = hms_piracy_progress_bar_desc
+	second_desc = hms_piracy_progress_bar_desc_2
+	
+	double_sided_gold = yes
+	
+	start_value = 50
+	min_value = 0
+	max_value = 100
+}

@@ -1,5 +1,7 @@
 ﻿hms_je_piracy = {
-	
+
+	icon = "gfx/interface/icons/invention_icons/admiralty.dds"
+
 	group = je_group_intelligence
 
 	weight = 200
@@ -8,8 +10,12 @@
 
 	scripted_button = hms_je_piracy_bribed
 	scripted_button = hms_je_piracy_fought
+
+	scripted_progress_bar = hms_piracy_progress_bar
 	
 	immediate = {
+
+		set_variable = has_je_piracy_active
 
 		if = {
             limit = {
@@ -52,6 +58,96 @@
             save_scope_as = piracy_target
         }
 
+		
+		if = {
+			limit = { NOT = { has_variable = hms_piracy_progress_var } }
+			set_variable = {
+				name = hms_piracy_progress_var
+				value = 50
+			}
+		}
+
+		# remove lion and bear icons via Community Framework
+		scope:journal_entry = {
+			set_variable = {
+				name = com_bear_spray_applied
+				value = yes
+			}
+		}
+		
+	}
+
+	on_weekly_pulse = {
+		effect = {
+
+			if = {
+				limit = {
+					has_variable = pirates_engaged
+				}
+
+			# Calculate this week's progress delta
+			hms_calculate_piracy_progress_effect = yes
+
+			# Apply the delta to our tracking variable
+			change_variable = {
+				name = hms_piracy_progress_var
+				add = var:hms_piracy_progress_delta
+			}
+
+			# Clamp so it never goes below 0 or above max
+			clamp_variable = {
+				name = hms_piracy_progress_var
+				min = 0
+				max = 100
+			}
+
+			# Push to the progress bar
+			je:hms_je_piracy = {
+				set_bar_progress = {
+					name = hms_piracy_progress_bar
+					value = owner.var:hms_piracy_progress_var
+				}
+			}
+			}
+
+			# Victory
+			if = {
+				limit = {
+					scope:journal_entry = {
+						"scripted_bar_progress(hms_piracy_progress_bar)" >= 100
+					}
+				}
+				set_variable = won_against_pirates
+			}
+	
+			# Defeat
+			if = {
+				limit = {
+					scope:journal_entry = {
+						"scripted_bar_progress(hms_piracy_progress_bar)" <= 0
+					}
+				}
+				set_variable = lost_against_pirates
+			}
+		}
+		
+	}
+
+	fail = {
+		custom_tooltip = {
+			text = je_intelligence_piracy_fail_tt
+
+			has_variable = lost_against_pirates
+
+		}
+	}
+
+	on_fail = {
+
+		#cleanup variable related to progress of the fight
+		remove_variable = hms_piracy_progress_var
+		remove_variable = pirates_engaged
+		remove_variable = has_je_piracy_active
 	}
 	
 	complete = {
@@ -66,6 +162,7 @@
 						}
 					}
 				}
+
 				has_variable = won_against_pirates
 				has_variable = recently_bribed_pirates
 			}
@@ -77,6 +174,20 @@
 		#This contains the condition for the pact to END and hides the NAME of the perpetrator country
 		custom_tooltip = {
 			text = je_intelligence_privacy_on_complete_tt
+
+			random_list = {
+				70 = {
+					trigger_event = { 
+						id = hostile_diplo_events.8 
+					}
+				}
+
+				30 = {
+					trigger_event = { 
+						id = hostile_diplo_events.7 
+					}
+				}
+        	}
 
 			if = {
 				limit = {
@@ -101,6 +212,13 @@
 				}
 			}
 		}
+
+		#cleanup variable related to progress of the fight
+		remove_variable = hms_piracy_progress_var
+		remove_variable = pirates_engaged
+		remove_variable = has_je_piracy_active
 	}
+
+	
 	
 }

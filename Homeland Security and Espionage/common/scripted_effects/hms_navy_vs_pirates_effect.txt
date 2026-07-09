@@ -1,0 +1,94 @@
+### =============================================
+### SCRIPTED EFFECT: Calculate Piracy Progress
+### =============================================
+
+### Navy strength tiers:
+### 50+ vessels → 80% advance, 20% regress (4/1)
+### 30-49 vessels → 75% advance, 25% regress (3/1)
+### 15-29 vessels → 60% advance, 40% regress (3/2)
+### <15 vessels → 40% advance, 60% regress (2/3)
+
+hms_calculate_piracy_progress_effect = {
+
+    # --- TIER 1: 50+ vessels (4/1 ratio) ---
+    if = {
+        limit = {
+            navy_size >= 50
+        }
+        random_list = {
+            80 = {
+                set_variable = {
+                    name = hms_piracy_progress_delta
+                    value = 4.5
+                }
+            }
+            20 = {
+                set_variable = {
+                    name = hms_piracy_progress_delta
+                    value = -1
+                }
+            }
+        }
+    }
+
+    # --- TIER 2: 30-49 vessels (3/1 ratio) ---
+    else_if = {
+        limit = {
+            navy_size >= 30
+        }
+        random_list = {
+            75 = {
+                set_variable = {
+                    name = hms_piracy_progress_delta
+                    value = 3.5
+                }
+            }
+            25 = {
+                set_variable = {
+                    name = hms_piracy_progress_delta
+                    value = -1
+                }
+            }
+        }
+    }
+
+    # --- TIER 3: 15-29 vessels (3/2 ratio) ---
+    else_if = {
+        limit = {
+            navy_size >= 15
+        }
+        random_list = {
+            60 = {
+                set_variable = {
+                    name = hms_piracy_progress_delta
+                    value = 2.5
+                }
+            }
+            40 = {
+                set_variable = {
+                    name = hms_piracy_progress_delta
+                    value = -1
+                }
+            }
+        }
+    }
+
+    # --- TIER 4: <15 vessels (2/3 ratio — losing ground) ---
+    else = {
+        random_list = {
+            50 = {
+                set_variable = {
+                    name = hms_piracy_progress_delta
+                    value = 1
+                }
+            }
+            50 = {
+                set_variable = {
+                    name = hms_piracy_progress_delta
+                    value = -2
+                }
+            }
+        }
+    }
+}
+

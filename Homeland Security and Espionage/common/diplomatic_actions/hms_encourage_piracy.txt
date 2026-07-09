@@ -88,6 +88,14 @@
 					}
 			}
 		}
+
+		custom_tooltip = {
+			text = target_has_not_researched_sea_lanes_strategy_tt
+
+			scope:target_country = {
+				NOT = { has_technology_researched = sea_lanes_strategy }
+			}
+		}
 	
 		has_diplomatic_relevance = scope:target_country
 
